@@ -17,7 +17,9 @@
  */
 package mod.gottsch.forge.gealdorcraft.api;
 
-import mod.gottsch.forge.gealdorcraft.core.item.IJewelrySize;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryMaterialTier;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelrySizeTier;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelryType;
 import mod.gottsch.forge.gealdorcraft.core.registry.EnumRegistry;
 import mod.gottsch.forge.gottschcore.enums.IEnum;
@@ -30,8 +32,11 @@ import java.util.Optional;
  */
 public class GealdorCraftApi {
     public static final String RARITY = "rarity";
+
     public static final String JEWELRY_TYPE = "jewelryType";
     public static final String JEWELRY_SIZE = "jewelrySize";
+    public static final String JEWELRY_STONE = "jewelryStone";
+    public static final String JEWELRY_MATERIAL = "jewelryMaterial";
 
     /**
      * TODO how to integrate with Treasure2 rarity and API.
@@ -70,17 +75,45 @@ public class GealdorCraftApi {
         }
     }
 
-    public static void registerJewelrySize(IJewelrySize size) {
+    public static void registerJewelrySize(IJewelrySizeTier size) {
         EnumRegistry.register(JEWELRY_SIZE, size);
     }
 
-    public static Optional<IJewelrySize> getJewelrySize(String key) {
+    public static Optional<IJewelrySizeTier> getJewelrySize(String key) {
         IEnum ienum = EnumRegistry.get(JEWELRY_SIZE, key);
         if (ienum == null) {
             return Optional.empty();
         }
         else {
-            return Optional.of((IJewelrySize) ienum);
+            return Optional.of((IJewelrySizeTier) ienum);
+        }
+    }
+
+    public static void registerJewelryStoneTier(IJewelryStoneTier tier) {
+        EnumRegistry.register(JEWELRY_STONE, tier);
+    }
+
+    public static Optional<IJewelryStoneTier> getJewelryStoneTier(String key) {
+        IEnum ienum = EnumRegistry.get(JEWELRY_STONE, key);
+        if (ienum == null) {
+            return Optional.empty();
+        }
+        else {
+            return Optional.of((IJewelryStoneTier) ienum);
+        }
+    }
+
+    public static void registerJewelryMaterialTier(IJewelryMaterialTier tier) {
+        EnumRegistry.register(JEWELRY_MATERIAL, tier);
+    }
+
+    public static Optional<IJewelryMaterialTier> getJewelryMaterialTier(String key) {
+        IEnum ienum = EnumRegistry.get(JEWELRY_MATERIAL, key);
+        if (ienum == null) {
+            return Optional.empty();
+        }
+        else {
+            return Optional.of((IJewelryMaterialTier) ienum);
         }
     }
 }

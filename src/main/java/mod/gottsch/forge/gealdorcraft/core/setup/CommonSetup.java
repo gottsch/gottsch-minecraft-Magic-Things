@@ -20,7 +20,9 @@ package mod.gottsch.forge.gealdorcraft.core.setup;
 import mod.gottsch.forge.gealdorcraft.api.GealdorCraftApi;
 import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.config.Config;
-import mod.gottsch.forge.gealdorcraft.core.item.JewelrySize;
+import mod.gottsch.forge.gealdorcraft.core.item.JewelryMaterialTier;
+import mod.gottsch.forge.gealdorcraft.core.item.JewelrySizeTier;
+import mod.gottsch.forge.gealdorcraft.core.item.JewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryType;
 import mod.gottsch.forge.gealdorcraft.core.rarity.Rarity;
 import net.minecraftforge.fml.common.Mod;
@@ -57,9 +59,28 @@ public class CommonSetup {
         GealdorCraftApi.registerJewelryType(JewelryType.CHARM);
         // TODO add Broach ?
 
-        // register jewelry sizes
-        GealdorCraftApi.registerJewelrySize(JewelrySize.REGULAR);
-        GealdorCraftApi.registerJewelrySize(JewelrySize.GREAT);
-        GealdorCraftApi.registerJewelrySize(JewelrySize.LORDS);
+        // register jewelry size tiers
+        GealdorCraftApi.registerJewelrySize(JewelrySizeTier.REGULAR);
+        GealdorCraftApi.registerJewelrySize(JewelrySizeTier.GREAT);
+        GealdorCraftApi.registerJewelrySize(JewelrySizeTier.LORDS);
+
+        // register jewelry stone tiers
+        GealdorCraftApi.registerJewelryStoneTier(JewelryStoneTier.TIER1);
+        GealdorCraftApi.registerJewelryStoneTier(JewelryStoneTier.TIER2);
+        GealdorCraftApi.registerJewelryStoneTier(JewelryStoneTier.TIER3);
+        GealdorCraftApi.registerJewelryStoneTier(JewelryStoneTier.TIER4);
+        GealdorCraftApi.registerJewelryStoneTier(JewelryStoneTier.TIER5);
+        GealdorCraftApi.registerJewelryStoneTier(JewelryStoneTier.TIER6);
+
+        // register jewelry material tiers
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.WOOD);
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.IRON);
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.COPPER);
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.SILVER);
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.GOLD);
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.BLOOD);
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.BONE);
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.SHADOW);
+        GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.ATIUM);
     }
 }
