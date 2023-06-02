@@ -39,7 +39,7 @@ public class GealdorCraft {
 	// logger
 	public static Logger LOGGER = LogManager.getLogger(GealdorCraft.MOD_ID);
 
-	public static final String MOD_ID = "gealdroncraft";
+	public static final String MOD_ID = "gealdorcraft";
 
 	/**
 	 * 

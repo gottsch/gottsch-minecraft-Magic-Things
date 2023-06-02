@@ -82,13 +82,5 @@ public class GealdorCraftItemTagsProvider extends ItemTagsProvider {
 		// pocket watch
 		//        tag(GealdorCraftTags.Items.CHARM).add(GealdorItems.POCKET_WATCH.get());
 
-		// charms
-		//        Collection<CharmItem> charms = GealdorItems.CHARM_ITEMS.values();
-		//        charms.forEach(charm -> {
-		//        	tag(GealdorCraftTags.Items.CHARM).add(charm);
-		//        });
-		//        
-		//        // pouch
-		//        tag(GealdorCraftTags.Items.BELT).add(GealdorItems.POUCH.get());
 	}
 }
