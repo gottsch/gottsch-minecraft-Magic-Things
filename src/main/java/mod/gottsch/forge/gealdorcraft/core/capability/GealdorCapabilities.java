@@ -17,7 +17,7 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.capability;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityManager;

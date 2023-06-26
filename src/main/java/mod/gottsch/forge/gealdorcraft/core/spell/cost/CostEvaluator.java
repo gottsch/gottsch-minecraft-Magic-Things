@@ -4,7 +4,7 @@ import java.util.Random;
 
 import com.someguyssoftware.gottschcore.spatial.ICoords;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.spell.ISpellEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;

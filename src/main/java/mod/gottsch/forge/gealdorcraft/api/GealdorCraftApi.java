@@ -21,9 +21,13 @@ import mod.gottsch.forge.gealdorcraft.core.item.IJewelryMaterialTier;
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelrySizeTier;
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelryType;
+import mod.gottsch.forge.gealdorcraft.core.item.JewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.registry.EnumRegistry;
+import mod.gottsch.forge.gealdorcraft.core.registry.TagRegistry;
 import mod.gottsch.forge.gottschcore.enums.IEnum;
 import mod.gottsch.forge.gottschcore.enums.IRarity;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 
 import java.util.Optional;
 
@@ -116,4 +120,8 @@ public class GealdorCraftApi {
             return Optional.of((IJewelryMaterialTier) ienum);
         }
     }
+
+	public static void registerJewerlyStoneTierTag(IJewelryStoneTier tier, TagKey<Item> tierTagKey) {
+		TagRegistry.registerJewelryStoneTier(tier, tierTagKey);
+	}
 }

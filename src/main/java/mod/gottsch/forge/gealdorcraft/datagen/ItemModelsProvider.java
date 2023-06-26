@@ -17,7 +17,7 @@
  */
 package mod.gottsch.forge.gealdorcraft.datagen;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.item.GealdorCraftItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
@@ -41,9 +41,13 @@ public class ItemModelsProvider extends ItemModelProvider {
 //		singleTexture(TreasureItems.ADORNMENTS_TAB.get().getRegistryName().getPath(),
 //				mcLoc("item/generated"), "layer0", modLoc("item/adornment/ruby_gold_ring"));
 
-		// keys
+		/*
+		 * jewelry
+		 */
+		s
+		// rings
 		singleTexture(GealdorCraftItems.COPPER_RING.get().getRegistryName().getPath(),
-				modLoc("item/copper_ring"), "layer0", modLoc("item/jewelry/copper_ring"));
+				mcLoc("item/generated"), "layer0", modLoc("items/jewelry/copper_ring"));
 
 		// block items
 //		withExistingParent(TreasureItems.WOOD_CHEST_ITEM.get().getRegistryName().getPath(), modLoc("block/wood_chest"));

@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GealdorCraft.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
-package mod.gottsch.forge.gealdorcraft.core;
+package mod.gottsch.forge.gealdorcraft;
 
 import mod.gottsch.forge.gealdorcraft.core.config.Config;
 import mod.gottsch.forge.gealdorcraft.core.setup.CommonSetup;

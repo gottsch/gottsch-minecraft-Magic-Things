@@ -17,7 +17,7 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.item;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.capability.IJewelryHandler;
 import mod.gottsch.forge.gealdorcraft.core.capability.JewelryCapability;
 import mod.gottsch.forge.gealdorcraft.core.capability.JewelryHandler;
@@ -27,6 +27,8 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
@@ -54,13 +56,43 @@ public class GealdorCraftItems {
                     JewelryType.RING,
                     JewelryMaterialTier.COPPER,
                     JewelryStoneTier.NONE,
-                    JewelrySizeTier.REGULAR).with($ -> {     //new JewelryCapability();
-// add stuff to capability
+                    JewelrySizeTier.REGULAR).with($ -> {
                         // TODO don't really need a builder ??? might for special jewel that overrides that tier calculations.
                     }).build();
 
+//            handler = new JewelryHandler(JewelryType.RING, JewelryMaterialTier.COPPER, JewelryStoneTier.NONE, JewelrySizeTier.REGULAR);
+            
             // return capability
             return new JewelryCapability(handler);
         }
     });
+    
+    // TEMP how to make a topaz copper ring ? - the stone would have to be optional in the builder. size can be optional too and defaults to REGULAR
+    public static RegistryObject<Item> TOPAZ_COPPER_RING = Registration.ITEMS.register("topaz_copper_ring", () -> new Jewelry(GEALDORCRAFT_PROPS_SUPPLIER.get()) {
+        public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+            IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterialTier.COPPER)
+            		.withStone(TOPAZ.get().getRegistryName())
+            		.build();
+            return new JewelryCapability(handler);
+        }
+    });
+    
+    public static RegistryObject<Item> GREAT_ONYX_COPPER_RING = Registration.ITEMS.register("great_onyx_copper_ring", () -> new Jewelry(GEALDORCRAFT_PROPS_SUPPLIER.get()) {
+        public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+            IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterialTier.COPPER)
+            		.withSize(JewelrySizeTier.GREAT)
+            		.withStone(ONYX.get().getRegistryName())
+            		.build();
+            return new JewelryCapability(handler);
+        }
+    });
+    
+    // TEMP stones/gems
+    public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> ONYX = Registration.ITEMS.register("onyx", () -> new Item(new Item.Properties()));
+    
+	public static void register() {
+		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		Registration.ITEMS.register(eventBus);		
+	}
 }

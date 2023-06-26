@@ -17,11 +17,13 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.tag;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.event.TagsUpdatedEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 /**
@@ -38,6 +40,14 @@ public class GealdorCraftTags {
         public static final TagKey<Item> CHARMS = mod(GealdorCraft.MOD_ID, "jewelry/charms");
         public static final TagKey<Item> POCKETS = mod(GealdorCraft.MOD_ID, "jewelry/pockets");
 
+        // stone tiers
+        public static final TagKey<Item> STONE_TIER1 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier1");
+        public static final TagKey<Item> STONE_TIER2 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier2");
+        public static final TagKey<Item> STONE_TIER3 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier3");
+        public static final TagKey<Item> STONE_TIER4 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier4");
+        public static final TagKey<Item> STONE_TIER5= mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier5");
+        public static final TagKey<Item> STONE_TIER6 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier6");
+        
         /**
          *
          * @param domain
@@ -48,4 +58,9 @@ public class GealdorCraftTags {
             return ItemTags.create(new ResourceLocation(domain, path));
         }
     }
+    
+	@SubscribeEvent
+	public static void registerTags(TagsUpdatedEvent event) {
+		GealdorCraft.LOGGER.info("in tags updated event");
+	}
 }

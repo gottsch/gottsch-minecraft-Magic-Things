@@ -17,11 +17,16 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.item;
 
+import mod.gottsch.forge.gealdorcraft.core.size.IntegerRange;
 import mod.gottsch.forge.gottschcore.enums.IEnum;
 
 /**
  * Created by Mark Gottschling on 5/31/2023
  */
 public interface IJewelryStoneTier extends IEnum {
+
+	IntegerRange getMana();
+
+	int getMaxLevel();
 
 }

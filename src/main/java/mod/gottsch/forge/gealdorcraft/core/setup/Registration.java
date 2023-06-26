@@ -17,7 +17,8 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.setup;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.core.item.GealdorCraftItems;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.MenuType;
@@ -50,6 +51,6 @@ public class Registration {
      *
      */
     public static void init() {
-
+    	GealdorCraftItems.register();
     }
 }

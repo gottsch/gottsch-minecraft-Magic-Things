@@ -20,7 +20,7 @@
 package mod.gottsch.forge.gealdorcraft.core.spell;
 
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.spell.cost.CostEvaluator;
 import mod.gottsch.forge.gealdorcraft.core.spell.cost.ICostEvaluator;
 import net.minecraft.nbt.CompoundTag;

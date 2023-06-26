@@ -17,14 +17,15 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.setup;
 
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.api.GealdorCraftApi;
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.config.Config;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryMaterialTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelrySizeTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryType;
 import mod.gottsch.forge.gealdorcraft.core.rarity.Rarity;
+import mod.gottsch.forge.gealdorcraft.core.tag.GealdorCraftTags;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
@@ -82,5 +83,13 @@ public class CommonSetup {
         GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.BONE);
         GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.SHADOW);
         GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.ATIUM);
+        
+        // register stone tier tags
+        GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER1, GealdorCraftTags.Items.STONE_TIER1);
+        GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER2, GealdorCraftTags.Items.STONE_TIER2);
+        GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER3, GealdorCraftTags.Items.STONE_TIER3);
+        GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER4, GealdorCraftTags.Items.STONE_TIER4);
+        GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER5, GealdorCraftTags.Items.STONE_TIER5);
+        GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER6, GealdorCraftTags.Items.STONE_TIER6);
     }
 }

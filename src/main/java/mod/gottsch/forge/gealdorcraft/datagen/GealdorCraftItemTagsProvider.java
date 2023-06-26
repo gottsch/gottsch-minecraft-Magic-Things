@@ -17,7 +17,7 @@
  */
 package mod.gottsch.forge.gealdorcraft.datagen;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.item.GealdorCraftItems;
 import mod.gottsch.forge.gealdorcraft.core.tag.GealdorCraftTags;
 import net.minecraft.data.DataGenerator;
@@ -41,10 +41,13 @@ public class GealdorCraftItemTagsProvider extends ItemTagsProvider {
 
 	@Override
 	protected void addTags() {     
-		// keys rarity
+		// rings
 		tag(GealdorCraftTags.Items.RINGS).add(GealdorCraftItems.COPPER_RING.get());
 
-
+		// stone tiers
+		tag(GealdorCraftTags.Items.STONE_TIER1).add(GealdorCraftItems.TOPAZ.get());
+		tag(GealdorCraftTags.Items.STONE_TIER2).add(GealdorCraftItems.ONYX.get());
+		
 		// NOTE wither lock is a special and isn't used in the general locks list
 		// tag(GealdorCraftTags.Items.SCARCE_LOCKS).add(GealdorItems.WITHER_LOCK.get());
 		

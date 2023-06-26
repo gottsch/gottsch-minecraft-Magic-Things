@@ -133,4 +133,13 @@ public enum JewelryStoneTier implements IJewelryStoneTier {
     public String toString() {
         return super.toString().toLowerCase();
     }
+
+    @Override
+	public IntegerRange getMana() {
+		return mana;
+	}
+    @Override
+	public int getMaxLevel() {
+		return maxLevel;
+	}
 }

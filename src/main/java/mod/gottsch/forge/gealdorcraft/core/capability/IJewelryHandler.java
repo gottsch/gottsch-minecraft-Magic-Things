@@ -1,6 +1,11 @@
 package mod.gottsch.forge.gealdorcraft.core.capability;
 
-import mod.gottsch.forge.gealdorcraft.core.item.*;
+import java.util.List;
+
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryMaterialTier;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelrySizeTier;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryStoneTier;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryType;
 import net.minecraft.nbt.Tag;
 
 /**
@@ -8,7 +13,7 @@ import net.minecraft.nbt.Tag;
  */
 public interface IJewelryHandler {
     public IJewelryMaterialTier getJewelryMaterialTier();
-    public IJewelryStoneTier getJewelryStoneTier();
+    public List<IJewelryStoneTier> getJewelryStoneTiers();
     public IJewelrySizeTier getJewelrySizeTier();
     public IJewelryType getJewelryType();
 

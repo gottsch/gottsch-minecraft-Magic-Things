@@ -17,13 +17,23 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.capability;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
+
 import mod.gottsch.forge.gealdorcraft.api.GealdorCraftApi;
-import mod.gottsch.forge.gealdorcraft.core.item.*;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryMaterialTier;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelrySizeTier;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryStoneTier;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryType;
+import mod.gottsch.forge.gealdorcraft.core.item.JewelryMaterialTier;
+import mod.gottsch.forge.gealdorcraft.core.item.JewelrySizeTier;
+import mod.gottsch.forge.gealdorcraft.core.item.JewelryStoneTier;
+import mod.gottsch.forge.gealdorcraft.core.item.JewelryType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.util.INBTSerializable;
-
-import java.util.function.Consumer;
 
 /**
  * Created by Mark Gottschling on 6/1/2023
@@ -41,10 +51,11 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     private static final String MAX_SOCKETS = "maxSockets";
     private static final String SOCKETS = "sockets";
     private static final String MAX_LEVEL ="maxLevel";
+    private static final String STONES = "stones";
 
     private IJewelryType type;
     private IJewelryMaterialTier materialTier;
-    private IJewelryStoneTier stoneTier;
+    private List<IJewelryStoneTier> stoneTiers = new ArrayList<>(2);
     private IJewelrySizeTier sizeTier;
 
     private int uses;
@@ -61,13 +72,16 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     // TODO rename to maxSpellLevel
     private int maxLevel;
 
+    // TODO need to register Tags for Stone -> Tier
+    public List<ResourceLocation> stones = new ArrayList<>(2);
+    
     // TODO add Spell properties
 
     //
     public static class Builder {
         public IJewelryType type;
         public IJewelryMaterialTier materialTier;
-        public IJewelryStoneTier stoneTier;
+        public List<IJewelryStoneTier> stoneTiers = new ArrayList<>(2);
         public IJewelrySizeTier sizeTier;
         public int uses;
         public int maxMana;
@@ -77,12 +91,37 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         public int maxSockets;
         public int sockets;
         public int maxLevel;
+        public List<ResourceLocation> stones = new ArrayList<>(2);
 
+        /**
+         * TODO use this constructor
+         * @param type
+         * @param materialTier
+         */
+        public Builder(IJewelryType type, IJewelryMaterialTier materialTier) {
+            this.type = type;
+            this.materialTier = materialTier;
+            this.sizeTier = JewelrySizeTier.REGULAR;
+            this.stoneTiers.add(JewelryStoneTier.NONE);
+        }
+        
         public Builder(IJewelryType type, IJewelryMaterialTier materialTier, IJewelryStoneTier stoneTier, IJewelrySizeTier sizeTier) {
             this.type = type;
             this.materialTier = materialTier;
-            this.stoneTier = stoneTier;
+            this.stoneTiers.add(stoneTier);
             this.sizeTier = sizeTier;
+        }
+        
+        // TODO least likely to keep this constructor
+        public Builder(IJewelryType type, IJewelryMaterialTier materialTier, IJewelrySizeTier sizeTier, List<ResourceLocation> stones) {
+            this.type = type;
+            this.materialTier = materialTier;
+            this.sizeTier = sizeTier;
+
+            for (int index = 0; index < sizeTier.getSockets(); index++) {
+            	this.stones.add(stones.get(index));
+            	// TODO compare all stones and get the the matching stoneTier
+            }
         }
 
         public Builder with(Consumer<Builder> builder) {
@@ -90,7 +129,24 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             return this;
         }
 
+        public Builder withStone(ResourceLocation stone) {
+        	this.stones.add(stone);
+        	return this;
+        }
+        
+        public Builder withStones(List<ResourceLocation> stones) {
+        	this.stones = stones;
+        	return this;
+        }
+        
+		public Builder withSize(JewelrySizeTier size) {
+			this.sizeTier = size;
+			return this;
+		}
+		
         public IJewelryHandler build() {
+        	// should build do all the calculations or should the JewelryHandler do it all?
+        	// probably build should
             return new JewelryHandler(this);
         }
     }
@@ -105,7 +161,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     public JewelryHandler(IJewelryType type, IJewelryMaterialTier materialTier, IJewelryStoneTier stoneTier, IJewelrySizeTier sizeTier) {
         this.type = type;
         this.materialTier = materialTier;
-        this.stoneTier = stoneTier;
+        this.stoneTiers.add(stoneTier);
         this.sizeTier = sizeTier;
 
         // do calculations based on tiers
@@ -119,9 +175,11 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
      * @param builder
      */
     public JewelryHandler(Builder builder) {
+    	// required properties
         this.type = builder.type;
         this.materialTier = builder.materialTier;
-        this.stoneTier = builder.stoneTier;
+        // optional and calculations
+        this.stoneTiers = builder.stoneTiers;
         this.sizeTier = builder.sizeTier;
         if (builder.uses == 0) {
             this.uses = Math.round(materialTier.getUses().getInRange() * sizeTier.getUsesMultiplier());
@@ -129,13 +187,32 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             this.uses = builder.uses;
         }
         if (builder.maxMana == 0) {
-
+        	int mana = stoneTiers.stream()
+        			  .map(x -> x.getMana().getInRange())
+        			  .reduce(0, Integer::sum);        	
+        	this.maxMana = Math.round((materialTier.getMana().getInRange() + mana) * sizeTier.getManaMultiplier());
         } else {
             this.maxMana = builder.maxMana;
         }
         this.mana = this.maxMana;
 
+        // add stone up to max for size tier
+        builder.stones.forEach(stone -> {
+        	if (this.stones.size() < this.sizeTier.getSockets()) {
+        		this.stones.add(stone);
+        	}
+        });
+
+        
         // TODO ...
+        // maxRepairs
+        // repairs
+        
+        // maxSockets
+        // sockets
+        
+        // maxLevel
+        
     }
 
     @Override
@@ -144,7 +221,9 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         // save by getName() as the EnumRegistry registers by name;
         tag.putString(TYPE, getJewelryType().getName());
         tag.putString(MATERIAL_TIER, getJewelryMaterialTier().getName());
-        tag.putString(STONE_TIER, getJewelryStoneTier().getName());
+        
+//        tag.putString(STONE_TIER, getJewelryStoneTier().getName());
+        
         tag.putString(SIZE_TIER, getJewelrySizeTier().getName());
 
         tag.putInt(USES, getUses());
@@ -175,7 +254,8 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
                 this.materialTier = GealdorCraftApi.getJewelryMaterialTier(compound.getString(MATERIAL_TIER)).orElse(JewelryMaterialTier.NONE);
             }
             if (compound.contains(STONE_TIER)) {
-                this.stoneTier = GealdorCraftApi.getJewelryStoneTier(compound.getString(STONE_TIER)).orElse(JewelryStoneTier.NONE);
+//                this.stoneTier = GealdorCraftApi.getJewelryStoneTier(compound.getString(STONE_TIER)).orElse(JewelryStoneTier.NONE);
+            	
             }
             if (compound.contains(SIZE_TIER)) {
                 this.sizeTier = GealdorCraftApi.getJewelrySize(compound.getString(SIZE_TIER)).orElse(JewelrySizeTier.UNKNOWN);
@@ -215,8 +295,8 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     }
 
     @Override
-    public IJewelryStoneTier getJewelryStoneTier() {
-        return stoneTier;
+    public List<IJewelryStoneTier> getJewelryStoneTiers() {
+        return stoneTiers;
     }
 
     @Override

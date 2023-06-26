@@ -17,7 +17,7 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.capability;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryMaterialTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelrySizeTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryStoneTier;

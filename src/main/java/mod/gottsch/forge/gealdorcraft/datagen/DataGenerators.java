@@ -17,7 +17,7 @@
  */
 package mod.gottsch.forge.gealdorcraft.datagen;
 
-import mod.gottsch.forge.gealdorcraft.core.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -44,7 +44,7 @@ public class DataGenerators {
         if (event.includeClient()) {
 //        	 generator.addProvider(new BlockStates(generator, event.getExistingFileHelper()));
             generator.addProvider(new ItemModelsProvider(generator, event.getExistingFileHelper()));
-//            generator.addProvider(new LanguageGen(generator, "en_us"));
+            generator.addProvider(new LanguageGen(generator, "en_us"));
         }
     }
 }
