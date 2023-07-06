@@ -64,7 +64,7 @@ description=""
     modId="gottschcore"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-    versionRange="[2.1.0,)"
+    versionRange="[2.0.0,)"
     ordering="BEFORE"
     side="BOTH"
 [[dependencies.gealdorcraft]]
