@@ -49,6 +49,14 @@ public class GealdorCraftItems {
     // tab items
     public static final RegistryObject<Item> GEALDORCRAFT_TAB = Registration.ITEMS.register("gealdor_tab", () -> new Item(new Item.Properties()));
 
+    // gemstones
+    public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> ONYX = Registration.ITEMS.register("onyx", () -> new Item(new Item.Properties()));
+    public static RegistryObject<Item> RUBY = Registration.ITEMS.register("ruby", () -> new Gemstone(GEALDORCRAFT_PROPS_SUPPLIER.get()));
+    public static RegistryObject<Item> SAPPHIRE = Registration.ITEMS.register("sapphire", () -> new Gemstone(GEALDORCRAFT_PROPS_SUPPLIER.get()));
+    public static RegistryObject<Item> WHITE_PEARL = Registration.ITEMS.register("white_pearl", () -> new Gemstone(GEALDORCRAFT_PROPS_SUPPLIER.get()));
+    public static RegistryObject<Item> BLACK_PEARL = Registration.ITEMS.register("black_pearl", () -> new Gemstone(GEALDORCRAFT_PROPS_SUPPLIER.get()));
+
     // TEMP item
     public static RegistryObject<Item> COPPER_RING = Registration.ITEMS.register("copper_ring", () -> new Jewelry(GEALDORCRAFT_PROPS_SUPPLIER.get()) {
         public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
@@ -71,7 +79,7 @@ public class GealdorCraftItems {
     public static RegistryObject<Item> TOPAZ_COPPER_RING = Registration.ITEMS.register("topaz_copper_ring", () -> new Jewelry(GEALDORCRAFT_PROPS_SUPPLIER.get()) {
         public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
             IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterialTier.COPPER)
-            		.withStone(TOPAZ.get().getRegistryName())
+            		.withStone(TOPAZ.getId())
             		.build();
             return new JewelryCapability(handler);
         }
@@ -81,16 +89,14 @@ public class GealdorCraftItems {
         public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
             IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterialTier.COPPER)
             		.withSize(JewelrySizeTier.GREAT)
-            		.withStone(ONYX.get().getRegistryName())
+            		.withStone(ONYX.getId())
             		.build();
             return new JewelryCapability(handler);
         }
     });
     
     // TEMP stones/gems
-    public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Item(new Item.Properties()));
-    public static RegistryObject<Item> ONYX = Registration.ITEMS.register("onyx", () -> new Item(new Item.Properties()));
-    
+
 	public static void register() {
 		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		Registration.ITEMS.register(eventBus);		

@@ -24,7 +24,7 @@ import mod.gottsch.forge.gealdorcraft.core.item.JewelryMaterialTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelrySizeTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryType;
-import mod.gottsch.forge.gealdorcraft.core.rarity.Rarity;
+import mod.gottsch.forge.gealdorcraft.core.rarity.GealdorCraftRarity;
 import mod.gottsch.forge.gealdorcraft.core.tag.GealdorCraftTags;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -44,13 +44,13 @@ public class CommonSetup {
         Config.instance.addRollingFileAppender(GealdorCraft.MOD_ID);
 
         // register rarities
-        GealdorCraftApi.registerRarity(Rarity.COMMON);
-        GealdorCraftApi.registerRarity(Rarity.UNCOMMON);
-        GealdorCraftApi.registerRarity(Rarity.SCARCE);
-        GealdorCraftApi.registerRarity(Rarity.RARE);
-        GealdorCraftApi.registerRarity(Rarity.EPIC);
-        GealdorCraftApi.registerRarity(Rarity.LEGENDARY);
-        GealdorCraftApi.registerRarity(Rarity.MYTHICAL);
+        GealdorCraftApi.registerRarity(GealdorCraftRarity.COMMON);
+        GealdorCraftApi.registerRarity(GealdorCraftRarity.UNCOMMON);
+        GealdorCraftApi.registerRarity(GealdorCraftRarity.SCARCE);
+        GealdorCraftApi.registerRarity(GealdorCraftRarity.RARE);
+        GealdorCraftApi.registerRarity(GealdorCraftRarity.EPIC);
+        GealdorCraftApi.registerRarity(GealdorCraftRarity.LEGENDARY);
+        GealdorCraftApi.registerRarity(GealdorCraftRarity.MYTHICAL);
 
         // register jewelry types
         GealdorCraftApi.registerJewelryType(JewelryType.RING);

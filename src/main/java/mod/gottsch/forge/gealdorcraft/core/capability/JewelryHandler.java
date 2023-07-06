@@ -206,13 +206,25 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         
         // TODO ...
         // maxRepairs
+        if (builder.maxRepairs == 0) {
+            // TODO ...
+        } else {
+            this.maxRepairs = builder.maxRepairs;
+        }
         // repairs
-        
+        this.repairs = this.maxRepairs;
+
         // maxSockets
+        if (builder.maxSockets == 0) {
+            // TODO ...
+        } else {
+            this.maxSockets = builder.maxSockets;
+        }
         // sockets
-        
+        this.sockets = this.maxSockets;
+
         // maxLevel
-        
+        // TODO ...
     }
 
     @Override
@@ -253,6 +265,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             if (compound.contains(MATERIAL_TIER)) {
                 this.materialTier = GealdorCraftApi.getJewelryMaterialTier(compound.getString(MATERIAL_TIER)).orElse(JewelryMaterialTier.NONE);
             }
+            // TODO this is now a list - UPDATE
             if (compound.contains(STONE_TIER)) {
 //                this.stoneTier = GealdorCraftApi.getJewelryStoneTier(compound.getString(STONE_TIER)).orElse(JewelryStoneTier.NONE);
             	

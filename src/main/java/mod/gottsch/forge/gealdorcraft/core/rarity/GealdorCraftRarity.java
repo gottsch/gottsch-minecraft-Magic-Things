@@ -30,7 +30,7 @@ import mod.gottsch.forge.gottschcore.enums.IEnum;
  * @author Mark Gottschling onJan 11, 2018
  *
  */
-public enum Rarity implements IRarity {
+public enum GealdorCraftRarity implements IRarity {
 	// NOTE NONE was only added to return as a value if no rarity was set
 	// yet, ex. when the mod is first loading and rarities aren't loaded yet, but
 	// methods like Item.appendHoverText will fail if the Item.getRarity() returns null.
@@ -51,7 +51,7 @@ public enum Rarity implements IRarity {
 	
 	// setup reverse lookup
 	static {
-		for (Rarity type : EnumSet.allOf(Rarity.class)) {
+		for (GealdorCraftRarity type : EnumSet.allOf(GealdorCraftRarity.class)) {
 			codes.put(type.getCode(), type);
 			values.put(type.getValue(), type);
 		}
@@ -62,7 +62,7 @@ public enum Rarity implements IRarity {
 	 * 
 	 * @param value
 	 */
-	Rarity(int code, String value) {
+	GealdorCraftRarity(int code, String value) {
 		this.code = code;
 		this.value = value;
 	}
@@ -97,16 +97,16 @@ public enum Rarity implements IRarity {
 	 * @param code
 	 * @return
 	 */
-	public static Rarity getByCode(Integer code) {
-		return (Rarity) codes.get(code);
+	public static GealdorCraftRarity getByCode(Integer code) {
+		return (GealdorCraftRarity) codes.get(code);
 	}
 	/**
 	 * 
 	 * @param value
 	 * @return
 	 */
-	public static Rarity getByValue(String value) {
-		return (Rarity) values.get(value);
+	public static GealdorCraftRarity getByValue(String value) {
+		return (GealdorCraftRarity) values.get(value);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public enum Rarity implements IRarity {
 	 * @return
 	 */
 	public static List<String> getNames() {
-		List<String> names = EnumSet.allOf(Rarity.class).stream().map(x -> x.name()).collect(Collectors.toList());
+		List<String> names = EnumSet.allOf(GealdorCraftRarity.class).stream().map(x -> x.name()).collect(Collectors.toList());
 		return names;
 	}
 }

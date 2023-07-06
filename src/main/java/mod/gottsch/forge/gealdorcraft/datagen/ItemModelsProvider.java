@@ -44,9 +44,9 @@ public class ItemModelsProvider extends ItemModelProvider {
 		/*
 		 * jewelry
 		 */
-		s
+		
 		// rings
-		singleTexture(GealdorCraftItems.COPPER_RING.get().getRegistryName().getPath(),
+		singleTexture(GealdorCraftItems.COPPER_RING.getId().getPath(),
 				mcLoc("item/generated"), "layer0", modLoc("items/jewelry/copper_ring"));
 
 		// block items

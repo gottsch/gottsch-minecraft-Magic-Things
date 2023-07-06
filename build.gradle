@@ -132,8 +132,10 @@ dependencies {
     // implementation fg.deobf("com.tterrag.registrate:Registrate:MC${mc_version}-${registrate_version}") // Adds registrate as a dependency
 	//compileOnly files(gottschcore_path)
 	//compileOnly fg.deobf("curse.maven:gottschcore-272450:3933614")
-    compileOnly fg.deobf("someguyssoftware.gottschcore:GottschCore:mc1.18.2-f40.1.0-v2.1.0")
-
+    //compileOnly fg.deobf("someguyssoftware.gottschcore:GottschCore:mc1.18.2-f40.1.0-v2.1.0")
+    compileOnly fg.deobf("someguyssoftware.gottschcore:GottschCore:mc1.18.2-f40.1.0-v2.0.0")
+    //compileOnly fg.deobf("curse.maven:gottschcore-272450:4607605")
+    compileOnly fg.deobf("curse.maven:treasure2-289760:4608057")
 	//compileOnly fg.deobf("curse.maven:champions-307152:${cf_champions}")
 	//compileOnly fg.deobf("curse.maven:jade-324717:4082408")
 	runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:1.18.2-5.0.9.0")

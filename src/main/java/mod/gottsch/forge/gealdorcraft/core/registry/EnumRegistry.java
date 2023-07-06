@@ -36,7 +36,7 @@ public class EnumRegistry {
 	
 	/**
 	 * 
-	 * @param key the name key for the enum set. ex "rarity" for the Rarity enum.
+	 * @param key the name key for the enum set. ex "rarity" for the GealdorCraftRarity enum.
 	 * @param ienum
 	 */
 	public static void register(String key, IEnum ienum) {
