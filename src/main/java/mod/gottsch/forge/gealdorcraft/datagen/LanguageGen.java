@@ -27,6 +27,9 @@ public class LanguageGen extends LanguageProvider {
         // ringss
         add(GealdorCraftItems.COPPER_RING.get(), "Copper Ring");
 
+        // TODO build a resource location to lookup items from
+        
+        // TODO need a registry by resource location to store all items
         
         /*
          *  Util.tooltips
