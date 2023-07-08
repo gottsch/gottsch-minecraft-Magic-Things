@@ -24,6 +24,7 @@ import com.google.common.collect.Maps;
 import mod.gottsch.forge.gealdorcraft.core.registry.support.JewelryRegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
 /**
  * Registers all the jewelery items by ResourceLocation, and MaterialType and Key(Material, Stone, Size)
@@ -36,6 +37,11 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 	private static final Map<JewelryRegistryKey, Item> KEY_MAP = Maps.newHashMap();
 	
 	public static void register(Item item) {
-		ModUtil.g
+		NAME_MAP.put(item.getRegistryName(), item);
+		// NOTE capabilities are only on ItemStacks. The item itself is going to need properties or pass in the values
+		ItemStack stack = new ItemStack(item);
+		// TODO need to create the capability class first
+//		stack.getCapability(JEWELRY)
+//		KEY_MAP.put(new JewelryRegistryKey(), item);
 	}
 }
