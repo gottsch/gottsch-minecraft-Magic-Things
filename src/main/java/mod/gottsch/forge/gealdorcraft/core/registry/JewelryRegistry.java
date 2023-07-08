@@ -17,10 +17,15 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.registry;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.google.common.collect.Maps;
 
+import mod.gottsch.forge.gealdorcraft.core.capability.GealdorCapabilities;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryMaterialTier;
 import mod.gottsch.forge.gealdorcraft.core.registry.support.JewelryRegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -36,12 +41,54 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 	private static final Map<ResourceLocation, Item> NAME_MAP = Maps.newHashMap();
 	private static final Map<JewelryRegistryKey, Item> KEY_MAP = Maps.newHashMap();
 	
+	// TODO refactor - I forgot the JewelryType !!
+	/**
+	 * 
+	 * @param item
+	 */
 	public static void register(Item item) {
 		NAME_MAP.put(item.getRegistryName(), item);
-		// NOTE capabilities are only on ItemStacks. The item itself is going to need properties or pass in the values
+		
 		ItemStack stack = new ItemStack(item);
-		// TODO need to create the capability class first
-//		stack.getCapability(JEWELRY)
-//		KEY_MAP.put(new JewelryRegistryKey(), item);
+		stack.getCapability(GealdorCapabilities.JEWELRY_CAPABILITY).ifPresent(c -> {
+			// generate a key
+			JewelryRegistryKey key = new JewelryRegistryKey(
+					c.getJewelryMaterialTier(),
+					c.getJewelryStoneTiers().get(0), // only use primary stone for key
+					c.getJewelrySizeTier());
+			KEY_MAP.put(key, item);
+		});
+	}
+	
+	/**
+	 * 
+	 * @param name
+	 * @return
+	 */
+	public static Optional<Item> get(ResourceLocation name) {
+		return Optional.ofNullable(NAME_MAP.get(name));
+	}
+	
+	/**
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public static Optional<Item> get(JewelryRegistryKey key) {
+		return Optional.ofNullable(KEY_MAP.get(key));
+	}
+	
+	/**
+	 * 
+	 * @param material
+	 * @return
+	 */
+	public static List<Item> get(IJewelryMaterialTier material) {
+		List<Item> list = KEY_MAP.entrySet()
+				.stream()
+				.filter(e -> e.getKey().getMaterial().equals(material))
+				.map(e -> e.getValue())
+				.toList();
+		return list;
 	}
 }
