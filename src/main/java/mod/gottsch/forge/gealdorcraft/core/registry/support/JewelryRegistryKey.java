@@ -27,6 +27,7 @@ import mod.gottsch.forge.gealdorcraft.core.item.*;
  *
  */
 public class JewelryRegistryKey {
+	private IJewelryType	type;
 	private IJewelryMaterialTier material;
 	private IJewelryStoneTier stone;
 	private IJewelrySizeTier size;
@@ -35,7 +36,8 @@ public class JewelryRegistryKey {
 	 * 
 	 * @param material
 	 */
-	public JewelryRegistryKey(IJewelryMaterialTier material) {
+	public JewelryRegistryKey(IJewelryType type, IJewelryMaterialTier material) {
+		this.type = type;
 		this.material = material;
 		this.stone = JewelryStoneTier.NONE;
 		this.size = JewelrySizeTier.REGULAR;
@@ -47,7 +49,8 @@ public class JewelryRegistryKey {
 	 * @param stone
 	 * @param size
 	 */
-	public JewelryRegistryKey(IJewelryMaterialTier material, IJewelryStoneTier stone, IJewelrySizeTier size) {
+	public JewelryRegistryKey(IJewelryType type, IJewelryMaterialTier material, IJewelryStoneTier stone, IJewelrySizeTier size) {
+		this.type = type;
 		this.material = material;
 		this.stone = stone;
 		this.size = size;
@@ -71,12 +74,20 @@ public class JewelryRegistryKey {
 	public void setStone(IJewelryStoneTier stone) {
 		this.stone = stone;
 	}
-	
+
+	public IJewelryType getType() {
+		return type;
+	}
+
+	public void setType(IJewelryType type) {
+		this.type = type;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(material, size, stone);
+		return Objects.hash(material, size, stone, type);
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -87,12 +98,13 @@ public class JewelryRegistryKey {
 			return false;
 		JewelryRegistryKey other = (JewelryRegistryKey) obj;
 		return Objects.equals(material, other.material) && Objects.equals(size, other.size)
-				&& Objects.equals(stone, other.stone);
+				&& Objects.equals(stone, other.stone) && Objects.equals(type, other.type);
 	}
 
 	@Override
 	public String toString() {
-		return "JewelryRegistryKey [material=" + material + ", stone=" + stone + ", size=" + size + "]";
+		return "JewelryRegistryKey [type=" + type + ", material=" + material + ", stone=" + stone + ", size=" + size
+				+ "]";
 	}
-	
+
 }

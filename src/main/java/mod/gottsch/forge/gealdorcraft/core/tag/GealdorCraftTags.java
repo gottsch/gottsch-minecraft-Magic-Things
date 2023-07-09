@@ -45,7 +45,7 @@ public class GealdorCraftTags {
         public static final TagKey<Item> STONE_TIER2 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier2");
         public static final TagKey<Item> STONE_TIER3 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier3");
         public static final TagKey<Item> STONE_TIER4 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier4");
-        public static final TagKey<Item> STONE_TIER5= mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier5");
+        public static final TagKey<Item> STONE_TIER5 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier5");
         public static final TagKey<Item> STONE_TIER6 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier6");
         
         /**

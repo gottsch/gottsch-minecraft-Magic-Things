@@ -22,7 +22,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Maps;
+import com.google.common.collect.Multimap;
 
 import mod.gottsch.forge.gealdorcraft.core.capability.GealdorCapabilities;
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelryMaterialTier;
@@ -39,27 +41,29 @@ import net.minecraft.world.item.ItemStack;
  */
 public class JewelryRegistry<IJewerlyStoneTierTier> {
 	private static final Map<ResourceLocation, Item> NAME_MAP = Maps.newHashMap();
-	private static final Map<JewelryRegistryKey, Item> KEY_MAP = Maps.newHashMap();
+	private static final Multimap<JewelryRegistryKey, Item> KEY_MAP = ArrayListMultimap.create()	;
 	
-	// TODO refactor - I forgot the JewelryType !!
 	/**
 	 * 
 	 * @param item
 	 */
-	public static void register(Item item) {
-		NAME_MAP.put(item.getRegistryName(), item);
-		
+	public static void register(Item item) {		
 		ItemStack stack = new ItemStack(item);
 		stack.getCapability(GealdorCapabilities.JEWELRY_CAPABILITY).ifPresent(c -> {
+			NAME_MAP.put(item.getRegistryName(), item);
 			// generate a key
-			JewelryRegistryKey key = new JewelryRegistryKey(
-					c.getJewelryMaterialTier(),
-					c.getJewelryStoneTiers().get(0), // only use primary stone for key
-					c.getJewelrySizeTier());
-			KEY_MAP.put(key, item);
+			c.getJewelryStoneTiers().forEach(stone -> {
+				JewelryRegistryKey key = new JewelryRegistryKey(
+						c.getJewelryType(),
+						c.getJewelryMaterialTier(),
+						stone,
+						c.getJewelrySizeTier());
+				
+				KEY_MAP.put(key, item);
+			});
 		});
 	}
-	
+		
 	/**
 	 * 
 	 * @param name
@@ -74,8 +78,8 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 	 * @param key
 	 * @return
 	 */
-	public static Optional<Item> get(JewelryRegistryKey key) {
-		return Optional.ofNullable(KEY_MAP.get(key));
+	public static List get(JewelryRegistryKey key) {
+		return new ArrayList<>(KEY_MAP.get(key));
 	}
 	
 	/**
@@ -84,7 +88,7 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 	 * @return
 	 */
 	public static List<Item> get(IJewelryMaterialTier material) {
-		List<Item> list = KEY_MAP.entrySet()
+		List<Item> list = KEY_MAP.entries()
 				.stream()
 				.filter(e -> e.getKey().getMaterial().equals(material))
 				.map(e -> e.getValue())

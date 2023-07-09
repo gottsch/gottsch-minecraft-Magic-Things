@@ -23,6 +23,7 @@ import mod.gottsch.forge.gealdorcraft.core.tag.GealdorCraftTags;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 /**
@@ -43,10 +44,18 @@ public class GealdorCraftItemTagsProvider extends ItemTagsProvider {
 	protected void addTags() {     
 		// rings
 		tag(GealdorCraftTags.Items.RINGS).add(GealdorCraftItems.COPPER_RING.get());
-
+		tag(GealdorCraftTags.Items.RINGS).add(GealdorCraftItems.TOPAZ_COPPER_RING.get());
+		tag(GealdorCraftTags.Items.RINGS).add(GealdorCraftItems.GREAT_ONYX_COPPER_RING.get());
+		
 		// stone tiers
 		tag(GealdorCraftTags.Items.STONE_TIER1).add(GealdorCraftItems.TOPAZ.get());
 		tag(GealdorCraftTags.Items.STONE_TIER2).add(GealdorCraftItems.ONYX.get());
+		tag(GealdorCraftTags.Items.STONE_TIER3).add(Items.DIAMOND);
+		tag(GealdorCraftTags.Items.STONE_TIER4).add(Items.EMERALD);
+		tag(GealdorCraftTags.Items.STONE_TIER5).add(GealdorCraftItems.RUBY.get());
+		tag(GealdorCraftTags.Items.STONE_TIER6).add(GealdorCraftItems.SAPPHIRE.get());
+		tag(GealdorCraftTags.Items.STONE_TIER5).add(GealdorCraftItems.WHITE_PEARL.get());
+		tag(GealdorCraftTags.Items.STONE_TIER6).add(GealdorCraftItems.BLACK_PEARL.get());
 		
 		// NOTE wither lock is a special and isn't used in the general locks list
 		// tag(GealdorCraftTags.Items.SCARCE_LOCKS).add(GealdorItems.WITHER_LOCK.get());

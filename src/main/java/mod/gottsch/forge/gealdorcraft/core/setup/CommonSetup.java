@@ -25,6 +25,7 @@ import mod.gottsch.forge.gealdorcraft.core.item.JewelrySizeTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.item.JewelryType;
 import mod.gottsch.forge.gealdorcraft.core.rarity.GealdorCraftRarity;
+import mod.gottsch.forge.gealdorcraft.core.registry.JewelryRegistry;
 import mod.gottsch.forge.gealdorcraft.core.tag.GealdorCraftTags;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -91,5 +92,19 @@ public class CommonSetup {
         GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER4, GealdorCraftTags.Items.STONE_TIER4);
         GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER5, GealdorCraftTags.Items.STONE_TIER5);
         GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER6, GealdorCraftTags.Items.STONE_TIER6);
+
+        // TODO is this registry necessary. could acomplish the same thing using tags and lets modpacks dev modifiy.
+        // would have to have same item in the JewelryType tag and a JewerlyMaterial tag minimum. the Size and Stone tags would be optional
+        // ex. I want to add tf:platium_diamond_ring.
+        // type --> rings.json tag
+        // material --> platium.json tag (given that platinum material is registered). (could register material thru intermod communication - still mod-based)
+        // stone --> diamond.json
+        /*
+         *  register items.
+         *  Note: JewelryRegistry checks if the item has the correct capability before registering.
+         */
+        Registration.ITEMS.getEntries().forEach(item -> {
+        	JewelryRegistry.register(item.get());
+        });
     }
 }
