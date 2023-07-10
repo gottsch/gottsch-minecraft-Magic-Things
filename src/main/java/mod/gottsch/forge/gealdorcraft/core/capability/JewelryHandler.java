@@ -402,4 +402,14 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         this.maxLevel = maxLevel;
     }
 
+    @Override
+	public List<ResourceLocation> getStones() {
+		return stones;
+	}
+
+    @Override
+	public void setStones(List<ResourceLocation> stones) {
+		this.stones = stones;
+	}
+
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gealdorcraft:item/jewelry/copper_ring"
+    "layer0": "gealdorcraft:item/gem/black_pearl"
   }
 }

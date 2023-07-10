@@ -85,6 +85,13 @@ public class CommonSetup {
         GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.SHADOW);
         GealdorCraftApi.registerJewelryMaterialTier(JewelryMaterialTier.ATIUM);
         
+        // register type tags (TODO this could be a stream of all JewelryTypes ?)
+        GealdorCraftApi.registerJewerlyTypeTag(JewelryType.RING, GealdorCraftTags.Items.RINGS);
+        GealdorCraftApi.registerJewerlyTypeTag(JewelryType.BRACELET, GealdorCraftTags.Items.BRACELETS);
+        GealdorCraftApi.registerJewerlyTypeTag(JewelryType.NECKLACE, GealdorCraftTags.Items.NECKLACES);
+        GealdorCraftApi.registerJewerlyTypeTag(JewelryType.POCKET, GealdorCraftTags.Items.POCKETS);
+        GealdorCraftApi.registerJewerlyTypeTag(JewelryType.CHARM, GealdorCraftTags.Items.CHARMS);
+        
         // register stone tier tags
         GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER1, GealdorCraftTags.Items.STONE_TIER1);
         GealdorCraftApi.registerJewerlyStoneTierTag(JewelryStoneTier.TIER2, GealdorCraftTags.Items.STONE_TIER2);
@@ -103,8 +110,9 @@ public class CommonSetup {
          *  register items.
          *  Note: JewelryRegistry checks if the item has the correct capability before registering.
          */
-        Registration.ITEMS.getEntries().forEach(item -> {
-        	JewelryRegistry.register(item.get());
-        });
+        // TEMP - use the Tag Registry event to register jewelry
+//        Registration.ITEMS.getEntries().forEach(item -> {
+//        	JewelryRegistry.register(item.get());
+//        });
     }
 }

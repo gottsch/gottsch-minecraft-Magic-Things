@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "gealdorcraft:copper_ring",
-    "gealdorcraft:copper_topaz_ring",
     "gealdorcraft:great_copper_onyx_ring"
   ]
 }

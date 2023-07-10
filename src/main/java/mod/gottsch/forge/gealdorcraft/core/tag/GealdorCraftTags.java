@@ -17,7 +17,15 @@
  */
 package mod.gottsch.forge.gealdorcraft.core.tag;
 
+import java.util.Iterator;
+import java.util.List;
+
 import mod.gottsch.forge.gealdorcraft.GealdorCraft;
+import mod.gottsch.forge.gealdorcraft.api.GealdorCraftApi;
+import mod.gottsch.forge.gealdorcraft.core.item.IJewelryType;
+import mod.gottsch.forge.gealdorcraft.core.registry.JewelryRegistry;
+import mod.gottsch.forge.gealdorcraft.core.registry.TagRegistry;
+import mod.gottsch.forge.treasure2.Treasure;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -25,6 +33,8 @@ import net.minecraft.world.item.Item;
 import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITag;
 
 /**
  * Created by Mark Gottschling on 5/29/2023
@@ -40,13 +50,37 @@ public class GealdorCraftTags {
         public static final TagKey<Item> CHARMS = mod(GealdorCraft.MOD_ID, "jewelry/charms");
         public static final TagKey<Item> POCKETS = mod(GealdorCraft.MOD_ID, "jewelry/pockets");
 
+        // categorization by tier
+        public static final TagKey<Item> WOOD = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/wood");
+        public static final TagKey<Item> IRON = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/iron");
+        public static final TagKey<Item> COPPER = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/copper");
+        public static final TagKey<Item> SILVER = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/silver");
+        public static final TagKey<Item> GOLD = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/gold");
+        public static final TagKey<Item> BLOOD = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/blood");
+        public static final TagKey<Item> BONE = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/bone");
+        public static final TagKey<Item> SHADOW = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/shadow");
+        public static final TagKey<Item> ATIUM = mod(GealdorCraft.MOD_ID, "jewelry/tiers/materials/atium");
+        
+        public static final TagKey<Item> REGULAR = mod(GealdorCraft.MOD_ID, "jewelry/tiers/sizes/regular");
+        public static final TagKey<Item> GREAT = mod(GealdorCraft.MOD_ID, "jewelry/tiers/sizes/great");
+        public static final TagKey<Item> LORDS = mod(GealdorCraft.MOD_ID, "jewelry/tiers/sizes/lords");
+        
+        public static final TagKey<Item> TOPAZ = mod(GealdorCraft.MOD_ID, "jewelry/tiers/stones/topaz");
+        public static final TagKey<Item> ONYX = mod(GealdorCraft.MOD_ID, "jewelry/tiers/stones/onyx");
+        public static final TagKey<Item> DIAMOND = mod(GealdorCraft.MOD_ID, "jewelry/tiers/stones/diamond");
+        public static final TagKey<Item> EMERALD = mod(GealdorCraft.MOD_ID, "jewelry/tiers/stones/emerald");
+        public static final TagKey<Item> RUBY = mod(GealdorCraft.MOD_ID, "jewelry/tiers/stones/ruby");
+        public static final TagKey<Item> SAPPHIRE = mod(GealdorCraft.MOD_ID, "jewelry/tiers/stones/sapphire");
+        public static final TagKey<Item> WHITE_PEARL = mod(GealdorCraft.MOD_ID, "jewelry/tiers/stones/white_pearl");
+        public static final TagKey<Item> BLACK_PEARL = mod(GealdorCraft.MOD_ID, "jewelry/tiers/stones/black_pearl");
+        
         // stone tiers
-        public static final TagKey<Item> STONE_TIER1 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier1");
-        public static final TagKey<Item> STONE_TIER2 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier2");
-        public static final TagKey<Item> STONE_TIER3 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier3");
-        public static final TagKey<Item> STONE_TIER4 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier4");
-        public static final TagKey<Item> STONE_TIER5 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier5");
-        public static final TagKey<Item> STONE_TIER6 = mod(GealdorCraft.MOD_ID, "jewelry/stone_tiers/tier6");
+        public static final TagKey<Item> STONE_TIER1 = mod(GealdorCraft.MOD_ID, "jewelry/stones/tier1");
+        public static final TagKey<Item> STONE_TIER2 = mod(GealdorCraft.MOD_ID, "jewelry/stones/tier2");
+        public static final TagKey<Item> STONE_TIER3 = mod(GealdorCraft.MOD_ID, "jewelry/stones/tier3");
+        public static final TagKey<Item> STONE_TIER4 = mod(GealdorCraft.MOD_ID, "jewelry/stones/tier4");
+        public static final TagKey<Item> STONE_TIER5 = mod(GealdorCraft.MOD_ID, "jewelry/stones/tier5");
+        public static final TagKey<Item> STONE_TIER6 = mod(GealdorCraft.MOD_ID, "jewelry/stones/tier6");
         
         /**
          *
@@ -62,5 +96,24 @@ public class GealdorCraftTags {
 	@SubscribeEvent
 	public static void registerTags(TagsUpdatedEvent event) {
 		GealdorCraft.LOGGER.info("in tags updated event");
+		
+		// clear any registries
+		JewelryRegistry.clear();
+		
+		// process all items in the JewelryType tags
+        List<IJewelryType> types = GealdorCraftApi.getJewelryTypes();
+        types.forEach(type -> {
+        	TagKey<Item> tagKey = TagRegistry.getJewelryTypeTag(type);
+			if (tagKey != null) {
+				// get the tag
+				ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(tagKey);
+				// for each item in the tag
+				for (Iterator<Item> iterator = tag.iterator(); iterator.hasNext();) {
+					Item jewelry = iterator.next();
+					JewelryRegistry.register(jewelry);
+					Treasure.LOGGER.info("registering jewelry -> {} ", jewelry.getRegistryName());
+				}
+			}
+        });
 	}
 }

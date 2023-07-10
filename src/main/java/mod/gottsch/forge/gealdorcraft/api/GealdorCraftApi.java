@@ -17,19 +17,20 @@
  */
 package mod.gottsch.forge.gealdorcraft.api;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelryMaterialTier;
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelrySizeTier;
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.item.IJewelryType;
-import mod.gottsch.forge.gealdorcraft.core.item.JewelryStoneTier;
 import mod.gottsch.forge.gealdorcraft.core.registry.EnumRegistry;
 import mod.gottsch.forge.gealdorcraft.core.registry.TagRegistry;
 import mod.gottsch.forge.gottschcore.enums.IEnum;
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
-
-import java.util.Optional;
 
 /**
  * Created by Mark Gottschling on 5/4/2023
@@ -42,6 +43,15 @@ public class GealdorCraftApi {
     public static final String JEWELRY_STONE = "jewelryStone";
     public static final String JEWELRY_MATERIAL = "jewelryMaterial";
 
+
+	public static void registerJewerlyTypeTag(IJewelryType type, TagKey<Item> tagKey) {
+		TagRegistry.registerJewelryType(type, tagKey);
+	}
+	
+	public static void registerJewerlyStoneTierTag(IJewelryStoneTier tier, TagKey<Item> tierTagKey) {
+		TagRegistry.registerJewelryStoneTier(tier, tierTagKey);
+	}
+	
     /**
      * TODO how to integrate with Treasure2 rarity and API.
      * @param rarity
@@ -69,6 +79,15 @@ public class GealdorCraftApi {
         EnumRegistry.register(JEWELRY_TYPE, jewelryType);
     }
 
+	public static List<IJewelryType> getJewelryTypes() {
+		List<IEnum> enums = EnumRegistry.getValues(JEWELRY_TYPE);
+		ArrayList<IJewelryType> types = new ArrayList<>();
+		if (!enums.isEmpty()) {
+			types.addAll(enums.stream().map(e -> (IJewelryType)e).toList());
+		}
+		return types;
+	}
+	
     public static Optional<IJewelryType> getJewelryType(String key) {
         IEnum ienum = EnumRegistry.get(JEWELRY_TYPE, key);
         if (ienum == null) {
@@ -120,8 +139,4 @@ public class GealdorCraftApi {
             return Optional.of((IJewelryMaterialTier) ienum);
         }
     }
-
-	public static void registerJewerlyStoneTierTag(IJewelryStoneTier tier, TagKey<Item> tierTagKey) {
-		TagRegistry.registerJewelryStoneTier(tier, tierTagKey);
-	}
 }

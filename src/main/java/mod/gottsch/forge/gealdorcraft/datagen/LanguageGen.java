@@ -1,6 +1,8 @@
 
 package mod.gottsch.forge.gealdorcraft.datagen;
 
+import org.apache.commons.lang3.text.WordUtils;
+
 import mod.gottsch.forge.gealdorcraft.GealdorCraft;
 import mod.gottsch.forge.gealdorcraft.core.item.GealdorCraftItems;
 import mod.gottsch.forge.gealdorcraft.core.util.LangUtil;
@@ -25,11 +27,15 @@ public class LanguageGen extends LanguageProvider {
         add("itemGroup." + GealdorCraft.MOD_ID + ".jewelry_tab", "GealdorCraft2 Jewelry");
         
         // ringss
-        add(GealdorCraftItems.COPPER_RING.get(), "Copper Ring");
+//        add(GealdorCraftItems.COPPER_RING.get(), "Copper Ring");
 
         // TODO build a resource location to lookup items from
         
         // TODO need a registry by resource location to store all items
+        
+		GealdorCraftItems.ALL_JEWELRY.forEach(item -> {
+			add(item.get(), WordUtils.capitalizeFully(item.get().getRegistryName().getPath().replace("_", " ")));
+		});
         
         /*
          *  Util.tooltips

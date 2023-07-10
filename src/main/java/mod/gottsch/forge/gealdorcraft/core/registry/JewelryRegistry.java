@@ -18,9 +18,12 @@
 package mod.gottsch.forge.gealdorcraft.core.registry;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.Set;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Maps;
@@ -44,7 +47,7 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 	private static final Multimap<JewelryRegistryKey, Item> KEY_MAP = ArrayListMultimap.create()	;
 	
 	/**
-	 * 
+	 * Note: this registers a known item.
 	 * @param item
 	 */
 	public static void register(Item item) {		
@@ -94,5 +97,25 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 				.map(e -> e.getValue())
 				.toList();
 		return list;
+	}
+	
+	/**
+	 * 
+	 */
+	public static void clear() {
+		NAME_MAP.clear();
+		KEY_MAP.clear();
+	}
+
+	public static List<Item> getAll() {
+		return new ArrayList<>(NAME_MAP.values());
+	}
+	
+	public static Set<Entry<ResourceLocation, Item>> getNameEntries() {
+		return NAME_MAP.entrySet();
+	}
+	
+	public static Collection<Entry<JewelryRegistryKey, Item>> getKeyEntries() {
+		return KEY_MAP.entries();
 	}
 }
