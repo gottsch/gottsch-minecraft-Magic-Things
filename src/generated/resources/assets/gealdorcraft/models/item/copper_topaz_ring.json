@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gealdorcraft:item/jewelry/topaz_copper_ring"
+    "layer0": "gealdorcraft:item/jewelry/copper_topaz_ring"
   }
 }

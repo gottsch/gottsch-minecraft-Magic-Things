@@ -1,6 +1,8 @@
 {
   "chat.gealdorcraft.key.key_break": "Your key broke whilst attempting to unlock the lock!",
   "item.gealdorcraft.copper_ring": "Copper Ring",
+  "item.gealdorcraft.copper_topaz_ring": "Copper Topaz Ring",
+  "item.gealdorcraft.great_copper_onyx_ring": "Great Copper Onyx Ring",
   "itemGroup.gealdorcraft": "GealdorCraft",
   "itemGroup.gealdorcraft.jewelry_tab": "GealdorCraft2 Jewelry",
   "screen.gealdorcraft.wood_chest.name": "Wood Chest",

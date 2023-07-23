@@ -23,20 +23,23 @@ import mod.gottsch.forge.gealdorcraft.core.capability.JewelryCapability;
 import mod.gottsch.forge.gealdorcraft.core.capability.JewelryHandler;
 import mod.gottsch.forge.gealdorcraft.core.setup.Registration;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 
-import org.lwjgl.openal.AL;
-
 import com.google.common.collect.Lists;
+
 
 /**
  * Created by Mark Gottschling on 5/29/2023
@@ -62,6 +65,9 @@ public class GealdorCraftItems {
     public static RegistryObject<Item> WHITE_PEARL = Registration.ITEMS.register("white_pearl", () -> new Gemstone(GEALDORCRAFT_PROPS_SUPPLIER.get()));
     public static RegistryObject<Item> BLACK_PEARL = Registration.ITEMS.register("black_pearl", () -> new Gemstone(GEALDORCRAFT_PROPS_SUPPLIER.get()));
 
+    /*
+     * a list of all gealdor generated items.
+     */
     public static final List<RegistryObject<Item>> ALL_JEWELRY = Lists.newArrayList();
     
     // TEMP item
@@ -107,10 +113,106 @@ public class GealdorCraftItems {
     	ALL_JEWELRY.add(COPPER_TOPAZ_RING);
     	ALL_JEWELRY.add(GREAT_COPPER_ONYX_RING);
     }
-    // TEMP stones/gems
+    
+    
+    // TODO create/register all jewelry
 
 	public static void register() {
 		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		Registration.ITEMS.register(eventBus);		
+	}
+	
+	/**
+	 * 
+	 * @author Mark Gottschling Jul 11, 2023
+	 *
+	 */
+	public static class JewelryBuilder {
+		protected List<IJewelryType> types = new ArrayList<>();
+		protected List<IJewelrySizeTier> sizes = new ArrayList<>();
+		protected List<IJewelryMaterialTier> materials = new ArrayList<>();
+		protected List<ResourceLocation> stones = new ArrayList<>();
+		
+		
+		protected String modid;
+		
+		public JewelryBuilder(String modid) {
+			this.modid = modid;
+		}
+		
+		public JewelryBuilder clear() {
+			types.clear();
+			sizes.clear();
+			materials.clear();
+			stones.clear();
+			return this;
+		}
+		
+		/*
+		 * convenience setup
+		 */
+		public JewelryBuilder useBaseDefaults() {
+			types(JewelryType.BRACELET, JewelryType.NECKLACE, JewelryType.RING); // ...
+			sizes(JewelrySizeTier.REGULAR, JewelrySizeTier.GREAT);
+			materials(JewelryMaterialTier.IRON, 
+					JewelryMaterialTier.COPPER, 
+					JewelryMaterialTier.SILVER, 
+					JewelryMaterialTier.GOLD);
+			return this;
+		}
+		
+		public JewelryBuilder useSourceDefaults() {
+			stones(
+					Items.DIAMOND.getRegistryName(),
+					Items.EMERALD.getRegistryName(),
+					TOPAZ.getId(),
+					ONYX.getId(),
+					RUBY.getId(),
+					SAPPHIRE.getId(),
+					WHITE_PEARL.getId(),
+					BLACK_PEARL.getId()
+					);
+			return this;
+		}
+		
+		public JewelryBuilder types(IJewelryType... types) {
+			getTypes().addAll(Arrays.asList(types));
+			return this;
+		}
+		
+		public JewelryBuilder sizes(IJewelrySizeTier... sizes) {
+			getSizes().addAll(Arrays.asList(sizes));
+			return this;
+		}
+		
+		public JewelryBuilder materials(IJewelryMaterialTier... materials) {
+			getMaterials().addAll(Arrays.asList(materials));
+			return this;
+		}
+		
+		public JewelryBuilder stones(ResourceLocation... sources) {
+			getStones().addAll(Arrays.asList(sources));
+			return this;
+		}
+
+		public List<IJewelryType> getTypes() {
+			return types;
+		}
+
+		public List<IJewelrySizeTier> getSizes() {
+			return sizes;
+		}
+
+		public List<IJewelryMaterialTier> getMaterials() {
+			return materials;
+		}
+
+		public List<ResourceLocation> getStones() {
+			return stones;
+		}
+
+		public String getModid() {
+			return modid;
+		}
 	}
 }

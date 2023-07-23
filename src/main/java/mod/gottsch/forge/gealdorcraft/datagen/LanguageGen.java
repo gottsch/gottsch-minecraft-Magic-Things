@@ -14,6 +14,7 @@ import net.minecraftforge.common.data.LanguageProvider;
  * @author Mark Gottschling Jun 2, 2023
  *
  */
+@SuppressWarnings("deprecation")
 public class LanguageGen extends LanguageProvider {
 
     public LanguageGen(DataGenerator gen, String locale) {
@@ -49,13 +50,13 @@ public class LanguageGen extends LanguageProvider {
          * screens
          */
         // chests
-        add(LangUtil.screen("wood_chest.name"), "Wood Chest");
+        //add(LangUtil.screen("wood_chest.name"), "Wood Chest");
    
         /*
          *  chat
          */
         // keys
-        add(LangUtil.chat("key.key_break"), "Your key broke whilst attempting to unlock the lock!");
+        //add(LangUtil.chat("key.key_break"), "Your key broke whilst attempting to unlock the lock!");
     
     }
 }
