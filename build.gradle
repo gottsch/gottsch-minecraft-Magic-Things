@@ -133,7 +133,7 @@ dependencies {
 	//compileOnly files(gottschcore_path)
 	//compileOnly fg.deobf("curse.maven:gottschcore-272450:3933614")
     //compileOnly fg.deobf("someguyssoftware.gottschcore:GottschCore:mc1.18.2-f40.1.0-v2.1.0")
-    compileOnly fg.deobf("someguyssoftware.gottschcore:GottschCore:mc1.18.2-f40.1.0-v2.1.0")
+    implementation fg.deobf("someguyssoftware.gottschcore:GottschCore:mc1.18.2-f40.1.0-v2.1.0")
     //compileOnly fg.deobf("curse.maven:gottschcore-272450:4607605")
     compileOnly fg.deobf("curse.maven:treasure2-289760:4608057")
 	//compileOnly fg.deobf("curse.maven:champions-307152:${cf_champions}")

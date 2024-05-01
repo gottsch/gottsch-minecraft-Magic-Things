@@ -1,12 +1,16 @@
 {
-  "chat.gealdorcraft.key.key_break": "Your key broke whilst attempting to unlock the lock!",
   "item.gealdorcraft.copper_ring": "Copper Ring",
   "item.gealdorcraft.copper_topaz_ring": "Copper Topaz Ring",
   "item.gealdorcraft.great_copper_onyx_ring": "Great Copper Onyx Ring",
-  "itemGroup.gealdorcraft": "GealdorCraft",
-  "itemGroup.gealdorcraft.jewelry_tab": "GealdorCraft2 Jewelry",
-  "screen.gealdorcraft.wood_chest.name": "Wood Chest",
+  "itemGroup.gealdorcraft": "Magic Things",
+  "itemGroup.gealdorcraft.jewelry_tab": "Magic Things Jewelry",
   "tooltip.gealdorcraft.boolean.no": "No",
   "tooltip.gealdorcraft.boolean.yes": "Yes",
-  "tooltip.gealdorcraft.hold_shift": "Hold [SHIFT] to expand"
+  "tooltip.gealdorcraft.hold_shift": "Hold [SHIFT] to expand",
+  "tooltip.gealdorcraft.jewelry.max_level": "Spell Max. Level: %s",
+  "tooltip.gealdorcraft.jewelry.usage": "Hold in hand or equip for buffs",
+  "tooltip.gealdorcraft.spell.name.greater_healing": "Greater Healing",
+  "tooltip.gealdorcraft.spell.name.healing": "Healing",
+  "tooltip.gealdorcraft.spell.name.lesser_healing": "Lesser Healing",
+  "tooltip.gealdorcraft.spell.name.regeneration": "Regeneration"
 }

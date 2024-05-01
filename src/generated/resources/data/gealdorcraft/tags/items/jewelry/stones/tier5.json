@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "gealdorcraft:jadeite",
     "gealdorcraft:ruby",
     "gealdorcraft:white_pearl"
   ]
