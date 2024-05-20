@@ -1,0 +1,17 @@
+{
+  "name": "Gems",
+  "icon": "minecraft:diamond",
+  "category": "gealdorcraft:manual",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "title": "Topaz",
+      "item": {
+        "item": "gealdorcraft:topaz"
+      },
+      "text": "Topaz is...",
+      "anchor": "topaz"
+    }
+  ]
+}
