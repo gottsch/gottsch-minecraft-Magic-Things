@@ -1,11 +1,9 @@
 package mod.gottsch.forge.magic_things.core.capability;
 
-import java.util.List;
-
-import mod.gottsch.forge.magic_things.core.item.IJewelryMaterialTier;
 import mod.gottsch.forge.magic_things.core.item.IJewelrySizeTier;
-import mod.gottsch.forge.magic_things.core.item.IJewelryStoneTier;
 import mod.gottsch.forge.magic_things.core.item.IJewelryType;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterial;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTier;
 import mod.gottsch.forge.magic_things.core.spell.SpellEntity;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
@@ -14,12 +12,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
+import java.util.List;
+
 /**
  * Created by Mark Gottschling on 6/1/2023
  */
 public interface IJewelryHandler {
-    public IJewelryMaterialTier getJewelryMaterialTier();
-    public List<IJewelryStoneTier> getJewelryStoneTiers();
+    JewelryMaterial getMaterial();
+
     public IJewelrySizeTier getJewelrySizeTier();
     public IJewelryType getJewelryType();
 
@@ -41,22 +41,44 @@ public interface IJewelryHandler {
     public int getRepairs();
     public void setRepairs(int repairs);
 
-    public int getMaxSockets();
-    public void setMaxSockets(int maxSockets);
-
-    public int getSockets();
-    public void setSockets(int sockets);
-
     public int getMaxLevel();
-//    public void setMaxLevel(int maxLevel);
-    
-	List<ResourceLocation> getStones();
-	void setStones(List<ResourceLocation> stones);
+
+    // TODO maxStones
+
+    void setMaxLevel(int maxLevel);
+
+    ResourceLocation getStone();
+
+    void setStone(ResourceLocation stone);
+
+    boolean hasStone();
 
     List<SpellEntity> getSpells();
 
     void setSpells(List<SpellEntity> spells);
 
+    void setInfinite();
+
+    boolean isInfinite();
+
+    // convenience method
+    JewelryStoneTier getStoneTier();
+
+    boolean isUpgradable();
+
     void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag);
 
+    int getRecharges();
+
+    void setRecharges(int recharges);
+
+    int getMaxRecharges();
+
+    void setMaxRecharges(int maxRecharges);
+
+    String getBaseName();
+
+    void setBaseName(String baseName);
+
+    boolean acceptsAffixer(ItemStack stack);
 }

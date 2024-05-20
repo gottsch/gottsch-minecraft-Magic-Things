@@ -1,0 +1,7 @@
+{
+    "parent": "gealdorcraft:block/deepslate_ore_parent",
+    "textures": {
+    	"end": "gealdorcraft:block/deepslate_top_jadeite_ore",
+        "side": "gealdorcraft:block/deepslate_jadeite_ore"
+    }
+}

@@ -1,0 +1,32 @@
+{
+  "replace": false,
+  "values": [
+    "gealdorcraft:wood_ring",
+    "gealdorcraft:wood_bracelet",
+    "gealdorcraft:wood_necklace",
+    "gealdorcraft:wood_diamond_ring",
+    "gealdorcraft:wood_jadeite_ring",
+    "gealdorcraft:wood_topaz_ring",
+    "gealdorcraft:wood_onyx_ring",
+    "gealdorcraft:wood_ruby_ring",
+    "gealdorcraft:wood_sapphire_ring",
+    "gealdorcraft:wood_white_pearl_ring",
+    "gealdorcraft:wood_black_pearl_ring",
+    "gealdorcraft:wood_diamond_bracelet",
+    "gealdorcraft:wood_jadeite_bracelet",
+    "gealdorcraft:wood_topaz_bracelet",
+    "gealdorcraft:wood_onyx_bracelet",
+    "gealdorcraft:wood_ruby_bracelet",
+    "gealdorcraft:wood_sapphire_bracelet",
+    "gealdorcraft:wood_white_pearl_bracelet",
+    "gealdorcraft:wood_black_pearl_bracelet",
+    "gealdorcraft:wood_diamond_necklace",
+    "gealdorcraft:wood_jadeite_necklace",
+    "gealdorcraft:wood_topaz_necklace",
+    "gealdorcraft:wood_onyx_necklace",
+    "gealdorcraft:wood_ruby_necklace",
+    "gealdorcraft:wood_sapphire_necklace",
+    "gealdorcraft:wood_white_pearl_necklace",
+    "gealdorcraft:wood_black_pearl_necklace"
+  ]
+}

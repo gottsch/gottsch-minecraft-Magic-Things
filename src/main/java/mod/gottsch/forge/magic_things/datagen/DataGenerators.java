@@ -33,11 +33,11 @@ public class DataGenerators {
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
         if (event.includeServer()) {
-//            generator.addProvider(new Recipes(generator));
+            generator.addProvider(new Recipes(generator));
 //            generator.addProvider(new TutLootTables(generator));
-        	GealdorCraftBlockTagsProvider blockTags = new GealdorCraftBlockTagsProvider(generator, event.getExistingFileHelper());
+        	MagicThingsBlockTagsProvider blockTags = new MagicThingsBlockTagsProvider(generator, event.getExistingFileHelper());
             generator.addProvider(blockTags);
-            generator.addProvider(new GealdorCraftItemTagsProvider(generator, blockTags, event.getExistingFileHelper()));
+            generator.addProvider(new MagicThingsItemTagsProvider(generator, blockTags, event.getExistingFileHelper()));
 //            generator.addProvider(new GealdorCraftBiomeTagsProvider(generator, event.getExistingFileHelper()));
 
         }

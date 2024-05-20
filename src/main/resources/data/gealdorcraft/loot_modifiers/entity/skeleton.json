@@ -1,0 +1,11 @@
+{
+  "conditions" : [ {
+    "condition" : "forge:loot_table_id",
+    "loot_table_id" : "minecraft:entities/skeleton"
+  } ],
+  "count" : 1,
+  "rarity" : "uncommon",
+  "chance" : 0.1,
+  "lootTable": "gealdorcraft:entities/skeleton",
+  "type" : "gealdorcraft:lootModifierByLootTable"
+}

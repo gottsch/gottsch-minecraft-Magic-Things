@@ -24,8 +24,6 @@ import mod.gottsch.forge.gottschcore.enums.IEnum;
  */
 public interface IJewelrySizeTier extends IEnum {
 
-    int getSockets();
-
     float getUsesMultiplier();
 
     float getManaMultiplier();

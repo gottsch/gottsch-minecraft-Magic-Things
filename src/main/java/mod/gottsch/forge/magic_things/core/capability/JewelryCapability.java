@@ -18,10 +18,9 @@
 package mod.gottsch.forge.magic_things.core.capability;
 
 import mod.gottsch.forge.magic_things.MagicThings;
-import mod.gottsch.forge.magic_things.core.item.JewelryMaterialTier;
 import mod.gottsch.forge.magic_things.core.item.JewelrySizeTier;
-import mod.gottsch.forge.magic_things.core.item.JewelryStoneTier;
 import mod.gottsch.forge.magic_things.core.item.JewelryType;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterials;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -44,8 +43,7 @@ public class JewelryCapability implements ICapabilitySerializable<CompoundTag> {
     private final LazyOptional<IJewelryHandler> optional;// = LazyOptional.of(() -> handler);
 
     public JewelryCapability() {
-        this(new JewelryHandler(JewelryType.UNKNOWN, JewelryMaterialTier.NONE,
-                JewelryStoneTier.NONE, JewelrySizeTier.UNKNOWN));
+        this(new JewelryHandler.Builder(JewelryType.UNKNOWN, JewelryMaterials.NONE, JewelrySizeTier.UNKNOWN).build());
     }
 
     public JewelryCapability(IJewelryHandler handler) {

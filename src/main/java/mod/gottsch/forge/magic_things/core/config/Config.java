@@ -4,6 +4,8 @@ package mod.gottsch.forge.magic_things.core.config;
 import mod.gottsch.forge.gottschcore.config.AbstractConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 
+import java.util.List;
+
 /**
  * 
  * @author Mark Gottschling May 3, 2023
@@ -36,12 +38,44 @@ public class Config extends AbstractConfig {
 	 * 
 	 */
 	public static class ServerConfig {
-		
-		public ServerConfig(ForgeConfigSpec.Builder builder) {
 
-			builder.comment(CATEGORY_DIV, "Section Properties", CATEGORY_DIV)
-			.push("section name");
-			
+		public Loot loot;
+		public Integration integration;
+
+		public ServerConfig(ForgeConfigSpec.Builder builder) {
+			integration = new Integration(builder);
+		}
+	}
+
+	public static class Loot {
+		public ForgeConfigSpec.BooleanValue enableVanillaLootModifiers;
+
+		public Loot(final ForgeConfigSpec.Builder builder) {
+			builder.comment(CATEGORY_DIV, " Loot properties", CATEGORY_DIV)
+					.push("loot");
+
+			enableVanillaLootModifiers = builder
+					.comment(" Enable/Disable global loot modifiers that injects Magic Things loot into vanilla loot tables.")
+					.define("enableVanillaLootModifiers", true);
+
+			builder.pop();
+		}
+	}
+
+	/*
+	 *
+	 */
+	public static class Integration {
+		public ForgeConfigSpec.ConfigValue<List<? extends String>> dimensionsWhiteList;
+		public ForgeConfigSpec.BooleanValue  enableCurios;
+
+		public Integration(final ForgeConfigSpec.Builder builder)	 {
+			builder.comment(CATEGORY_DIV, " Integration properties", CATEGORY_DIV)
+					.push("integration");
+
+			enableCurios = builder
+					.comment("Enable/Disable Curios integration.", "Enabled by default, but Curios must be installed as well.")
+					.define("Enable Curios Integration:", true);
 
 			builder.pop();
 		}

@@ -17,14 +17,15 @@
  */
 package mod.gottsch.forge.magic_things.core.tag;
 
-import java.util.Iterator;
-import java.util.List;
-
+import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.magic_things.MagicThings;
-import mod.gottsch.forge.magic_things.core.registry.JewelryRegistry;
-import mod.gottsch.forge.magic_things.core.registry.TagRegistry;
 import mod.gottsch.forge.magic_things.api.MagicThingsApi;
 import mod.gottsch.forge.magic_things.core.item.IJewelryType;
+import mod.gottsch.forge.magic_things.core.item.JewelryType;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTier;
+import mod.gottsch.forge.magic_things.core.registry.JewelryRegistry;
+import mod.gottsch.forge.magic_things.core.registry.StoneRegistry;
+import mod.gottsch.forge.magic_things.core.registry.TagRegistry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -35,20 +36,31 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 
+import java.util.Iterator;
+import java.util.List;
+
 /**
  * Created by Mark Gottschling on 5/29/2023
  */
 @Mod.EventBusSubscriber(modid = MagicThings.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MagicThingsTags {
+    private static final String CURIOS_MODID = "curios";
 
     public static class Items {
+        // curios integration
+        public static final TagKey<Item> CURIOUS_NECKLACE = mod(CURIOS_MODID, JewelryType.NECKLACE.getValue());
+        public static final TagKey<Item> CURIOUS_RING = mod(CURIOS_MODID, JewelryType.RING.getValue());
+        public static final TagKey<Item> CURIOUS_BRACELET = mod(CURIOS_MODID, JewelryType.BRACELET.getValue());
+        public static final TagKey<Item> CURIOUS_CHARM = mod(CURIOS_MODID, "charm");
+        public static final TagKey<Item> CURIOUS_BELT = mod(CURIOS_MODID, "belt");
+
         // jewelry
         public static final TagKey<Item> RINGS = mod(MagicThings.MOD_ID, "jewelry/rings");
         public static final TagKey<Item> BRACELETS = mod(MagicThings.MOD_ID, "jewelry/bracelets");
         public static final TagKey<Item> NECKLACES = mod(MagicThings.MOD_ID, "jewelry/necklaces");
         public static final TagKey<Item> CHARMS = mod(MagicThings.MOD_ID, "jewelry/charms");
         public static final TagKey<Item> POCKETS = mod(MagicThings.MOD_ID, "jewelry/pockets");
-
+        public static final TagKey<Item> JEWELRY = mod(MagicThings.MOD_ID, "jewelry/all_jewelry");
         // categorization by tier
         public static final TagKey<Item> WOOD = mod(MagicThings.MOD_ID, "jewelry/tiers/materials/wood");
         public static final TagKey<Item> IRON = mod(MagicThings.MOD_ID, "jewelry/tiers/materials/iron");
@@ -63,25 +75,32 @@ public class MagicThingsTags {
         public static final TagKey<Item> REGULAR = mod(MagicThings.MOD_ID, "jewelry/tiers/sizes/regular");
         public static final TagKey<Item> GREAT = mod(MagicThings.MOD_ID, "jewelry/tiers/sizes/great");
         public static final TagKey<Item> LORDS = mod(MagicThings.MOD_ID, "jewelry/tiers/sizes/lords");
-        
-        public static final TagKey<Item> TOPAZ = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/topaz");
-        public static final TagKey<Item> ONYX = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/onyx");
-        public static final TagKey<Item> DIAMOND = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/diamond");
-//        public static final TagKey<Item> EMERALD = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/emerald");
-        public static final TagKey<Item> JADEITE = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/jadeite");
-        public static final TagKey<Item> RUBY = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/ruby");
-        public static final TagKey<Item> SAPPHIRE = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/sapphire");
-        public static final TagKey<Item> WHITE_PEARL = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/white_pearl");
-        public static final TagKey<Item> BLACK_PEARL = mod(MagicThings.MOD_ID, "jewelry/tiers/stones/black_pearl");
-        
+
+        public static final TagKey<Item> JEWELRY_COMMON = mod(MagicThings.MOD_ID, "jewelry/rarity/common");
+        public static final TagKey<Item> JEWELRY_UNCOMMON = mod(MagicThings.MOD_ID, "jewelry/rarity/uncommon");
+        public static final TagKey<Item> JEWELRY_SCARCE = mod(MagicThings.MOD_ID, "jewelry/rarity/scarce");
+        public static final TagKey<Item> JEWELRY_RARE = mod(MagicThings.MOD_ID, "jewelry/rarity/rare");
+        public static final TagKey<Item> JEWELRY_EPIC = mod(MagicThings.MOD_ID, "jewelry/rarity/epic");
+
         // stone tiers
-        public static final TagKey<Item> STONE_TIER1 = mod(MagicThings.MOD_ID, "jewelry/stones/tier1");
-        public static final TagKey<Item> STONE_TIER2 = mod(MagicThings.MOD_ID, "jewelry/stones/tier2");
-        public static final TagKey<Item> STONE_TIER3 = mod(MagicThings.MOD_ID, "jewelry/stones/tier3");
-        public static final TagKey<Item> STONE_TIER4 = mod(MagicThings.MOD_ID, "jewelry/stones/tier4");
-        public static final TagKey<Item> STONE_TIER5 = mod(MagicThings.MOD_ID, "jewelry/stones/tier5");
-        public static final TagKey<Item> STONE_TIER6 = mod(MagicThings.MOD_ID, "jewelry/stones/tier6");
-        
+        public static final TagKey<Item> STONE_TIER1 = mod(MagicThings.MOD_ID, "jewelry/stones/tier/tier1");
+        public static final TagKey<Item> STONE_TIER2 = mod(MagicThings.MOD_ID, "jewelry/stones/tier/tier2");
+        public static final TagKey<Item> STONE_TIER3 = mod(MagicThings.MOD_ID, "jewelry/stones/tier/tier3");
+        public static final TagKey<Item> STONE_TIER4 = mod(MagicThings.MOD_ID, "jewelry/stones/tier/tier4");
+        public static final TagKey<Item> STONE_TIER5 = mod(MagicThings.MOD_ID, "jewelry/stones/tier/tier5");
+        public static final TagKey<Item> STONE_TIER6 = mod(MagicThings.MOD_ID, "jewelry/stones/tier/tier6");
+        public static final TagKey<Item> STONE_TIER_SKELETONS_HEART = mod(MagicThings.MOD_ID, "jewelry/stones/tier/skeletons_heart");
+
+        // NOTE stone rarity is loosely equivalent to tier.
+        public static final TagKey<Item> STONE_RARITY_COMMON = mod(MagicThings.MOD_ID, "jewelry/stones/rarity/common");
+        public static final TagKey<Item> STONE_RARITY_UNCOMMON = mod(MagicThings.MOD_ID, "jewelry/stones/rarity/uncommon");
+        public static final TagKey<Item> STONE_RARITY_SCARCE = mod(MagicThings.MOD_ID, "jewelry/stones/rarity/scarce");
+        public static final TagKey<Item> STONE_RARITY_RARE = mod(MagicThings.MOD_ID, "jewelry/stones/rarity/rare");
+        public static final TagKey<Item> STONE_RARITY_EPIC = mod(MagicThings.MOD_ID, "jewelry/stones/rarity/epic");
+
+        public static final TagKey<Item> STONES = mod(MagicThings.MOD_ID, "jewelry/stones/all_stones");
+
+        public static final TagKey<Item> SPELL_SCROLLS = mod(MagicThings.MOD_ID, "scrolls/spells");
         /**
          *
          * @param domain
@@ -99,7 +118,10 @@ public class MagicThingsTags {
 		
 		// clear any registries
 		JewelryRegistry.clear();
-		
+
+        /*
+         * register all jewelry items by looking up the jewelry type tags.
+         */
 		// process all items in the JewelryType tags
         List<IJewelryType> types = MagicThingsApi.getJewelryTypes();
         types.forEach(type -> {
@@ -114,6 +136,43 @@ public class MagicThingsTags {
 					MagicThings.LOGGER.info("registering jewelry -> {} ", jewelry.getRegistryName());
 				}
 			}
+        });
+
+        // process all items in the JewelryStoneTier tags
+        List<JewelryStoneTier> tiers = MagicThingsApi.getJewelryStoneTiers();
+        tiers.forEach(tier -> {
+            TagKey<Item> tagKey = TagRegistry.getJewelryStoneTierTag(tier);
+            if (tagKey != null) {
+                // get the tag
+                ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(tagKey);
+                // for each item in the tag
+                for (Item stone : tag) {
+                    StoneRegistry.register(stone, tier);
+                    MagicThings.LOGGER.debug("registering stone to tier -> {} <--> {} ", stone.getRegistryName(), tier.getName());
+                }
+            }
+        });
+
+        // registry stones by rarity
+        List<IRarity> rarities = MagicThingsApi.getRarities();
+        rarities.forEach(rarity -> {
+            TagKey<Item> tagKey = TagRegistry.getStoneRarityTag(rarity);
+            if (tagKey != null) {
+                ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(tagKey);
+                for (Item stone : tag) {
+                    StoneRegistry.register(rarity, stone);
+                    MagicThings.LOGGER.debug("registering stone to rarity -> {} <--> {} ", stone.getRegistryName(), rarity.getName());
+                }
+            }
+            // register jewelry by rarity
+            MagicThingsApi.getJewelryRarityTag(rarity)
+                    .ifPresent(key -> {
+                        ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(key);
+                        tag.forEach(item -> {
+                            JewelryRegistry.register(rarity, item);
+                            MagicThings.LOGGER.debug("registering jewelry to rarity -> {} <--> {} ", item.getRegistryName(), rarity.getName());
+                        });
+                    });
         });
 	}
 }

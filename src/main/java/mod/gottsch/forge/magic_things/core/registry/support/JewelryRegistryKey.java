@@ -17,9 +17,14 @@
  */
 package mod.gottsch.forge.magic_things.core.registry.support;
 
-import java.util.Objects;
+import mod.gottsch.forge.magic_things.core.item.IJewelrySizeTier;
+import mod.gottsch.forge.magic_things.core.item.IJewelryType;
+import mod.gottsch.forge.magic_things.core.item.JewelrySizeTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterial;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTiers;
 
-import mod.gottsch.forge.magic_things.core.item.*;
+import java.util.Objects;
 
 /**
  * 
@@ -28,18 +33,18 @@ import mod.gottsch.forge.magic_things.core.item.*;
  */
 public class JewelryRegistryKey {
 	private IJewelryType type;
-	private IJewelryMaterialTier material;
-	private IJewelryStoneTier stone;
+	private JewelryMaterial material;
+	private JewelryStoneTier stone;
 	private IJewelrySizeTier size;
 	
 	/**
 	 * 
 	 * @param material
 	 */
-	public JewelryRegistryKey(IJewelryType type, IJewelryMaterialTier material) {
+	public JewelryRegistryKey(IJewelryType type, JewelryMaterial material) {
 		this.type = type;
 		this.material = material;
-		this.stone = JewelryStoneTier.NONE;
+		this.stone = JewelryStoneTiers.NONE;
 		this.size = JewelrySizeTier.REGULAR;
 	}
 	
@@ -49,17 +54,17 @@ public class JewelryRegistryKey {
 	 * @param stone
 	 * @param size
 	 */
-	public JewelryRegistryKey(IJewelryType type, IJewelryMaterialTier material, IJewelryStoneTier stone, IJewelrySizeTier size) {
+	public JewelryRegistryKey(IJewelryType type, JewelryMaterial material, JewelryStoneTier stone, IJewelrySizeTier size) {
 		this.type = type;
 		this.material = material;
 		this.stone = stone;
 		this.size = size;
 	}
 	
-	public IJewelryMaterialTier getMaterial() {
+	public JewelryMaterial getMaterial() {
 		return material;
 	}
-	public void setMaterial(IJewelryMaterialTier material) {
+	public void setMaterial(JewelryMaterial material) {
 		this.material = material;
 	}
 	public IJewelrySizeTier getSize() {
@@ -68,10 +73,10 @@ public class JewelryRegistryKey {
 	public void setSize(IJewelrySizeTier size) {
 		this.size = size;
 	}
-	public IJewelryStoneTier getStone() {
+	public JewelryStoneTier getStone() {
 		return stone;
 	}
-	public void setStone(IJewelryStoneTier stone) {
+	public void setStone(JewelryStoneTier stone) {
 		this.stone = stone;
 	}
 

@@ -1,18 +1,21 @@
 package mod.gottsch.forge.magic_things.core.spell.cost;
 
-import java.util.Random;
-
-import com.someguyssoftware.gottschcore.spatial.ICoords;
-
+import mod.gottsch.forge.gottschcore.spatial.ICoords;
 import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTiers;
+import mod.gottsch.forge.magic_things.core.registry.StoneRegistry;
+import mod.gottsch.forge.magic_things.core.spell.ICastSpellContext;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.eventbus.api.Event;
+
+import java.util.Optional;
+import java.util.Random;
 
 /*
  * Generic cost evaluator
@@ -21,21 +24,30 @@ import net.minecraftforge.eventbus.api.Event;
  */
 public class CostEvaluator implements ICostEvaluator {
 	@Override
-	public double apply(Level level, Random random, ICoords coords, Player player, Event event, final ItemStack stack, double amount) {
+	public double apply(Level level, Random random, ICoords coords, ICastSpellContext context, double amount) {
+		IJewelryHandler handler = context.getJewelry().getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
 
-		IJewelryHandler entity = stack.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
+		Optional<Item> stone = StoneRegistry.get(handler.getStone());
+		JewelryStoneTier stoneTier = StoneRegistry.getStoneTier(stone.orElseGet(() -> Items.AIR)).orElse(JewelryStoneTiers.NONE);
+
+		// calculate the new amount for cost
+		double newAmount = amount * handler.getMaterial().getSpellCostFactor()
+				* stoneTier.getSpellCostFactor();
+
 		double cost = 0;
-		if (entity.getMana() >= amount) {
-			cost = amount;
-			entity.setMana(Mth.clamp(entity.getMana() - amount, 0D, entity.getMana()));
+		if (handler.getMana() >= newAmount) {
+			cost = newAmount;
+			handler.setMana(Mth.clamp(handler.getMana() - newAmount, 0D, handler.getMana()));
 		}
 		else {
-			cost = entity.getMana();
-			entity.setMana(0);
+			cost = handler.getMana();
+			handler.setMana(0);
 		}
 		return cost;
 	}
-	
+
+	// cost evaluators should be stateless and have no need to save/load data
+	@Deprecated
 	@Override
 	public CompoundTag save(CompoundTag tag) {
 		ICostEvaluator.super.save(tag);
@@ -48,6 +60,7 @@ public class CostEvaluator implements ICostEvaluator {
 		return tag;
 	}
 
+	@Deprecated
 	@Override
 	public void load(CompoundTag tag) {
 		ICostEvaluator.super.load(tag);

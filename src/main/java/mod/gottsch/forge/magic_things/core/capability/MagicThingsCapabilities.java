@@ -32,6 +32,7 @@ import net.minecraftforge.fml.common.Mod;
  */
 public class MagicThingsCapabilities {
     public static Capability<IJewelryHandler> JEWELRY_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {	});
+    public static Capability<IJewelryHandler> MANA_WELL_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {	});
 
     /**
      *

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "gealdorcraft:iron_ring"
+    ]
+  },
+  "criteria": {
+    "criteria": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gealdorcraft:ring_recipe"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "gealdorcraft:iron_ring"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "criteria",
+      "has_the_recipe"
+    ]
+  ]
+}

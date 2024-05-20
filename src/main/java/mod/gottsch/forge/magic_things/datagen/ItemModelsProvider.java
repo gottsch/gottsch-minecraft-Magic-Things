@@ -19,8 +19,9 @@ package mod.gottsch.forge.magic_things.datagen;
 
 import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
-import mod.gottsch.forge.magic_things.core.item.MagicThingsItems;
 import mod.gottsch.forge.magic_things.core.item.JewelrySizeTier;
+import mod.gottsch.forge.magic_things.core.item.MagicThingsItems;
+import mod.gottsch.forge.magic_things.core.spell.SpellRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -46,6 +47,17 @@ public class ItemModelsProvider extends ItemModelProvider {
 //		singleTexture(TreasureItems.ADORNMENTS_TAB.get().getRegistryName().getPath(),
 //				mcLoc("item/generated"), "layer0", modLoc("item/adornment/ruby_gold_ring"));
 
+		// tools
+		singleTexture(MagicThingsItems.JEWELRY_PLIERS.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry_pliers"));
+
+		// ingots
+		singleTexture(MagicThingsItems.SILVER_INGOT.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/silver_ingot"));
+
+		// recipes
+		singleTexture(MagicThingsItems.RING_RECIPE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/ring_recipe_scroll"));
+		singleTexture(MagicThingsItems.NECKLACE_RECIPE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/necklace_recipe_scroll"));
+		singleTexture(MagicThingsItems.BRACELET_RECIPE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/bracelet_recipe_scroll"));
+
 		/*
 		 * jewelry
 		 */
@@ -53,7 +65,10 @@ public class ItemModelsProvider extends ItemModelProvider {
 		// rings
 //		singleTexture(GealdorCraftItems.COPPER_RING.getId().getPath(),
 //				mcLoc("item/generated"), "layer0", modLoc("items/jewelry/copper_ring"));
-		
+
+		// spell scrolls
+//		singleTexture(MagicThingsItems.HEALING_SCROLL.getId().getPath(), mcLoc("item/generated"), modLoc("item/yellow_spell_scroll"));
+
 		// stones
 		singleTexture(MagicThingsItems.JADEITE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/gem/jadeite"));
 		singleTexture(MagicThingsItems.TOPAZ.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/gem/topaz"));
@@ -64,13 +79,43 @@ public class ItemModelsProvider extends ItemModelProvider {
 		singleTexture(MagicThingsItems.BLACK_PEARL.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/gem/black_pearl"));
 		
 		// TODO this method does not distinguish between regular and special jewelry ie Gottsch Ring of the Moon.
-		MagicThingsItems.ALL_JEWELRY.forEach(item -> {
+		MagicThingsItems.STANDARD_JEWELRY.forEach(item -> {
 			singleTexture(item.getId().getPath(),
-					mcLoc("item/generated"), "layer0", modLoc("item/jewelry/" + item.getId().getPath()));
+					modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/" + item.getId().getPath()));
 		});
-		// special / non-standard jewelry
-		singleTexture(MagicThingsItems.HEALING_RING.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry/copper_ring"));
 
+		// scrolls
+		SpellRegistry.values().forEach(spell -> {
+			singleTexture(spell.getName().getPath() + "_scroll",
+					mcLoc("item/generated"), "layer0", modLoc(
+							switch(spell.getLevel()) {
+								case 1,2 -> "item/yellow_spell_scroll";
+								case 3,4 -> "item/green_spell_scroll";
+								case 5,6 -> "item/blue_spell_scroll";
+								case 7,8 -> "item/black_spell_scroll";
+                                default -> "item/black_spell_scroll";
+                            }));
+		});
+
+		// special / non-standard jewelry
+		singleTexture(MagicThingsItems.MEDICS_TOKEN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry/medics_token"));
+
+		/*
+		 * blocks
+		 */
+		withExistingParent(MagicThingsItems.TOPAZ_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/topaz_ore"));
+		withExistingParent(MagicThingsItems.ONYX_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/onyx_ore"));
+		withExistingParent(MagicThingsItems.JADEITE_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/jadeite_ore"));
+		withExistingParent(MagicThingsItems.RUBY_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/ruby_ore"));
+		withExistingParent(MagicThingsItems.SAPPHIRE_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/sapphire_ore"));
+		withExistingParent(MagicThingsItems.SILVER_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/silver_ore"));
+
+		withExistingParent(MagicThingsItems.DEEPSLATE_TOPAZ_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_topaz_ore"));
+		withExistingParent(MagicThingsItems.DEEPSLATE_ONYX_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_onyx_ore"));
+		withExistingParent(MagicThingsItems.DEEPSLATE_JADEITE_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_jadeite_ore"));
+		withExistingParent(MagicThingsItems.DEEPSLATE_RUBY_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_ruby_ore"));
+		withExistingParent(MagicThingsItems.DEEPSLATE_SAPPHIRE_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_sapphire_ore"));
+		withExistingParent(MagicThingsItems.DEEPSLATE_SILVER_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_silver_ore"));
 	}
 	
 	@Deprecated
@@ -85,12 +130,12 @@ public class ItemModelsProvider extends ItemModelProvider {
 		
 		// stone (can't get from key....)
 
-			if (!c.getStones().isEmpty()) {
-				loc.append(c.getStones().get(0).getPath() + "_");
+			if (c.hasStone()) {
+				loc.append(c.getStone().getPath()).append("_");
 			}
 			
 			// material
-			loc.append(c.getJewelryMaterialTier().getValue() + "_");
+			loc.append(c.getMaterial().getName() + "_");
 			
 			// type
 			loc.append(c.getJewelryType().getValue());

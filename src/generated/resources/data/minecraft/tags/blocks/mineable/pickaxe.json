@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "gealdorcraft:jadeite_ore",
+    "gealdorcraft:onyx_ore",
+    "gealdorcraft:topaz_ore",
+    "gealdorcraft:ruby_ore",
+    "gealdorcraft:sapphire_ore",
+    "gealdorcraft:silver_ore",
+    "gealdorcraft:deepslate_jadeite_ore",
+    "gealdorcraft:deepslate_onyx_ore",
+    "gealdorcraft:deepslate_topaz_ore",
+    "gealdorcraft:deepslate_ruby_ore",
+    "gealdorcraft:deepslate_sapphire_ore",
+    "gealdorcraft:deepslate_silver_ore"
+  ]
+}

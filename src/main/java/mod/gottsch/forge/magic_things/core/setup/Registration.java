@@ -18,7 +18,9 @@
 package mod.gottsch.forge.magic_things.core.setup;
 
 import mod.gottsch.forge.magic_things.MagicThings;
+import mod.gottsch.forge.magic_things.core.block.MagicThingsBlocks;
 import mod.gottsch.forge.magic_things.core.item.MagicThingsItems;
+import mod.gottsch.forge.magic_things.core.world.feature.MagicThingsConfiguredFeatures;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.MenuType;
@@ -51,6 +53,8 @@ public class Registration {
      *
      */
     public static void init() {
+        MagicThingsBlocks.register();
     	MagicThingsItems.register();
+        MagicThingsConfiguredFeatures.register();
     }
 }

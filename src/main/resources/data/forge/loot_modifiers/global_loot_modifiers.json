@@ -1,0 +1,13 @@
+{
+  "replace" : false,
+  "entries" : [ "gealdorcraft:fishing_junk",
+    "gealdorcraft:fishing_treasure",
+    "gealdorcraft:chest/uncommon",
+    "gealdorcraft:chest/scarce",
+    "gealdorcraft:chest/rare",
+    "gealdorcraft:chest/epic",
+    "gealdorcraft:chest/legendary",
+    "gealdorcraft:chest/mythical",
+    "gealdorcraft:entity/skeleton"
+  ]
+}

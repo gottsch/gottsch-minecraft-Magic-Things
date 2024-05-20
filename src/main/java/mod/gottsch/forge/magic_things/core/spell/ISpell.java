@@ -18,48 +18,44 @@
 package mod.gottsch.forge.magic_things.core.spell;
 
 import mod.gottsch.forge.gottschcore.enums.IRarity;
-import mod.gottsch.forge.magic_things.MagicThings;
-import mod.gottsch.forge.magic_things.core.spell.cost.CostEvaluator;
+import mod.gottsch.forge.gottschcore.spatial.ICoords;
+import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
+import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
+import mod.gottsch.forge.magic_things.core.network.SpellUpdateS2C;
 import mod.gottsch.forge.magic_things.core.spell.cost.ICostEvaluator;
-import mod.gottsch.forge.magic_things.core.util.ModUtil;
 import net.minecraft.ChatFormatting;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.apache.commons.lang3.ObjectUtils;
+import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Mark Gottschling on 5/3/2023
  */
 public interface ISpell {
-    public static final String SPELL = "spell";
 
-    public static final String NAME = "name";
-    public static final String RARITY = "rarity";
-    public static final String SPELL_COST = "spellCost";
-    public static final String DURATION = "duration";
-    public static final String FREQUENCY = "frequency";
-    public static final String EFFECT_AMOUNT = "effectAmount";
-    public static final String COOLDOWN = "cooldown";
-    public static final String RANGE = "range";
-    public static final String COST_EVALUATOR = "costEvaluator";
+    SpellEntity entity();
 
-    @Deprecated
-    public static final String EXCLUSIVE = "exclusive";
+    boolean serverUpdate(Level level, Random random, ICoords coords, Event event, ICastSpellContext context);
 
-    public SpellEntity entity();
+    default public boolean clientUpdate(ItemStack jewelry, SpellEntity entity, SpellUpdateS2C message) {
+        IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
+        handler.setMana(message.getMana());
+        return true;
+    }
 
     @SuppressWarnings("deprecation")
     void addInformation(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flagIn, SpellEntity entity);
 
     ChatFormatting getSpellLabelColor();
 
-    ChatFormatting getCharmDescColor();
+    ChatFormatting getSpellDescColor();
 
     // final properties
     public ResourceLocation getName();
@@ -74,8 +70,8 @@ public interface ISpell {
     int getDuration();
     void setDuration(int duration);
 
-    int getFrequency();
-    void setFrequency(int frequency);
+    long getFrequency();
+    void setFrequency(long frequency);
 
     double getRange();
     void setRange(double range);
@@ -92,83 +88,13 @@ public interface ISpell {
     boolean isExclusive();
     void setExclusive(boolean exclusive);
 
-    void update(ISpell spell);
-
-    /**
-     *
-     * @param tag
-     * @return
-     */
-    default public boolean load(CompoundTag tag) {
-        if (tag.contains(NAME)) {
-            String name = tag.getString(NAME);
-            ResourceLocation location = ModUtil.asLocation(name);
-            // TODO name can't be final if going to load it.... maybe a SpellFactory that loads Spells.
-//            setName(location);
-        }
-
-        if (tag.contains(SPELL_COST)) {
-            setSpellCost(tag.getDouble(SPELL_COST));
-        }
-
-        if (tag.contains(DURATION)) {
-            setDuration(tag.getInt(DURATION));
-        }
-        if (tag.contains(FREQUENCY)) {
-            setFrequency(tag.getInt(FREQUENCY));
-        }
-        if (tag.contains(EFFECT_AMOUNT)) {
-            setEffectAmount(tag.getDouble(EFFECT_AMOUNT));
-        }
-        if (tag.contains(COOLDOWN)) {
-            setCooldown(tag.getDouble(COOLDOWN));
-        }
-        if (tag.contains(RANGE)) {
-            setRange(tag.getDouble(RANGE));
-        }
-        if (tag.contains(COST_EVALUATOR) && tag.getCompound(COST_EVALUATOR).contains("costClass")) {
-            try {
-                CompoundTag costTag = tag.getCompound(COST_EVALUATOR);
-
-                String costEvalClass = costTag.getString("costClass");
-//					Treasure.logger.warn("using parent cost eval class -> {}", costEvalClass);
-                Object o = Class.forName(costEvalClass).newInstance();
-                ((ICostEvaluator)o).load(tag);
-                setCostEvaluator((ICostEvaluator)o);
-            }
-            catch(Exception e) {
-                MagicThings.LOGGER.warn("unable to create cost evaluator from class string -> {}", tag.getCompound(COST_EVALUATOR).getString("costClass"));
-                MagicThings.LOGGER.error(e);
-                setCostEvaluator(new CostEvaluator());
-            }
-        }
-        else {
-            setCostEvaluator(new CostEvaluator());
-        }
-
-        if (tag.contains(EXCLUSIVE)) {
-            setExclusive(tag.getBoolean(EXCLUSIVE));
-        }
-
-        return true;
-    }
-
-    /**
-     * saves directly to the tag provided. ie does not make a new tag and append to tag param
-     * @param tag
-     * @return
-     */
-    default public CompoundTag save(CompoundTag tag) {
-        if (ObjectUtils.isNotEmpty(getName())) {
-            tag.putString(NAME, getName().toString());
-        }
-
-        // TODO finish...
-
-        return tag;
-    }
+    public Class<?> getRegisteredEvent();
 
     boolean isEffectStackable();
 
     void setEffectStackable(boolean effectStackable);
+
+    int getPriority();
+
+    void setPriority(int priority);
 }

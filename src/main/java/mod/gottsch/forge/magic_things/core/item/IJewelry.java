@@ -27,7 +27,7 @@ public interface IJewelry {
      *
      * @return boolean is the jewelry named.
      */
-    default public boolean isNamed() {
+    default boolean isNamed() {
         return false;
     }
 }

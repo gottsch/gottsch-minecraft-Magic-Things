@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/generated",
+  "parent": "gealdorcraft:item/jewelry",
   "textures": {
     "layer0": "gealdorcraft:item/jewelry/great_copper_onyx_ring"
   }

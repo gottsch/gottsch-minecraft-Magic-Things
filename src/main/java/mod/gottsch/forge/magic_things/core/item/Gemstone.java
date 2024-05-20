@@ -1,6 +1,9 @@
 package mod.gottsch.forge.magic_things.core.item;
 
+import mod.gottsch.forge.magic_things.core.util.LangUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -19,9 +22,9 @@ public class Gemstone extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> componentList, TooltipFlag flag) {
-        super.appendHoverText(itemStack, level, componentList, flag);
+    public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component>tooltip, TooltipFlag flag) {
+        super.appendHoverText(itemStack, level, tooltip, flag);
+        tooltip.add(new TranslatableComponent(LangUtil.tooltip("gemstone.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
 
-        // TODO see Treasure2 WealthItem for appendHoverText
     }
 }

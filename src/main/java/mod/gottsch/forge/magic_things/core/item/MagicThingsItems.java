@@ -1,47 +1,54 @@
 /*
- * This file is part of  MAGIC_THINGS.
- * Copyright (c) 2023 Mark Gottschling (gottsch)
+ * This file is part of  Magic Things.
+ * Copyright (c) 2024 Mark Gottschling (gottsch)
  *
- * MAGIC_THINGS is free software: you can redistribute it and/or modify
+ * Magic Things is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * MAGIC_THINGS is distributed in the hope that it will be useful,
+ * Magic Things is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with MAGIC_THINGS.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_things.core.item;
 
+import com.google.common.collect.Lists;
 import mod.gottsch.forge.magic_things.MagicThings;
+import mod.gottsch.forge.magic_things.core.block.MagicThingsBlocks;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.JewelryCapability;
 import mod.gottsch.forge.magic_things.core.capability.JewelryHandler;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterial;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterials;
 import mod.gottsch.forge.magic_things.core.setup.Registration;
-import mod.gottsch.forge.magic_things.core.util.ModUtil;
 import mod.gottsch.forge.magic_things.core.spell.MagicThingsSpells;
 import mod.gottsch.forge.magic_things.core.spell.SpellRegistry;
+import mod.gottsch.forge.magic_things.core.util.ModUtil;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
-
-import com.google.common.collect.Lists;
 
 
 /**
@@ -60,95 +67,198 @@ public class MagicThingsItems {
     // tab items
     public static final RegistryObject<Item> MAGIC_THINGS_TAB = Registration.ITEMS.register("magic_things_tab", () -> new Item(new Item.Properties()));
 
-    // gemstones
+	// tools
+	public static RegistryObject<Item> JEWELRY_PLIERS = Registration.ITEMS.register("jewelry_pliers", () -> new JewelryPliers(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+
+	// spell scrolls
+	public static final List<RegistryObject<Item>> ALL_SPELL_SCROLLS = Lists.newArrayList();
+	static {
+		SpellRegistry.values().forEach(spell -> {
+			RegistryObject<Item> scroll = Registration.ITEMS.register(spell.getName().getPath() + "_scroll",
+					() -> new SpellScroll(MAGIC_THINGS_PROPS_SUPPLIER.get(), spell));
+			// add scroll registry item to a list
+			ALL_SPELL_SCROLLS.add(scroll);
+		});
+	}
+
+	// metals / ingots
+	public static RegistryObject<Item> SILVER_INGOT = Registration.ITEMS.register("silver_ingot", () -> new Item(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		@Override
+		public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component>tooltip, TooltipFlag flag) {
+			// TODO
+		}
+	});
+
+	// recipe scrolls
+	public static RegistryObject<Item> RING_RECIPE = Registration.ITEMS.register("ring_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> NECKLACE_RECIPE = Registration.ITEMS.register("necklace_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> BRACELET_RECIPE = Registration.ITEMS.register("bracelet_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> BELT_RECIPE = Registration.ITEMS.register("belt_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+
+	// gemstones
 	public static RegistryObject<Item> JADEITE = Registration.ITEMS.register("jadeite", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Item(MAGIC_THINGS_PROPS_SUPPLIER.get()));
-    public static RegistryObject<Item> ONYX = Registration.ITEMS.register("onyx", () -> new Item(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+    public static RegistryObject<Item> ONYX = Registration.ITEMS.register("onyx", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
 	public static RegistryObject<Item> RUBY = Registration.ITEMS.register("ruby", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
     public static RegistryObject<Item> SAPPHIRE = Registration.ITEMS.register("sapphire", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
     public static RegistryObject<Item> WHITE_PEARL = Registration.ITEMS.register("white_pearl", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
     public static RegistryObject<Item> BLACK_PEARL = Registration.ITEMS.register("black_pearl", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
 
-    /*
+
+	/*
      * a list of all mod generated items.
      */
     public static final List<RegistryObject<Item>> ALL_JEWELRY = Lists.newArrayList();
-    
-    // TEMP item
-    public static RegistryObject<Item> COPPER_RING = Registration.ITEMS.register("copper_ring", () -> new Jewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
-        public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
-            IJewelryHandler handler = new JewelryHandler.Builder(
-                    JewelryType.RING,
-                    JewelryMaterialTier.COPPER,
-                    JewelryStoneTier.NONE,
-                    JewelrySizeTier.REGULAR)
-					.build();
+	public static final List<RegistryObject<Item>> STANDARD_JEWELRY = Lists.newArrayList();
 
-            // return capability
-            return new JewelryCapability(handler);
-        }
-    });
-    
-    // TEMP how to make a topaz copper ring ? - the stone would have to be optional in the builder. size can be optional too and defaults to REGULAR
-    public static RegistryObject<Item> COPPER_TOPAZ_RING = Registration.ITEMS.register("copper_topaz_ring", () -> new Jewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
-        public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
-            IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterialTier.COPPER)
-            		.withStone(TOPAZ.getId())
-            		.build();
-            return new JewelryCapability(handler);
-        }
-    });
-    
-    public static RegistryObject<Item> GREAT_COPPER_ONYX_RING = Registration.ITEMS.register("great_copper_onyx_ring", () -> new Jewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
-        public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
-            IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterialTier.COPPER)
-            		.withSize(JewelrySizeTier.GREAT)
-            		.withStone(ONYX.getId())
-            		.build();
-            return new JewelryCapability(handler);
-        }
-    });
-
-	// TEMP
-	public static RegistryObject<Item>HEALING_RING = Registration.ITEMS.register("healing_ring", () -> new Jewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+	// custom jewelry
+	public static RegistryObject<Item> MEDICS_TOKEN = Registration.ITEMS.register("medics_token", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
-			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterialTier.COPPER)
-					.withSize(JewelrySizeTier.REGULAR)
-					.withStone(RUBY.getId())
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.GOLD)
+					.withSize(JewelrySizeTier.GREAT)
+					.withStone(SAPPHIRE.getId())
+					.with($ -> {
+						$.spells.add(SpellRegistry.get(MagicThingsSpells.GREATER_HEALING).orElse(MagicThingsSpells.DEFAULT_HEALING).entity());
+						$.maxMana = 500;
+						$.maxRecharges = 0;
+					})
+					.setInfinite()
 					.build();
-			handler.getSpells().add(SpellRegistry.get(ModUtil.asLocation("lesser_healing")).orElse(MagicThingsSpells.LESSER_HEALING).entity());
 
 			return new JewelryCapability(handler);
 		}
 	});
+
+	public static RegistryObject<Item> BONE_AMBER_SKULL_RING = Registration.ITEMS.register("bone_amber_skull_ring", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.BONE)
+					.withSize(JewelrySizeTier.REGULAR)
+					.withStone(Items.AIR.getRegistryName())
+					.with($ -> {
+						$.baseName = "skull_ring";
+						$.uses = 1000;
+						$.maxMana = 1000;
+						$.maxRecharges = 0;
+						$.maxRepairs = 0;
+						$.maxLevel = 10;
+						$.acceptsAffixer = p -> {
+							return false;
+						};
+					})
+					.setInfinite()
+					.build();
+			return new JewelryCapability(handler);
+		}
+	});
+
+	// TEST
+//	public static RegistryObject<Item> SCARAB = Registration.ITEMS.register("scarab", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+//		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+//			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.CHARM, JewelryMaterials.GOLD)
+//					.withSize(JewelrySizeTier.REGULAR)
+//					.withStone(Items.AIR.getRegistryName())
+//					.with($ -> $.spells.add(SpellRegistry.get(ModUtil.asLocation("lesser_healing")).orElse(MagicThingsSpells.DEFAULT_HEALING).entity()))
+//					.build();
+//
+//			return new JewelryCapability(handler);
+//		}
+//	});
       
     static {
-    	ALL_JEWELRY.add(COPPER_RING);
-    	ALL_JEWELRY.add(COPPER_TOPAZ_RING);
-    	ALL_JEWELRY.add(GREAT_COPPER_ONYX_RING);
+//    	STANDARD_JEWELRY.add(COPPER_RING);
+//		STANDARD_JEWELRY.add(COPPER_TOPAZ_RING);
+//		STANDARD_JEWELRY.add(GREAT_COPPER_ONYX_RING);
+//		STANDARD_JEWELRY.add(SCARAB);
+		STANDARD_JEWELRY.add(BONE_AMBER_SKULL_RING);
 		// TODO this is a special jewelry
-//		ALL_JEWELRY.add(HEALING_RING);
+//		ALL_JEWELRY.add(SCARAB);
+
+		List<Pair<String, Supplier<Jewelry>>> jewelry = new ArrayList<>();
+		JewelryBuilder builder = new JewelryBuilder(MagicThings.MOD_ID);
+		jewelry = builder.useBaseDefaults().deferredBuild();
+		jewelry.addAll(builder.useStoneDefaults().deferredBuild());
+		// TEMP POC - castle rings
+		JewelryBuilder builder2 = new JewelryBuilder(MagicThings.MOD_ID);
+		jewelry.addAll(builder2
+				.types(JewelryType.RING)
+				.materials(JewelryMaterials.SILVER)
+				.sizes(JewelrySizeTier.REGULAR)
+				.with($ -> {
+					$.baseName = "castle_ring";
+					$.uses = 500;
+					$.maxMana = 1000;
+					$.acceptsAffixer = p -> {
+						return p.is(RUBY.get()) || p.is(SAPPHIRE.get());
+					};
+				})
+				.deferredBuild());
+		jewelry.addAll(builder2
+				.stones(RUBY.getId(), SAPPHIRE.getId())
+				.deferredBuild());
+
+		// wood jewelry (only regular size)
+		JewelryBuilder woodBuilder = new JewelryBuilder(MagicThings.MOD_ID);
+		jewelry.addAll(woodBuilder
+				.materials(JewelryMaterials.WOOD)
+				.sizes(JewelrySizeTier.REGULAR)
+				.types(JewelryType.RING, JewelryType.BRACELET, JewelryType.NECKLACE)
+				.deferredBuild()
+		);
+		jewelry.addAll(woodBuilder.useStoneDefaults().deferredBuild());
+
+		jewelry.forEach(pair -> {
+			RegistryObject<Item> item = Registration.ITEMS.register(pair.getKey(), pair.getValue());
+			STANDARD_JEWELRY.add(item);
+			MagicThings.LOGGER.debug("adding item -> {} to standard registry", item.getId());
+			ALL_JEWELRY.add(item);
+		});
+
     }
-    
-    
-    // TODO create/register all jewelry
+
+	public static final RegistryObject<Item> TOPAZ_ORE_ITEM = fromBlock(MagicThingsBlocks.TOPAZ_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_TOPAZ_ORE_ITEM = fromBlock(MagicThingsBlocks.DEEPSLATE_TOPAZ_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+
+	public static final RegistryObject<Item> ONYX_ORE_ITEM = fromBlock(MagicThingsBlocks.ONYX_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_ONYX_ORE_ITEM = fromBlock(MagicThingsBlocks.DEEPSLATE_ONYX_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+
+	public static final RegistryObject<Item> JADEITE_ORE_ITEM = fromBlock(MagicThingsBlocks.JADEITE_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_JADEITE_ORE_ITEM = fromBlock(MagicThingsBlocks.DEEPSLATE_JADEITE_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+
+
+	public static final RegistryObject<Item> RUBY_ORE_ITEM = fromBlock(MagicThingsBlocks.RUBY_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_RUBY_ORE_ITEM = fromBlock(MagicThingsBlocks.DEEPSLATE_RUBY_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> SAPPHIRE_ORE_ITEM = fromBlock(MagicThingsBlocks.SAPPHIRE_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_SAPPHIRE_ORE_ITEM = fromBlock(MagicThingsBlocks.DEEPSLATE_SAPPHIRE_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+
+	public static final RegistryObject<Item> SILVER_ORE_ITEM = fromBlock(MagicThingsBlocks.SILVER_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_SILVER_ORE_ITEM = fromBlock(MagicThingsBlocks.DEEPSLATE_SILVER_ORE, MAGIC_THINGS_PROPS_SUPPLIER);
+
+	// TODO create/register all jewelry
 
 	public static void register() {
 		IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		Registration.ITEMS.register(eventBus);		
 	}
-	
+
+	// convenience method: take a RegistryObject<Block> and make a corresponding RegistryObject<Item> from it
+	public static <B extends Block> RegistryObject<Item> fromBlock(RegistryObject<B> block, Supplier<Item.Properties> itemProperties) {
+		return Registration.ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), itemProperties.get()));
+	}
+
 	/**
 	 * 
 	 * @author Mark Gottschling Jul 11, 2023
 	 *
 	 */
 	public static class JewelryBuilder {
-		protected List<IJewelryType> types = new ArrayList<>();
-		protected List<IJewelrySizeTier> sizes = new ArrayList<>();
-		protected List<IJewelryMaterialTier> materials = new ArrayList<>();
-		protected List<ResourceLocation> stones = new ArrayList<>();
-		
+		public List<JewelryType> types = new ArrayList<>();
+		public List<JewelrySizeTier> sizes = new ArrayList<>();
+		public List<JewelryMaterial> materials = new ArrayList<>();
+		public List<ResourceLocation> stones = new ArrayList<>();
+		public String baseName;
+		public int uses;
+		public int maxMana;
+		public Predicate<ItemStack> acceptsAffixer = p -> true;
 		
 		protected String modid;
 		
@@ -170,18 +280,19 @@ public class MagicThingsItems {
 		public JewelryBuilder useBaseDefaults() {
 			types(JewelryType.BRACELET, JewelryType.NECKLACE, JewelryType.RING); // ...
 			sizes(JewelrySizeTier.REGULAR, JewelrySizeTier.GREAT);
-			materials(JewelryMaterialTier.IRON, 
-					JewelryMaterialTier.COPPER, 
-					JewelryMaterialTier.SILVER, 
-					JewelryMaterialTier.GOLD);
+			materials(
+//					JewelryMaterials.WOOD,
+					JewelryMaterials.IRON,
+					JewelryMaterials.COPPER,
+					JewelryMaterials.SILVER,
+					JewelryMaterials.GOLD);
+//					JewelryMaterials.BONE);
 			return this;
 		}
 		
-		public JewelryBuilder useSourceDefaults() {
+		public JewelryBuilder useStoneDefaults() {
 			stones(
 					Items.DIAMOND.getRegistryName(),
-					// TODO remove emerald and rename with new gem
-//					Items.EMERALD.getRegistryName(),
 					JADEITE.getId(),
 					TOPAZ.getId(),
 					ONYX.getId(),
@@ -192,18 +303,23 @@ public class MagicThingsItems {
 					);
 			return this;
 		}
-		
-		public JewelryBuilder types(IJewelryType... types) {
+
+		public JewelryBuilder with(Consumer<JewelryBuilder> builder) {
+			builder.accept(this);
+			return this;
+		}
+
+		public JewelryBuilder types(JewelryType... types) {
 			getTypes().addAll(Arrays.asList(types));
 			return this;
 		}
 		
-		public JewelryBuilder sizes(IJewelrySizeTier... sizes) {
+		public JewelryBuilder sizes(JewelrySizeTier... sizes) {
 			getSizes().addAll(Arrays.asList(sizes));
 			return this;
 		}
 		
-		public JewelryBuilder materials(IJewelryMaterialTier... materials) {
+		public JewelryBuilder materials(JewelryMaterial... materials) {
 			getMaterials().addAll(Arrays.asList(materials));
 			return this;
 		}
@@ -213,20 +329,90 @@ public class MagicThingsItems {
 			return this;
 		}
 
-		public List<IJewelryType> getTypes() {
+		/**
+		 * Deferred build.
+		 * This method returns a list of String/Supplier Pairs.
+		 * This method can be used in a static call of a class to construct RegistryObjects
+		 * The String in the Pair is used as the name (without the namespace)
+		 * NOTE adornments are deferred and thus are not registered in
+		 * TreasureAdornmentRegistry yet. That would have to happen in a post init like event.
+		 * @return
+		 */
+		public List<Pair<String, Supplier<Jewelry>>> deferredBuild() {
+			List<Pair<String, Supplier<Jewelry>>> jewelry = new ArrayList<>();
+
+			if (types.isEmpty()) return jewelry;
+			if (sizes.isEmpty()) return jewelry;
+
+			List<ResourceLocation> tempStones = new ArrayList<>();
+			if (stones.isEmpty()) {
+				tempStones.add(Items.AIR.getRegistryName());
+			}
+			else {
+				tempStones.addAll(stones);
+			}
+
+			// create the jewelry
+			types.forEach(type -> {
+				sizes.forEach(size -> {
+					materials.forEach(material -> {
+						tempStones.forEach(stone -> {
+							// build the name
+							String name = (size == JewelrySizeTier.REGULAR ? "" : size.getName() + "_")
+									+ material.getName() + "_"
+									+ (stone == Items.AIR.getRegistryName() ? "" :  stone.getPath() + "_")
+									+ (StringUtils.isNotBlank(baseName) ? baseName : type.toString());
+
+							// build the adornment supplier
+							Supplier<Jewelry> a = deferredCreateJewelry(type, material, size, stone);
+							MagicThings.LOGGER.debug("adding deferred jewelry item -> {}", name);
+
+							// build a pair
+							Pair<String, Supplier<Jewelry>> pair = Pair.of(name.toLowerCase(), a);
+							jewelry.add(pair);
+						});
+					});
+				});
+			});
+			return jewelry;
+		}
+
+		public Supplier<Jewelry> deferredCreateJewelry(JewelryType type, JewelryMaterial material, JewelrySizeTier size, ResourceLocation stone) {
+			return () -> new Jewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+
+				public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+
+					IJewelryHandler handler = new JewelryHandler.Builder(type, material, stone, size)
+							.with($ -> {
+								$.baseName = JewelryBuilder.this.getBaseName();
+								$.uses = JewelryBuilder.this.uses;
+								$.maxMana = JewelryBuilder.this.maxMana;
+								$.acceptsAffixer = JewelryBuilder.this.acceptsAffixer;
+							})
+							.build();
+					return new JewelryCapability(handler);
+				}
+			};
+		}
+
+		public List<JewelryType> getTypes() {
 			return types;
 		}
 
-		public List<IJewelrySizeTier> getSizes() {
+		public List<JewelrySizeTier> getSizes() {
 			return sizes;
 		}
 
-		public List<IJewelryMaterialTier> getMaterials() {
+		public List<JewelryMaterial> getMaterials() {
 			return materials;
 		}
 
 		public List<ResourceLocation> getStones() {
 			return stones;
+		}
+
+		public String getBaseName() {
+			return this.baseName;
 		}
 
 		public String getModid() {

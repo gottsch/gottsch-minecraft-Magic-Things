@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "gealdorcraft:necklace_recipe"
+    },
+    {
+      "item": "gealdorcraft:silver_ingot"
+    },
+    {
+      "item": "gealdorcraft:silver_ingot"
+    },
+    {
+      "item": "gealdorcraft:silver_ingot"
+    },
+    {
+      "item": "gealdorcraft:silver_ingot"
+    }
+  ],
+  "result": {
+    "item": "gealdorcraft:silver_necklace"
+  }
+}

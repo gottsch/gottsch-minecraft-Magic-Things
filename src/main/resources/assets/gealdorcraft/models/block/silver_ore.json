@@ -1,0 +1,6 @@
+{
+    "parent": "gealdorcraft:block/ore_parent",
+    "textures": {
+        "0": "gealdorcraft:block/silver_ore"
+    }
+}

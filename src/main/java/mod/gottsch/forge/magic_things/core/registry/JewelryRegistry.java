@@ -17,35 +17,32 @@
  */
 package mod.gottsch.forge.magic_things.core.registry;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Set;
-
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
-
+import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
-import mod.gottsch.forge.magic_things.core.item.IJewelryMaterialTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterial;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTiers;
 import mod.gottsch.forge.magic_things.core.registry.support.JewelryRegistryKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.*;
+import java.util.Map.Entry;
+
 /**
  * Registers all the jewelery items by ResourceLocation, and MaterialType and Key(Material, Stone, Size)
  * @author Mark Gottschling Jul 6, 2023
- * @param <IJewerlyStoneTierTier>
  *
  */
-public class JewelryRegistry<IJewerlyStoneTierTier> {
+public class JewelryRegistry {
 	private static final Map<ResourceLocation, Item> NAME_MAP = Maps.newHashMap();
-	private static final Multimap<JewelryRegistryKey, Item> KEY_MAP = ArrayListMultimap.create()	;
-	
+	private static final Multimap<JewelryRegistryKey, Item> KEY_MAP = ArrayListMultimap.create();
+	private static final Multimap<IRarity, Item> RARITY_MAP = ArrayListMultimap.create();
+
 	/**
 	 * Note: this registers a known item.
 	 * @param item
@@ -54,17 +51,42 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 		ItemStack stack = new ItemStack(item);
 		stack.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).ifPresent(c -> {
 			NAME_MAP.put(item.getRegistryName(), item);
-			// generate a key
-			c.getJewelryStoneTiers().forEach(stone -> {
-				JewelryRegistryKey key = new JewelryRegistryKey(
+
+			// get the stone
+			Item stone = null;
+			JewelryStoneTier stoneTier = JewelryStoneTiers.NONE;
+			if (c.hasStone()) {
+				Optional<Item> optionalStone = StoneRegistry.get(c.getStone());
+				if (optionalStone.isPresent()) {
+					stone = optionalStone.get();
+					Optional<JewelryStoneTier> tier = StoneRegistry.getStoneTier(stone);
+					if (tier.isPresent()) {
+						stoneTier = tier.get();
+					}
+				}
+
+			}
+
+			// generate keys
+			JewelryRegistryKey key = new JewelryRegistryKey(
 						c.getJewelryType(),
-						c.getJewelryMaterialTier(),
-						stone,
+						c.getMaterial(),
+						stoneTier,
 						c.getJewelrySizeTier());
-				
-				KEY_MAP.put(key, item);
-			});
+
+			KEY_MAP.put(key, item);
 		});
+	}
+
+	/**
+	 * registered during TagsUpdatedEvent.
+	 *
+	 * @param rarity
+	 * @param item
+	 * @return
+	 */
+	public static boolean register(IRarity rarity, Item item) {
+		return RARITY_MAP.put(rarity, item);
 	}
 		
 	/**
@@ -81,7 +103,7 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 	 * @param key
 	 * @return
 	 */
-	public static List get(JewelryRegistryKey key) {
+	public static List<Item> get(JewelryRegistryKey key) {
 		return new ArrayList<>(KEY_MAP.get(key));
 	}
 	
@@ -90,7 +112,7 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 	 * @param material
 	 * @return
 	 */
-	public static List<Item> get(IJewelryMaterialTier material) {
+	public static List<Item> get(JewelryMaterial material) {
 		List<Item> list = KEY_MAP.entries()
 				.stream()
 				.filter(e -> e.getKey().getMaterial().equals(material))
@@ -98,13 +120,22 @@ public class JewelryRegistry<IJewerlyStoneTierTier> {
 				.toList();
 		return list;
 	}
-	
+
+	public static List<Item> get(IRarity rarity) {
+		List<Item> list = new ArrayList<>();
+		if (RARITY_MAP.containsKey(rarity)) {
+			list.addAll(RARITY_MAP.get(rarity));
+		}
+		return list;
+	}
+
 	/**
 	 * 
 	 */
 	public static void clear() {
 		NAME_MAP.clear();
 		KEY_MAP.clear();
+		RARITY_MAP.clear();
 	}
 
 	public static List<Item> getAll() {

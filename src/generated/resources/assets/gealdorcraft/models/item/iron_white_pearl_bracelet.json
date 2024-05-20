@@ -1,0 +1,6 @@
+{
+  "parent": "gealdorcraft:item/jewelry",
+  "textures": {
+    "layer0": "gealdorcraft:item/jewelry/iron_white_pearl_bracelet"
+  }
+}

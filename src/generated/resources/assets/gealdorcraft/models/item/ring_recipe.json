@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gealdorcraft:item/ring_recipe_scroll"
+  }
+}
