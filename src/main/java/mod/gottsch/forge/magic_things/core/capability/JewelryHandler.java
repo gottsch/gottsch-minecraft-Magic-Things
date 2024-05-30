@@ -44,6 +44,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -113,19 +114,15 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
      */
     public static class Builder {
         public final IJewelryType type;
-//        public final IJewelryMaterialTier materialTier;
         public JewelryMaterial material;
         public IJewelrySizeTier sizeTier;
-        public int uses; // durability - separate capability??
+        public int uses;
         public int maxLevel;
         public double maxMana;
         public double mana;
-        public int maxRepairs;
-//        public int repairs;
-        public int maxRecharges;
-//        public int recharges;
+        public int maxRepairs = -1;
+        public int maxRecharges = -1;
 
-//        public List<ResourceLocation> stones = new ArrayList<>(2);
         public ResourceLocation stone;
         public List<SpellEntity> spells = Lists.newArrayList();
         public String baseName;
@@ -190,11 +187,8 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     public JewelryHandler(Builder builder) {
         // required properties
         this.type = builder.type;
-//        this.materialTier = builder.materialTier;
         this.material = builder.material;
         this.stone = builder.stone;
-        // optional and calculations
-//          this.stoneTiers = builder.stoneTiers;
         this.sizeTier = builder.sizeTier;
 
         // get the stone and stone tier
@@ -202,17 +196,17 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         // determine the tier
         Optional<JewelryStoneTier> stoneTier = StoneRegistry.getStoneTier(stone);
 
-        if (builder.uses == 0) {
+        if (builder.uses <= 0) {
             this.uses = Math.round(material.getUses() * sizeTier.getUsesMultiplier());
         } else {
             this.uses = builder.uses;
         }
-        if (builder.maxLevel == 0) {
+        if (builder.maxLevel <= 0) {
             this.maxLevel = material.getMaxLevel();
         } else {
             this.maxLevel = builder.maxLevel;
         }
-        if (builder.maxMana == 0) {
+        if (builder.maxMana <= 0) {
             int mana = stoneTier.map(JewelryStoneTier::getMana).orElseGet(() -> 0);
             this.maxMana = Math.round((material.getMana() + mana) * sizeTier.getManaMultiplier());
         } else {
@@ -221,8 +215,8 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         this.mana = this.maxMana;
 
         // maxRepairs
-        if (builder.maxRepairs == 0) {
-            this.maxRepairs = material.getRepairs();
+        if (builder.maxRepairs < 0) {
+            this.maxRepairs = material.getRepairs() + sizeTier.getRepairs();
         } else {
             this.maxRepairs = builder.maxRepairs;
         }
@@ -230,9 +224,9 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         this.repairs = this.maxRepairs;
 
         // maxRecharges
-        if (builder.maxRecharges == 0) {
+        if (builder.maxRecharges < 0) {
             this.maxRecharges =
-//                    materialTier.getRecharges() +
+                    material.getRecharges() +
                             stoneTier.map(JewelryStoneTier::getRecharges).orElseGet(() -> 0);
         } else {
             this.maxRecharges = builder.maxRecharges;
@@ -261,49 +255,171 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 
-        // material
-        tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.material"), WordUtils.capitalizeFully(getMaterial().getId().getPath())).withStyle(ChatFormatting.WHITE));
+        // spell max level
+        tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.max_level"),
+                ChatFormatting.GOLD + String.valueOf(getMaxLevel()))));
 
-        // stones
-        // TODO get the stone or convert the path name
-        if (hasStone()) {
-            tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.stone"), WordUtils.capitalizeFully(getStone().getPath().replace("_", " "))).withStyle(ChatFormatting.WHITE));
-        }
         // durability
         if (isInfinite()) {
-            tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.amount.infinite")).withStyle(ChatFormatting.WHITE));
+            tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
+                    .append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.infinite"), new TranslatableComponent(LangUtil.tooltip("infinite")).withStyle(ChatFormatting.GRAY))));
         } else {
-            tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.amount"), getUses() - stack.getDamageValue(), getUses()).withStyle(ChatFormatting.WHITE));
-         }
-
-//        if (getRepairs() > 0) {
-            tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.repairs"), getRepairs()).withStyle(ChatFormatting.WHITE));
-//        }
-        tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.mana.recharges"), getRecharges()).withStyle(ChatFormatting.GREEN));
-
-        tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
-
-        // spell max level
-        tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.max_level"), getMaxLevel()).withStyle(ChatFormatting.DARK_AQUA));
-        tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.spells")).withStyle(ChatFormatting.UNDERLINE)
-                        .append(getUsesGauge()));
-        // add spells
-        for (SpellEntity entity : getSpells()) {
-//            MagicThings.LOGGER.info("entity -> {}", entity);
-            // TODO don't call spell.addInformation(), just format here
-            entity.getSpell().addInformation(stack, level, tooltip, flag, entity);
+            tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
+                    .append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.amount"),
+                    ChatFormatting.GRAY + String.valueOf(getUses() - stack.getDamageValue()),
+                    ChatFormatting.GRAY + String.valueOf(getUses()))));
         }
+
+        // mana
+        tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
+                .append(new TranslatableComponent(LangUtil.tooltip("jewelry.mana"),
+                        ChatFormatting.BLUE + String.valueOf(Math.toIntExact(Math.round(getMana()))),
+                        ChatFormatting.BLUE + String.valueOf(Math.toIntExact((long)Math.ceil(getMaxMana()))))));
+                        // + getUsesGauge().getString())));
+
+        if (!getSpells().isEmpty()) {
+            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+            tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
+                    .append(new TranslatableComponent(LangUtil.tooltip("divider")).withStyle(ChatFormatting.GRAY)));
+
+            // add spells
+            for (SpellEntity entity : getSpells()) {
+                // TODO don't call spell.addInformation(), just format here
+                entity.getSpell().addInformation(stack, level, tooltip, flag, entity);
+            }
+        }
+
+         // TODO add stats here
+        // TODO there is possibility that this jewelry will not have stats -- don't want the extra space at the end
+        // -----------
+        MutableComponent component = new TranslatableComponent(LangUtil.INDENT2);
+        Optional<MutableComponent> c = Optional.empty();
+        if (getSpellCostFactor() != 1.0) {
+            c = Optional.of(component);
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.cost_factor"), ChatFormatting.AQUA + formatStat(getSpellCostFactor())))
+                    .append(" ");
+        }
+        if (getCooldownFactor() != 1.0) {
+            c = c.isEmpty() ? Optional.of(component) : c;
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.cooldown_factor"), ChatFormatting.AQUA + formatStat(getCooldownFactor())))
+                    .append(" ");
+        }
+        if (getEffectAmountFactor() != 1.0) {
+            c = c.isEmpty() ? Optional.of(component) : c;
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.effect_amount_factor"), ChatFormatting.AQUA + formatStat(getEffectAmountFactor())))
+                    .append(" ");
+        }
+        if (getFrequencyFactor() != 1.0) {
+            c = c.isEmpty() ? Optional.of(component) : c;
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.frequency_factor"), ChatFormatting.AQUA + formatStat(1.0 + (1.0 - getFrequencyFactor()))))
+                    .append(" ");
+        }
+        if (getRangeFactor() != 1.0) {
+            c = c.isEmpty() ? Optional.of(component) : c;
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.range_factor"), ChatFormatting.AQUA + formatStat(getRangeFactor())))
+                    .append(" ");
+        }
+        c.ifPresent(x -> {
+            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+            tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("divider")).withStyle(ChatFormatting.GRAY)));
+            tooltip.add(component);
+        });
+
+        // ------------
+
+        // advanced tooltip (hold shift)
+        LangUtil.appendAdvancedHoverText(tooltip, tt -> {
+            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+            // material
+            tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.material"), ChatFormatting.GREEN + WordUtils.capitalizeFully(getMaterial().getId().getPath()))));
+            // stones
+            if (hasStone()) {
+                tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.stone"), ChatFormatting.YELLOW + WordUtils.capitalizeFully(getStone().getPath().replace("_", " ")))));
+            }
+            tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.repairs"), ChatFormatting.GRAY + String.valueOf(getRepairs()))));
+            tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.mana.recharges"), ChatFormatting.BLUE + String.valueOf(getRecharges()))));
+            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+
+            // TODO add description / lore
+//            appendLore(stack, level, tooltip, flag);
+        });
+
+
     }
 
+    private String formatStat(double value) {
+        if (value < 1.0) {
+            return LangUtil.negativePercent(value);
+        } else if (value > 1.0) {
+            return LangUtil.positivePercent(value);
+        }
+        return "";
+    }
+
+    @Deprecated
     public Component getUsesGauge() {
         return new TranslatableComponent(LangUtil.tooltip("jewelry.mana.gauge"),
                 String.valueOf(Math.toIntExact(Math.round(getMana()))),
                 String.valueOf(Math.toIntExact((long)Math.ceil(getMaxMana()))));
     }
 
-    public void transferTo(ItemStack jewelry, ItemStack stone, ItemStack newJewelry) {
-        // newJewelry.mana = jewelry.mana + stone.mana
-        // ...
+    @Override
+    public double modifySpellCost(double cost) {
+//        JewelryStoneTier stoneTier = getStoneTier();
+//        double materialModifier = getMaterial().getSpellCostFactor();
+        return cost * getSpellCostFactor();
+    }
+
+    public double getSpellCostFactor() {
+        JewelryStoneTier stoneTier = getStoneTier();
+        double materialModifier = getMaterial().getSpellCostFactor();
+        return materialModifier * (stoneTier != null ? stoneTier.getSpellCostFactor() : 1);
+    }
+
+    @Override
+    public double modifyEffectAmount(double amount) {
+//        JewelryStoneTier stoneTier = getStoneTier();
+//        double materialModifier = getMaterial().getSpellEffectAmountFactor();
+        return amount * getEffectAmountFactor();
+    }
+
+    public double getEffectAmountFactor() {
+        JewelryStoneTier stoneTier = getStoneTier();
+        double materialModifier = getMaterial().getSpellEffectAmountFactor();
+        return materialModifier * (stoneTier != null ? stoneTier.getSpellEffectAmountFactor() : 1);
+    }
+
+    @Override
+    public long modifyCooldown(long cooldown) {
+        return (long)(cooldown * getCooldownFactor());
+    }
+
+    public double getCooldownFactor() {
+        JewelryStoneTier stoneTier = getStoneTier();
+        double materialModifier = getMaterial().getSpellCooldownFactor();
+        return materialModifier * (stoneTier != null ? stoneTier.getSpellCooldownFactor() : 1);
+    }
+
+    @Override
+    public long modifyFrequency(long frequency) {
+        return (long)(frequency * getFrequencyFactor());
+    }
+
+    public double getFrequencyFactor() {
+        JewelryStoneTier stoneTier = getStoneTier();
+        double materialModifier = getMaterial().getSpellFrequencyFactor();
+        return materialModifier * (stoneTier != null ? stoneTier.getSpellFrequencyFactor() : 1);
+    }
+
+    @Override
+    public double modifyRange(double range) {
+        return range * getRangeFactor();
+    }
+
+    public double getRangeFactor() {
+      JewelryStoneTier stoneTier = getStoneTier();
+        double materialModifier = getMaterial().getSpellRangeFactor();
+        return materialModifier * (stoneTier != null ? stoneTier.getSpellRangeFactor() : 1);
     }
 
     @Override
@@ -392,6 +508,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             }
 
             // spells
+            getSpells().clear();
             ListTag spellsTag = compound.getList(SPELLS, Tag.TAG_COMPOUND);
             spellsTag.forEach(spellTag -> {
                 CompoundTag spellCompound = (CompoundTag) spellTag;
@@ -430,11 +547,6 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     public boolean isInfinite() {
         return getUses() == Integer.MAX_VALUE;
     }
-
-//    @Override
-//    public IJewelryMaterialTier getJewelryMaterialTier() {
-//        return materialTier;
-//    }
 
     @Override
     public JewelryMaterial getMaterial() {

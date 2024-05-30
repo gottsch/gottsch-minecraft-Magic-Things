@@ -28,13 +28,18 @@ import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterials;
 import mod.gottsch.forge.magic_things.core.setup.Registration;
 import mod.gottsch.forge.magic_things.core.spell.MagicThingsSpells;
 import mod.gottsch.forge.magic_things.core.spell.SpellRegistry;
+import mod.gottsch.forge.magic_things.core.tag.MagicThingsTags;
 import mod.gottsch.forge.magic_things.core.util.ModUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -93,16 +98,29 @@ public class MagicThingsItems {
 	public static RegistryObject<Item> RING_RECIPE = Registration.ITEMS.register("ring_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
 	public static RegistryObject<Item> NECKLACE_RECIPE = Registration.ITEMS.register("necklace_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
 	public static RegistryObject<Item> BRACELET_RECIPE = Registration.ITEMS.register("bracelet_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> BELT_RECIPE = Registration.ITEMS.register("belt_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+//	public static RegistryObject<Item> BELT_RECIPE = Registration.ITEMS.register("belt_recipe", () -> new JewelryRecipeScroll(MAGIC_THINGS_PROPS_SUPPLIER.get()));
 
 	// gemstones
 	public static RegistryObject<Item> JADEITE = Registration.ITEMS.register("jadeite", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		@Override
+		public ChatFormatting getNameColor() {
+			return ChatFormatting.YELLOW;
+		}
+	});
     public static RegistryObject<Item> ONYX = Registration.ITEMS.register("onyx", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> RUBY = Registration.ITEMS.register("ruby", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> RUBY = Registration.ITEMS.register("ruby", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		@Override
+		public ChatFormatting getNameColor() {
+			return ChatFormatting.DARK_RED;
+		}
+	});
     public static RegistryObject<Item> SAPPHIRE = Registration.ITEMS.register("sapphire", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
     public static RegistryObject<Item> WHITE_PEARL = Registration.ITEMS.register("white_pearl", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
     public static RegistryObject<Item> BLACK_PEARL = Registration.ITEMS.register("black_pearl", () -> new Gemstone(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+
+	// belts
+	public static RegistryObject<Item> SKULL_BELT = Registration.ITEMS.register("skull_belt", () -> new WellItem(MAGIC_THINGS_PROPS_SUPPLIER.get()));
 
 
 	/*
@@ -112,15 +130,33 @@ public class MagicThingsItems {
 	public static final List<RegistryObject<Item>> STANDARD_JEWELRY = Lists.newArrayList();
 
 	// custom jewelry
+	public static RegistryObject<Item> PEASANTS_FORTUNE = Registration.ITEMS.register("peasants_fortune", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.IRON)
+					.withSize(JewelrySizeTier.GREAT)
+					.withStone(Items.BEDROCK.getRegistryName())
+					.with($ -> {
+						$.maxMana = 250;
+						$.maxRecharges = 1;
+						$.maxLevel = 4;
+					})
+					.build();
+
+
+			return new JewelryCapability(handler);
+		}
+	});
+
+	// scarce
 	public static RegistryObject<Item> MEDICS_TOKEN = Registration.ITEMS.register("medics_token", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.GOLD)
 					.withSize(JewelrySizeTier.GREAT)
-					.withStone(SAPPHIRE.getId())
+					.withStone(JADEITE.getId())
 					.with($ -> {
 						$.spells.add(SpellRegistry.get(MagicThingsSpells.GREATER_HEALING).orElse(MagicThingsSpells.DEFAULT_HEALING).entity());
-						$.maxMana = 500;
-						$.maxRecharges = 0;
+						$.maxMana = 300;
+						$.maxRecharges = 1;
 					})
 					.setInfinite()
 					.build();
@@ -129,21 +165,134 @@ public class MagicThingsItems {
 		}
 	});
 
-	public static RegistryObject<Item> BONE_AMBER_SKULL_RING = Registration.ITEMS.register("bone_amber_skull_ring", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+	// scarce
+	public static RegistryObject<Item> ADEPHAGIAS_BOUNTY = Registration.ITEMS.register("adephagias_bounty", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
-			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.BONE)
-					.withSize(JewelrySizeTier.REGULAR)
-					.withStone(Items.AIR.getRegistryName())
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.BRACELET, JewelryMaterials.GOLD)
+					.withSize(JewelrySizeTier.GREAT)
+					.withStone(JADEITE.getId())
 					.with($ -> {
-						$.baseName = "skull_ring";
-						$.uses = 1000;
+						$.spells.add(SpellRegistry.get(MagicThingsSpells.SATIETY).orElse(MagicThingsSpells.DEFAULT_HEALING).entity());
+						$.maxMana = 300;
+						$.maxRecharges = 1;
+						$.maxLevel = 6;
+					})
+					.setInfinite()
+					.build();
+
+			return new JewelryCapability(handler);
+		}
+	});
+
+	// rare
+	public static RegistryObject<Item> SALANDAARS_WARD = Registration.ITEMS.register("salandaars_ward", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		@Override
+		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.GOLD)
+					.withSize(JewelrySizeTier.GREAT)
+					.withStone(MagicThingsItems.RUBY.getId())
+					.with($ -> {
+						$.spells.add(SpellRegistry.get(MagicThingsSpells.MANA_TOWER_SHIELD).orElse(MagicThingsSpells.DEFAULT_HEALING).entity());
+						$.maxMana = 350;
+						$.maxRecharges = 3;
+						$.maxLevel = 7;
+					})
+					.build();
+			return new JewelryCapability(handler);
+		}
+	});
+
+	// epic
+	public static RegistryObject<Item> ANGELS_RING = Registration.ITEMS.register("angels_ring", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.GOLD)
+					.withSize(JewelrySizeTier.GREAT)
+					.withStone(MagicThingsItems.WHITE_PEARL.getId())
+					.with($ -> {
+						$.spells.add(SpellRegistry.get(MagicThingsSpells.REGENERATION).orElse(MagicThingsSpells.DEFAULT_HEALING).entity());
+						$.maxMana = 400;
+						$.maxRecharges = 3;
+						$.maxLevel = 8;
+					})
+					.build();
+			return new JewelryCapability(handler);
+		}
+	});
+
+	// epic / legendary
+	public static RegistryObject<Item> RING_LIFE_DEATH = Registration.ITEMS.register("ring_of_life_death", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+			/*
+			 *  add enchantment
+			 */
+			if (!EnchantmentHelper.hasVanishingCurse(stack)) {
+				stack.enchant(Enchantments.VANISHING_CURSE, 1);
+			}
+
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.BLOOD)
+					.withSize(JewelrySizeTier.LORDS)
+					.withStone(RUBY.getId())
+					.with($ -> {
+						$.baseName = "twisted_ring";
+						$.spells.add(SpellRegistry.get(MagicThingsSpells.CHEAT_DEATH).get().entity());
+						$.spells.add(SpellRegistry.get(MagicThingsSpells.GREATER_DRAIN).get().entity());
 						$.maxMana = 1000;
 						$.maxRecharges = 0;
 						$.maxRepairs = 0;
-						$.maxLevel = 10;
+						$.maxLevel = 9;
 						$.acceptsAffixer = p -> {
 							return false;
 						};
+					})
+					.setInfinite()
+					.build();
+			return new JewelryCapability(handler);
+		}
+	});
+
+	// rare / epic
+	public static RegistryObject<Item> RING_OF_FORTITUDE = Registration.ITEMS.register("ring_of_fortitude", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+			/*
+			 *  add enchantment
+			 */
+			if (!EnchantmentHelper.hasVanishingCurse(stack)) {
+				stack.enchant(Enchantments.VANISHING_CURSE, 1);
+			}
+
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.GOLD)
+					.withSize(JewelrySizeTier.GREAT)
+					.withStone(SAPPHIRE.getId())
+					.with($ -> {
+						$.baseName = "castle_ring";
+						$.spells.add(SpellRegistry.get(MagicThingsSpells.SHADOW_ARMOR).get().entity());
+						$.maxMana = 350;
+						$.maxRecharges = 3;
+						$.maxRepairs = 3;
+						$.maxLevel = 7;
+						$.acceptsAffixer = castleRingAffixer;
+					})
+					.setInfinite()
+					.build();
+			return new JewelryCapability(handler);
+		}
+	});
+
+	// rare / epic
+	public static RegistryObject<Item> EYE_OF_THE_PHOENIX = Registration.ITEMS.register("eye_of_the_phoenix", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+
+			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.GOLD)
+					.withSize(JewelrySizeTier.GREAT)
+					.withStone(BLACK_PEARL.getId())
+					.with($ -> {
+						$.baseName = "amulet";
+						$.spells.add(SpellRegistry.get(MagicThingsSpells.BLESSING_OF_THE_PHOENIX).get().entity());
+						$.maxMana = 300;
+						$.maxRecharges = 3;
+						$.maxRepairs = 3;
+						$.maxLevel = 7;
+						$.acceptsAffixer = castleRingAffixer;
 					})
 					.setInfinite()
 					.build();
@@ -163,13 +312,18 @@ public class MagicThingsItems {
 //			return new JewelryCapability(handler);
 //		}
 //	});
-      
+
+	// TODO move to MagicThingsAffixes or Jewelry class
+    static Predicate<ItemStack> castleRingAffixer = p -> {
+		return p.is(MagicThingsTags.Items.CASTLE_RING_RUBY)
+				| p.is(MagicThingsTags.Items.CASTLE_RING_SAPPHIRE);
+	};
+
     static {
-//    	STANDARD_JEWELRY.add(COPPER_RING);
-//		STANDARD_JEWELRY.add(COPPER_TOPAZ_RING);
-//		STANDARD_JEWELRY.add(GREAT_COPPER_ONYX_RING);
+
+		// SCARAB will be a mana well
 //		STANDARD_JEWELRY.add(SCARAB);
-		STANDARD_JEWELRY.add(BONE_AMBER_SKULL_RING);
+
 		// TODO this is a special jewelry
 //		ALL_JEWELRY.add(SCARAB);
 
@@ -188,7 +342,8 @@ public class MagicThingsItems {
 					$.uses = 500;
 					$.maxMana = 1000;
 					$.acceptsAffixer = p -> {
-						return p.is(RUBY.get()) || p.is(SAPPHIRE.get());
+						return p.is(MagicThingsTags.Items.CASTLE_RING_RUBY)
+								| p.is(MagicThingsTags.Items.CASTLE_RING_SAPPHIRE);
 					};
 				})
 				.deferredBuild());
@@ -205,6 +360,16 @@ public class MagicThingsItems {
 				.deferredBuild()
 		);
 		jewelry.addAll(woodBuilder.useStoneDefaults().deferredBuild());
+
+		// bone jewelry (only regular for now)
+		JewelryBuilder boneBuilder = new JewelryBuilder(MagicThings.MOD_ID);
+		jewelry.addAll(boneBuilder
+				.materials(JewelryMaterials.BONE)
+				.sizes(JewelrySizeTier.REGULAR, JewelrySizeTier.GREAT)
+				.types(JewelryType.RING, JewelryType.BRACELET, JewelryType.NECKLACE)
+				.deferredBuild()
+		);
+		jewelry.addAll(boneBuilder.useStoneDefaults().deferredBuild());
 
 		jewelry.forEach(pair -> {
 			RegistryObject<Item> item = Registration.ITEMS.register(pair.getKey(), pair.getValue());

@@ -1,7 +1,10 @@
 {
   "replace": false,
   "values": [
-    "gealdorcraft:bone_amber_skull_ring",
+    "gealdorcraft:peasants_fortune",
+    "gealdorcraft:angels_ring",
+    "gealdorcraft:ring_of_life_death",
+    "gealdorcraft:ring_of_fortitude",
     "gealdorcraft:iron_ring",
     "gealdorcraft:copper_ring",
     "gealdorcraft:silver_ring",
@@ -85,6 +88,24 @@
     "gealdorcraft:wood_ruby_ring",
     "gealdorcraft:wood_sapphire_ring",
     "gealdorcraft:wood_white_pearl_ring",
-    "gealdorcraft:wood_black_pearl_ring"
+    "gealdorcraft:wood_black_pearl_ring",
+    "gealdorcraft:bone_ring",
+    "gealdorcraft:great_bone_ring",
+    "gealdorcraft:bone_diamond_ring",
+    "gealdorcraft:bone_jadeite_ring",
+    "gealdorcraft:bone_topaz_ring",
+    "gealdorcraft:bone_onyx_ring",
+    "gealdorcraft:bone_ruby_ring",
+    "gealdorcraft:bone_sapphire_ring",
+    "gealdorcraft:bone_white_pearl_ring",
+    "gealdorcraft:bone_black_pearl_ring",
+    "gealdorcraft:great_bone_diamond_ring",
+    "gealdorcraft:great_bone_jadeite_ring",
+    "gealdorcraft:great_bone_topaz_ring",
+    "gealdorcraft:great_bone_onyx_ring",
+    "gealdorcraft:great_bone_ruby_ring",
+    "gealdorcraft:great_bone_sapphire_ring",
+    "gealdorcraft:great_bone_white_pearl_ring",
+    "gealdorcraft:great_bone_black_pearl_ring"
   ]
 }

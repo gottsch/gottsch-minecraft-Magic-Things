@@ -7,6 +7,11 @@ import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
 import mod.gottsch.forge.magic_things.core.spell.cost.CostEvaluator;
+import mod.gottsch.forge.magic_things.core.util.LangUtil;
+import mod.gottsch.forge.magic_things.core.util.MathUtil;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -78,11 +83,21 @@ public class PaladinStrikeSpell extends CooldownSpell {
 		}
 		return result;
 	}
-	
-//	@Override
-//	public Component getCharmDesc(SpellEntity entity) {
-//		return new TranslatableComponent("tooltip.charm.rate.life_strike", Math.round((entity.getAmount())*100));
-//	}
+
+	@Override
+	public Component getSpellDesc(ItemStack jewelry) {
+		double amount = lifeCost * modifyEffectAmount(jewelry);
+		return new TranslatableComponent(LangUtil.tooltip("spell.paladin_strike.rate"),
+				MathUtil.r1d(amount),
+				MathUtil.r1d(modifyCooldown(jewelry)/20.0),
+				modifySpellCost(jewelry));
+	}
+
+	@Override
+	public ChatFormatting getSpellLabelColor() {
+		return ChatFormatting.YELLOW;
+	}
+
 	
 	public static class Builder extends Spell.Builder {
 

@@ -7,6 +7,11 @@ import mod.gottsch.forge.gottschcore.spatial.ICoords;
 import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
+import mod.gottsch.forge.magic_things.core.util.LangUtil;
+import mod.gottsch.forge.magic_things.core.util.MathUtil;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Mob;
@@ -78,11 +83,21 @@ public class ReflectionSpell extends CooldownSpell {
 		return result;
 	}
 
-//	@Override
-//	public Component getCharmDesc(SpellEntity entity) {
-//		return  new TranslatableComponent("tooltip.charm.rate.reflection", Math.toIntExact((long) (entity.getAmount()*100)), entity.getRange());
-//	}
+	@Override
+	public Component getSpellDesc(ItemStack jewelry) {
+		return new TranslatableComponent(LangUtil.tooltip("spell.reflection.rate"),
+				LangUtil.asPercentString(modifyEffectAmount(jewelry) * 100),
+				MathUtil.r1d(modifyCooldown(jewelry)/20.0));
+	}
 
+	@Override
+	public ChatFormatting getSpellLabelColor() {
+		return ChatFormatting.YELLOW;
+	}
+
+	/**
+	 *
+	 */
 	public static class Builder extends Spell.Builder {
 
 		public Builder(ResourceLocation name, int level, IRarity rarity) {

@@ -207,6 +207,7 @@ public class SpellEventHandler {
 		contexts.forEach(context -> {
 			ISpell spell = (ISpell)context.getEntity().getSpell();
 			if (!spell.isEffectStackable()) {
+				// TODO this probably needs to change to spell.getName comparison
 				// check if this spell type is already in the monitored list
 				if (executeOnceSpellTypes.contains(spell.getType())) {
 					return;

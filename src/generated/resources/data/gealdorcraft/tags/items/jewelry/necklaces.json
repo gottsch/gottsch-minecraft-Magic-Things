@@ -2,6 +2,8 @@
   "replace": false,
   "values": [
     "gealdorcraft:medics_token",
+    "gealdorcraft:salandaars_ward",
+    "gealdorcraft:eye_of_the_phoenix",
     "gealdorcraft:iron_necklace",
     "gealdorcraft:copper_necklace",
     "gealdorcraft:silver_necklace",
@@ -82,6 +84,24 @@
     "gealdorcraft:wood_ruby_necklace",
     "gealdorcraft:wood_sapphire_necklace",
     "gealdorcraft:wood_white_pearl_necklace",
-    "gealdorcraft:wood_black_pearl_necklace"
+    "gealdorcraft:wood_black_pearl_necklace",
+    "gealdorcraft:bone_necklace",
+    "gealdorcraft:great_bone_necklace",
+    "gealdorcraft:bone_diamond_necklace",
+    "gealdorcraft:bone_jadeite_necklace",
+    "gealdorcraft:bone_topaz_necklace",
+    "gealdorcraft:bone_onyx_necklace",
+    "gealdorcraft:bone_ruby_necklace",
+    "gealdorcraft:bone_sapphire_necklace",
+    "gealdorcraft:bone_white_pearl_necklace",
+    "gealdorcraft:bone_black_pearl_necklace",
+    "gealdorcraft:great_bone_diamond_necklace",
+    "gealdorcraft:great_bone_jadeite_necklace",
+    "gealdorcraft:great_bone_topaz_necklace",
+    "gealdorcraft:great_bone_onyx_necklace",
+    "gealdorcraft:great_bone_ruby_necklace",
+    "gealdorcraft:great_bone_sapphire_necklace",
+    "gealdorcraft:great_bone_white_pearl_necklace",
+    "gealdorcraft:great_bone_black_pearl_necklace"
   ]
 }

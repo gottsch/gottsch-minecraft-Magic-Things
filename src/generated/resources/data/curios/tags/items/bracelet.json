@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
+    "gealdorcraft:adephagias_bounty",
     "gealdorcraft:iron_bracelet",
     "gealdorcraft:copper_bracelet",
     "gealdorcraft:silver_bracelet",
@@ -81,6 +82,24 @@
     "gealdorcraft:wood_ruby_bracelet",
     "gealdorcraft:wood_sapphire_bracelet",
     "gealdorcraft:wood_white_pearl_bracelet",
-    "gealdorcraft:wood_black_pearl_bracelet"
+    "gealdorcraft:wood_black_pearl_bracelet",
+    "gealdorcraft:bone_bracelet",
+    "gealdorcraft:great_bone_bracelet",
+    "gealdorcraft:bone_diamond_bracelet",
+    "gealdorcraft:bone_jadeite_bracelet",
+    "gealdorcraft:bone_topaz_bracelet",
+    "gealdorcraft:bone_onyx_bracelet",
+    "gealdorcraft:bone_ruby_bracelet",
+    "gealdorcraft:bone_sapphire_bracelet",
+    "gealdorcraft:bone_white_pearl_bracelet",
+    "gealdorcraft:bone_black_pearl_bracelet",
+    "gealdorcraft:great_bone_diamond_bracelet",
+    "gealdorcraft:great_bone_jadeite_bracelet",
+    "gealdorcraft:great_bone_topaz_bracelet",
+    "gealdorcraft:great_bone_onyx_bracelet",
+    "gealdorcraft:great_bone_ruby_bracelet",
+    "gealdorcraft:great_bone_sapphire_bracelet",
+    "gealdorcraft:great_bone_white_pearl_bracelet",
+    "gealdorcraft:great_bone_black_pearl_bracelet"
   ]
 }

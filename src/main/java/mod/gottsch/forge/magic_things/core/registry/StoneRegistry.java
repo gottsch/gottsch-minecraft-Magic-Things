@@ -88,4 +88,8 @@ public class StoneRegistry {
         }
         return list;
     }
+
+    public static Optional<IRarity> getRarity(Item stone) {
+        return RARITY_MAP.entries().stream().filter(e -> e.getValue() == stone).findFirst().map(Map.Entry::getKey);
+    }
 }

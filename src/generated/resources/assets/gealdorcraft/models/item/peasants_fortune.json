@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gealdorcraft:item/jewelry/great_iron_ring"
+  }
+}

@@ -31,6 +31,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -79,7 +80,7 @@ public class AnvilEventHandler {
 					resultOutStack.set(generator.addStone(leftStack, rightStack));
 				}
 				// remove a stone from jewelry
-				else if (handler.hasStone() && rightStack.getItem() == MagicThingsItems.JEWELRY_PLIERS.get()) {
+				else if (handler.hasStone() && rightStack.is(MagicThingsTags.Items.STONE_REMOVAL_TOOLS)) {
 					// TODO need to check if max level still supports any existing spells and possible remove them.
 					// TODO removeStone should return an Optional
 					resultOutStack.set(generator.removeStone(leftStack));

@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "gealdorcraft:ruby",
+    {
+      "id": "treasure2:ruby",
+      "required": false
+    }
+  ]
+}

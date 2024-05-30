@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "gealdorcraft:topaz"
+    "gealdorcraft:topaz",
+    {
+      "id": "treasure2:topaz",
+      "required": false
+    }
   ]
 }

@@ -28,22 +28,22 @@ public class JewelryMaterials {
             .with($ -> {
                 $.repairs = 1;
                 $.maxLevel = 4;
-                $.spellCooldownFactor = 0.75;
-                $.spellFrequencyFactor = 0.75;
+                $.spellCooldownFactor = 0.85;
+                $.spellFrequencyFactor = 0.85;
             }).build();
 
     public static final JewelryMaterial SILVER = new JewelryMaterial.Builder("silver", 150, 75)
             .with($ -> {
                 $.repairs = 2;
                 $.maxLevel = 5;
-                $.spellCostFactor = 0.75;
+                $.spellCostFactor = 0.9;
             }).build();
 
     public static final JewelryMaterial GOLD = new JewelryMaterial.Builder("gold", 150, 100)
             .with($ -> {
                 $.repairs = 2;
                 $.maxLevel = 6;
-                $.spellCostFactor = 0.5; // cost is reduced by half.
+                $.spellCostFactor = 0.75; // cost is reduced by half.
             }).build();
 
     public static final JewelryMaterial BONE = new JewelryMaterial.Builder("bone", 200, 50)

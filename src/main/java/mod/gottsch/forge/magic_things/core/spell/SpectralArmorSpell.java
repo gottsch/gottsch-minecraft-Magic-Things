@@ -7,6 +7,8 @@ import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
 import mod.gottsch.forge.magic_things.core.util.LangUtil;
+import mod.gottsch.forge.magic_things.core.util.MathUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +25,8 @@ import java.util.Random;
  * @author Mark Gottschling on May 12, 2024
  *
  */
-public class SpectralArmorSpell extends Spell {
+public class
+SpectralArmorSpell extends Spell {
 	public static String SPECTRAL_ARMOR_TYPE = "spectral_armor";
 
 	private static final Class<?> REGISTERED_EVENT = LivingDamageEvent.class;
@@ -54,6 +57,7 @@ public class SpectralArmorSpell extends Spell {
 		return new CooldownSpellEntity(this);
 	}
 
+	// TODO extend CooldownSpell class and update
 	@Override
 	public boolean serverUpdate(Level world, Random random, ICoords coords, Event event, ICastSpellContext context) {
 		boolean result = false;
@@ -94,12 +98,17 @@ public class SpectralArmorSpell extends Spell {
 		return result;
 	}
 
-	@SuppressWarnings("deprecation")
-//	@Override
-	public Component getCharmDesc(SpellEntity entity) {
-		return new TranslatableComponent(LangUtil.tooltip("spell.spectral_armor.desc"), Math.round(getEffectAmount()*100), (int)(getCooldown()/TICKS_PER_SECOND));
+	@Override
+	public Component getSpellDesc(ItemStack jewelry) {
+		return new TranslatableComponent(LangUtil.tooltip("spell.spectral_armor.rate"),
+				MathUtil.r1d(modifyEffectAmount(jewelry) * 4.0));
 	}
-	
+
+	@Override
+	public ChatFormatting getSpellLabelColor() {
+		return ChatFormatting.BLUE;
+	}
+
 	/*
 	 * 
 	 */

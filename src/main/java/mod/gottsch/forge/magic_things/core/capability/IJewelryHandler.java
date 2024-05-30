@@ -23,6 +23,16 @@ public interface IJewelryHandler {
     public IJewelrySizeTier getJewelrySizeTier();
     public IJewelryType getJewelryType();
 
+    double modifySpellCost(double cost);
+
+    double modifyEffectAmount(double amount);
+
+    long modifyCooldown(long cooldown);
+
+    long modifyFrequency(long frequency);
+
+    double modifyRange(double range);
+
     public Tag serializeNBT();
     public void deserializeNBT(Tag tag);
 

@@ -76,8 +76,8 @@ public interface ISpell {
     double getRange();
     void setRange(double range);
 
-    double getCooldown();
-    void setCooldown(double cooldown);
+    long getCooldown();
+    void setCooldown(long cooldown);
 
     double getEffectAmount();
     void setEffectAmount(double amount);

@@ -5,8 +5,13 @@ import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.spatial.ICoords;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
+import mod.gottsch.forge.magic_things.core.util.LangUtil;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -51,16 +56,16 @@ public class MagicResistanceSpell extends Spell {
 				double amount = ((LivingDamageEvent)event).getAmount();
 				// calculate the new amount
 				double newAmount = 0;
-				double amountToSpell = amount * modifyEffectAmount(context.getJewelry());
+				double amountToSpell = amount * Math.min(1.0, modifyEffectAmount(context.getJewelry()));
 				double amountToPlayer = amount - amountToSpell;
 				// Treasure.logger.debug("amount to charm -> {}); amount to player -> {}", amountToCharm, amountToPlayer);
 				double cost = applyCost(world, random, coords, context, amountToSpell);
-				if (cost < amountToSpell) {
-					newAmount =+ (amountToSpell - cost);
-				}
-				else {
+//				if (cost < amountToSpell) {
+//					newAmount =+ (amountToSpell - cost);
+//				}
+//				else {
 					newAmount = amountToPlayer;
-				}
+//				}
 				((LivingDamageEvent)event).setAmount((float) newAmount);
 				result = true;
 			}    
@@ -68,11 +73,20 @@ public class MagicResistanceSpell extends Spell {
 		return result;
 	}
 
-//	@Override
-//	public Component getCharmDesc(SpellEntity entity) {
-//		return new TranslatableComponent("tooltip.charm.rate.poison_resistance", Math.toIntExact(Math.round(entity.getAmount() * 100)));
-//	}
+	@Override
+	public Component getSpellDesc(ItemStack jewelry) {
+		return new TranslatableComponent(LangUtil.tooltip("spell.magic_resistance.rate"),
+				LangUtil.asPercentString(Math.min(100, modifyEffectAmount(jewelry) * 100)));
+	}
 
+	@Override
+	public ChatFormatting getSpellLabelColor() {
+		return ChatFormatting.DARK_GREEN;
+	}
+
+	/**
+	 *
+	 */
 	public static class Builder extends Spell.Builder {
 
 		public Builder(ResourceLocation name, int level, IRarity rarity) {

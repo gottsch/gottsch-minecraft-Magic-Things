@@ -5,16 +5,16 @@
       "item": "gealdorcraft:ring_recipe"
     },
     {
-      "item": "gealdorcraft:silver_ingot"
+      "tag": "forge:ingots/silver"
     },
     {
-      "item": "gealdorcraft:silver_ingot"
+      "tag": "forge:ingots/silver"
     },
     {
-      "item": "gealdorcraft:silver_ingot"
+      "tag": "forge:ingots/silver"
     },
     {
-      "item": "gealdorcraft:silver_ingot"
+      "tag": "forge:ingots/silver"
     }
   ],
   "result": {

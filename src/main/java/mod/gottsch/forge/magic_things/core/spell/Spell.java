@@ -1,3 +1,20 @@
+/*
+ * This file is part of  Magic Things.
+ * Copyright (c) 2024 Mark Gottschling (gottsch)
+ *
+ * Magic Things is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Magic Things is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ */
 package mod.gottsch.forge.magic_things.core.spell;
 
 import mod.gottsch.forge.gottschcore.enums.IRarity;
@@ -56,7 +73,7 @@ public abstract class Spell implements ISpell {
     // TODO frequency and cooldown are mutually exclusive, so make classes for each of them
     private long frequency;
     private double range;
-    private double cooldown;
+    private long cooldown;
     private boolean effectStackable;
     private boolean exclusive;
     private int priority;
@@ -109,68 +126,78 @@ public abstract class Spell implements ISpell {
 
     public double modifySpellCost(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
-        JewelryStoneTier stoneTier = handler.getStoneTier();
-        double materialModifier = handler.getMaterial().getSpellCostFactor();
-
-        return getSpellCost() * materialModifier * stoneTier.getSpellCostFactor();
+        return handler.modifySpellCost(getSpellCost());
+//        JewelryStoneTier stoneTier = handler.getStoneTier();
+//        double materialModifier = handler.getMaterial().getSpellCostFactor();
+//
+//        return getSpellCost() * materialModifier * (stoneTier != null ? stoneTier.getSpellCostFactor() : 1);
     }
 
     public double modifyEffectAmount(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
-        JewelryStoneTier stoneTier = handler.getStoneTier();
-        double materialModifier = handler.getMaterial().getSpellEffectAmountFactor();
-
-        return getEffectAmount() * materialModifier * stoneTier.getSpellEffectAmountFactor();
+        return handler.modifyEffectAmount(getEffectAmount());
+        //        JewelryStoneTier stoneTier = handler.getStoneTier();
+//        double materialModifier = handler.getMaterial().getSpellEffectAmountFactor();
+//        return getEffectAmount() * materialModifier * (stoneTier != null ? stoneTier.getSpellEffectAmountFactor() : 1);
     }
 
-    public double modifyCooldown(ItemStack jewelry) {
+    public long modifyCooldown(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
-        JewelryStoneTier stoneTier = handler.getStoneTier();
-        double materialModifier = handler.getMaterial().getSpellCooldownFactor();
-
-        return getCooldown() * materialModifier * stoneTier.getSpellCooldownFactor();
+        return handler.modifyCooldown(getCooldown());
+        //        JewelryStoneTier stoneTier = handler.getStoneTier();
+//        double materialModifier = handler.getMaterial().getSpellCooldownFactor();
+//        return (long)(getCooldown() * materialModifier * (stoneTier != null ? stoneTier.getSpellCooldownFactor() : 1));
     }
 
     public long modifyFrequency(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
-        JewelryStoneTier stoneTier = handler.getStoneTier();
-        double materialModifier = handler.getMaterial().getSpellFrequencyFactor();
-
-        return getFrequency() * (long)(materialModifier * stoneTier.getSpellFrequencyFactor());
+        return handler.modifyFrequency(getFrequency());
+//        JewelryStoneTier stoneTier = handler.getStoneTier();
+//        double materialModifier = handler.getMaterial().getSpellFrequencyFactor();
+//
+//        return (long)(
+//                getFrequency() * materialModifier * (stoneTier != null ? stoneTier.getSpellFrequencyFactor() : 1));
     }
 
     public double modifyRange(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
-        JewelryStoneTier stoneTier = handler.getStoneTier();
-        double materialModifier = handler.getMaterial().getSpellRangeFactor();
-
-        return getRange() * materialModifier * stoneTier.getSpellRangeFactor();
+        return handler.modifyRange(getRange());
+//                JewelryStoneTier stoneTier = handler.getStoneTier();
+//        double materialModifier = handler.getMaterial().getSpellRangeFactor();
+//
+//        return getRange() * materialModifier * (stoneTier != null ? stoneTier.getSpellRangeFactor() : 1);
     }
 
     @SuppressWarnings("deprecation")
     @Override
     public void addInformation(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flagIn, SpellEntity entity) {
         tooltip.add(getLabel());
-
-       // TODO conditional ie if duration > 0 ex
-        tooltip.add(getDesc());
+        getDesc(stack).ifPresent(tooltip::add);
     }
 
-    public Component getLabel() {
+    private Component getLabel() {
         MutableComponent label = new TranslatableComponent(LangUtil.tooltip("spell.name.") + getName().getPath().toLowerCase());
-        label.append(" ").append((this.effectStackable ? "+" : "-"));
-        return label.withStyle(getSpellLabelColor());
+        label.append(" ").append((this.effectStackable ? "+" : ""));
+        return new TranslatableComponent(LangUtil.INDENT2).append(label.withStyle(getSpellLabelColor()).withStyle(ChatFormatting.BOLD));
     }
 
-    public Component getDesc() {
-        return new TranslatableComponent(LangUtil.INDENT4).append(getSpellDesc()).withStyle(ChatFormatting.ITALIC).withStyle( getSpellDescColor());
+    // a short desc of its effect ex "Heals 1hp / 10 sec"
+    private Optional<Component> getDesc(ItemStack jewelry) {
+        Component desc = getSpellDesc(jewelry);
+        return desc != null ? Optional.of(new TranslatableComponent(
+                LangUtil.INDENT4).append(desc)
+                .withStyle(ChatFormatting.ITALIC).withStyle(getSpellDescColor()))
+                : Optional.empty();
     }
 
+    // TODO would be nice if this returned Optional instead
     /**
      * Implemented by concrete Spell.
      * @return
      */
-    public Component getSpellDesc() { return new TranslatableComponent(LangUtil.BLANK);};
+    public Component getSpellDesc() { return null;}
+
+    public Component getSpellDesc(ItemStack jewelry) { return null;}
 
     @Override
     public ChatFormatting getSpellLabelColor() {
@@ -195,7 +222,7 @@ public abstract class Spell implements ISpell {
         public int duration;
         public long frequency;
         public double range;
-        public double cooldown;
+        public long cooldown;
         public boolean effectStackable;
         public boolean exclusive;
         public int priority;
@@ -296,12 +323,12 @@ public abstract class Spell implements ISpell {
     }
 
     @Override
-    public double getCooldown() {
+    public long getCooldown() {
         return cooldown;
     }
 
     @Override
-    public void setCooldown(double cooldown) {
+    public void setCooldown(long cooldown) {
         this.cooldown = cooldown;
     }
 

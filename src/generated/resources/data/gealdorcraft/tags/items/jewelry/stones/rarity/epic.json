@@ -2,6 +2,14 @@
   "replace": false,
   "values": [
     "gealdorcraft:sapphire",
-    "gealdorcraft:black_pearl"
+    "gealdorcraft:black_pearl",
+    {
+      "id": "treasure2:sapphire",
+      "required": false
+    },
+    {
+      "id": "treasure2:black_pearl",
+      "required": false
+    }
   ]
 }

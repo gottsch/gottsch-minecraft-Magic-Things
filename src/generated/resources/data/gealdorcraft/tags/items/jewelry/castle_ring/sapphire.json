@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "gealdorcraft:sapphire",
+    {
+      "id": "treasure2:sapphire",
+      "required": false
+    }
+  ]
+}

@@ -19,6 +19,7 @@ package mod.gottsch.forge.magic_things;
 
 import mod.gottsch.forge.magic_things.core.config.Config;
 import mod.gottsch.forge.magic_things.core.integration.MagicThingsIntegrations;
+import mod.gottsch.forge.magic_things.core.loot.MagicThingsLootFunctions;
 import mod.gottsch.forge.magic_things.core.network.MagicThingsNetworking;
 import mod.gottsch.forge.magic_things.core.setup.CommonSetup;
 import mod.gottsch.forge.magic_things.core.setup.Registration;

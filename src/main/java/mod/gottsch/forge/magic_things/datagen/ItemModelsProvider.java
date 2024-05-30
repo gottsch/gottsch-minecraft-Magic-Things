@@ -92,13 +92,36 @@ public class ItemModelsProvider extends ItemModelProvider {
 								case 1,2 -> "item/yellow_spell_scroll";
 								case 3,4 -> "item/green_spell_scroll";
 								case 5,6 -> "item/blue_spell_scroll";
-								case 7,8 -> "item/black_spell_scroll";
+								case 7,8 -> "item/red_spell_scroll";
                                 default -> "item/black_spell_scroll";
                             }));
 		});
 
 		// special / non-standard jewelry
+		singleTexture(MagicThingsItems.PEASANTS_FORTUNE.getId().getPath()
+				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/great_iron_ring"));
+
 		singleTexture(MagicThingsItems.MEDICS_TOKEN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry/medics_token"));
+		singleTexture(MagicThingsItems.ADEPHAGIAS_BOUNTY.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry/adephagias_bounty"));
+
+		singleTexture(MagicThingsItems.ANGELS_RING.getId().getPath()
+				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/angels_ring"));
+
+		singleTexture(MagicThingsItems.SALANDAARS_WARD.getId().getPath()
+				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/salandaars_ward"));
+
+		singleTexture(MagicThingsItems.RING_OF_FORTITUDE.getId().getPath()
+				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/ring_of_fortitude"));
+
+		singleTexture(MagicThingsItems.EYE_OF_THE_PHOENIX.getId().getPath()
+				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/eye_of_the_phoenix"));
+
+		singleTexture(MagicThingsItems.RING_LIFE_DEATH.getId().getPath()
+				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/ring_of_life_death"));
+
+		// belts
+		singleTexture(MagicThingsItems.SKULL_BELT.getId().getPath()
+				, mcLoc("item/generated"), "layer0", modLoc("item/skull_belt"));
 
 		/*
 		 * blocks

@@ -7,6 +7,8 @@ import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
 import mod.gottsch.forge.magic_things.core.util.LangUtil;
+import mod.gottsch.forge.magic_things.core.util.MathUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -26,7 +28,6 @@ import java.util.Random;
 public class ManaShieldSpell extends Spell {
 	public static String SHIELDING_TYPE = "mana_shield";
 
-	// TODO change to LivingHurtEvent as the shield is the FIRST line of defense
 	// before armor and potions
 	private static final Class<?> REGISTERED_EVENT = LivingDamageEvent.class;
 
@@ -62,10 +63,9 @@ public class ManaShieldSpell extends Spell {
 		ItemStack jewelry = context.getJewelry();
 		IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
 
-		// TODO modify into a Template pattern so that this base class can be used
-		// for other spellsl - ie PercentManaSpell
+		// TODO extend CooldownSpell class and update
 		if (context.getEntity() instanceof CooldownSpellEntity spellEntity) {
-            double cooldown = modifyCooldown(jewelry);
+            double cooldown = handler.modifyCooldown(getCooldown());
 
 			// check if supports cooldown or if world time has exceeded the entity cooldown end time
 			if(cooldown <= 0.0 || (world.getGameTime() > spellEntity.getCooldownExpireTime())) {
@@ -75,7 +75,7 @@ public class ManaShieldSpell extends Spell {
 						double amount = ((LivingDamageEvent)event).getAmount();
 						if (amount > 0D) {
 							// calculate the new amount
-							double amountToSpell = amount * modifyEffectAmount(jewelry);
+							double amountToSpell = amount * handler.modifyEffectAmount(getEffectAmount());
 							double amountToPlayer = amount - amountToSpell;
 							double newAmount = amountToPlayer;
 							MagicThings.LOGGER.debug("amount to jewelry -> {} amount to player -> {}", amountToSpell, amountToPlayer);
@@ -102,11 +102,18 @@ public class ManaShieldSpell extends Spell {
 		return result;
 	}
 
-	@SuppressWarnings("deprecation")
-//	@Override
-	public Component getCharmDesc(SpellEntity entity) {
-		return new TranslatableComponent(LangUtil.tooltip("spell.mana_shield.desc"), Math.round(getEffectAmount()*100), (int)(getCooldown()/TICKS_PER_SECOND));
+	@Override
+	public Component getSpellDesc(ItemStack jewelry) {
+		return new TranslatableComponent(LangUtil.tooltip("spell.mana_shield.rate"),
+				LangUtil.asPercentString(modifyEffectAmount(jewelry) * 100),
+				MathUtil.r1d(modifyFrequency(jewelry)/20.0));
 	}
+
+	@Override
+	public ChatFormatting getSpellLabelColor() {
+		return ChatFormatting.DARK_BLUE;
+	}
+
 	
 	/*
 	 * 

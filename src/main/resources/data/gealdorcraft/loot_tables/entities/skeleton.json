@@ -5,28 +5,41 @@
       "rolls": 1,
       "entries": [
         {
-          "entryName": "bone_ring",
+          "entryName": "random_jewelry",
           "type": "minecraft:item",
           "name": "gealdorcraft:bone_ring",
           "functions": [
             {
-              "function": "minecraft:looting_enchant",
-              "count": {
-                "min": 0.0,
-                "max": 1.0
-              }
+              "function": "gealdorcraft:random_jewelry",
+              "rarities": ["common", "uncommon"]
             }
           ]          
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
+        },
         {
-         "entryName": "sapphire",        
+          "entryName": "random_spell",
           "type": "minecraft:item",
-          "name": "gealdorcraft:sapphire"
+          "name": "gealdorcraft:drain_scroll",
+          "functions": [
+            {
+              "function": "gealdorcraft:random_spell",
+              "levels": {
+                "min": 1,
+                "max": 4
+              }
+            }
+          ]
+        },
+        {
+          "entryName": "random_stone",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:topaz",
+          "functions": [
+            {
+              "function": "gealdorcraft:random_gemstone",
+              "count": 1,
+              "gemstones": ["topaz", "onyx"]
+            }
+          ]
         }
       ],
       "conditions": [
@@ -35,7 +48,7 @@
         },
         {
           "condition": "minecraft:random_chance_with_looting",
-          "chance": 0.025,
+          "chance": 0.05,
           "looting_multiplier": 0.1
         }
       ]

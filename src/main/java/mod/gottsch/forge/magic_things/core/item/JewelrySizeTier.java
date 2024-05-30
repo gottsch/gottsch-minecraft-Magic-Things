@@ -29,10 +29,10 @@ import java.util.stream.Collectors;
  * Created by Mark Gottschling on 5/29/2023
  */
 public enum JewelrySizeTier implements IJewelrySizeTier {
-    UNKNOWN(-1, "unknown", 0f, 0f),
-    REGULAR(0, "regular", 1f, 1f),
-    GREAT(1, "great", 2f, 1.5f),
-    LORDS(2, "lords", 3f, 2f);
+    UNKNOWN(-1, "unknown", 0f, 0f, 0),
+    REGULAR(0, "regular", 1f, 1f, 0),
+    GREAT(1, "great", 2f, 1.5f, 1),
+    LORDS(2, "lords", 3f, 2f, 2);
 
     private static final Map<Integer, IEnum> codes = new HashMap<Integer, IEnum>();
     private static final Map<String, IEnum> values = new HashMap<String, IEnum>();
@@ -41,6 +41,7 @@ public enum JewelrySizeTier implements IJewelrySizeTier {
 
     private final float usesMultiplier;
     private final float manaMultiplier;
+    private final int repairs;
 
     // setup reverse lookup
     static {
@@ -55,11 +56,12 @@ public enum JewelrySizeTier implements IJewelrySizeTier {
      * @param code
      * @param value
      */
-    JewelrySizeTier(Integer code, String value, float usesMultiplier, float manaMultiplier) {
+    JewelrySizeTier(Integer code, String value, float usesMultiplier, float manaMultiplier, int repairs) {
         this.code = code;
         this.value = value;
         this.usesMultiplier = usesMultiplier;
         this.manaMultiplier = manaMultiplier;
+        this.repairs = repairs;
     }
 
     @Override
@@ -121,6 +123,11 @@ public enum JewelrySizeTier implements IJewelrySizeTier {
     @Override
     public float getManaMultiplier() {
         return manaMultiplier;
+    }
+
+    @Override
+    public int getRepairs() {
+        return repairs;
     }
 
     /**

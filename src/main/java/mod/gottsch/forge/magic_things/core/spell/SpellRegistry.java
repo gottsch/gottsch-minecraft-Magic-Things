@@ -67,22 +67,22 @@ public class SpellRegistry {
      * @param level
      * @return
      */
-    public static Optional<List<ISpell>> get(Integer level) {
+    public static List<ISpell> get(Integer level) {
         if (REGISTRY_BY_LEVEL.containsKey(level)) {
-            return Optional.of(REGISTRY_BY_LEVEL.get(level));
+            return REGISTRY_BY_LEVEL.get(level);
         }
-        return Optional.empty();
+        return new ArrayList<>();
     }
 
     /**
      * @param rarity
      * @return
      */
-    public static Optional<List<ISpell>> get(IRarity rarity) {
+    public static List<ISpell> get(IRarity rarity) {
         if (REGISTRY_BY_RARITY.containsKey(rarity)) {
-            return Optional.of(REGISTRY_BY_RARITY.get(rarity));
+            return REGISTRY_BY_RARITY.get(rarity);
         }
-        return Optional.empty();
+        return new ArrayList<>();
     }
 
 	/**

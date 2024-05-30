@@ -27,4 +27,6 @@ public interface IJewelrySizeTier extends IEnum {
     float getUsesMultiplier();
 
     float getManaMultiplier();
+
+    int getRepairs();
 }

@@ -78,17 +78,4 @@ public class PlayerEventHandler {
 //			}
 //		}
 //	}
-
-	@SubscribeEvent
-	public static void onItemInfo(ItemTooltipEvent event) {
-		if (!(event.getItemStack().getItem() instanceof Gemstone) && event.getItemStack().is(MagicThingsTags.Items.STONES)) {
-			event.getToolTip().add(
-//					Component.translatable(LangUtil.tooltip("wishable")).withStyle(ChatFormatting.GOLD, ChatFormatting.ITALIC)
-
-					// TEMP
-					// TODO call Gemstone.appendHoverText() or the same code within.
-					new TranslatableComponent("Can affix to Magic Things Jewelry.").withStyle(ChatFormatting.GOLD, ChatFormatting.ITALIC)
-			);
-		}
-	}
 }

@@ -5,6 +5,8 @@ import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.spatial.ICoords;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
+import mod.gottsch.forge.magic_things.core.util.LangUtil;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
@@ -56,26 +58,36 @@ public class FireResistanceSpell extends Spell {
 			double amount = ((LivingDamageEvent)event).getAmount();
 			// calculate the new amount
 			double newAmount = 0;
-			double amountToSpell = amount * modifyEffectAmount(context.getJewelry());
+			double amountToSpell = amount * Math.min(1.0, modifyEffectAmount(context.getJewelry()));
 			double amountToPlayer = amount - amountToSpell;
 			// Treasure.logger.debug("amount to charm -> {}); amount to player -> {}", amountToCharm, amountToPlayer);
 			double cost = applyCost(world, random, coords, context, amountToSpell);
-			if (cost < amountToSpell) {
-				newAmount =+ (amountToSpell - cost);
-			}
-			else {
+//			if (cost < amountToSpell) {
+//				newAmount =+ (amountToSpell - cost);
+//			}
+//			else {
 				newAmount = amountToPlayer;
-			}
+//			}
 			((LivingDamageEvent)event).setAmount((float) newAmount);
 			result = true;
 		}    		
 		return result;
 	}
 
-//	@Override
-	public Component getCharmDesc(SpellEntity entity) {
-		return new TranslatableComponent("tooltip.charm.rate.fire_resistance", Math.toIntExact(Math.round(getEffectAmount() * 100)));
+	@Override
+	public Component getSpellDesc(ItemStack jewelry) {
+		// Actual/effective rate
+//		return new TranslatableComponent(LangUtil.tooltip("spell.fire_resistance.rate"), Math.min(100, modifyEffectAmount(jewelry) * 100));
+		// base rate
+		return new TranslatableComponent(LangUtil.tooltip("spell.fire_resistance.rate"),
+				LangUtil.asPercentString(Math.min(100, getEffectAmount() * 100)));
 	}
+
+	@Override
+	public ChatFormatting getSpellLabelColor() {
+		return ChatFormatting.RED;
+	}
+
 	
 	public static class Builder extends Spell.Builder {
 

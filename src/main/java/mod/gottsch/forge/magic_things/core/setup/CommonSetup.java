@@ -111,14 +111,14 @@ public class CommonSetup {
 
         // TODO these can be categorized/registered by rarity via tags.
         // register stones
-        MagicThingsApi.registerJewelryStone(Items.DIAMOND);
-        MagicThingsApi.registerJewelryStone(MagicThingsItems.JADEITE.get());
-        MagicThingsApi.registerJewelryStone(MagicThingsItems.TOPAZ.get());
-        MagicThingsApi.registerJewelryStone(MagicThingsItems.ONYX.get());
-        MagicThingsApi.registerJewelryStone(MagicThingsItems.RUBY.get());
-        MagicThingsApi.registerJewelryStone(MagicThingsItems.SAPPHIRE.get());
-        MagicThingsApi.registerJewelryStone(MagicThingsItems.WHITE_PEARL.get());
-        MagicThingsApi.registerJewelryStone(MagicThingsItems.BLACK_PEARL.get());
+//        MagicThingsApi.registerJewelryStone(Items.DIAMOND);
+//        MagicThingsApi.registerJewelryStone(MagicThingsItems.JADEITE.get());
+//        MagicThingsApi.registerJewelryStone(MagicThingsItems.TOPAZ.get());
+//        MagicThingsApi.registerJewelryStone(MagicThingsItems.ONYX.get());
+//        MagicThingsApi.registerJewelryStone(MagicThingsItems.RUBY.get());
+//        MagicThingsApi.registerJewelryStone(MagicThingsItems.SAPPHIRE.get());
+//        MagicThingsApi.registerJewelryStone(MagicThingsItems.WHITE_PEARL.get());
+//        MagicThingsApi.registerJewelryStone(MagicThingsItems.BLACK_PEARL.get());
 
         // map stone items -> handlers
 //        MagicThingsApi.registerJewelryStoneHandler(Items.DIAMOND, JewelryStoneHandlers.STANDARD);

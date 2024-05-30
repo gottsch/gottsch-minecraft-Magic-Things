@@ -1,0 +1,160 @@
+{
+  "pools": [
+    {
+      "name": "rare_jewelry",
+      "rolls": 2,
+      "entries": [
+        {
+          "entryName": "jewelry0",
+          "type": "item",
+          "name": "gealdorcraft:gold_ring",
+          "weight": 5,
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.5
+            }
+          ],
+          "functions": [
+            {
+              "function": "gealdorcraft:random_jewelry",
+              "rarities": ["uncommon","scarce", "rare"]
+            },
+            {
+              "function": "gealdorcraft:imbue_randomly",
+              "levels": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ]
+        },
+        {
+          "entryName": "jewelry1",
+          "type": "item",
+          "name": "gealdorcraft:silver_ring",
+          "weight": 10,
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.75
+            }
+          ],
+          "functions": [
+            {
+              "function": "gealdorcraft:random_jewelry",
+              "rarities": ["scarce", "rare"]
+            }
+          ]
+        },
+        {
+          "entryName": "jadeite_stone",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:jadeite",
+          "weight": 5
+        },
+        {
+          "entryName": "silver_ruby_castle_ring",
+          "type": "item",
+          "name": "gealdorcraft:silver_ruby_castle_ring",
+          "weight": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance_with_looting",
+              "chance": 0.35,
+              "looting_multiplier": 0.1
+            }
+          ]
+        },
+        {
+          "entryName": "saldandaars_ward",
+          "type": "item",
+          "name": "gealdorcraft:salandaars_ward",
+          "weight": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance_with_looting",
+              "chance": 0.15,
+              "looting_multiplier": 0.1
+            }
+          ]
+        },
+        {
+          "entryName": "adephagias_bounty",
+          "type": "item",
+          "name": "gealdorcraft:adephagias_bounty",
+          "weight": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance_with_looting",
+              "chance": 0.25,
+              "looting_multiplier": 0.1
+            }
+          ]
+        },
+        {
+          "entryName": "medics_token",
+          "type": "item",
+          "name": "gealdorcraft:medics_token",
+          "weight": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance_with_looting",
+              "chance": 0.25,
+              "looting_multiplier": 0.1
+            }
+          ]
+        },
+        {
+          "entryName": "random_spell",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:healing_scroll",
+          "weight": 5,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance_with_looting",
+              "chance": 0.5,
+              "looting_multiplier": 0.1
+            }
+          ],
+          "functions": [
+            {
+              "function": "gealdorcraft:random_spell",
+              "levels": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "entryName": "ring_recipe",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:ring_recipe"
+        },
+        {
+          "entryName": "bracelet_recipe",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:bracelet_recipe"
+        },
+        {
+          "entryName": "necklace_recipe",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:necklace_recipe"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.1,
+          "looting_multiplier": 0.1
+        }
+      ]
+    }
+  ]
+}

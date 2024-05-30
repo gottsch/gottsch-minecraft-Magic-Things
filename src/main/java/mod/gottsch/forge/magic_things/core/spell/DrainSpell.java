@@ -26,6 +26,11 @@ import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
 import mod.gottsch.forge.magic_things.core.network.SpellUpdateS2C;
+import mod.gottsch.forge.magic_things.core.util.LangUtil;
+import mod.gottsch.forge.magic_things.core.util.MathUtil;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -77,7 +82,7 @@ public class DrainSpell extends Spell {
 		ItemStack jewelry = context.getJewelry();
 		Player player = context.getPlayer();
 		IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
-		if (level.getGameTime() % modifyFrequency(jewelry) == 0) {
+		if (level.getGameTime() % handler.modifyFrequency(getFrequency()) == 0) {
 			if (handler.getMana() > 0 && player.getHealth() < player.getMaxHealth() && player.isAlive()) {
 				// get player position
 				double px = player.getX();
@@ -91,7 +96,7 @@ public class DrainSpell extends Spell {
 				if (mobs.isEmpty()) {
 					return result;
 				}
-				double effectAmount = modifyEffectAmount(jewelry);
+				double effectAmount = handler.modifyEffectAmount(getEffectAmount());
 				mobs.forEach(mob -> {
 //					boolean flag = mob.attackEntityFrom(DamageSource.GENERIC, (float)getAmount());
 					boolean flag = mob.hurt(DamageSource.GENERIC, (float)effectAmount);
@@ -104,7 +109,7 @@ public class DrainSpell extends Spell {
 				if (drainedHealth.get() > 0.0) {
 					player.setHealth(Mth.clamp(player.getHealth() + (float)drainedHealth.get(), 0.0F, player.getMaxHealth()));
 					//					entity.setMana(MathHelper.clamp(entity.getMana() - 1D,  0D, entity.getMana()));
-					applyCost(level, random, coords, context, modifySpellCost(jewelry));
+					applyCost(level, random, coords, context, handler.modifySpellCost(getSpellCost()));
 					result = true;
 				}                
 			}
@@ -112,12 +117,20 @@ public class DrainSpell extends Spell {
 		}
 		return result;
 	}
-	
-//	@Override
-//	public Component getCharmDesc(SpellEntity entity) {
-//		return new TranslatableComponent("tooltip.charm.rate.drain", entity.getRange());
-//	}
-	
+
+	@Override
+	public Component getSpellDesc(ItemStack jewelry) {
+		return new TranslatableComponent(LangUtil.tooltip("spell.drain.rate"),
+				MathUtil.r1d(modifyEffectAmount(jewelry)),
+				MathUtil.r1d(modifyRange(jewelry)),
+				MathUtil.r1d(modifyFrequency(jewelry)/20.0));
+	}
+
+	@Override
+	public ChatFormatting getSpellLabelColor() {
+		return ChatFormatting.DARK_BLUE;
+	}
+
 	/*
 	 * 
 	 */

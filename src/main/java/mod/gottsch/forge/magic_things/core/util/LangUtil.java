@@ -96,4 +96,16 @@ public class LangUtil {
 	public static String chat(String suffix) {
 		return name(MagicThings.MOD_ID, "chat", suffix);
 	}
+
+	public static String asPercentString(double value) {
+		return String.valueOf(value) + "%";
+	}
+
+	public static String negativePercent(double value) {
+		return "-" + MathUtil.r0d(Math.min(100, 100 - (value * 100))) + "%";
+	}
+
+	public static String positivePercent(double value) {
+		return "+" + MathUtil.r0d(value * 100 - 100) + "%";
+	}
 }

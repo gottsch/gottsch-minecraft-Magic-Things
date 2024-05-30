@@ -29,6 +29,9 @@ import mod.gottsch.forge.magic_things.core.rarity.MagicThingsRarity;
 import mod.gottsch.forge.magic_things.core.registry.StoneRegistry;
 import mod.gottsch.forge.magic_things.core.setup.Registration;
 import mod.gottsch.forge.magic_things.core.tag.MagicThingsTags;
+import mod.gottsch.forge.treasure2.core.item.TreasureItems;
+import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
+import mod.gottsch.forge.treasure2.datagen.TreasureItemTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
@@ -36,6 +39,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -135,6 +139,11 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		MATERIAL_RARITY_MAP.put(JewelryMaterials.SILVER, MagicThingsRarity.SCARCE);
 		MATERIAL_RARITY_MAP.put(JewelryMaterials.GOLD, MagicThingsRarity.RARE);
 		MATERIAL_RARITY_MAP.put(JewelryMaterials.BONE, MagicThingsRarity.SCARCE);
+
+		// jewelry tools
+		tag(MagicThingsTags.Items.STONE_REMOVAL_TOOLS)
+				.addTag(Tags.Items.SHEARS)
+				.add(Items.STONE_AXE, Items.IRON_AXE, Items.DIAMOND_AXE, Items.NETHERITE_AXE);
 
 		/*
 		 *  process all items.
@@ -258,43 +267,70 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 				MagicThingsTags.Items.STONE_TIER5,
 				MagicThingsTags.Items.STONE_TIER6);
 
+		// recharging stones
+		tag(MagicThingsTags.Items.RECHARGING_STONES).add(Items.AMETHYST_SHARD);
+		tag(MagicThingsTags.Items.RECHARGING_STONES).add(Items.EMERALD);
+
 		Registration.ITEMS.getEntries().forEach(o -> {
 			if (o.get() instanceof SpellScroll) {
 				tag(MagicThingsTags.Items.SPELL_SCROLLS).add(o.get());
 			}
 		});
-		//        List<Adornment> adornments = GealdorAdornmentRegistry.getByType(AdornmentType.RING);
-		//        adornments.forEach(ring -> {
-		//        	tag(GealdorCraftTags.Items.RING).add(ring);
-		//        });
-		//        
-		//        adornments = GealdorAdornmentRegistry.getByType(AdornmentType.NECKLACE);
-		//        adornments.forEach(necklace -> {
-		//        	tag(GealdorCraftTags.Items.NECKLACE).add(necklace);
-		//        });
-		//        
-		//        adornments = GealdorAdornmentRegistry.getByType(AdornmentType.BRACELET);
-		//        adornments.forEach(bracelet -> {
-		//        	tag(GealdorCraftTags.Items.BRACELET).add(bracelet);
-		//        });
-		//        
-		//        // special adornments
-		//        tag(GealdorCraftTags.Items.RING).add(GealdorItems.ANGELS_RING.get());
-		//        tag(GealdorCraftTags.Items.RING).add(GealdorItems.RING_OF_FORTITUDE.get());
-		//        tag(GealdorCraftTags.Items.RING).add(GealdorItems.SHADOWS_GIFT.get());
-		//        tag(GealdorCraftTags.Items.RING).add(GealdorItems.RING_OF_LIFE_DEATH.get());
-		//        tag(GealdorCraftTags.Items.RING).add(GealdorItems.CASTLE_RING.get());
-		//        tag(GealdorCraftTags.Items.RING).add(GealdorItems.PEASANTS_FORTUNE.get());
-		//        tag(GealdorCraftTags.Items.RING).add(GealdorItems.GOTTSCHS_RING_OF_MOON.get());
-		//        tag(GealdorCraftTags.Items.NECKLACE).add(GealdorItems.GOTTSCHS_AMULET_OF_HEAVENS.get());
-		//        tag(GealdorCraftTags.Items.BRACELET).add(GealdorItems.BRACELET_OF_WONDER.get());
-		//        tag(GealdorCraftTags.Items.NECKLACE).add(GealdorItems.MEDICS_TOKEN.get());
-		//        tag(GealdorCraftTags.Items.BRACELET).add(GealdorItems.ADEPHAGIAS_BOUNTY.get());
-		//        tag(GealdorCraftTags.Items.NECKLACE).add(GealdorItems.SALANDAARS_WARD.get());
-		//        tag(GealdorCraftTags.Items.BRACELET).add(GealdorItems.MIRTHAS_TORCH.get());
 
-		// pocket watch
-		//        tag(GealdorCraftTags.Items.CHARM).add(GealdorItems.POCKET_WATCH.get());
+		// belts
+		tag(MagicThingsTags.Items.CURIOUS_BELT).add(MagicThingsItems.SKULL_BELT.get());
 
+		// ores
+		tag(MagicThingsTags.Items.ORE_SILVER).add(MagicThingsItems.SILVER_ORE_ITEM.get());
+		tag(MagicThingsTags.Items.ORE_TOPAZ).add(MagicThingsItems.TOPAZ_ORE_ITEM.get());
+		tag(MagicThingsTags.Items.ORE_ONYX).add(MagicThingsItems.ONYX_ORE_ITEM.get());
+		tag(MagicThingsTags.Items.ORE_JADEITE).add(MagicThingsItems.JADEITE_ORE_ITEM.get());
+		tag(MagicThingsTags.Items.ORE_RUBY).add(MagicThingsItems.RUBY_ORE_ITEM.get());
+		tag(MagicThingsTags.Items.ORE_SAPPHIRE).add(MagicThingsItems.SAPPHIRE_ORE_ITEM.get());
+
+		// ingots
+		tag(MagicThingsTags.Items.INGOTS_SILVER).add(MagicThingsItems.SILVER_INGOT.get());
+
+		// special jewelry tags
+		tag(MagicThingsTags.Items.CASTLE_RING_RUBY).add(MagicThingsItems.RUBY.get());
+		tag(MagicThingsTags.Items.CASTLE_RING_SAPPHIRE).add(MagicThingsItems.SAPPHIRE.get());
+
+		// //////////////////////////////////////////////
+		// treasure2 integration
+		// //////////////////////////////////////////////
+
+		// add treasure2 gems to mt stone tiers
+		tag(MagicThingsTags.Items.STONE_TIER1).addOptional(TreasureItems.TOPAZ.getId());
+		tag(MagicThingsTags.Items.STONE_TIER2).addOptional(TreasureItems.ONYX.getId());
+		tag(MagicThingsTags.Items.STONE_TIER5).addOptional(TreasureItems.RUBY.getId());
+		tag(MagicThingsTags.Items.STONE_TIER6).addOptional(TreasureItems.SAPPHIRE.getId());
+		tag(MagicThingsTags.Items.STONE_TIER5).addOptional(TreasureItems.WHITE_PEARL.getId());
+		tag(MagicThingsTags.Items.STONE_TIER6).addOptional(TreasureItems.BLACK_PEARL.getId());
+
+		// add treasure2 gems to mt stone rarities
+		tag(MagicThingsTags.Items.STONE_RARITY_COMMON).addOptional(TreasureItems.TOPAZ.getId());
+		tag(MagicThingsTags.Items.STONE_RARITY_UNCOMMON).addOptional(TreasureItems.ONYX.getId());
+		tag(MagicThingsTags.Items.STONE_RARITY_RARE).addOptional(TreasureItems.RUBY.getId());
+		tag(MagicThingsTags.Items.STONE_RARITY_EPIC).addOptional(TreasureItems.SAPPHIRE.getId());
+		tag(MagicThingsTags.Items.STONE_RARITY_RARE).addOptional(TreasureItems.WHITE_PEARL.getId());
+		tag(MagicThingsTags.Items.STONE_RARITY_EPIC).addOptional(TreasureItems.BLACK_PEARL.getId());
+
+		// add treasure2 gems mt special jewelry tags
+		tag(MagicThingsTags.Items.CASTLE_RING_RUBY).addOptional(TreasureItems.RUBY.getId());
+		tag(MagicThingsTags.Items.CASTLE_RING_SAPPHIRE).addOptional(TreasureItems.SAPPHIRE.getId());
+
+		// wishables
+		tag(TreasureTags.Items.SCARCE_WISHABLE).add(MagicThingsItems.TOPAZ.get());
+		tag(TreasureTags.Items.SCARCE_WISHABLE).add(MagicThingsItems.ONYX.get());
+		tag(TreasureTags.Items.SCARCE_WISHABLE).add(MagicThingsItems.JADEITE.get());
+		tag(TreasureTags.Items.RARE_WISHABLE).add(MagicThingsItems.RUBY.get());
+		tag(TreasureTags.Items.RARE_WISHABLE).add(MagicThingsItems.WHITE_PEARL.get());
+		tag(TreasureTags.Items.EPIC_WISHABLE).add(MagicThingsItems.SAPPHIRE.get());
+		tag(TreasureTags.Items.EPIC_WISHABLE).add(MagicThingsItems.BLACK_PEARL.get());
+
+		// pouch
+		tag(TreasureTags.Items.POUCH).addTag(MagicThingsTags.Items.STONES);
+		tag(TreasureTags.Items.POUCH).addTag(MagicThingsTags.Items.RECHARGING_STONES);
+		tag(TreasureTags.Items.POUCH).addTag(MagicThingsTags.Items.JEWELRY);
 	}
 }

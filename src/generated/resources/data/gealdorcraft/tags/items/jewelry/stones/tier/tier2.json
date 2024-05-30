@@ -1,6 +1,10 @@
 {
   "replace": false,
   "values": [
-    "gealdorcraft:onyx"
+    "gealdorcraft:onyx",
+    {
+      "id": "treasure2:onyx",
+      "required": false
+    }
   ]
 }

@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "gealdorcraft:bone_amber_skull_ring",
     "gealdorcraft:iron_bracelet",
     "gealdorcraft:copper_bracelet",
     "gealdorcraft:silver_bracelet",
@@ -139,6 +138,33 @@
     "gealdorcraft:wood_ruby_necklace",
     "gealdorcraft:wood_sapphire_necklace",
     "gealdorcraft:wood_white_pearl_necklace",
-    "gealdorcraft:wood_black_pearl_necklace"
+    "gealdorcraft:wood_black_pearl_necklace",
+    "gealdorcraft:bone_ring",
+    "gealdorcraft:bone_bracelet",
+    "gealdorcraft:bone_necklace",
+    "gealdorcraft:bone_diamond_ring",
+    "gealdorcraft:bone_jadeite_ring",
+    "gealdorcraft:bone_topaz_ring",
+    "gealdorcraft:bone_onyx_ring",
+    "gealdorcraft:bone_ruby_ring",
+    "gealdorcraft:bone_sapphire_ring",
+    "gealdorcraft:bone_white_pearl_ring",
+    "gealdorcraft:bone_black_pearl_ring",
+    "gealdorcraft:bone_diamond_bracelet",
+    "gealdorcraft:bone_jadeite_bracelet",
+    "gealdorcraft:bone_topaz_bracelet",
+    "gealdorcraft:bone_onyx_bracelet",
+    "gealdorcraft:bone_ruby_bracelet",
+    "gealdorcraft:bone_sapphire_bracelet",
+    "gealdorcraft:bone_white_pearl_bracelet",
+    "gealdorcraft:bone_black_pearl_bracelet",
+    "gealdorcraft:bone_diamond_necklace",
+    "gealdorcraft:bone_jadeite_necklace",
+    "gealdorcraft:bone_topaz_necklace",
+    "gealdorcraft:bone_onyx_necklace",
+    "gealdorcraft:bone_ruby_necklace",
+    "gealdorcraft:bone_sapphire_necklace",
+    "gealdorcraft:bone_white_pearl_necklace",
+    "gealdorcraft:bone_black_pearl_necklace"
   ]
 }

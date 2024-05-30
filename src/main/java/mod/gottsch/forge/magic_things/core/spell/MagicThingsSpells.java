@@ -8,6 +8,20 @@ import mod.gottsch.forge.magic_things.core.util.ModUtil;
  */
 public class MagicThingsSpells {
     public static final String GREATER_HEALING = "greater_healing";
+    public static final String REGENERATION = "regeneration";
+    public static final String SATIETY = "satiety";
+    public static final String MANA_TOWER_SHIELD = "mana_tower_shield";
+    public static final String MANA_PAVISE_SHIELD = "mana_pavise_shield";
+    public static final String CHEAT_DEATH = "cheat_death";
+    public static final String GREATER_DRAIN = "greater_drain";
+    public static final String DESICCATE = "desiccate";
+    public static final String GHOSTLY_ARMOR = "ghostly_armor";
+    public static final String SPECTRAL_ARMOR = "spectral_armor";
+    public static final String SHADOW_ARMOR = "shadow_armor";
+    public static final String REFLECTION = "reflection";
+    public static final String FIRE_RESISTANCE = "fire_resistance";
+    public static final String FIRE_WARD = "fire_ward";
+    public static final String BLESSING_OF_THE_PHOENIX = "blessing_of_the_phoenix";
 
     // TODO need to change variable name
     // default spell
@@ -62,7 +76,7 @@ public class MagicThingsSpells {
             $.priority = 2;
         })	.build());
 
-        SpellRegistry.register(new ManaShieldSpell.Builder(ModUtil.asLocation("mana_tower_shield"), 6, MagicThingsRarity.RARE).with($ -> {
+        SpellRegistry.register(new ManaShieldSpell.Builder(ModUtil.asLocation(MANA_TOWER_SHIELD), 6, MagicThingsRarity.RARE).with($ -> {
             $.spellCost = 0;
             $.effectAmount = 0.75;
             $.cooldown = 120; // 6 seconds
@@ -70,7 +84,7 @@ public class MagicThingsSpells {
             $.priority = 2;
         })	.build());
 
-        SpellRegistry.register(new ManaShieldSpell.Builder(ModUtil.asLocation("mana_pavise_shield"), 8, MagicThingsRarity.EPIC).with($ -> {
+        SpellRegistry.register(new ManaShieldSpell.Builder(ModUtil.asLocation(MANA_PAVISE_SHIELD), 8, MagicThingsRarity.EPIC).with($ -> {
             $.spellCost = 0;
             $.effectAmount = 1.0;
             $.cooldown = 100; // 5 seconds
@@ -95,7 +109,7 @@ public class MagicThingsSpells {
             $.priority = 3;
         })	.build());
 
-        SpellRegistry.register(new SpectralArmorSpell.Builder(ModUtil.asLocation("shadow_armor"), 5, MagicThingsRarity.SCARCE).with($ -> {
+        SpellRegistry.register(new SpectralArmorSpell.Builder(ModUtil.asLocation(SHADOW_ARMOR), 5, MagicThingsRarity.SCARCE).with($ -> {
             $.spellCost = 2;
             $.effectAmount = 6.0;
             $.cooldown = 1; // 0 seconds
@@ -121,7 +135,7 @@ public class MagicThingsSpells {
                     $.effectStackable = true;
                 })	.build());
 
-        SpellRegistry.register(new DrainSpell.Builder(ModUtil.asLocation("greater_drain"), 6, MagicThingsRarity.SCARCE)
+        SpellRegistry.register(new DrainSpell.Builder(ModUtil.asLocation(GREATER_DRAIN), 6, MagicThingsRarity.SCARCE)
                 .with($ -> {
                     $.spellCost = 2.0;
                     $.effectAmount = 4.0;
@@ -130,7 +144,7 @@ public class MagicThingsSpells {
                     $.effectStackable = true;
                 })	.build());
 
-        SpellRegistry.register(new DrainSpell.Builder(ModUtil.asLocation("desiccate"), 9, MagicThingsRarity.EPIC)
+        SpellRegistry.register(new DrainSpell.Builder(ModUtil.asLocation(DESICCATE), 9, MagicThingsRarity.EPIC)
                 .with($ -> {
                     $.spellCost = 3.0;
                     $.effectAmount = 6.0;
@@ -138,6 +152,15 @@ public class MagicThingsSpells {
                     $.range = 6.0;
                     $.effectStackable = true;
                 })	.build());
+
+//        SpellRegistry.register(new VampiresBiteSpell.Builder(ModUtil.asLocation("vampires_bite"), 10, MagicThingsRarity.LEGENDARY)
+//                .with($ -> {
+//                    $.spellCost = 4.0;
+//                    $.effectAmount = 0;
+//                    $.frequency = 100; // 6 seconds
+//                    $.range = 6.0;
+//                    $.effectStackable = false;
+//                })	.build());
 
         ///// fire resistance spells /////
         SpellRegistry.register(new FireResistanceSpell.Builder(ModUtil.asLocation("fire_resistance"), 1, MagicThingsRarity.COMMON).with($ -> {
@@ -154,10 +177,10 @@ public class MagicThingsSpells {
             $.priority = 2;
         })	.build());
 
-        SpellRegistry.register(new FireResistanceSpell.Builder(ModUtil.asLocation("blessing_of_the_phoenix"), 7, MagicThingsRarity.RARE).with($ -> {
+        SpellRegistry.register(new FireResistanceSpell.Builder(ModUtil.asLocation(BLESSING_OF_THE_PHOENIX), 7, MagicThingsRarity.RARE).with($ -> {
             $.spellCost = 0;
             $.effectAmount = 1.0;
-            $.effectStackable = true;
+            $.effectStackable = false;
             $.priority = 1;
         })	.build());
 
@@ -169,22 +192,44 @@ public class MagicThingsSpells {
             $.priority = 1;
         })	.build());
 
-        SpellRegistry.register(new MagicResistanceSpell.Builder(ModUtil.asLocation("magic_repulsion"), 5, MagicThingsRarity.SCARCE).with($ -> {
+        SpellRegistry.register(new MagicResistanceSpell.Builder(ModUtil.asLocation("magic_ward"), 5, MagicThingsRarity.SCARCE).with($ -> {
             $.spellCost = 0;
             $.effectAmount = 0.7;
             $.effectStackable = true;
             $.priority = 1;
         })	.build());
 
-        SpellRegistry.register(new MagicResistanceSpell.Builder(ModUtil.asLocation("magic_immunity"), 8, MagicThingsRarity.EPIC).with($ -> {
+        SpellRegistry.register(new MagicResistanceSpell.Builder(ModUtil.asLocation("salandaars_magic_coat"), 8, MagicThingsRarity.EPIC).with($ -> {
             $.spellCost = 0;
             $.effectAmount = 1.0;
-            $.effectStackable = true;
+            $.effectStackable = false;
             $.priority = 0;
         })	.build());
 
-        // satiety spells
-        SpellRegistry.register(new SatietySpell.Builder(ModUtil.asLocation("satiety"), 2, MagicThingsRarity.COMMON).with($ -> {
+        ///// wither resistance spells /////
+        SpellRegistry.register(new WitherResistanceSpell.Builder(ModUtil.asLocation("wither_resistance"), 3, MagicThingsRarity.UNCOMMON).with($ -> {
+            $.spellCost = 0;
+            $.effectAmount = 0.3;
+            $.effectStackable = true;
+            $.priority = 1;
+        })	.build());
+
+        SpellRegistry.register(new WitherResistanceSpell.Builder(ModUtil.asLocation("wither_ward"), 6, MagicThingsRarity.RARE).with($ -> {
+            $.spellCost = 0;
+            $.effectAmount = 0.7;
+            $.effectStackable = true;
+            $.priority = 1;
+        })	.build());
+
+        SpellRegistry.register(new WitherResistanceSpell.Builder(ModUtil.asLocation("withers_skin"), 8, MagicThingsRarity.EPIC).with($ -> {
+            $.spellCost = 0;
+            $.effectAmount = 0.9;
+            $.effectStackable = true;
+            $.priority = 1;
+        })	.build());
+
+        ///// satiety spells /////
+        SpellRegistry.register(new SatietySpell.Builder(ModUtil.asLocation(SATIETY), 2, MagicThingsRarity.COMMON).with($ -> {
             $.spellCost = 2.0;
             $.effectAmount = 1.0;
             $.frequency = 100; // 5 seconds
@@ -193,7 +238,7 @@ public class MagicThingsSpells {
         })	.build());
 
         // reflection spells
-        SpellRegistry.register(new ReflectionSpell.Builder(ModUtil.asLocation("reflection"), 3, MagicThingsRarity.UNCOMMON).with($ -> {
+        SpellRegistry.register(new ReflectionSpell.Builder(ModUtil.asLocation(REFLECTION), 3, MagicThingsRarity.UNCOMMON).with($ -> {
             $.spellCost = 5; // cost = min(spellCost, reflected amount)
             $.effectAmount = 1.0;
             $.cooldown = 100; // 5 seconds
@@ -208,7 +253,7 @@ public class MagicThingsSpells {
             $.effectStackable = true;
         })	.build());
 
-        // paladin strike spells
+        // paladin strike spells /////
         SpellRegistry.register(new PaladinStrikeSpell.Builder(ModUtil.asLocation("paladin_strike"), 4, MagicThingsRarity.SCARCE)
                 .withLifeCost(2.0)
                 .with($ -> {
@@ -226,6 +271,15 @@ public class MagicThingsSpells {
                     $.cooldown = 100; // 5 seconds
                     $.effectStackable = false;
                 })	.build());
+
+        ///// cheat death spells /////
+        SpellRegistry.register(new CheatDeathSpell.Builder(ModUtil.asLocation(CHEAT_DEATH), 8, MagicThingsRarity.EPIC).with($ -> {
+            $.spellCost = 10.0;
+            $.effectAmount = 6.0;
+            $.cooldown = 200; // 10 seconds
+            $.effectStackable = false;
+            $.priority = 0;
+        })	.build());
     }
 
     /*

@@ -45,6 +45,7 @@ import java.util.List;
 @Mod.EventBusSubscriber(modid = MagicThings.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class MagicThingsTags {
     private static final String CURIOS_MODID = "curios";
+    private static final String FORGE_MODID = "forge";
 
     public static class Items {
         // curios integration
@@ -61,6 +62,10 @@ public class MagicThingsTags {
         public static final TagKey<Item> CHARMS = mod(MagicThings.MOD_ID, "jewelry/charms");
         public static final TagKey<Item> POCKETS = mod(MagicThings.MOD_ID, "jewelry/pockets");
         public static final TagKey<Item> JEWELRY = mod(MagicThings.MOD_ID, "jewelry/all_jewelry");
+
+        // other
+        public static final TagKey<Item> STONE_REMOVAL_TOOLS = mod(MagicThings.MOD_ID, "tools/stone_removal");
+
         // categorization by tier
         public static final TagKey<Item> WOOD = mod(MagicThings.MOD_ID, "jewelry/tiers/materials/wood");
         public static final TagKey<Item> IRON = mod(MagicThings.MOD_ID, "jewelry/tiers/materials/iron");
@@ -99,8 +104,25 @@ public class MagicThingsTags {
         public static final TagKey<Item> STONE_RARITY_EPIC = mod(MagicThings.MOD_ID, "jewelry/stones/rarity/epic");
 
         public static final TagKey<Item> STONES = mod(MagicThings.MOD_ID, "jewelry/stones/all_stones");
+        public static final TagKey<Item> RECHARGING_STONES = mod(MagicThings.MOD_ID, "jewelry/stones/recharging_stones");
+
+
+        public static final TagKey<Item> CASTLE_RING_RUBY = mod(MagicThings.MOD_ID, "jewelry/castle_ring/ruby");
+        public static final TagKey<Item> CASTLE_RING_SAPPHIRE = mod(MagicThings.MOD_ID, "jewelry/castle_ring/sapphire");
 
         public static final TagKey<Item> SPELL_SCROLLS = mod(MagicThings.MOD_ID, "scrolls/spells");
+
+        // ores
+        public static final TagKey<Item> ORE_SILVER = mod(FORGE_MODID, "ores/silver");
+        public static final TagKey<Item> ORE_TOPAZ = mod(FORGE_MODID, "ores/topaz");
+        public static final TagKey<Item> ORE_ONYX = mod(FORGE_MODID, "ores/onyx");
+        public static final TagKey<Item> ORE_JADEITE = mod(FORGE_MODID, "ores/jadeite");
+        public static final TagKey<Item> ORE_RUBY = mod(FORGE_MODID, "ores/ruby");
+        public static final TagKey<Item> ORE_SAPPHIRE = mod(FORGE_MODID, "ores/sapphire");
+
+        // ingots
+        public static final TagKey<Item> INGOTS_SILVER = mod(FORGE_MODID, "ingots/silver");
+
         /**
          *
          * @param domain
@@ -147,6 +169,9 @@ public class MagicThingsTags {
                 ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(tagKey);
                 // for each item in the tag
                 for (Item stone : tag) {
+                    // register the stone with the StoneRegistry
+                    StoneRegistry.register(stone);
+                    // register the stone with the tier in the StoneRegistry
                     StoneRegistry.register(stone, tier);
                     MagicThings.LOGGER.debug("registering stone to tier -> {} <--> {} ", stone.getRegistryName(), tier.getName());
                 }

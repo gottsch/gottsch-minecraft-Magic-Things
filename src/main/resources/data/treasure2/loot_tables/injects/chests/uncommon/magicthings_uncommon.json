@@ -1,0 +1,108 @@
+{
+  "pools": [
+    {
+      "name": "common_jewelrys",
+      "rolls": 1,
+      "entries": [
+        {
+          "entryName": "jewelry0",
+          "type": "item",
+          "name": "gealdorcraft:copper_ring",
+          "weight": 5,
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.1
+            }
+          ],
+          "functions": [
+            {
+              "function": "gealdorcraft:random_jewelry",
+              "rarity": "scarce"
+            }
+          ]
+        },
+        {
+          "entryName": "jewelry1",
+          "type": "item",
+          "name": "gealdorcraft:iron_ring",
+          "weight": 10,
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.25
+            }
+          ],
+          "functions": [
+            {
+              "function": "gealdorcraft:random_jewelry",
+              "rarity": "uncommon"
+            }
+          ]
+        },
+        {
+          "entryName": "peasants_fortune",
+          "type": "item",
+          "name": "gealdorcraft:peasants_fortune",
+          "weight": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance_with_looting",
+              "chance": 0.25,
+              "looting_multiplier": 0.1
+            }
+          ]
+        },
+        {
+          "entryName": "random_spell",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:healing_scroll",
+          "weight": 5,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance_with_looting",
+              "chance": 0.25,
+              "looting_multiplier": 0.1
+            }
+          ],
+          "functions": [
+            {
+              "function": "gealdorcraft:random_spell",
+              "levels": {
+                "min": 2,
+                "max": 4
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "entryName": "ring_recipe",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:ring_recipe"
+        },
+        {
+          "entryName": "bracelet_recipe",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:bracelet_recipe"
+        },
+        {
+          "entryName": "necklace_recipe",
+          "type": "minecraft:item",
+          "name": "gealdorcraft:necklace_recipe"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.1,
+          "looting_multiplier": 0.1
+        }
+      ]
+    }
+  ]
+}

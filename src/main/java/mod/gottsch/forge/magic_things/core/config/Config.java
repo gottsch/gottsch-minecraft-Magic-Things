@@ -43,6 +43,7 @@ public class Config extends AbstractConfig {
 		public Integration integration;
 
 		public ServerConfig(ForgeConfigSpec.Builder builder) {
+			loot = new Loot(builder);
 			integration = new Integration(builder);
 		}
 	}
