@@ -19,7 +19,7 @@ package mod.gottsch.forge.magic_things.core.registry.support;
 
 import mod.gottsch.forge.magic_things.core.item.IJewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.item.IJewelryType;
-import mod.gottsch.forge.magic_things.core.item.JewelrySizeTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterial;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTier;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTiers;

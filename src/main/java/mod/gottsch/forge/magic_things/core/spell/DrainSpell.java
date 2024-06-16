@@ -119,6 +119,14 @@ public class DrainSpell extends Spell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		return new TranslatableComponent(LangUtil.tooltip("spell.drain.rate"),
+				MathUtil.r1d(getEffectAmount()),
+				MathUtil.r1d(getRange()),
+				MathUtil.r1d(getFrequency()/20.0));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		return new TranslatableComponent(LangUtil.tooltip("spell.drain.rate"),
 				MathUtil.r1d(modifyEffectAmount(jewelry)),

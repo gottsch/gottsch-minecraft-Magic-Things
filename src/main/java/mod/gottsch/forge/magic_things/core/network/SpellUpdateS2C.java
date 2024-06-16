@@ -61,7 +61,8 @@ public class SpellUpdateS2C {
 	private String slotProviderId;						//6
 	private int index; 										//7
 	private double mana;									//8
-//	private int itemDamage;								//9
+	private int uses;										//9
+//	private int itemDamage;
 	
 	/**
 	 * 
@@ -78,7 +79,8 @@ public class SpellUpdateS2C {
 		this.index = context.getIndex();			//7
 		// jewelry state properties
 		this.mana = context.getCapability().getMana();									//8
-//		this.itemDamage = context.getItemStack().getDamageValue();			//9
+		this.uses = context.getCapability().getUses();										//9
+//		this.itemDamage = context.getItemStack().getDamageValue();
 
 	}
 	
@@ -120,7 +122,8 @@ public class SpellUpdateS2C {
 			message.setSlotProviderId(buf.readUtf());							//6
 			message.setIndex(buf.readInt());										//7
 			message.setMana(buf.readDouble());									//8
-//			message.setItemDamage(buf.readInt());								//9
+			message.setUses(buf.readInt());											//9
+//			message.setItemDamage(buf.readInt());
 		}
 		catch(Exception e) {
 			MagicThings.LOGGER.error("An error occurred attempting to read message: ", e);
@@ -156,7 +159,8 @@ public class SpellUpdateS2C {
 		buf.writeUtf(Objects.toString(slotProviderId, ""));	//6
 		buf.writeInt(index);																//7
 		buf.writeDouble(this.mana);													//8
-//		buf.writeInt(this.itemDamage);												//9
+		buf.writeInt(this.uses);															//9
+//		buf.writeInt(this.itemDamage);
 	}
 
 	/**
@@ -261,7 +265,7 @@ public class SpellUpdateS2C {
 				if (entity != null && entity.getSpell().getName().equals(spellName)) {
 					MagicThings.LOGGER.debug("found spell, updating...");
 					// update jewelry properties
-					itemStack.setDamageValue(itemStack.getDamageValue() - 1);
+//					itemStack.setDamageValue(itemStack.getDamageValue() - 1);
 					entity.getSpell().clientUpdate(itemStack, entity, message);
 				}
 			}
@@ -343,7 +347,15 @@ public class SpellUpdateS2C {
 		this.mana = mana;
 	}
 
-//	public int getItemDamage() {
+	public int getUses() {
+		return uses;
+	}
+
+	public void setUses(int uses) {
+		this.uses = uses;
+	}
+
+	//	public int getItemDamage() {
 //		return itemDamage;
 //	}
 //
@@ -361,7 +373,8 @@ public class SpellUpdateS2C {
 				", slot='" + slot + '\'' +
 				", slotProviderId='" + slotProviderId + '\'' +
 				", index=" + index +
-//				", mana=" + mana +
+				", mana=" + mana +
+				", uses=" + uses +
 //				", itemDamage=" + itemDamage +
 				'}';
 	}

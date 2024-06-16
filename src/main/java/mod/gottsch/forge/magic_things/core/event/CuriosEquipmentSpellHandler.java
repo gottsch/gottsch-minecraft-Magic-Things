@@ -43,7 +43,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class CuriosEquipmentSpellHandler implements IEquipmentSpellHandler {
 	private static final String CURIOS_ID = "curios";
-	private static final List<String> CURIOS_SLOTS = Arrays.asList("necklace", "bracelet", "ring", "charm", "belt");
+	private static final List<String> CURIOS_SLOTS = Arrays.asList("necklace", "bracelet", "ring",
+//			"charm",
+			"belt");
 
 	@Override
 	public List<SpellContext> handleEquipmentSpells(Event event, ServerPlayer player) {

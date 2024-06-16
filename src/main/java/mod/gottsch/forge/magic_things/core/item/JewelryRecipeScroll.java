@@ -24,7 +24,6 @@ public class JewelryRecipeScroll extends Item {
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component>tooltip, TooltipFlag flag) {
         super.appendHoverText(itemStack, level, tooltip, flag);
-        tooltip.add(new TranslatableComponent(LangUtil.tooltip("recipe.jewelry.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
-
+        tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry_recipe_scroll.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
     }
 }

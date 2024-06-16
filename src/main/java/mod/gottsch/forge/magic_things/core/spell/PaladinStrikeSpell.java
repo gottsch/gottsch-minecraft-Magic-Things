@@ -43,6 +43,7 @@ public class PaladinStrikeSpell extends CooldownSpell {
 	 */
 	PaladinStrikeSpell(Builder builder) {
 		super(builder);
+		this.lifeCost = builder.lifeCost;
 	}
 
 	@Override
@@ -85,12 +86,23 @@ public class PaladinStrikeSpell extends CooldownSpell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		double amount = lifeCost * getEffectAmount();
+		return new TranslatableComponent(LangUtil.tooltip("spell.paladin_strike.rate"),
+				MathUtil.r1d(amount),
+				MathUtil.r1d(getCooldown()/20.0),
+				MathUtil.r1d(getSpellCost()),
+				MathUtil.r1d(getLifeCost()));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		double amount = lifeCost * modifyEffectAmount(jewelry);
 		return new TranslatableComponent(LangUtil.tooltip("spell.paladin_strike.rate"),
 				MathUtil.r1d(amount),
 				MathUtil.r1d(modifyCooldown(jewelry)/20.0),
-				modifySpellCost(jewelry));
+				MathUtil.r1d((modifySpellCost(jewelry))),
+				MathUtil.r1d(getLifeCost()));
 	}
 
 	@Override
@@ -155,5 +167,12 @@ public class PaladinStrikeSpell extends CooldownSpell {
 
 	public void setLifeCost(double lifeCost) {
 		this.lifeCost = lifeCost;
+	}
+
+	@Override
+	public String toString() {
+		return "PaladinStrikeSpell{" +
+				"lifeCost=" + lifeCost +
+				"} " + super.toString();
 	}
 }

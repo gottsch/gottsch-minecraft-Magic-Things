@@ -41,6 +41,12 @@ public class LangUtil {
 		}
 	}
 
+	public static void appendHideableHoverText(String modid, List<Component> tooltip, Consumer<List<Component>> consumer) {
+		if (!Screen.hasShiftDown()) {
+			consumer.accept(tooltip);
+		}
+	}
+
     public static String name(String modid, String prefix, String suffix) {
     	return StringUtils.stripEnd(prefix.trim(), ".")
     			+ "."
@@ -66,10 +72,14 @@ public class LangUtil {
 	}
 	
 	/**
-	 * TODO this is GealdorCraft's extended methods
+	 * TODO this is Magic Thing's extended methods
 	 */
 	public static void appendAdvancedHoverText(List<Component> tooltip, Consumer<List<Component>> consumer) {
 		LangUtil.appendAdvancedHoverText(MagicThings.MOD_ID, tooltip, consumer);
+	}
+
+	public static void appendHideableHoverText(List<Component> tooltip, Consumer<List<Component>> consumer) {
+		LangUtil.appendHideableHoverText(MagicThings.MOD_ID, tooltip, consumer);
 	}
 	
     public static String name(String prefix, String suffix) {
@@ -98,14 +108,15 @@ public class LangUtil {
 	}
 
 	public static String asPercentString(double value) {
-		return String.valueOf(value) + "%";
+		return MathUtil.r1d(value) + "%";
 	}
 
 	public static String negativePercent(double value) {
 		return "-" + MathUtil.r0d(Math.min(100, 100 - (value * 100))) + "%";
 	}
 
-	public static String positivePercent(double value) {
+	public static String
+	positivePercent(double value) {
 		return "+" + MathUtil.r0d(value * 100 - 100) + "%";
 	}
 }

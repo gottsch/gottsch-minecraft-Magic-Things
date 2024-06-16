@@ -88,6 +88,13 @@ public class HealingSpell extends Spell {
     }
 
     @Override
+    public Component getSpellDesc() {
+        return new TranslatableComponent(LangUtil.tooltip("spell.healing.rate"),
+                MathUtil.r1d(getEffectAmount()),
+                MathUtil.r1d(getFrequency()/20.0));
+    }
+
+    @Override
     public Component getSpellDesc(ItemStack jewelry) {
         return new TranslatableComponent(LangUtil.tooltip("spell.healing.rate"),
                 MathUtil.r1d(modifyEffectAmount(jewelry)),

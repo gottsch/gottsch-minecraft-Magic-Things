@@ -92,6 +92,9 @@ public class LanguageGen extends LanguageProvider {
         add(MagicThingsItems.NECKLACE_RECIPE.get(), "Necklace Recipe");
         add(MagicThingsItems.BRACELET_RECIPE.get(), "Bracelet Recipe");
 
+        // recharge scroll
+        add(MagicThingsItems.RECHARGE_SCROLL.get(), "Recharge Scroll");
+
         // ore
         add(MagicThingsBlocks.TOPAZ_ORE.get(), "Topaz Ore");
         add(MagicThingsBlocks.ONYX_ORE.get(), "Onyx Ore");
@@ -123,6 +126,7 @@ public class LanguageGen extends LanguageProvider {
 
         // gemstones
         add(LangUtil.tooltip("gemstone.usage"), "Place on an anvil with Magic Things jewelry to combine.");
+        add(LangUtil.tooltip("gemstone.recharge.usage"), "Place on an anvil with Magic Things jewelry to recharge.");
         add(LangUtil.tooltip("gemstone.rarity"), "Rarity: %s");
         add(LangUtil.tooltip("gemstone.tier"), "Tier: %s");
         add(LangUtil.tooltip("gemstone.mana"), "Mana: %s");
@@ -161,13 +165,25 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("jewelry.stats.range_factor"), "R:%s");
 
         /*
+         * specific jewelry
+         */
+        // lore
+        add(LangUtil.tooltip("jewelry.castle_ring.lore"), "Castle rings contain an abundance of mana and durability.~Can only be affixed with Rubies & Sapphires.");
+
+        /*
          * spells
          */
 
+        // spell scroll stats
         add(LangUtil.tooltip("spell.name"), "Name: %s");
         add(LangUtil.tooltip("spell.level"), "Level: %s");
         add(LangUtil.tooltip("spell.rarity"), "Rarity: %s");
         add(LangUtil.tooltip("spell.cost"), "Cost: %s");
+        add(LangUtil.tooltip("spell.cost.varies"), "Cost: Varies");
+        add(LangUtil.tooltip("spell.effect_amount"), "Effect Amount: %s");
+        add(LangUtil.tooltip("spell.cooldown"), "Cooldown Time: %s seconds.");
+        add(LangUtil.tooltip("spell.frequency"), "Frequency: Every %s seconds.");
+        add(LangUtil.tooltip("spell.range"), "Range: %s blocks.");
 
         ///// healing /////
         add(LangUtil.tooltip("spell.name.lesser_healing"), "Lesser Healing");
@@ -225,13 +241,13 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("spell.name.reflection"), "Reflection");
         add(LangUtil.tooltip("spell.name.crushing_response"), "Crushing Response");
 
-        add(LangUtil.tooltip("spell.reflection.rate"), "Reflects %s%% damage back onto mob.");
+        add(LangUtil.tooltip("spell.reflection.rate"), "Reflects %s damage back onto mob.");
 
         ///// paladin strike /////
         add(LangUtil.tooltip("spell.name.paladin_strike"), "Paladin Strike");
         add(LangUtil.tooltip("spell.name.paladin_smite"), "Paladin Smite");
 
-        add(LangUtil.tooltip("spell.paladin_strike.rate"), "Inflicts an addition %s hp every %s seconds costing %s hp.");
+        add(LangUtil.tooltip("spell.paladin_strike.rate"), "Inflicts extra %s hp every %s seconds costing %s mana and %s hp.");
 
         ///// satiety /////
         add(LangUtil.tooltip("spell.name.satiety"), "Satiety");
@@ -241,11 +257,24 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("spell.name.cheat_death"), "Cheat Death");
         add(LangUtil.tooltip("spell.cheat_death.rate"), "Prevents death. Cooldown: %s seconds.");
 
+        ///// strength /////
+        add(LangUtil.tooltip("spell.name.quick_strength"), "Quick Strength");
+        add(LangUtil.tooltip("spell.name.strength"), "Strength");
+        add(LangUtil.tooltip("spell.name.greater_strength"), "Greater Strength");
+        add(LangUtil.tooltip("spell.name.giant_strength"), "Giant Strength");
+        add(LangUtil.tooltip("spell.strength.rate"), "Bestows Strength effect for x seconds. Cooldown: %s seconds.");
+
+        ///// speed /////
+        add(LangUtil.tooltip("spell.name.speed"), "Speed");
+        add(LangUtil.tooltip("spell.name.greater_speed"), "Greater Speed");
+        add(LangUtil.tooltip("spell.name.horse_power"), "Horse Power");
+
+        add(LangUtil.tooltip("spell.speed.rate"), "Bestows Speed effect for x seconds. Cooldown: %s seconds.");
 
         // scrolls
-        add(LangUtil.tooltip("spell_scroll.usage"), "Place on an anvil with jewelry to combine.");
+        add(LangUtil.tooltip("spell_scroll.usage"), "Place on an anvil with Magic Things jewelry to combine.");
 
-        add(LangUtil.tooltip("jewelry_recipe_scroll.usage"), "Combine with 4 ingots or respective metal to craft jewelry item.");
+        add(LangUtil.tooltip("jewelry_recipe_scroll.usage"), "Combine with 4 ingots or respective material on crafting table to craft jewelry item.");
 
         /*
          * screens

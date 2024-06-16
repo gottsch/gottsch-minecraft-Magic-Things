@@ -51,9 +51,14 @@ public class Gemstone extends Item {
         return ChatFormatting.WHITE;
     }
 
+
     @Override
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component>tooltip, TooltipFlag flag) {
         super.appendHoverText(itemStack, level, tooltip, flag);
+        addHoverText(itemStack, level, tooltip, flag);
+    }
+
+    public static void addHoverText(ItemStack itemStack, @Nullable Level level, List<Component>tooltip, TooltipFlag flag) {
         tooltip.add(new TranslatableComponent(LangUtil.tooltip("gemstone.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
         tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
 
@@ -91,10 +96,11 @@ public class Gemstone extends Item {
 
                 // frequency
                 // NOTE the sign changes, is different than the others
-                if (tier.getSpellFrequencyFactor() > 1.0) {
-                    tt.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("gemstone.frequency_factor"), ChatFormatting.AQUA + LangUtil.negativePercent(tier.getSpellFrequencyFactor()))));
-                } else if (tier.getSpellFrequencyFactor() < 1.0) {
-                    tt.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("gemstone.frequency_factor"), ChatFormatting.AQUA + LangUtil.positivePercent(tier.getSpellFrequencyFactor()))));
+                double ff = 1.0 + (1.0 - tier.getSpellFrequencyFactor());
+                if (ff < 1.0) {
+                    tt.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("gemstone.frequency_factor"), ChatFormatting.AQUA + LangUtil.negativePercent(ff))));
+                } else if (ff > 1.0) {
+                    tt.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("gemstone.frequency_factor"), ChatFormatting.AQUA + LangUtil.positivePercent(ff))));
                 }
 
                 // range

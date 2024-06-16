@@ -18,7 +18,7 @@
 package mod.gottsch.forge.magic_things.core.capability;
 
 import mod.gottsch.forge.magic_things.MagicThings;
-import mod.gottsch.forge.magic_things.core.item.JewelrySizeTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.item.JewelryType;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterials;
 import net.minecraft.core.Direction;

@@ -75,12 +75,15 @@ public class FireResistanceSpell extends Spell {
 	}
 
 	@Override
-	public Component getSpellDesc(ItemStack jewelry) {
-		// Actual/effective rate
-//		return new TranslatableComponent(LangUtil.tooltip("spell.fire_resistance.rate"), Math.min(100, modifyEffectAmount(jewelry) * 100));
-		// base rate
+	public Component getSpellDesc() {
 		return new TranslatableComponent(LangUtil.tooltip("spell.fire_resistance.rate"),
 				LangUtil.asPercentString(Math.min(100, getEffectAmount() * 100)));
+	}
+
+	@Override
+	public Component getSpellDesc(ItemStack jewelry) {
+		return new TranslatableComponent(LangUtil.tooltip("spell.fire_resistance.rate"),
+				LangUtil.asPercentString(Math.min(100, modifyEffectAmount(jewelry) * 100)));
 	}
 
 	@Override

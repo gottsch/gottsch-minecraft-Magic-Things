@@ -24,17 +24,16 @@ import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
 import mod.gottsch.forge.magic_things.core.item.*;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterial;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterials;
-import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneHandler;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.rarity.MagicThingsRarity;
-import mod.gottsch.forge.magic_things.core.registry.StoneRegistry;
 import mod.gottsch.forge.magic_things.core.setup.Registration;
 import mod.gottsch.forge.magic_things.core.tag.MagicThingsTags;
 import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
-import mod.gottsch.forge.treasure2.datagen.TreasureItemTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -44,7 +43,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * Created by Mark Gottschling on 5/29/2023
@@ -73,7 +71,7 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		TYPE_TAG_MAP.put(JewelryType.RING, MagicThingsTags.Items.RINGS);
 		TYPE_TAG_MAP.put(JewelryType.BRACELET, MagicThingsTags.Items.BRACELETS);
 //		TYPE_TAG_MAP.put(JewelryType.BROACH, GealdorCraftTags.Items.BROACHES);
-		TYPE_TAG_MAP.put(JewelryType.CHARM, MagicThingsTags.Items.CHARMS);
+//		TYPE_TAG_MAP.put(JewelryType.CHARM, MagicThingsTags.Items.CHARMS);
 //		TYPE_TAG_MAP.put(JewelryType.EARRING, GealdorCraftTags.Items.EARRINGS);
 		TYPE_TAG_MAP.put(JewelryType.NECKLACE, MagicThingsTags.Items.NECKLACES);
 		TYPE_TAG_MAP.put(JewelryType.POCKET, MagicThingsTags.Items.POCKETS);
@@ -86,17 +84,6 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		CURIOS_TYPE_TAG_MAP.put(JewelryType.BRACELET, MagicThingsTags.Items.CURIOUS_BRACELET);
 		CURIOS_TYPE_TAG_MAP.put(JewelryType.NECKLACE, MagicThingsTags.Items.CURIOUS_NECKLACE);
 
-//		Map<Item, TagKey<Item>> STONE_TAG_MAP = Maps.newHashMap();
-//		STONE_TAG_MAP.put(MagicThingsItems.TOPAZ.get(), MagicThingsTags.Items.TOPAZ);
-//		STONE_TAG_MAP.put(MagicThingsItems.ONYX.get(), MagicThingsTags.Items.ONYX);
-//		STONE_TAG_MAP.put(Items.DIAMOND, MagicThingsTags.Items.DIAMOND);
-////		STONE_TAG_MAP.put(Items.EMERALD, GealdorCraftTags.Items.EMERALD);
-//		STONE_TAG_MAP.put(MagicThingsItems.JADEITE.get(), MagicThingsTags.Items.JADEITE);
-//		STONE_TAG_MAP.put(MagicThingsItems.RUBY.get(), MagicThingsTags.Items.RUBY);
-//		STONE_TAG_MAP.put(MagicThingsItems.SAPPHIRE.get(), MagicThingsTags.Items.SAPPHIRE);
-//		STONE_TAG_MAP.put(MagicThingsItems.WHITE_PEARL.get(), MagicThingsTags.Items.WHITE_PEARL);
-//		STONE_TAG_MAP.put(MagicThingsItems.BLACK_PEARL.get(), MagicThingsTags.Items.BLACK_PEARL);
-//
 		Map<JewelryMaterial, TagKey<Item>> MATERIAL_TAG_MAP = Maps.newHashMap();
 		MATERIAL_TAG_MAP.put(JewelryMaterials.WOOD, MagicThingsTags.Items.WOOD);
 		MATERIAL_TAG_MAP.put(JewelryMaterials.IRON, MagicThingsTags.Items.IRON);
@@ -222,8 +209,17 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 			});
 		});
 
+		// TODO is it better to include the specials in the rarity map and randomly select OR
+		// TODO manually include in the loot tables?
 		// explicitly categorize special jewelry
-//		tag(MagicThingsTags.Items.JEWELRY_RARE).add();
+		tag(MagicThingsTags.Items.JEWELRY_COMMON).add(MagicThingsItems.PEASANTS_FORTUNE.get());
+		tag(MagicThingsTags.Items.JEWELRY_SCARCE).add(MagicThingsItems.ADEPHAGIAS_BOUNTY.get());
+		tag(MagicThingsTags.Items.JEWELRY_SCARCE).add(MagicThingsItems.MEDICS_TOKEN.get());
+		tag(MagicThingsTags.Items.JEWELRY_RARE).add(MagicThingsItems.SALANDAARS_WARD.get());
+		tag(MagicThingsTags.Items.JEWELRY_RARE).add(MagicThingsItems.ANGELS_RING.get());
+		tag(MagicThingsTags.Items.JEWELRY_RARE).add(MagicThingsItems.RING_OF_FORTITUDE.get());
+		tag(MagicThingsTags.Items.JEWELRY_EPIC).add(MagicThingsItems.RING_LIFE_DEATH.get());
+		tag(MagicThingsTags.Items.JEWELRY_EPIC).add(MagicThingsItems.EYE_OF_THE_PHOENIX.get());
 
 		tag(MagicThingsTags.Items.JEWELRY).addTags(MagicThingsTags.Items.RINGS);
 		tag(MagicThingsTags.Items.JEWELRY).addTags(MagicThingsTags.Items.NECKLACES);
@@ -240,7 +236,6 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		tag(MagicThingsTags.Items.STONE_TIER1).add(MagicThingsItems.TOPAZ.get());
 		tag(MagicThingsTags.Items.STONE_TIER2).add(MagicThingsItems.ONYX.get());
 		tag(MagicThingsTags.Items.STONE_TIER3).add(Items.DIAMOND);
-//		tag(MagicThingsTags.Items.STONE_TIER4).add(Items.EMERALD);
 		tag(MagicThingsTags.Items.STONE_TIER4).add(MagicThingsItems.JADEITE.get());
 		tag(MagicThingsTags.Items.STONE_TIER5).add(MagicThingsItems.RUBY.get());
 		tag(MagicThingsTags.Items.STONE_TIER6).add(MagicThingsItems.SAPPHIRE.get());
@@ -268,8 +263,9 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 				MagicThingsTags.Items.STONE_TIER6);
 
 		// recharging stones
-		tag(MagicThingsTags.Items.RECHARGING_STONES).add(Items.AMETHYST_SHARD);
-		tag(MagicThingsTags.Items.RECHARGING_STONES).add(Items.EMERALD);
+		tag(MagicThingsTags.Items.RECHARGERS).add(Items.AMETHYST_SHARD);
+		tag(MagicThingsTags.Items.RECHARGERS).add(Items.EMERALD);
+		tag(MagicThingsTags.Items.RECHARGERS).add(MagicThingsItems.RECHARGE_SCROLL.get());
 
 		Registration.ITEMS.getEntries().forEach(o -> {
 			if (o.get() instanceof SpellScroll) {
@@ -284,9 +280,20 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		tag(MagicThingsTags.Items.ORE_SILVER).add(MagicThingsItems.SILVER_ORE_ITEM.get());
 		tag(MagicThingsTags.Items.ORE_TOPAZ).add(MagicThingsItems.TOPAZ_ORE_ITEM.get());
 		tag(MagicThingsTags.Items.ORE_ONYX).add(MagicThingsItems.ONYX_ORE_ITEM.get());
+		tag(MagicThingsTags.Items.ORE_JADE).add(MagicThingsItems.JADEITE_ORE_ITEM.get());
 		tag(MagicThingsTags.Items.ORE_JADEITE).add(MagicThingsItems.JADEITE_ORE_ITEM.get());
 		tag(MagicThingsTags.Items.ORE_RUBY).add(MagicThingsItems.RUBY_ORE_ITEM.get());
 		tag(MagicThingsTags.Items.ORE_SAPPHIRE).add(MagicThingsItems.SAPPHIRE_ORE_ITEM.get());
+
+		// gems
+		tag(MagicThingsTags.Items.GEMS_TOPAZ).add(MagicThingsItems.TOPAZ.get());
+		tag(MagicThingsTags.Items.GEMS_ONYX).add(MagicThingsItems.ONYX.get());
+		tag(MagicThingsTags.Items.GEMS_JADE).add(MagicThingsItems.JADEITE.get());
+		tag(MagicThingsTags.Items.GEMS_JADEITE).add(MagicThingsItems.JADEITE.get());
+		tag(MagicThingsTags.Items.GEMS_RUBY).add(MagicThingsItems.RUBY.get());
+		tag(MagicThingsTags.Items.GEMS_SAPPHIRE).add(MagicThingsItems.SAPPHIRE.get());
+		tag(MagicThingsTags.Items.GEMS_PEARL).add(MagicThingsItems.WHITE_PEARL.get());
+		tag(MagicThingsTags.Items.GEMS_PEARL).add(MagicThingsItems.BLACK_PEARL.get());
 
 		// ingots
 		tag(MagicThingsTags.Items.INGOTS_SILVER).add(MagicThingsItems.SILVER_INGOT.get());
@@ -330,7 +337,14 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 
 		// pouch
 		tag(TreasureTags.Items.POUCH).addTag(MagicThingsTags.Items.STONES);
-		tag(TreasureTags.Items.POUCH).addTag(MagicThingsTags.Items.RECHARGING_STONES);
+		tag(TreasureTags.Items.POUCH).addTag(MagicThingsTags.Items.RECHARGERS);
 		tag(TreasureTags.Items.POUCH).addTag(MagicThingsTags.Items.JEWELRY);
+
+		// /////////////////
+		// diamethysts integration
+		// //////////////////
+
+		tag(MagicThingsTags.Items.RECHARGERS).addOptional(new ResourceLocation("diamethysts:diamethyst_shard"));
+		tag(MagicThingsTags.Items.RECHARGERS).addOptional(new ResourceLocation("diamethysts:diamethyst_crystal"));
 	}
 }

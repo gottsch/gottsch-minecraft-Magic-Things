@@ -19,7 +19,7 @@ package mod.gottsch.forge.magic_things.datagen;
 
 import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
-import mod.gottsch.forge.magic_things.core.item.JewelrySizeTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.item.MagicThingsItems;
 import mod.gottsch.forge.magic_things.core.spell.SpellRegistry;
 import net.minecraft.data.DataGenerator;
@@ -43,9 +43,6 @@ public class ItemModelsProvider extends ItemModelProvider {
 		// tabs
 //		singleTexture(TreasureItems.TREASURE_TAB.get().getRegistryName().getPath(),
 //				mcLoc("item/generated"), "layer0", modLoc("item/treasure_tab"));
-//
-//		singleTexture(TreasureItems.ADORNMENTS_TAB.get().getRegistryName().getPath(),
-//				mcLoc("item/generated"), "layer0", modLoc("item/adornment/ruby_gold_ring"));
 
 		// tools
 		singleTexture(MagicThingsItems.JEWELRY_PLIERS.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry_pliers"));
@@ -58,17 +55,12 @@ public class ItemModelsProvider extends ItemModelProvider {
 		singleTexture(MagicThingsItems.NECKLACE_RECIPE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/necklace_recipe_scroll"));
 		singleTexture(MagicThingsItems.BRACELET_RECIPE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/bracelet_recipe_scroll"));
 
+		// recharge scroll
+		singleTexture(MagicThingsItems.RECHARGE_SCROLL.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/recharge_scroll"));
+
 		/*
 		 * jewelry
 		 */
-		
-		// rings
-//		singleTexture(GealdorCraftItems.COPPER_RING.getId().getPath(),
-//				mcLoc("item/generated"), "layer0", modLoc("items/jewelry/copper_ring"));
-
-		// spell scrolls
-//		singleTexture(MagicThingsItems.HEALING_SCROLL.getId().getPath(), mcLoc("item/generated"), modLoc("item/yellow_spell_scroll"));
-
 		// stones
 		singleTexture(MagicThingsItems.JADEITE.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/gem/jadeite"));
 		singleTexture(MagicThingsItems.TOPAZ.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/gem/topaz"));
@@ -99,25 +91,25 @@ public class ItemModelsProvider extends ItemModelProvider {
 
 		// special / non-standard jewelry
 		singleTexture(MagicThingsItems.PEASANTS_FORTUNE.getId().getPath()
-				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/great_iron_ring"));
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/great_iron_ring"));
 
-		singleTexture(MagicThingsItems.MEDICS_TOKEN.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry/medics_token"));
-		singleTexture(MagicThingsItems.ADEPHAGIAS_BOUNTY.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry/adephagias_bounty"));
+		singleTexture(MagicThingsItems.MEDICS_TOKEN.getId().getPath(), modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/medics_token"));
+		singleTexture(MagicThingsItems.ADEPHAGIAS_BOUNTY.getId().getPath(), modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/adephagias_bounty"));
 
 		singleTexture(MagicThingsItems.ANGELS_RING.getId().getPath()
-				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/angels_ring"));
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/angels_ring"));
 
 		singleTexture(MagicThingsItems.SALANDAARS_WARD.getId().getPath()
-				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/salandaars_ward"));
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/salandaars_ward"));
 
 		singleTexture(MagicThingsItems.RING_OF_FORTITUDE.getId().getPath()
-				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/ring_of_fortitude"));
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/ring_of_fortitude"));
 
 		singleTexture(MagicThingsItems.EYE_OF_THE_PHOENIX.getId().getPath()
-				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/eye_of_the_phoenix"));
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/eye_of_the_phoenix"));
 
 		singleTexture(MagicThingsItems.RING_LIFE_DEATH.getId().getPath()
-				, mcLoc("item/generated"), "layer0", modLoc("item/jewelry/ring_of_life_death"));
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/ring_of_life_death"));
 
 		// belts
 		singleTexture(MagicThingsItems.SKULL_BELT.getId().getPath()

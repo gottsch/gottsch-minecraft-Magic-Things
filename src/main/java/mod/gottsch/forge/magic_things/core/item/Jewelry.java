@@ -25,22 +25,23 @@ import mod.gottsch.forge.magic_things.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.items.ItemStackHandler;
+import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Created by Mark Gottschling on 5/29/2023
  */
 public class Jewelry extends Item implements IJewelry{
+    private String loreKey;
 
     /**
      *
@@ -83,16 +84,37 @@ public class Jewelry extends Item implements IJewelry{
      */
     @SuppressWarnings("deprecation")
     @Override
-    public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
-        super.appendHoverText(stack, world, tooltip, flag);
-        tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
-        tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
+    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
         tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
 
-        // add spells tooltips
-        stack.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).ifPresent(handler -> {
-            handler.appendHoverText(stack, world, tooltip, flag);
+        // hide when [shift]
+        LangUtil.appendHideableHoverText(tooltip, tt -> {
+            tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+
+            if (StringUtils.isNotBlank(getLoreKey())) {
+                appendLoreHoverText(stack, level, tooltip, flag);
+            }
         });
+
+        // add handler tooltips
+        stack.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).ifPresent(handler -> {
+            handler.appendHoverText(stack, level, tooltip, flag);
+        });
+    }
+
+    @Override
+    public void appendLoreHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+
+            // lore may be multiple lines, so separate on \n and add to tooltip
+            TranslatableComponent lore = new TranslatableComponent(LangUtil.tooltip(getLoreKey()));
+            for (String s : lore.getString().split("~")) {
+                tooltip.add(new TextComponent(LangUtil.INDENT2)
+                        .append(new TranslatableComponent(s))
+                        .withStyle(ChatFormatting.DARK_AQUA).withStyle(ChatFormatting.ITALIC));
+            }
+        tooltip.add(new TextComponent(LangUtil.NEWLINE));
     }
 
     /**
@@ -121,4 +143,13 @@ public class Jewelry extends Item implements IJewelry{
         }
     }
 
+    @Override
+    public String getLoreKey() {
+        return loreKey;
+    }
+    @Override
+    public Item setLoreKey(String loreKey) {
+        this.loreKey = loreKey;
+        return this;
+    }
 }

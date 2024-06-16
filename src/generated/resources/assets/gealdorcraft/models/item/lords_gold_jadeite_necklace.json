@@ -1,0 +1,6 @@
+{
+  "parent": "gealdorcraft:item/jewelry",
+  "textures": {
+    "layer0": "gealdorcraft:item/jewelry/lords_gold_jadeite_necklace"
+  }
+}

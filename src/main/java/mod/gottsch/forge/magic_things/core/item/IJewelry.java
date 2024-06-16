@@ -17,6 +17,14 @@
  */
 package mod.gottsch.forge.magic_things.core.item;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
+
+import java.util.List;
+
 /**
  * Created by Mark Gottschling on 5/29/2023
  */
@@ -30,4 +38,10 @@ public interface IJewelry {
     default boolean isNamed() {
         return false;
     }
+
+    void appendLoreHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag);
+
+    String getLoreKey();
+
+    Item setLoreKey(String loreKey);
 }

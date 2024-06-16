@@ -84,6 +84,13 @@ public class ReflectionSpell extends CooldownSpell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		return new TranslatableComponent(LangUtil.tooltip("spell.reflection.rate"),
+				LangUtil.asPercentString(getEffectAmount() * 100),
+				MathUtil.r1d(getCooldown()/20.0));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		return new TranslatableComponent(LangUtil.tooltip("spell.reflection.rate"),
 				LangUtil.asPercentString(modifyEffectAmount(jewelry) * 100),

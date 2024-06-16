@@ -15,9 +15,10 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with GealdorCraft.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
-package mod.gottsch.forge.magic_things.core.item;
+package mod.gottsch.forge.magic_things.core.jewelry;
 
 import mod.gottsch.forge.gottschcore.enums.IEnum;
+import mod.gottsch.forge.magic_things.core.item.IJewelrySizeTier;
 
 import java.util.EnumSet;
 import java.util.HashMap;

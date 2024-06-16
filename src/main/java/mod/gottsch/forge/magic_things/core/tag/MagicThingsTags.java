@@ -52,14 +52,14 @@ public class MagicThingsTags {
         public static final TagKey<Item> CURIOUS_NECKLACE = mod(CURIOS_MODID, JewelryType.NECKLACE.getValue());
         public static final TagKey<Item> CURIOUS_RING = mod(CURIOS_MODID, JewelryType.RING.getValue());
         public static final TagKey<Item> CURIOUS_BRACELET = mod(CURIOS_MODID, JewelryType.BRACELET.getValue());
-        public static final TagKey<Item> CURIOUS_CHARM = mod(CURIOS_MODID, "charm");
+//        public static final TagKey<Item> CURIOUS_CHARM = mod(CURIOS_MODID, "charm");
         public static final TagKey<Item> CURIOUS_BELT = mod(CURIOS_MODID, "belt");
 
         // jewelry
         public static final TagKey<Item> RINGS = mod(MagicThings.MOD_ID, "jewelry/rings");
         public static final TagKey<Item> BRACELETS = mod(MagicThings.MOD_ID, "jewelry/bracelets");
         public static final TagKey<Item> NECKLACES = mod(MagicThings.MOD_ID, "jewelry/necklaces");
-        public static final TagKey<Item> CHARMS = mod(MagicThings.MOD_ID, "jewelry/charms");
+//        public static final TagKey<Item> CHARMS = mod(MagicThings.MOD_ID, "jewelry/charms");
         public static final TagKey<Item> POCKETS = mod(MagicThings.MOD_ID, "jewelry/pockets");
         public static final TagKey<Item> JEWELRY = mod(MagicThings.MOD_ID, "jewelry/all_jewelry");
 
@@ -104,7 +104,7 @@ public class MagicThingsTags {
         public static final TagKey<Item> STONE_RARITY_EPIC = mod(MagicThings.MOD_ID, "jewelry/stones/rarity/epic");
 
         public static final TagKey<Item> STONES = mod(MagicThings.MOD_ID, "jewelry/stones/all_stones");
-        public static final TagKey<Item> RECHARGING_STONES = mod(MagicThings.MOD_ID, "jewelry/stones/recharging_stones");
+        public static final TagKey<Item> RECHARGERS = mod(MagicThings.MOD_ID, "jewelry/stones/rechargers");
 
 
         public static final TagKey<Item> CASTLE_RING_RUBY = mod(MagicThings.MOD_ID, "jewelry/castle_ring/ruby");
@@ -112,13 +112,27 @@ public class MagicThingsTags {
 
         public static final TagKey<Item> SPELL_SCROLLS = mod(MagicThings.MOD_ID, "scrolls/spells");
 
+        // /////
+        // forge integration tags
+        // /////
+
         // ores
         public static final TagKey<Item> ORE_SILVER = mod(FORGE_MODID, "ores/silver");
         public static final TagKey<Item> ORE_TOPAZ = mod(FORGE_MODID, "ores/topaz");
         public static final TagKey<Item> ORE_ONYX = mod(FORGE_MODID, "ores/onyx");
+        public static final TagKey<Item> ORE_JADE = mod(FORGE_MODID, "ores/jade");
         public static final TagKey<Item> ORE_JADEITE = mod(FORGE_MODID, "ores/jadeite");
         public static final TagKey<Item> ORE_RUBY = mod(FORGE_MODID, "ores/ruby");
         public static final TagKey<Item> ORE_SAPPHIRE = mod(FORGE_MODID, "ores/sapphire");
+
+        // gems
+        public static final TagKey<Item> GEMS_TOPAZ = mod(FORGE_MODID, "gems/topaz");
+        public static final TagKey<Item> GEMS_ONYX = mod(FORGE_MODID, "gems/onyx");
+        public static final TagKey<Item> GEMS_JADE = mod(FORGE_MODID, "gems/jade");
+        public static final TagKey<Item> GEMS_JADEITE = mod(FORGE_MODID, "gems/jadeite");
+        public static final TagKey<Item> GEMS_RUBY = mod(FORGE_MODID, "gems/ruby");
+        public static final TagKey<Item> GEMS_SAPPHIRE = mod(FORGE_MODID, "gems/sapphire");
+        public static final TagKey<Item> GEMS_PEARL = mod(FORGE_MODID, "gems/pearl");
 
         // ingots
         public static final TagKey<Item> INGOTS_SILVER = mod(FORGE_MODID, "ingots/silver");

@@ -22,26 +22,20 @@ import mod.gottsch.forge.gottschcore.spatial.ICoords;
 import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
-import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTier;
-import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTiers;
 import mod.gottsch.forge.magic_things.core.rarity.MagicThingsRarity;
-import mod.gottsch.forge.magic_things.core.registry.StoneRegistry;
 import mod.gottsch.forge.magic_things.core.spell.cost.CostEvaluator;
 import mod.gottsch.forge.magic_things.core.spell.cost.ICostEvaluator;
 import mod.gottsch.forge.magic_things.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.eventbus.api.Event;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -57,7 +51,7 @@ public abstract class Spell implements ISpell {
     protected static DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#.#");
     public static final int TICKS_PER_SECOND = 20;
     public static final ChatFormatting SPELL_COLOR = ChatFormatting.AQUA;
-    public static final ChatFormatting SPELL_DESC_COLOR = ChatFormatting.GRAY;
+    public static final ChatFormatting SPELL_DESC_COLOR = ChatFormatting.LIGHT_PURPLE;
 
     // TODO getEffectAmount needs to take into account the material and stone
     // -- see CostEvaluator
@@ -195,8 +189,10 @@ public abstract class Spell implements ISpell {
      * Implemented by concrete Spell.
      * @return
      */
+    @Override
     public Component getSpellDesc() { return null;}
 
+    @Override
     public Component getSpellDesc(ItemStack jewelry) { return null;}
 
     @Override

@@ -1,9 +1,27 @@
+/*
+ * This file is part of  Magic Things.
+ * Copyright (c) 2024 Mark Gottschling (gottsch)
+ *
+ * Magic Things is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Magic Things is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ */
 package mod.gottsch.forge.magic_things.core.item.generator;
 
 
+import com.machinezoo.noexception.optional.OptionalToIntBiFunction;
 import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
-import mod.gottsch.forge.magic_things.core.item.JewelrySizeTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.item.SpellScroll;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTier;
 import mod.gottsch.forge.magic_things.core.registry.JewelryRegistry;
@@ -93,16 +111,22 @@ public class JewelryGenerator {
         return destJewelry;
     }
 
-    public ItemStack removeStone(ItemStack jewelry) {
+    public Optional<ItemStack> removeStone(ItemStack jewelry) {
         return removeStone(jewelry, STANDARD_NAMER);
     }
 
-    public ItemStack removeStone(ItemStack jewelry, Namer namer) {
+    public Optional<ItemStack> removeStone(ItemStack jewelry, Namer namer) {
         ResourceLocation location = ModUtil.asLocation(namer.name(jewelry));
         ItemStack destJewelry = JewelryRegistry.get(location).map(ItemStack::new).orElseGet(() -> new ItemStack(jewelry.getItem()));
 
-        IJewelryHandler sourceHandler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
-        IJewelryHandler destHandler = destJewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
+        IJewelryHandler sourceHandler = null;
+        IJewelryHandler destHandler = null;
+        try {
+            sourceHandler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
+            destHandler = destJewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
+        } catch(Exception e) {
+            return Optional.empty();
+        }
 
         // get the stone item from the sourceHandler
         Item stone = ForgeRegistries.ITEMS.getValue(sourceHandler.getStone());
@@ -125,25 +149,26 @@ public class JewelryGenerator {
             }
         }
 
+        // NOTE at this point, destHandler contains the correct max values (it is the item w/o the gem)
         // remove mana
-        destHandler.setMaxMana(sourceHandler.getMaxMana() - mana);
+//        destHandler.setMaxMana(sourceHandler.getMaxMana() - mana);
         destHandler.setMana(Math.min(sourceHandler.getMana(), destHandler.getMaxMana()));
 
         // remove recharges
-        destHandler.setMaxRecharges(sourceHandler.getMaxRecharges() - recharges);
+//        destHandler.setMaxRecharges(sourceHandler.getMaxRecharges() - recharges);
         destHandler.setRecharges(Math.min(sourceHandler.getRecharges(), destHandler.getMaxRecharges()));
 
         // update repairs
         destHandler.setRepairs(sourceHandler.getRepairs());
 
         // update uses and item damage
-        destJewelry.setDamageValue(jewelry.getDamageValue());
+//        destJewelry.setDamageValue(jewelry.getDamageValue());
         destHandler.setUses(sourceHandler.getUses());
 
         // transfer spells
         destHandler.setSpells(sourceHandler.getSpells());
 
-        return destJewelry;
+        return Optional.of(destJewelry);
     }
 
     public Optional<ItemStack> addSpells(ItemStack jewelry, ItemStack spellStack) {
@@ -211,8 +236,8 @@ public class JewelryGenerator {
 
         IJewelryHandler handler = destStack.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
         if (handler.getRepairs() > 0) {
-            destStack.setDamageValue(0);
-            handler.setRepairs(handler.getRepairs() - 1);
+            handler.setUses(handler.getMaxUses());
+            handler.setRepairs(Math.max(0, handler.getRepairs() - 1));
             return Optional.of(destStack);
         }
         return Optional.empty();

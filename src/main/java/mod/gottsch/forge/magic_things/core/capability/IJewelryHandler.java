@@ -23,9 +23,15 @@ public interface IJewelryHandler {
     public IJewelrySizeTier getJewelrySizeTier();
     public IJewelryType getJewelryType();
 
+    void appendSpecialHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag);
+
     double modifySpellCost(double cost);
 
+    double getSpellCostFactor();
+
     double modifyEffectAmount(double amount);
+
+    int modifyDuration(int duration);
 
     long modifyCooldown(long cooldown);
 
@@ -35,6 +41,10 @@ public interface IJewelryHandler {
 
     public Tag serializeNBT();
     public void deserializeNBT(Tag tag);
+
+    int getMaxUses();
+
+    void setMaxUses(int maxUses);
 
     public int getUses();
     public void setUses(int uses);
@@ -91,4 +101,26 @@ public interface IJewelryHandler {
     void setBaseName(String baseName);
 
     boolean acceptsAffixer(ItemStack stack);
+
+    double getSpellRangeFactor();
+
+    void setSpellRangeFactor(double spellRangeFactor);
+
+    double getSpellCooldownFactor();
+
+    void setSpellCooldownFactor(double spellCooldownFactor);
+
+    double getSpellDurationFactor();
+
+    void setSpellDurationFactor(double spellDurationFactor);
+
+    double getSpellFrequencyFactor();
+
+    void setSpellFrequencyFactor(double spellFrequencyFactor);
+
+    double getSpellEffectAmountFactor();
+
+    void setSpellEffectAmountFactor(double spellEffectAmountFactor);
+
+    void setSpellCostFactor(double spellCostFactor);
 }

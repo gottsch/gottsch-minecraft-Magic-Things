@@ -18,24 +18,13 @@
 package mod.gottsch.forge.magic_things.core.event;
 
 import mod.gottsch.forge.magic_things.MagicThings;
-import mod.gottsch.forge.magic_things.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_things.core.capability.MagicThingsCapabilities;
-import mod.gottsch.forge.magic_things.core.item.*;
 import mod.gottsch.forge.magic_things.core.item.generator.JewelryGenerator;
-import mod.gottsch.forge.magic_things.core.registry.JewelryRegistry;
-import mod.gottsch.forge.magic_things.core.registry.StoneRegistry;
-import mod.gottsch.forge.magic_things.core.spell.ISpell;
 import mod.gottsch.forge.magic_things.core.tag.MagicThingsTags;
-import mod.gottsch.forge.magic_things.core.util.ModUtil;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import org.lwjgl.system.CallbackI;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
@@ -81,9 +70,8 @@ public class AnvilEventHandler {
 				}
 				// remove a stone from jewelry
 				else if (handler.hasStone() && rightStack.is(MagicThingsTags.Items.STONE_REMOVAL_TOOLS)) {
-					// TODO need to check if max level still supports any existing spells and possible remove them.
-					// TODO removeStone should return an Optional
-					resultOutStack.set(generator.removeStone(leftStack));
+					Optional<ItemStack> resultStack = generator.removeStone(leftStack);
+					resultStack.ifPresent(resultOutStack::set);
 				}
 				// add a spell to jewelry
 				else if (handler.getSpells().isEmpty() && rightStack.is(MagicThingsTags.Items.SPELL_SCROLLS)) {
@@ -91,7 +79,7 @@ public class AnvilEventHandler {
 					resultStack.ifPresent(resultOutStack::set);
 				}
 				// recharge jewelry
-				else if (handler.hasStone() && handler.getRecharges() > 0 && rightStack.is(Items.AMETHYST_SHARD)) {
+				else if (handler.hasStone() && handler.getRecharges() > 0 && rightStack.is(MagicThingsTags.Items.RECHARGERS)) {
 					Optional<ItemStack> resultStack = generator.recharge(leftStack);
 					resultStack.ifPresent(resultOutStack::set);
 				}

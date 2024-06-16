@@ -61,9 +61,9 @@
           ]
         },
         {
-          "entryName": "angels_blessing",
+          "entryName": "angels_ring",
           "type": "item",
-          "name": "gealdorcraft:angels_blessing",
+          "name": "gealdorcraft:angels_ring",
           "weight": 5,
           "conditions": [
             {

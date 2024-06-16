@@ -103,6 +103,13 @@ public class ManaShieldSpell extends Spell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		return new TranslatableComponent(LangUtil.tooltip("spell.mana_shield.rate"),
+				LangUtil.asPercentString(getEffectAmount() * 100),
+				MathUtil.r1d(getFrequency()/20.0));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		return new TranslatableComponent(LangUtil.tooltip("spell.mana_shield.rate"),
 				LangUtil.asPercentString(modifyEffectAmount(jewelry) * 100),

@@ -26,7 +26,7 @@ import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.api.MagicThingsApi;
 import mod.gottsch.forge.magic_things.core.item.IJewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.item.IJewelryType;
-import mod.gottsch.forge.magic_things.core.item.JewelrySizeTier;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.item.JewelryType;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterial;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterials;
@@ -66,6 +66,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 //    private static final String MATERIAL_TIER = "materialTier";
     private static final String MATERIAL = "material";
     private static final String SIZE_TIER = "sizeTier";
+    private static final String MAX_USES = "maxUses";
     private static final String USES = "uses";
     private static final String MAX_LEVEL = "maxLevel";
     private static final String MAX_MANA = "maxMana";
@@ -78,11 +79,18 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     private static final String SPELLS = "spells";
     private static final String BASE_NAME = "baseName";
 
+    private static final String SPELL_COST_FACTOR = "spellCostFactor";
+    private static final String SPELL_COOLDOWN_FACTOR = "spellCooldownFactor";
+    private static final String SPELL_EFFECT_AMOUNT_FACTOR = "spellEffectAmountFactor";
+    private static final String SPELL_FREQUENCY_FACTOR = "spellFrequencyFactor";
+    private static final String SPELL_DURATION_FACTOR = "spellDurationFactor";
+    private static final String SPELL_RANGE_FACTOR = "spellRangeFactor";
+
     private IJewelryType type;
-//    private IJewelryMaterialTier materialTier;
     private JewelryMaterial material;
     private IJewelrySizeTier sizeTier;
 
+    private int maxUses;
     private int uses;
 
     private int maxLevel;
@@ -110,15 +118,26 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     private Predicate<ItemStack> acceptsAffixer = p -> true;
 
     /*
+     * factor overrides
+     */
+    private double spellCostFactor;
+    private double spellEffectAmountFactor;
+    private double spellFrequencyFactor;
+    private double spellDurationFactor;
+    private double spellCooldownFactor;
+    private double spellRangeFactor;
+
+    /*
      *
      */
     public static class Builder {
         public final IJewelryType type;
         public JewelryMaterial material;
         public IJewelrySizeTier sizeTier;
+        public int maxUses = -1;
         public int uses;
-        public int maxLevel;
-        public double maxMana;
+        public int maxLevel = -1;
+        public double maxMana = -1;
         public double mana;
         public int maxRepairs = -1;
         public int maxRecharges = -1;
@@ -127,6 +146,13 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         public List<SpellEntity> spells = Lists.newArrayList();
         public String baseName;
         public Predicate<ItemStack> acceptsAffixer = p -> true;
+
+        public double spellCostFactor = -1.0;
+        public double spellEffectAmountFactor = -1.0;
+        public double spellFrequencyFactor = -1.0;
+        public double spellDurationFactor = -1.0;
+        public double spellCooldownFactor = -1.0;
+        public double spellRangeFactor = -1.0;
 
         /**
          * TODO use this constructor
@@ -174,8 +200,6 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         }
 
         public IJewelryHandler build() {
-            // should build do all the calculations or should the JewelryHandler do it all?
-            // probably build should
             return new JewelryHandler(this);
         }
     }
@@ -196,13 +220,15 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         // determine the tier
         Optional<JewelryStoneTier> stoneTier = StoneRegistry.getStoneTier(stone);
 
-        if (builder.uses <= 0) {
-            this.uses = Math.round(material.getUses() * sizeTier.getUsesMultiplier());
+        if (builder.maxUses <= 0) {
+            this.maxUses = Math.round(material.getUses() * sizeTier.getUsesMultiplier());
         } else {
-            this.uses = builder.uses;
+            this.maxUses = builder.maxUses;
         }
+        this.uses = this.maxUses;
+
         if (builder.maxLevel <= 0) {
-            this.maxLevel = material.getMaxLevel();
+            this.maxLevel = material.getMaxLevel() + sizeTier.getCode();
         } else {
             this.maxLevel = builder.maxLevel;
         }
@@ -236,6 +262,43 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         this.spells.addAll(builder.spells);
         this.baseName = builder.baseName;
         this.acceptsAffixer = builder.acceptsAffixer;
+
+        // spell factor calculations
+        if (builder.spellCostFactor < 0) {
+            this.spellCostFactor = calcSpellCostFactor();
+        } else {
+            this.spellCostFactor = builder.spellCostFactor;
+        }
+
+        if (builder.spellCooldownFactor < 0) {
+            this.spellCooldownFactor = calcSpellCooldownFactor();
+        } else {
+            this.spellCooldownFactor = builder.spellCooldownFactor;
+        }
+
+        if (builder.spellDurationFactor < 0) {
+            this.spellDurationFactor = calcSpellDurationFactor();
+        } else {
+            this.spellDurationFactor = builder.spellDurationFactor;
+        }
+
+        if (builder.spellEffectAmountFactor < 0) {
+            this.spellEffectAmountFactor = calcSpellEffectAmountFactor();
+        } else {
+            this.spellEffectAmountFactor = builder.spellEffectAmountFactor;
+        }
+
+        if (builder.spellFrequencyFactor < 0) {
+            this.spellFrequencyFactor = calcSpellFrequencyFactor();
+        } else {
+            this.spellFrequencyFactor = builder.spellFrequencyFactor;
+        }
+
+        if (builder.spellRangeFactor < 0) {
+            this.spellRangeFactor = calcSpellRangeFactor();
+        } else {
+            this.spellRangeFactor = builder.spellRangeFactor;
+        }
     }
 
     @Override
@@ -266,8 +329,8 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         } else {
             tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
                     .append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.amount"),
-                    ChatFormatting.GRAY + String.valueOf(getUses() - stack.getDamageValue()),
-                    ChatFormatting.GRAY + String.valueOf(getUses()))));
+                    ChatFormatting.GRAY + String.valueOf(getUses()),
+                    ChatFormatting.GRAY + String.valueOf(getMaxUses()))));
         }
 
         // mana
@@ -284,13 +347,10 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 
             // add spells
             for (SpellEntity entity : getSpells()) {
-                // TODO don't call spell.addInformation(), just format here
                 entity.getSpell().addInformation(stack, level, tooltip, flag, entity);
             }
         }
 
-         // TODO add stats here
-        // TODO there is possibility that this jewelry will not have stats -- don't want the extra space at the end
         // -----------
         MutableComponent component = new TranslatableComponent(LangUtil.INDENT2);
         Optional<MutableComponent> c = Optional.empty();
@@ -299,24 +359,24 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.cost_factor"), ChatFormatting.AQUA + formatStat(getSpellCostFactor())))
                     .append(" ");
         }
-        if (getCooldownFactor() != 1.0) {
+        if (getSpellCooldownFactor() != 1.0) {
             c = c.isEmpty() ? Optional.of(component) : c;
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.cooldown_factor"), ChatFormatting.AQUA + formatStat(getCooldownFactor())))
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.cooldown_factor"), ChatFormatting.AQUA + formatStat(getSpellCooldownFactor())))
                     .append(" ");
         }
-        if (getEffectAmountFactor() != 1.0) {
+        if (getSpellEffectAmountFactor() != 1.0) {
             c = c.isEmpty() ? Optional.of(component) : c;
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.effect_amount_factor"), ChatFormatting.AQUA + formatStat(getEffectAmountFactor())))
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.effect_amount_factor"), ChatFormatting.AQUA + formatStat(getSpellEffectAmountFactor())))
                     .append(" ");
         }
-        if (getFrequencyFactor() != 1.0) {
+        if (getSpellFrequencyFactor() != 1.0) {
             c = c.isEmpty() ? Optional.of(component) : c;
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.frequency_factor"), ChatFormatting.AQUA + formatStat(1.0 + (1.0 - getFrequencyFactor()))))
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.frequency_factor"), ChatFormatting.AQUA + formatStat(1.0 + (1.0 - getSpellFrequencyFactor()))))
                     .append(" ");
         }
-        if (getRangeFactor() != 1.0) {
+        if (getSpellRangeFactor() != 1.0) {
             c = c.isEmpty() ? Optional.of(component) : c;
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.range_factor"), ChatFormatting.AQUA + formatStat(getRangeFactor())))
+            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.range_factor"), ChatFormatting.AQUA + formatStat(getSpellRangeFactor())))
                     .append(" ");
         }
         c.ifPresent(x -> {
@@ -324,7 +384,6 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("divider")).withStyle(ChatFormatting.GRAY)));
             tooltip.add(component);
         });
-
         // ------------
 
         // advanced tooltip (hold shift)
@@ -340,11 +399,13 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.mana.recharges"), ChatFormatting.BLUE + String.valueOf(getRecharges()))));
             tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
 
-            // TODO add description / lore
-//            appendLore(stack, level, tooltip, flag);
+            appendSpecialHoverText(stack, level, tooltip, flag);
         });
+    }
 
-
+    @Override
+    public void appendSpecialHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+        // TODO this might be moot as this can't be anonymously set because a Handler class is instantiated by a Builder.
     }
 
     private String formatStat(double value) {
@@ -365,12 +426,15 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 
     @Override
     public double modifySpellCost(double cost) {
-//        JewelryStoneTier stoneTier = getStoneTier();
-//        double materialModifier = getMaterial().getSpellCostFactor();
         return cost * getSpellCostFactor();
     }
 
+    @Override
     public double getSpellCostFactor() {
+        return spellCostFactor;
+    }
+
+    private double calcSpellCostFactor() {
         JewelryStoneTier stoneTier = getStoneTier();
         double materialModifier = getMaterial().getSpellCostFactor();
         return materialModifier * (stoneTier != null ? stoneTier.getSpellCostFactor() : 1);
@@ -378,23 +442,42 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 
     @Override
     public double modifyEffectAmount(double amount) {
-//        JewelryStoneTier stoneTier = getStoneTier();
-//        double materialModifier = getMaterial().getSpellEffectAmountFactor();
-        return amount * getEffectAmountFactor();
+        return amount * getSpellEffectAmountFactor();
     }
 
-    public double getEffectAmountFactor() {
+    @Override
+    public double getSpellEffectAmountFactor() {
+        return spellEffectAmountFactor;
+    }
+
+    private double calcSpellEffectAmountFactor() {
         JewelryStoneTier stoneTier = getStoneTier();
         double materialModifier = getMaterial().getSpellEffectAmountFactor();
         return materialModifier * (stoneTier != null ? stoneTier.getSpellEffectAmountFactor() : 1);
     }
 
     @Override
-    public long modifyCooldown(long cooldown) {
-        return (long)(cooldown * getCooldownFactor());
+    public int modifyDuration(int duration) {
+        return (int)(duration * getSpellDurationFactor());
     }
 
-    public double getCooldownFactor() {
+    private double calcSpellDurationFactor() {
+        JewelryStoneTier stoneTier = getStoneTier();
+        double materialModifier = getMaterial().getSpellDurationFactor();
+        return materialModifier * (stoneTier != null ? stoneTier.getSpellDurationFactor() : 1);
+    }
+
+    @Override
+    public long modifyCooldown(long cooldown) {
+        return (long)(cooldown * getSpellCooldownFactor());
+    }
+
+    @Override
+    public double getSpellCooldownFactor() {
+        return spellCooldownFactor;
+    }
+
+    private double calcSpellCooldownFactor() {
         JewelryStoneTier stoneTier = getStoneTier();
         double materialModifier = getMaterial().getSpellCooldownFactor();
         return materialModifier * (stoneTier != null ? stoneTier.getSpellCooldownFactor() : 1);
@@ -402,10 +485,15 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 
     @Override
     public long modifyFrequency(long frequency) {
-        return (long)(frequency * getFrequencyFactor());
+        return (long)(frequency * getSpellFrequencyFactor());
     }
 
-    public double getFrequencyFactor() {
+    @Override
+    public double getSpellFrequencyFactor() {
+        return spellFrequencyFactor;
+    }
+
+    private double calcSpellFrequencyFactor() {
         JewelryStoneTier stoneTier = getStoneTier();
         double materialModifier = getMaterial().getSpellFrequencyFactor();
         return materialModifier * (stoneTier != null ? stoneTier.getSpellFrequencyFactor() : 1);
@@ -413,10 +501,15 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 
     @Override
     public double modifyRange(double range) {
-        return range * getRangeFactor();
+        return range * getSpellRangeFactor();
     }
 
-    public double getRangeFactor() {
+    @Override
+    public double getSpellRangeFactor() {
+        return spellRangeFactor;
+    }
+
+    private double calcSpellRangeFactor() {
       JewelryStoneTier stoneTier = getStoneTier();
         double materialModifier = getMaterial().getSpellRangeFactor();
         return materialModifier * (stoneTier != null ? stoneTier.getSpellRangeFactor() : 1);
@@ -435,6 +528,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 
         tag.putString(SIZE_TIER, getJewelrySizeTier().getName());
 
+        tag.putInt(MAX_USES, getMaxUses());
         tag.putInt(USES, getUses());
         tag.putDouble(MAX_MANA, getMaxMana());
         tag.putDouble(MANA, getMana());
@@ -457,6 +551,13 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         if (StringUtils.isNotBlank(this.baseName)) {
             tag.putString(BASE_NAME, getBaseName());
         }
+
+        tag.putDouble(SPELL_COST_FACTOR, getSpellCostFactor());
+        tag.putDouble(SPELL_COOLDOWN_FACTOR, getSpellCooldownFactor());
+        tag.putDouble(SPELL_DURATION_FACTOR, getSpellDurationFactor());
+        tag.putDouble(SPELL_EFFECT_AMOUNT_FACTOR, getSpellEffectAmountFactor());
+        tag.putDouble(SPELL_FREQUENCY_FACTOR, getSpellFrequencyFactor());
+        tag.putDouble(SPELL_RANGE_FACTOR, getSpellRangeFactor());
 
         return tag;
     }
@@ -482,6 +583,9 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             }
 
             // properties
+            if (compound.contains(MAX_USES)) {
+                this.maxUses = compound.getInt(MAX_USES);
+            }
             if (compound.contains(USES)) {
                 this.uses = compound.getInt(USES);
             }
@@ -535,6 +639,25 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             if (compound.contains(BASE_NAME)) {
                 this.baseName = compound.getString(BASE_NAME);
             }
+
+            if (compound.contains(SPELL_COST_FACTOR)) {
+                this.spellCostFactor = compound.getDouble(SPELL_COST_FACTOR);
+            }
+            if (compound.contains(SPELL_COOLDOWN_FACTOR)) {
+                this.spellCooldownFactor = compound.getDouble(SPELL_COOLDOWN_FACTOR);
+            }
+            if (compound.contains(SPELL_DURATION_FACTOR)) {
+                this.spellDurationFactor = compound.getDouble(SPELL_DURATION_FACTOR);
+            }
+            if (compound.contains(SPELL_EFFECT_AMOUNT_FACTOR)) {
+                this.spellEffectAmountFactor = compound.getDouble(SPELL_EFFECT_AMOUNT_FACTOR);
+            }
+            if (compound.contains(SPELL_FREQUENCY_FACTOR)) {
+                this.spellFrequencyFactor = compound.getDouble(SPELL_FREQUENCY_FACTOR);
+            }
+            if (compound.contains(SPELL_RANGE_FACTOR)) {
+                this.spellRangeFactor = compound.getDouble(SPELL_RANGE_FACTOR);
+            }
         }
     }
 
@@ -561,6 +684,16 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     @Override
     public IJewelryType getJewelryType() {
         return type;
+    }
+
+    @Override
+    public int getMaxUses() {
+        return maxUses;
+    }
+
+    @Override
+    public void setMaxUses(int maxUses) {
+        this.maxUses = maxUses;
     }
 
     @Override
@@ -689,5 +822,40 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     @Override
     public boolean acceptsAffixer(ItemStack stack) {
         return acceptsAffixer.test(stack);
+    }
+
+    @Override
+    public void setSpellCostFactor(double spellCostFactor) {
+        this.spellCostFactor = spellCostFactor;
+    }
+
+    @Override
+    public void setSpellEffectAmountFactor(double spellEffectAmountFactor) {
+        this.spellEffectAmountFactor = spellEffectAmountFactor;
+    }
+
+    @Override
+    public void setSpellFrequencyFactor(double spellFrequencyFactor) {
+        this.spellFrequencyFactor = spellFrequencyFactor;
+    }
+
+    @Override
+    public double getSpellDurationFactor() {
+        return spellDurationFactor;
+    }
+
+    @Override
+    public void setSpellDurationFactor(double spellDurationFactor) {
+        this.spellDurationFactor = spellDurationFactor;
+    }
+
+    @Override
+    public void setSpellCooldownFactor(double spellCooldownFactor) {
+        this.spellCooldownFactor = spellCooldownFactor;
+    }
+
+    @Override
+    public void setSpellRangeFactor(double spellRangeFactor) {
+        this.spellRangeFactor = spellRangeFactor;
     }
 }

@@ -99,9 +99,15 @@ SpectralArmorSpell extends Spell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		return new TranslatableComponent(LangUtil.tooltip("spell.spectral_armor.rate"),
+				LangUtil.asPercentString(getEffectAmount() * 4.0));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		return new TranslatableComponent(LangUtil.tooltip("spell.spectral_armor.rate"),
-				MathUtil.r1d(modifyEffectAmount(jewelry) * 4.0));
+				LangUtil.asPercentString(modifyEffectAmount(jewelry) * 4.0));
 	}
 
 	@Override

@@ -74,6 +74,12 @@ public class MagicResistanceSpell extends Spell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		return new TranslatableComponent(LangUtil.tooltip("spell.magic_resistance.rate"),
+				LangUtil.asPercentString(Math.min(100, getEffectAmount() * 100)));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		return new TranslatableComponent(LangUtil.tooltip("spell.magic_resistance.rate"),
 				LangUtil.asPercentString(Math.min(100, modifyEffectAmount(jewelry) * 100)));

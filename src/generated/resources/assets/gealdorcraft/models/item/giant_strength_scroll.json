@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gealdorcraft:item/red_spell_scroll"
+  }
+}

@@ -82,6 +82,12 @@ public class CheatDeathSpell extends CooldownSpell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		return new TranslatableComponent(LangUtil.tooltip("spell.cheat_death.rate"),
+				MathUtil.r1d(getCooldown()/20.0));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		return new TranslatableComponent(LangUtil.tooltip("spell.cheat_death.rate"),
 				MathUtil.r1d(modifyCooldown(jewelry)/20.0));

@@ -53,6 +53,10 @@ public interface ISpell {
     @SuppressWarnings("deprecation")
     void addInformation(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flagIn, SpellEntity entity);
 
+    Component getSpellDesc();
+
+    Component getSpellDesc(ItemStack jewelry);
+
     ChatFormatting getSpellLabelColor();
 
     ChatFormatting getSpellDescColor();

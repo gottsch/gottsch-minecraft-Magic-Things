@@ -27,7 +27,7 @@ public class MagicThingsSpells {
     // default spell
     public static final ISpell DEFAULT_HEALING = SpellRegistry.register(new HealingSpell.Builder(ModUtil.asLocation("lesser_healing"), 1, MagicThingsRarity.COMMON)
             .with($ -> {
-                $.spellCost = 1.0;
+                $.spellCost = 2.0;
                 $.effectAmount = 1.0;
                 $.frequency = 200; // 10 seconds
                 $.effectStackable = true;
@@ -39,21 +39,21 @@ public class MagicThingsSpells {
 
         ///// healing spells /////
         SpellRegistry.register(new HealingSpell.Builder(ModUtil.asLocation("healing"), 3, MagicThingsRarity.UNCOMMON).with($ -> {
-            $.spellCost = 2.0;
+            $.spellCost = 3.0;
             $.effectAmount = 2.0;
             $.frequency = 180; // 9 seconds
             $.effectStackable = true;
         })	.build());
 
         SpellRegistry.register(new HealingSpell.Builder(ModUtil.asLocation("greater_healing"), 5, MagicThingsRarity.SCARCE).with($ -> {
-            $.spellCost = 2.5;
+            $.spellCost = 4;
             $.effectAmount = 3.0;
             $.frequency = 160; // 8 seconds
             $.effectStackable = true;
         })	.build());
 
         SpellRegistry.register(new HealingSpell.Builder(ModUtil.asLocation("regeneration"), 8, MagicThingsRarity.RARE).with($ -> {
-            $.spellCost = 3.0;
+            $.spellCost = 5.0;
             $.effectAmount = 5.0;
             $.frequency = 140; // 7 seconds
             $.effectStackable = true;
@@ -94,7 +94,7 @@ public class MagicThingsSpells {
 
         // spectral armor spells
         SpellRegistry.register(new SpectralArmorSpell.Builder(ModUtil.asLocation("ghostly_armor"), 1, MagicThingsRarity.COMMON).with($ -> {
-            $.spellCost = 1;
+            $.spellCost = 2;
             $.effectAmount = 3.0;
             $.cooldown = 0; // 0 seconds
             $.effectStackable = false;
@@ -102,7 +102,7 @@ public class MagicThingsSpells {
         })	.build());
 
         SpellRegistry.register(new SpectralArmorSpell.Builder(ModUtil.asLocation("spectral_armor"), 3, MagicThingsRarity.UNCOMMON).with($ -> {
-            $.spellCost = 2;
+            $.spellCost = 3;
             $.effectAmount = 5.0;
             $.cooldown = 0; // 0 seconds
             $.effectStackable = false;
@@ -110,7 +110,7 @@ public class MagicThingsSpells {
         })	.build());
 
         SpellRegistry.register(new SpectralArmorSpell.Builder(ModUtil.asLocation(SHADOW_ARMOR), 5, MagicThingsRarity.SCARCE).with($ -> {
-            $.spellCost = 2;
+            $.spellCost = 4;
             $.effectAmount = 6.0;
             $.cooldown = 1; // 0 seconds
             $.effectStackable = false;
@@ -118,7 +118,7 @@ public class MagicThingsSpells {
         })	.build());
 
         SpellRegistry.register(new SpectralArmorSpell.Builder(ModUtil.asLocation("disembodied_armor"), 7, MagicThingsRarity.RARE).with($ -> {
-            $.spellCost = 4;
+            $.spellCost = 5;
             $.effectAmount = 8.0;
             $.cooldown = 1; // 0 seconds
             $.effectStackable = false;
@@ -128,7 +128,7 @@ public class MagicThingsSpells {
         ///// drain spells /////
         SpellRegistry.register(new DrainSpell.Builder(ModUtil.asLocation("drain"), 3, MagicThingsRarity.UNCOMMON)
                 .with($ -> {
-                    $.spellCost = 1.0;
+                    $.spellCost = 2.0;
                     $.effectAmount = 2.0;
                     $.frequency = 180; // 9 seconds
                     $.range = 2.0;
@@ -137,7 +137,7 @@ public class MagicThingsSpells {
 
         SpellRegistry.register(new DrainSpell.Builder(ModUtil.asLocation(GREATER_DRAIN), 6, MagicThingsRarity.SCARCE)
                 .with($ -> {
-                    $.spellCost = 2.0;
+                    $.spellCost = 3.0;
                     $.effectAmount = 4.0;
                     $.frequency = 150; // 7.5 seconds
                     $.range = 4.0;
@@ -146,7 +146,7 @@ public class MagicThingsSpells {
 
         SpellRegistry.register(new DrainSpell.Builder(ModUtil.asLocation(DESICCATE), 9, MagicThingsRarity.EPIC)
                 .with($ -> {
-                    $.spellCost = 3.0;
+                    $.spellCost = 4.0;
                     $.effectAmount = 6.0;
                     $.frequency = 120; // 6 seconds
                     $.range = 6.0;
@@ -230,7 +230,7 @@ public class MagicThingsSpells {
 
         ///// satiety spells /////
         SpellRegistry.register(new SatietySpell.Builder(ModUtil.asLocation(SATIETY), 2, MagicThingsRarity.COMMON).with($ -> {
-            $.spellCost = 2.0;
+            $.spellCost = 3.0;
             $.effectAmount = 1.0;
             $.frequency = 100; // 5 seconds
             $.effectStackable = true;
@@ -274,12 +274,77 @@ public class MagicThingsSpells {
 
         ///// cheat death spells /////
         SpellRegistry.register(new CheatDeathSpell.Builder(ModUtil.asLocation(CHEAT_DEATH), 8, MagicThingsRarity.EPIC).with($ -> {
-            $.spellCost = 10.0;
+            $.spellCost = 50.0;
             $.effectAmount = 6.0;
-            $.cooldown = 200; // 10 seconds
+            $.cooldown = 2400; // 2 minutes
             $.effectStackable = false;
             $.priority = 0;
         })	.build());
+
+        // strength spells
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("quick_strength"), 1, MagicThingsRarity.COMMON)
+            .withAmplifier(0)
+                .with($ -> {
+                $.spellCost = 4; // cost = min(spellCost, reflected amount)
+                $.duration = 1200;
+                $.cooldown = 2400;
+                $.effectStackable = false;
+            })	.build());
+
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("strength"), 3, MagicThingsRarity.UNCOMMON)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 6; // cost = min(spellCost, reflected amount)
+                    $.duration = 3600;
+                    $.cooldown = 4800;
+                    $.effectStackable = false;
+                })	.build());
+
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("greater_strength"), 5, MagicThingsRarity.SCARCE)
+                .withAmplifier(1)
+                .with($ -> {
+                    $.spellCost = 10; // cost = min(spellCost, reflected amount)
+                    $.duration = 4800;
+                    $.cooldown = 6000;
+                    $.effectStackable = false;
+                })	.build());
+
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("giant_strength"), 7, MagicThingsRarity.RARE)
+                .withAmplifier(2)
+                .with($ -> {
+                    $.spellCost = 15;
+                    $.duration = 6000;
+                    $.cooldown = 7200;
+                    $.effectStackable = false;
+                })	.build());
+
+        // speed spells
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("speed"), 2, MagicThingsRarity.COMMON)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 4; // cost = min(spellCost, reflected amount)
+                    $.duration = 1200;
+                    $.cooldown = 2400;
+                    $.effectStackable = false;
+                })	.build());
+
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("greater_speed"), 4, MagicThingsRarity.UNCOMMON)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 6; // cost = min(spellCost, reflected amount)
+                    $.duration = 2400;
+                    $.cooldown = 3600;
+                    $.effectStackable = false;
+                })	.build());
+
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("horse_power"), 6, MagicThingsRarity.SCARCE)
+                .withAmplifier(1)
+                .with($ -> {
+                    $.spellCost = 8; // cost = min(spellCost, reflected amount)
+                    $.duration = 3600;
+                    $.cooldown = 4800;
+                    $.effectStackable = false;
+                })	.build());
     }
 
     /*

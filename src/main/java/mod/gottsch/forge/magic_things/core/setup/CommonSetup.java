@@ -22,11 +22,11 @@ import mod.gottsch.forge.magic_things.core.config.Config;
 import mod.gottsch.forge.magic_things.core.integration.MagicThingsIntegrations;
 import mod.gottsch.forge.magic_things.core.item.*;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryMaterials;
+import mod.gottsch.forge.magic_things.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTiers;
 import mod.gottsch.forge.magic_things.core.rarity.MagicThingsRarity;
 import mod.gottsch.forge.magic_things.api.MagicThingsApi;
 import mod.gottsch.forge.magic_things.core.tag.MagicThingsTags;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
@@ -58,7 +58,7 @@ public class CommonSetup {
         MagicThingsApi.registerJewelryType(JewelryType.NECKLACE);
         MagicThingsApi.registerJewelryType(JewelryType.BRACELET);
         MagicThingsApi.registerJewelryType(JewelryType.POCKET);
-        MagicThingsApi.registerJewelryType(JewelryType.CHARM);
+//        MagicThingsApi.registerJewelryType(JewelryType.CHARM);
         // TODO add Broach ?
 
         // register jewelry size tiers
@@ -98,7 +98,7 @@ public class CommonSetup {
         MagicThingsApi.registerJewerlyTypeTag(JewelryType.BRACELET, MagicThingsTags.Items.BRACELETS);
         MagicThingsApi.registerJewerlyTypeTag(JewelryType.NECKLACE, MagicThingsTags.Items.NECKLACES);
         MagicThingsApi.registerJewerlyTypeTag(JewelryType.POCKET, MagicThingsTags.Items.POCKETS);
-        MagicThingsApi.registerJewerlyTypeTag(JewelryType.CHARM, MagicThingsTags.Items.CHARMS);
+//        MagicThingsApi.registerJewerlyTypeTag(JewelryType.CHARM, MagicThingsTags.Items.CHARMS);
         
         // register stone tier tags
         MagicThingsApi.registerJewerlyStoneTierTag(JewelryStoneTiers.TIER1, MagicThingsTags.Items.STONE_TIER1);

@@ -80,6 +80,13 @@ public class SatietySpell extends Spell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		// "Restores 0.5 hunger every %s seconds."
+		return new TranslatableComponent(LangUtil.tooltip("spell.satiety.rate"),
+				MathUtil.r1d(getFrequency()/20.0));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		// "Restores 0.5 hunger every %s seconds."
 		return new TranslatableComponent(LangUtil.tooltip("spell.satiety.rate"),

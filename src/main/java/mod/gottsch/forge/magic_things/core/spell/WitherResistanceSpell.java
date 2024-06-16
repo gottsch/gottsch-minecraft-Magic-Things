@@ -75,6 +75,12 @@ public class WitherResistanceSpell extends Spell {
 	}
 
 	@Override
+	public Component getSpellDesc() {
+		return new TranslatableComponent(LangUtil.tooltip("spell.wither_resistance.rate"),
+				LangUtil.asPercentString(Math.min(100, getEffectAmount() * 100)));
+	}
+
+	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		return new TranslatableComponent(LangUtil.tooltip("spell.wither_resistance.rate"),
 				LangUtil.asPercentString(Math.min(100, modifyEffectAmount(jewelry) * 100)));
