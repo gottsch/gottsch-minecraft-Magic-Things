@@ -7,7 +7,7 @@
         {
           "entryName": "jewelry0",
           "type": "item",
-          "name": "gealdorcraft:gold_ring",
+          "name": "magic_things:gold_ring",
           "weight": 5,
           "conditions": [
             {
@@ -17,11 +17,11 @@
           ],
           "functions": [
             {
-              "function": "gealdorcraft:random_jewelry",
+              "function": "magic_things:random_jewelry",
               "rarities": ["uncommon","scarce", "rare"]
             },
             {
-              "function": "gealdorcraft:imbue_randomly",
+              "function": "magic_things:imbue_randomly",
               "levels": {
                 "min": 3,
                 "max": 7
@@ -32,7 +32,7 @@
         {
           "entryName": "jewelry1",
           "type": "item",
-          "name": "gealdorcraft:silver_ring",
+          "name": "magic_things:silver_ring",
           "weight": 10,
           "conditions": [
             {
@@ -42,7 +42,7 @@
           ],
           "functions": [
             {
-              "function": "gealdorcraft:random_jewelry",
+              "function": "magic_things:random_jewelry",
               "rarities": ["scarce", "rare"]
             }
           ]
@@ -50,13 +50,13 @@
         {
           "entryName": "jadeite_stone",
           "type": "minecraft:item",
-          "name": "gealdorcraft:jadeite",
+          "name": "magic_things:jadeite",
           "weight": 5
         },
         {
           "entryName": "silver_ruby_castle_ring",
           "type": "item",
-          "name": "gealdorcraft:silver_ruby_castle_ring",
+          "name": "magic_things:silver_ruby_castle_ring",
           "weight": 1,
           "conditions": [
             {
@@ -69,7 +69,7 @@
         {
           "entryName": "saldandaars_ward",
           "type": "item",
-          "name": "gealdorcraft:salandaars_ward",
+          "name": "magic_things:salandaars_ward",
           "weight": 1,
           "conditions": [
             {
@@ -82,7 +82,7 @@
         {
           "entryName": "adephagias_bounty",
           "type": "item",
-          "name": "gealdorcraft:adephagias_bounty",
+          "name": "magic_things:adephagias_bounty",
           "weight": 1,
           "conditions": [
             {
@@ -95,7 +95,7 @@
         {
           "entryName": "medics_token",
           "type": "item",
-          "name": "gealdorcraft:medics_token",
+          "name": "magic_things:medics_token",
           "weight": 1,
           "conditions": [
             {
@@ -108,7 +108,7 @@
         {
           "entryName": "random_spell",
           "type": "minecraft:item",
-          "name": "gealdorcraft:healing_scroll",
+          "name": "magic_things:healing_scroll",
           "weight": 5,
           "conditions": [
             {
@@ -119,13 +119,19 @@
           ],
           "functions": [
             {
-              "function": "gealdorcraft:random_spell",
+              "function": "magic_things:random_spell",
               "levels": {
                 "min": 3,
                 "max": 7
               }
             }
           ]
+        },
+        {
+          "entryName": "recharge_scroll",
+          "type": "minecraft:item",
+          "name": "magic_things:recharge_scroll",
+          "weight": 3
         }
       ]
     },
@@ -135,17 +141,17 @@
         {
           "entryName": "ring_recipe",
           "type": "minecraft:item",
-          "name": "gealdorcraft:ring_recipe"
+          "name": "magic_things:ring_recipe"
         },
         {
           "entryName": "bracelet_recipe",
           "type": "minecraft:item",
-          "name": "gealdorcraft:bracelet_recipe"
+          "name": "magic_things:bracelet_recipe"
         },
         {
           "entryName": "necklace_recipe",
           "type": "minecraft:item",
-          "name": "gealdorcraft:necklace_recipe"
+          "name": "magic_things:necklace_recipe"
         }
       ],
       "conditions": [

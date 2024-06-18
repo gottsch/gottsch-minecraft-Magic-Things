@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "#magic_things:jewelry/rings",
+    "#magic_things:jewelry/necklaces",
+    "#magic_things:jewelry/bracelets"
+  ]
+}

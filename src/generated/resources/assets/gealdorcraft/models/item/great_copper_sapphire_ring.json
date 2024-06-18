@@ -1,6 +1,0 @@
-{
-  "parent": "gealdorcraft:item/jewelry",
-  "textures": {
-    "layer0": "gealdorcraft:item/jewelry/great_copper_sapphire_ring"
-  }
-}

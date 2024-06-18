@@ -1,7 +1,0 @@
-{
-    "parent": "gealdorcraft:block/deepslate_ore_parent",
-    "textures": {
-    	"end": "gealdorcraft:block/deepslate_top_ruby_ore",
-        "side": "gealdorcraft:block/deepslate_ruby_ore"
-    }
-}

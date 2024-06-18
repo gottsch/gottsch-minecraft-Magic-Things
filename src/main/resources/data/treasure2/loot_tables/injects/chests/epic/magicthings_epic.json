@@ -7,7 +7,7 @@
         {
           "entryName": "jewelry0",
           "type": "item",
-          "name": "gealdorcraft:bone_ring",
+          "name": "magic_things:bone_ring",
           "weight": 5,
           "conditions": [
             {
@@ -17,11 +17,11 @@
           ],
           "functions": [
             {
-              "function": "gealdorcraft:random_jewelry",
+              "function": "magic_things:random_jewelry",
               "rarities": ["scarce", "rare", "epic"]
             },
             {
-              "function": "gealdorcraft:imbue_randomly",
+              "function": "magic_things:imbue_randomly",
               "levels": {
                 "min": 4,
                 "max": 8
@@ -32,7 +32,7 @@
         {
           "entryName": "jewelry1",
           "type": "item",
-          "name": "gealdorcraft:gold_ring",
+          "name": "magic_things:gold_ring",
           "weight": 10,
           "conditions": [
             {
@@ -42,7 +42,7 @@
           ],
           "functions": [
             {
-              "function": "gealdorcraft:random_jewelry",
+              "function": "magic_things:random_jewelry",
               "rarities": ["rare", "epic"]
             }
           ]
@@ -50,7 +50,7 @@
            {
           "entryName": "silver_sapphire_castle_ring",
           "type": "item",
-          "name": "gealdorcraft:silver_sapphire_castle_ring",
+          "name": "magic_things:silver_sapphire_castle_ring",
           "weight": 1,
           "conditions": [
             {
@@ -63,7 +63,7 @@
         {
           "entryName": "angels_ring",
           "type": "item",
-          "name": "gealdorcraft:angels_ring",
+          "name": "magic_things:angels_ring",
           "weight": 5,
           "conditions": [
             {
@@ -76,7 +76,7 @@
         {
           "entryName": "salandaars_ward",
           "type": "item",
-          "name": "gealdorcraft:salandaars_ward",
+          "name": "magic_things:salandaars_ward",
           "weight": 1,
           "conditions": [
             {
@@ -89,7 +89,7 @@
         {
           "entryName": "random_spell",
           "type": "minecraft:item",
-          "name": "gealdorcraft:healing_scroll",
+          "name": "magic_things:healing_scroll",
           "weight": 5,
           "conditions": [
             {
@@ -100,13 +100,19 @@
           ],
           "functions": [
             {
-              "function": "gealdorcraft:random_spell",
+              "function": "magic_things:random_spell",
               "levels": {
                 "min": 4,
                 "max": 8
               }
             }
           ]
+        },
+        {
+          "entryName": "recharge_scroll",
+          "type": "minecraft:item",
+          "name": "magic_things:recharge_scroll",
+          "weight": 3
         }
       ]
     },
@@ -116,17 +122,17 @@
         {
           "entryName": "ring_recipe",
           "type": "minecraft:item",
-          "name": "gealdorcraft:ring_recipe"
+          "name": "magic_things:ring_recipe"
         },
         {
           "entryName": "bracelet_recipe",
           "type": "minecraft:item",
-          "name": "gealdorcraft:bracelet_recipe"
+          "name": "magic_things:bracelet_recipe"
         },
         {
           "entryName": "necklace_recipe",
           "type": "minecraft:item",
-          "name": "gealdorcraft:necklace_recipe"
+          "name": "magic_things:necklace_recipe"
         }
       ],
       "conditions": [

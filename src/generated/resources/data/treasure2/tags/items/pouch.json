@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "#gealdorcraft:jewelry/stones/all_stones",
-    "#gealdorcraft:jewelry/stones/rechargers",
-    "#gealdorcraft:jewelry/all_jewelry"
+    "#magic_things:jewelry/stones/all_stones",
+    "#magic_things:jewelry/stones/rechargers",
+    "#magic_things:jewelry/all_jewelry"
   ]
 }

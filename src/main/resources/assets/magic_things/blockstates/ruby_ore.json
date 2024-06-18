@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "magic_things:block/ruby_ore" }
+    }
+}

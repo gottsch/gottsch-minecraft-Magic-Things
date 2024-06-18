@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "gealdorcraft:silver_ore",
-    "gealdorcraft:deepslate_silver_ore"
+    "magic_things:silver_ore",
+    "magic_things:deepslate_silver_ore"
   ]
 }

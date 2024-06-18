@@ -1,13 +1,13 @@
 {
   "replace" : false,
-  "entries" : [ "gealdorcraft:fishing_junk",
-    "gealdorcraft:fishing_treasure",
-    "gealdorcraft:chest/uncommon",
-    "gealdorcraft:chest/scarce",
-    "gealdorcraft:chest/rare",
-    "gealdorcraft:chest/epic",
-    "gealdorcraft:chest/legendary",
-    "gealdorcraft:chest/mythical",
-    "gealdorcraft:entity/skeleton"
+  "entries" : [ "magic_things:fishing_junk",
+    "magic_things:fishing_treasure",
+    "magic_things:chest/uncommon",
+    "magic_things:chest/scarce",
+    "magic_things:chest/rare",
+    "magic_things:chest/epic",
+    "magic_things:chest/legendary",
+    "magic_things:chest/mythical",
+    "magic_things:entity/skeleton"
   ]
 }

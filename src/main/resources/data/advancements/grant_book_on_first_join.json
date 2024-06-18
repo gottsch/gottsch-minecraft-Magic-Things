@@ -6,7 +6,7 @@
   },
   "rewards": {
     "loot": [
-      "gealdorcraft:grant_book_on_first_join"
+      "magic_things:grant_book_on_first_join"
     ]
   }
 }

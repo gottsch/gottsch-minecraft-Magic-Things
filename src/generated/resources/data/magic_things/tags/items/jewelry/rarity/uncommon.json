@@ -1,0 +1,28 @@
+{
+  "replace": false,
+  "values": [
+    "magic_things:copper_bracelet",
+    "magic_things:great_iron_bracelet",
+    "magic_things:copper_necklace",
+    "magic_things:great_iron_necklace",
+    "magic_things:copper_ring",
+    "magic_things:great_iron_ring",
+    "magic_things:iron_onyx_bracelet",
+    "magic_things:copper_topaz_bracelet",
+    "magic_things:copper_onyx_bracelet",
+    "magic_things:great_iron_topaz_bracelet",
+    "magic_things:iron_onyx_necklace",
+    "magic_things:copper_topaz_necklace",
+    "magic_things:copper_onyx_necklace",
+    "magic_things:great_iron_topaz_necklace",
+    "magic_things:iron_onyx_ring",
+    "magic_things:copper_topaz_ring",
+    "magic_things:copper_onyx_ring",
+    "magic_things:great_iron_topaz_ring",
+    "magic_things:wood_onyx_ring",
+    "magic_things:wood_onyx_bracelet",
+    "magic_things:wood_onyx_necklace",
+    "magic_things:lords_iron_necklace",
+    "magic_things:lords_iron_topaz_necklace"
+  ]
+}

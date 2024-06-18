@@ -1,0 +1,7 @@
+{
+    "parent": "magic_things:block/deepslate_ore_parent",
+    "textures": {
+    	"end": "magic_things:block/deepslate_top_topaz_ore",
+        "side": "magic_things:block/deepslate_topaz_ore"
+    }
+}

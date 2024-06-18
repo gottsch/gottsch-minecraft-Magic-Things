@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "gealdorcraft:sapphire",
-    "gealdorcraft:black_pearl"
+    "magic_things:sapphire",
+    "magic_things:black_pearl"
   ]
 }

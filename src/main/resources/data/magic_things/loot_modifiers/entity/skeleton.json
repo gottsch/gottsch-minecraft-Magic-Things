@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:alternative",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:entities/skeleton"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:entities/stray"
+        }
+      ]
+    }
+  ],
+  "count": 1,
+  "rarity": "uncommon",
+  "chance": 0.15,
+  "lootTable": "magic_things:entities/skeleton",
+  "type": "magic_things:loot_modifier_by_loot_table"
+}

@@ -1,6 +1,0 @@
-{
-    "parent": "gealdorcraft:block/ore_parent",
-    "textures": {
-        "0": "gealdorcraft:block/topaz_ore"
-    }
-}

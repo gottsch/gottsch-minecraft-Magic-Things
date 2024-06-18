@@ -44,7 +44,7 @@
 			{
 				"entryName": "random_spell",
 				"type": "minecraft:item",
-				"name": "gealdorcraft:drain_scroll",
+				"name": "magic_things:drain_scroll",
 				"weight": 5,
 				"conditions": [{
 					"condition": "random_chance",
@@ -52,13 +52,23 @@
 				}],
 				"functions": [
 					{
-						"function": "gealdorcraft:random_spell",
+						"function": "magic_things:random_spell",
 						"levels": {
 							"min": 1,
 							"max": 2
 						}
 					}
 				]
+			},
+			{
+				"entryName": "recharge_scroll",
+				"type": "minecraft:item",
+				"name": "magic_things:recharge_scroll",
+				"weight": 3,
+				"conditions": [{
+					"condition": "random_chance",
+					"chance": 0.1
+				}]
 			}
 		]
 	}]

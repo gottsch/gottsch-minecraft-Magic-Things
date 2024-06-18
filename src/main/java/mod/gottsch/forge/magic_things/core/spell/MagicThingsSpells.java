@@ -31,7 +31,17 @@ public class MagicThingsSpells {
                 $.effectAmount = 1.0;
                 $.frequency = 200; // 10 seconds
                 $.effectStackable = true;
-            })	.build());
+            }).build());
+
+    // NOTE - this spell is not registered as it only occurs on a special item (belt of silbro)
+   public static final ISpell SILBROS_INVISIBILITY = new InvisibilitySpell.Builder(ModUtil.asLocation("silbros_invisibility"), 8, MagicThingsRarity.EPIC)
+           .withAmplifier(0)
+           .with($ -> {
+                $.spellCost = 5;
+                $.duration = 600;
+                $.cooldown = 400;
+                $.effectStackable = false;
+            }).build();
 
     static {
         // register all spells
@@ -281,6 +291,31 @@ public class MagicThingsSpells {
             $.priority = 0;
         })	.build());
 
+        // harm spells
+        SpellRegistry.register(new HarmSpell.Builder(ModUtil.asLocation("harm"), 2, MagicThingsRarity.COMMON).with($ -> {
+            $.spellCost = 2; // cost = min(spellCost, reflected amount)
+            $.effectAmount = 2.0;
+            $.cooldown = 200; // 10 seconds
+            $.range = 2.0;
+            $.effectStackable = true;
+        })	.build());
+
+        SpellRegistry.register(new HarmSpell.Builder(ModUtil.asLocation("mind_jab"), 4, MagicThingsRarity.UNCOMMON).with($ -> {
+            $.spellCost = 4; // cost = min(spellCost, reflected amount)
+            $.effectAmount = 3.0;
+            $.cooldown = 180;
+            $.range = 2.5;
+            $.effectStackable = true;
+        })	.build());
+
+        SpellRegistry.register(new HarmSpell.Builder(ModUtil.asLocation("mind_fist"), 6, MagicThingsRarity.RARE).with($ -> {
+            $.spellCost = 5; // cost = min(spellCost, reflected amount)
+            $.effectAmount = 4.0;
+            $.cooldown = 160;
+            $.range = 3.0;
+            $.effectStackable = true;
+        })	.build());
+
         // strength spells
         SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("quick_strength"), 1, MagicThingsRarity.COMMON)
             .withAmplifier(0)
@@ -314,7 +349,7 @@ public class MagicThingsSpells {
                 .with($ -> {
                     $.spellCost = 15;
                     $.duration = 6000;
-                    $.cooldown = 7200;
+                    $.cooldown = 6000;
                     $.effectStackable = false;
                 })	.build());
 
@@ -342,7 +377,73 @@ public class MagicThingsSpells {
                 .with($ -> {
                     $.spellCost = 8; // cost = min(spellCost, reflected amount)
                     $.duration = 3600;
-                    $.cooldown = 4800;
+                    $.cooldown = 3600;
+                    $.effectStackable = false;
+                })	.build());
+
+        // night vision spells
+        SpellRegistry.register(new NightVisionSpell.Builder(ModUtil.asLocation("night_vision"), 1, MagicThingsRarity.COMMON)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 4;
+                    $.duration = 1200;
+                    $.cooldown = 2400;
+                    $.effectStackable = false;
+                })	.build());
+
+        SpellRegistry.register(new NightVisionSpell.Builder(ModUtil.asLocation("greater_night_vision"), 3, MagicThingsRarity.UNCOMMON)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 6;
+                    $.duration = 2400;
+                    $.cooldown = 3600;
+                    $.effectStackable = false;
+                })	.build());
+
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("cat_sight"), 5, MagicThingsRarity.SCARCE)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 6;
+                    $.duration = 3600;
+                    $.cooldown = 3600;
+                    $.effectStackable = false;
+                })	.build());
+
+        // invisibility spells
+        SpellRegistry.register(new InvisibilitySpell.Builder(ModUtil.asLocation("invisibility"), 5, MagicThingsRarity.SCARCE)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 10;
+                    $.duration = 1200;
+                    $.cooldown = 2400;
+                    $.effectStackable = false;
+                })	.build());
+
+        SpellRegistry.register(new InvisibilitySpell.Builder(ModUtil.asLocation("greater_invisibility"), 7, MagicThingsRarity.RARE)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 20;
+                    $.duration = 2400;
+                    $.cooldown = 3600;
+                    $.effectStackable = false;
+                })	.build());
+
+        // water breathing spells
+        SpellRegistry.register(new WaterBreathingSpell.Builder(ModUtil.asLocation("water_breathing"), 2, MagicThingsRarity.COMMON)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 5;
+                    $.duration = 1200;
+                    $.cooldown = 2400;
+                    $.effectStackable = false;
+                })	.build());
+
+        SpellRegistry.register(new WaterBreathingSpell.Builder(ModUtil.asLocation("greater_water_breathing"), 4, MagicThingsRarity.SCARCE)
+                .withAmplifier(0)
+                .with($ -> {
+                    $.spellCost = 10;
+                    $.duration = 2400;
+                    $.cooldown = 2400;
                     $.effectStackable = false;
                 })	.build());
     }

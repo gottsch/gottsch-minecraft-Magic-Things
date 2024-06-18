@@ -121,45 +121,35 @@ public abstract class Spell implements ISpell {
     public double modifySpellCost(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
         return handler.modifySpellCost(getSpellCost());
-//        JewelryStoneTier stoneTier = handler.getStoneTier();
-//        double materialModifier = handler.getMaterial().getSpellCostFactor();
-//
-//        return getSpellCost() * materialModifier * (stoneTier != null ? stoneTier.getSpellCostFactor() : 1);
-    }
+   }
 
     public double modifyEffectAmount(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
         return handler.modifyEffectAmount(getEffectAmount());
-        //        JewelryStoneTier stoneTier = handler.getStoneTier();
-//        double materialModifier = handler.getMaterial().getSpellEffectAmountFactor();
-//        return getEffectAmount() * materialModifier * (stoneTier != null ? stoneTier.getSpellEffectAmountFactor() : 1);
-    }
+   }
 
     public long modifyCooldown(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
         return handler.modifyCooldown(getCooldown());
-        //        JewelryStoneTier stoneTier = handler.getStoneTier();
-//        double materialModifier = handler.getMaterial().getSpellCooldownFactor();
-//        return (long)(getCooldown() * materialModifier * (stoneTier != null ? stoneTier.getSpellCooldownFactor() : 1));
+   }
+
+    public long modifyDuration(ItemStack jewelry) {
+        IJewelryHandler handler = getHandler(jewelry);
+        return handler.modifyDuration(getDuration());
     }
 
     public long modifyFrequency(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
         return handler.modifyFrequency(getFrequency());
-//        JewelryStoneTier stoneTier = handler.getStoneTier();
-//        double materialModifier = handler.getMaterial().getSpellFrequencyFactor();
-//
-//        return (long)(
-//                getFrequency() * materialModifier * (stoneTier != null ? stoneTier.getSpellFrequencyFactor() : 1));
-    }
+   }
 
     public double modifyRange(ItemStack jewelry) {
         IJewelryHandler handler = jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
         return handler.modifyRange(getRange());
-//                JewelryStoneTier stoneTier = handler.getStoneTier();
-//        double materialModifier = handler.getMaterial().getSpellRangeFactor();
-//
-//        return getRange() * materialModifier * (stoneTier != null ? stoneTier.getSpellRangeFactor() : 1);
+   }
+
+    private IJewelryHandler getHandler(ItemStack jewelry) {
+        return  jewelry.getCapability(MagicThingsCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
     }
 
     @SuppressWarnings("deprecation")

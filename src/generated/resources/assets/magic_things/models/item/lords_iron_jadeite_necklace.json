@@ -1,0 +1,6 @@
+{
+  "parent": "magic_things:item/jewelry",
+  "textures": {
+    "layer0": "magic_things:item/jewelry/lords_iron_jadeite_necklace"
+  }
+}

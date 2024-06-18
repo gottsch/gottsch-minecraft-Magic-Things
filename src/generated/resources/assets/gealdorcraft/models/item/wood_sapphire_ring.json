@@ -1,6 +1,0 @@
-{
-  "parent": "gealdorcraft:item/jewelry",
-  "textures": {
-    "layer0": "gealdorcraft:item/jewelry/wood_sapphire_ring"
-  }
-}

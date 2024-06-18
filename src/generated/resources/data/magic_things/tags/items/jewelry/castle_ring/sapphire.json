@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "magic_things:sapphire",
+    {
+      "id": "treasure2:sapphire",
+      "required": false
+    }
+  ]
+}

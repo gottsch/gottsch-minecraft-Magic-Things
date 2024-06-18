@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "magic_things:onyx",
+    {
+      "id": "treasure2:onyx",
+      "required": false
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "magic_things:iron_bracelet",
+    "magic_things:iron_necklace",
+    "magic_things:iron_ring",
+    "magic_things:iron_topaz_bracelet",
+    "magic_things:iron_topaz_necklace",
+    "magic_things:iron_topaz_ring",
+    "magic_things:wood_ring",
+    "magic_things:wood_bracelet",
+    "magic_things:wood_necklace",
+    "magic_things:wood_topaz_ring",
+    "magic_things:wood_topaz_bracelet",
+    "magic_things:wood_topaz_necklace",
+    "magic_things:iron_hawk_ring",
+    "magic_things:peasants_fortune"
+  ]
+}

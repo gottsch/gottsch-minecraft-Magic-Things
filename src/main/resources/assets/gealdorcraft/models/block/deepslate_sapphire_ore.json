@@ -1,7 +1,0 @@
-{
-    "parent": "gealdorcraft:block/deepslate_ore_parent",
-    "textures": {
-    	"end": "gealdorcraft:block/deepslate_top_sapphire_ore",
-        "side": "gealdorcraft:block/deepslate_sapphire_ore"
-    }
-}

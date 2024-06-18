@@ -26,7 +26,7 @@ public class ItemEventHandler {
 		if (!(event.getItemStack().getItem() instanceof Gemstone) && event.getItemStack().is(MagicThingsTags.Items.STONES)) {
 //			event.getToolTip().add(new TranslatableComponent(LangUtil.tooltip("gemstone.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
 //			event.getToolTip().add(new TranslatableComponent(LangUtil.NEWLINE));
-			Gemstone.addHoverText(event.getItemStack(), event.getEntity().level, event.getToolTip(), TooltipFlag.Default.NORMAL);
+			Gemstone.addHoverText(event.getItemStack(), null, event.getToolTip(), TooltipFlag.Default.NORMAL);
 		}
 
 		// attach magic things recharge item tooltips to vanilla and other mod items
