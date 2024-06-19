@@ -1,0 +1,117 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "entryName": "random_jewelry",
+          "type": "minecraft:item",
+          "name": "magicthings:gold_ring",
+          "functions": [
+            {
+              "function": "magicthings:random_jewelry",
+              "rarities": ["scarce", "rare"]
+            },
+            {
+              "function": "magicthings:imbue_randomly",
+              "levels": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.2,
+          "looting_multiplier": 0.1
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "entryName": "random_jewelry",
+          "type": "minecraft:item",
+          "name": "magicthings:silver_ring",
+          "functions": [
+            {
+              "function": "magicthings:random_jewelry",
+              "rarities": ["uncommon", "scarce", "rare"]
+            }
+          ]          
+        },
+        {
+          "entryName": "random_spell",
+          "type": "minecraft:item",
+          "name": "magicthings:drain_scroll",
+          "functions": [
+            {
+              "function": "magicthings:random_spell",
+              "levels": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ]
+        },
+        {
+          "entryName": "random_stone",
+          "type": "minecraft:item",
+          "name": "magicthings:topaz",
+          "functions": [
+            {
+              "function": "magicthings:random_gemstone",
+              "count": 1,
+              "gemstones": ["diamond", "jadeite", "ruby", "white_pearl"]
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.3,
+          "looting_multiplier": 0.1
+        }
+      ]
+    },
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "entryName": "ring_recipe",
+          "type": "minecraft:item",
+          "name": "magicthings:ring_recipe"
+        },
+        {
+          "entryName": "bracelet_recipe",
+          "type": "minecraft:item",
+          "name": "magicthings:bracelet_recipe"
+        },
+        {
+          "entryName": "necklace_recipe",
+          "type": "minecraft:item",
+          "name": "magicthings:necklace_recipe"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.15,
+          "looting_multiplier": 0.1
+        }
+      ]
+    }
+  ]
+}

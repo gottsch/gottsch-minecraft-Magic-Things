@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "condition": "minecraft:alternative",
+      "terms": [
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:entities/enderman"
+        },
+        {
+          "condition": "forge:loot_table_id",
+          "loot_table_id": "minecraft:entities/vex"
+        }
+      ]
+    }
+  ],
+  "count": 1,
+  "rarity": "common",
+  "chance": 0.5,
+  "lootTable": "magicthings:entities/scarce",
+  "type": "magicthings:loot_modifier_by_loot_table"
+}

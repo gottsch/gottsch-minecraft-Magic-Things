@@ -91,7 +91,7 @@ public class ItemModelsProvider extends ItemModelProvider {
 
 		// special / non-standard jewelry
 		singleTexture(MagicThingsItems.SILBROS_RING_OF_VITALITY.getId().getPath()
-				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/sibros_ring_of_vitality"));
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/silbros_ring_of_vitality"));
 
 		singleTexture(MagicThingsItems.STRONGMANS_BRACERS.getId().getPath()
 				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/wood_bracelet"));

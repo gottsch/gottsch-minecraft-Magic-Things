@@ -1,6 +1,0 @@
-{
-  "parent": "magic_things:item/jewelry",
-  "textures": {
-    "layer0": "magic_things:item/jewelry/great_copper_onyx_bracelet"
-  }
-}

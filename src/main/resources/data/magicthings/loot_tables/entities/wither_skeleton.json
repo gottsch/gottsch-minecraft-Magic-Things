@@ -1,0 +1,56 @@
+{
+  "type": "minecraft:entity",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "entryName": "random_jewelry",
+          "type": "minecraft:item",
+          "name": "magicthings:bone_ring",
+          "functions": [
+            {
+              "function": "magicthings:random_jewelry",
+              "rarities": ["scarce", "rare"]
+            }
+          ]          
+        },
+        {
+          "entryName": "random_spell",
+          "type": "minecraft:item",
+          "name": "magicthings:drain_scroll",
+          "functions": [
+            {
+              "function": "magicthings:random_spell",
+              "levels": {
+                "min": 3,
+                "max": 7
+              }
+            }
+          ]
+        },
+        {
+          "entryName": "random_stone",
+          "type": "minecraft:item",
+          "name": "magicthings:topaz",
+          "functions": [
+            {
+              "function": "magicthings:random_gemstone",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:killed_by_player"
+        },
+        {
+          "condition": "minecraft:random_chance_with_looting",
+          "chance": 0.1,
+          "looting_multiplier": 0.1
+        }
+      ]
+    }
+  ]
+}

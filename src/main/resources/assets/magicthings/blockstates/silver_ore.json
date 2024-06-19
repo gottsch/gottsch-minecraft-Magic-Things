@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "": { "model": "magicthings:block/silver_ore" }
+    }
+}

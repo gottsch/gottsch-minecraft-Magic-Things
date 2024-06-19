@@ -1,0 +1,7 @@
+{
+    "parent": "magicthings:block/deepslate_ore_parent",
+    "textures": {
+    	"end": "magicthings:block/deepslate_top_sapphire_ore",
+        "side": "magicthings:block/deepslate_sapphire_ore"
+    }
+}

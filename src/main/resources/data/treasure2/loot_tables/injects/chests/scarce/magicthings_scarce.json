@@ -7,7 +7,7 @@
         {
           "entryName": "jewelry0",
           "type": "item",
-          "name": "magic_things:silver_ring",
+          "name": "magicthings:silver_ring",
           "weight": 5,
           "conditions": [
             {
@@ -17,11 +17,11 @@
           ],
           "functions": [
             {
-              "function": "magic_things:random_jewelry",
+              "function": "magicthings:random_jewelry",
               "rarities": ["common", "uncommon","scarce"]
             },
             {
-              "function": "magic_things:imbue_randomly",
+              "function": "magicthings:imbue_randomly",
               "levels": {
                 "min": 2,
                 "max": 6
@@ -32,7 +32,7 @@
         {
           "entryName": "jewelry1",
           "type": "item",
-          "name": "magic_things:copper_ring",
+          "name": "magicthings:copper_ring",
           "weight": 10,
           "conditions": [
             {
@@ -42,7 +42,7 @@
           ],
           "functions": [
             {
-              "function": "magic_things:random_jewelry",
+              "function": "magicthings:random_jewelry",
               "rarities": ["uncommon","scarce"]
             }
           ]
@@ -50,13 +50,13 @@
         {
           "entryName": "jadeite_stone",
           "type": "minecraft:item",
-          "name": "magic_things:jadeite",
+          "name": "magicthings:jadeite",
           "weight": 5
         },
         {
           "entryName": "silver_castle_ring",
           "type": "item",
-          "name": "magic_things:silver_castle_ring",
+          "name": "magicthings:silver_castle_ring",
           "weight": 1,
           "conditions": [
             {
@@ -69,7 +69,7 @@
         {
           "entryName": "adephagias_bounty",
           "type": "item",
-          "name": "magic_things:adephagias_bounty",
+          "name": "magicthings:adephagias_bounty",
           "weight": 1,
           "conditions": [
             {
@@ -82,7 +82,7 @@
         {
           "entryName": "medics_token",
           "type": "item",
-          "name": "magic_things:medics_token",
+          "name": "magicthings:medics_token",
           "weight": 1,
           "conditions": [
             {
@@ -95,7 +95,7 @@
         {
           "entryName": "random_spell",
           "type": "minecraft:item",
-          "name": "magic_things:healing_scroll",
+          "name": "magicthings:healing_scroll",
           "weight": 5,
           "conditions": [
             {
@@ -106,7 +106,7 @@
           ],
           "functions": [
             {
-              "function": "magic_things:random_spell",
+              "function": "magicthings:random_spell",
               "levels": {
                 "min": 2,
                 "max": 6
@@ -117,7 +117,7 @@
         {
           "entryName": "recharge_scroll",
           "type": "minecraft:item",
-          "name": "magic_things:recharge_scroll",
+          "name": "magicthings:recharge_scroll",
           "weight": 3,
           "conditions": [{
             "condition": "minecraft:random_chance_with_looting",
@@ -133,17 +133,17 @@
         {
           "entryName": "ring_recipe",
           "type": "minecraft:item",
-          "name": "magic_things:ring_recipe"
+          "name": "magicthings:ring_recipe"
         },
         {
           "entryName": "bracelet_recipe",
           "type": "minecraft:item",
-          "name": "magic_things:bracelet_recipe"
+          "name": "magicthings:bracelet_recipe"
         },
         {
           "entryName": "necklace_recipe",
           "type": "minecraft:item",
-          "name": "magic_things:necklace_recipe"
+          "name": "magicthings:necklace_recipe"
         }
       ],
       "conditions": [

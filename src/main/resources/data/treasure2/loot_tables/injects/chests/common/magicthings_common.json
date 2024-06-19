@@ -44,7 +44,7 @@
 			{
 				"entryName": "random_spell",
 				"type": "minecraft:item",
-				"name": "magic_things:drain_scroll",
+				"name": "magicthings:drain_scroll",
 				"weight": 5,
 				"conditions": [{
 					"condition": "random_chance",
@@ -52,7 +52,7 @@
 				}],
 				"functions": [
 					{
-						"function": "magic_things:random_spell",
+						"function": "magicthings:random_spell",
 						"levels": {
 							"min": 1,
 							"max": 2
@@ -63,7 +63,7 @@
 			{
 				"entryName": "recharge_scroll",
 				"type": "minecraft:item",
-				"name": "magic_things:recharge_scroll",
+				"name": "magicthings:recharge_scroll",
 				"weight": 3,
 				"conditions": [{
 					"condition": "random_chance",

@@ -270,14 +270,23 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("spell.name.strength"), "Strength");
         add(LangUtil.tooltip("spell.name.greater_strength"), "Greater Strength");
         add(LangUtil.tooltip("spell.name.giant_strength"), "Giant Strength");
-        add(LangUtil.tooltip("spell.strength.rate"), "Bestows Strength effect for x seconds. Cooldown: %s seconds.");
+        add(LangUtil.tooltip("spell.strength.rate"), "Bestows Strength effect for %s seconds. Cooldown: %s seconds.");
 
         ///// speed /////
         add(LangUtil.tooltip("spell.name.speed"), "Speed");
         add(LangUtil.tooltip("spell.name.greater_speed"), "Greater Speed");
         add(LangUtil.tooltip("spell.name.horse_power"), "Horse Power");
+        add(LangUtil.tooltip("spell.speed.rate"), "Bestows Speed effect for %s seconds. Cooldown: %s seconds.");
 
-        add(LangUtil.tooltip("spell.speed.rate"), "Bestows Speed effect for x seconds. Cooldown: %s seconds.");
+        ///// night vision /////
+        add(LangUtil.tooltip("spell.name.night_vision"), "Night Vision");
+        add(LangUtil.tooltip("spell.name.greater_night_vision"), "Greater Night Vision");
+        add(LangUtil.tooltip("spell.name.cat_sight"), "Cat Sight");
+        add(LangUtil.tooltip("spell.night_vision.rate"), "Bestows Night Vision effect for %s seconds. Cooldown: %s seconds.");
+
+        ///// invisibility /////
+        add(LangUtil.tooltip("spell.name.invisibility"), "Invisibility");
+        add(LangUtil.tooltip("spell.name.greater_night_vision"), "Greater Night Vision");
 
         // scrolls
         add(LangUtil.tooltip("spell_scroll.usage"), "Place on an anvil with Magic Things jewelry to combine.");

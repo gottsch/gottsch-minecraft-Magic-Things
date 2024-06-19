@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "magic_things:item/ring_recipe_scroll"
-  }
-}

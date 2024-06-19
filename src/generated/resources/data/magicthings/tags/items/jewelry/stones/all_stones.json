@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#magicthings:jewelry/stones/tier/tier1",
+    "#magicthings:jewelry/stones/tier/tier2",
+    "#magicthings:jewelry/stones/tier/tier3",
+    "#magicthings:jewelry/stones/tier/tier4",
+    "#magicthings:jewelry/stones/tier/tier5",
+    "#magicthings:jewelry/stones/tier/tier6"
+  ]
+}

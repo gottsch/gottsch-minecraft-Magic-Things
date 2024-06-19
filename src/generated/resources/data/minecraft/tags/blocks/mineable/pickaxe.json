@@ -1,17 +1,17 @@
 {
   "replace": false,
   "values": [
-    "magic_things:jadeite_ore",
-    "magic_things:onyx_ore",
-    "magic_things:topaz_ore",
-    "magic_things:ruby_ore",
-    "magic_things:sapphire_ore",
-    "magic_things:silver_ore",
-    "magic_things:deepslate_jadeite_ore",
-    "magic_things:deepslate_onyx_ore",
-    "magic_things:deepslate_topaz_ore",
-    "magic_things:deepslate_ruby_ore",
-    "magic_things:deepslate_sapphire_ore",
-    "magic_things:deepslate_silver_ore"
+    "magicthings:jadeite_ore",
+    "magicthings:onyx_ore",
+    "magicthings:topaz_ore",
+    "magicthings:ruby_ore",
+    "magicthings:sapphire_ore",
+    "magicthings:silver_ore",
+    "magicthings:deepslate_jadeite_ore",
+    "magicthings:deepslate_onyx_ore",
+    "magicthings:deepslate_topaz_ore",
+    "magicthings:deepslate_ruby_ore",
+    "magicthings:deepslate_sapphire_ore",
+    "magicthings:deepslate_silver_ore"
   ]
 }

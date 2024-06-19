@@ -14,7 +14,7 @@ issueTrackerURL="https://github.com/gottsch/gottsch-minecraft-Magic-Things/issue
 [[mods]] #mandatory
 
 # The modid of the mod
-modId="magic_things" #mandatory
+modId="magicthings" #mandatory
 
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version="1.0.0" #mandatory
@@ -26,7 +26,7 @@ displayName="Magic Things" #mandatory
 updateJSONURL="https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Magic-Things/1.18.2-master/update.json" #optional
 
 # A URL for the "homepage" for this mod, displayed in the mod UI
-displayURL="https://www.curseforge.com/minecraft/mc-mods/magic_things" #optional
+displayURL="https://www.curseforge.com/minecraft/mc-mods/magicthings" #optional
 
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="magic-things-curseforge-logo.png" #optional
@@ -41,7 +41,7 @@ authors="gottsch" #optional
 description=""
 
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.magic_things]] #optional
+[[dependencies.magicthings]] #optional
     # the modid of the dependency
     modId="forge" #mandatory
     # Does this dependency have to exist - if not, ordering below must be specified
@@ -53,21 +53,21 @@ description=""
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
 # Here's another dependency
-[[dependencies.magic_things]]
+[[dependencies.magicthings]]
     modId="minecraft"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.magic_things]]
+[[dependencies.magicthings]]
     modId="gottschcore"
     mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[2.0.0,)"
     ordering="BEFORE"
     side="BOTH"
-[[dependencies.magic_things]]
+[[dependencies.magicthings]]
     modId="configured"
     mandatory=false
     versionRange="[1.5.1,)"

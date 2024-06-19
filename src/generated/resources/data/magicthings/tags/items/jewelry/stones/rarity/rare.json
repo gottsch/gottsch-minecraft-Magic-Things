@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "magicthings:ruby",
+    "magicthings:white_pearl",
+    {
+      "id": "treasure2:ruby",
+      "required": false
+    },
+    {
+      "id": "treasure2:white_pearl",
+      "required": false
+    }
+  ]
+}

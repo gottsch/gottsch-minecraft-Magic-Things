@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "magic_things:white_pearl",
-    "magic_things:black_pearl"
+    "magicthings:white_pearl",
+    "magicthings:black_pearl"
   ]
 }

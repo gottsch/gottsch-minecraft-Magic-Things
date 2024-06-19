@@ -7,7 +7,7 @@
         {
           "entryName": "jewelry0",
           "type": "item",
-          "name": "magic_things:copper_ring",
+          "name": "magicthings:copper_ring",
           "weight": 5,
           "conditions": [
             {
@@ -17,7 +17,7 @@
           ],
           "functions": [
             {
-              "function": "magic_things:random_jewelry",
+              "function": "magicthings:random_jewelry",
               "rarity": "scarce"
             }
           ]
@@ -25,7 +25,7 @@
         {
           "entryName": "jewelry1",
           "type": "item",
-          "name": "magic_things:iron_ring",
+          "name": "magicthings:iron_ring",
           "weight": 10,
           "conditions": [
             {
@@ -35,7 +35,7 @@
           ],
           "functions": [
             {
-              "function": "magic_things:random_jewelry",
+              "function": "magicthings:random_jewelry",
               "rarity": "uncommon"
             }
           ]
@@ -43,7 +43,7 @@
         {
           "entryName": "peasants_fortune",
           "type": "item",
-          "name": "magic_things:peasants_fortune",
+          "name": "magicthings:peasants_fortune",
           "weight": 1,
           "conditions": [
             {
@@ -56,7 +56,7 @@
         {
           "entryName": "random_spell",
           "type": "minecraft:item",
-          "name": "magic_things:healing_scroll",
+          "name": "magicthings:healing_scroll",
           "weight": 5,
           "conditions": [
             {
@@ -67,7 +67,7 @@
           ],
           "functions": [
             {
-              "function": "magic_things:random_spell",
+              "function": "magicthings:random_spell",
               "levels": {
                 "min": 2,
                 "max": 4
@@ -78,7 +78,7 @@
         {
           "entryName": "recharge_scroll",
           "type": "minecraft:item",
-          "name": "magic_things:recharge_scroll",
+          "name": "magicthings:recharge_scroll",
           "weight": 3,
           "conditions": [{
             "condition": "random_chance",
@@ -93,17 +93,17 @@
         {
           "entryName": "ring_recipe",
           "type": "minecraft:item",
-          "name": "magic_things:ring_recipe"
+          "name": "magicthings:ring_recipe"
         },
         {
           "entryName": "bracelet_recipe",
           "type": "minecraft:item",
-          "name": "magic_things:bracelet_recipe"
+          "name": "magicthings:bracelet_recipe"
         },
         {
           "entryName": "necklace_recipe",
           "type": "minecraft:item",
-          "name": "magic_things:necklace_recipe"
+          "name": "magicthings:necklace_recipe"
         }
       ],
       "conditions": [

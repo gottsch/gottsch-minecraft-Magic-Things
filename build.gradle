@@ -34,7 +34,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'magic_things'
+            property 'forge.enabledGameTestNamespaces', 'magicthings'
 
             mods {
                gealdroncraft {
@@ -54,7 +54,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'magic_things'
+            property 'forge.enabledGameTestNamespaces', 'magicthings'
 
             mods {
                gealdroncraft {
@@ -70,7 +70,7 @@ minecraft {
              property 'forge.logging.console.level', 'debug'
 
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
-            property 'forge.enabledGameTestNamespaces', 'magic_things'
+            property 'forge.enabledGameTestNamespaces', 'magicthings'
 
             mods {
                gealdroncraft {
@@ -84,7 +84,7 @@ minecraft {
 
             property 'forge.logging.markers', 'REGISTRIES'
            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'magic_things', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', 'magicthings', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
 
             mods {
                gealdroncraft {

@@ -48,7 +48,7 @@ public class MagicThings {
 	// logger
 	public static Logger LOGGER = LogManager.getLogger(MagicThings.MOD_ID);
 
-	public static final String MOD_ID = "magic_things"; //"magic_things"
+	public static final String MOD_ID = "magicthings"; //"magic_things"
 
 	/**
 	 * 

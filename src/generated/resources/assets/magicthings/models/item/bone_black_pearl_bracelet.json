@@ -1,0 +1,6 @@
+{
+  "parent": "magicthings:item/jewelry",
+  "textures": {
+    "layer0": "magicthings:item/jewelry/bone_black_pearl_bracelet"
+  }
+}

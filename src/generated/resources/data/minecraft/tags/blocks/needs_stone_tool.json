@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "magic_things:silver_ore",
-    "magic_things:deepslate_silver_ore"
+    "magicthings:silver_ore",
+    "magicthings:deepslate_silver_ore"
   ]
 }

@@ -1,8 +1,8 @@
 {
   "replace": false,
   "values": [
-    "magic_things:topaz",
-    "magic_things:onyx",
-    "magic_things:jadeite"
+    "magicthings:topaz",
+    "magicthings:onyx",
+    "magicthings:jadeite"
   ]
 }
