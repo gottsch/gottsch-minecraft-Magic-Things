@@ -212,12 +212,22 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		// TODO is it better to include the specials in the rarity map and randomly select OR
 		// TODO manually include in the loot tables?
 		// explicitly categorize special jewelry
+		tag(MagicThingsTags.Items.JEWELRY_COMMON).add(MagicThingsItems.SILBROS_RING_OF_VITALITY.get());
+		tag(MagicThingsTags.Items.JEWELRY_COMMON).add(MagicThingsItems.STRONGMANS_BRACERS.get());
 		tag(MagicThingsTags.Items.JEWELRY_COMMON).add(MagicThingsItems.PEASANTS_FORTUNE.get());
+
+		tag(MagicThingsTags.Items.JEWELRY_UNCOMMON).add(MagicThingsItems.MALDRITCHS_FIRST_AMULET.get());
+		tag(MagicThingsTags.Items.JEWELRY_UNCOMMON).add(MagicThingsItems.AQUA_RING.get());
+		tag(MagicThingsTags.Items.JEWELRY_UNCOMMON).add(MagicThingsItems.AMULET_OF_DEFENCE.get());
+
+		tag(MagicThingsTags.Items.JEWELRY_SCARCE).add(MagicThingsItems.JOURNEYMANS_BANDS.get());
 		tag(MagicThingsTags.Items.JEWELRY_SCARCE).add(MagicThingsItems.ADEPHAGIAS_BOUNTY.get());
 		tag(MagicThingsTags.Items.JEWELRY_SCARCE).add(MagicThingsItems.MEDICS_TOKEN.get());
+
 		tag(MagicThingsTags.Items.JEWELRY_RARE).add(MagicThingsItems.SALANDAARS_WARD.get());
 		tag(MagicThingsTags.Items.JEWELRY_RARE).add(MagicThingsItems.ANGELS_RING.get());
 		tag(MagicThingsTags.Items.JEWELRY_RARE).add(MagicThingsItems.RING_OF_FORTITUDE.get());
+
 		tag(MagicThingsTags.Items.JEWELRY_EPIC).add(MagicThingsItems.RING_LIFE_DEATH.get());
 		tag(MagicThingsTags.Items.JEWELRY_EPIC).add(MagicThingsItems.EYE_OF_THE_PHOENIX.get());
 

@@ -7,12 +7,15 @@ import mod.gottsch.forge.magic_things.core.util.ModUtil;
  *
  */
 public class MagicThingsSpells {
+    public static final String HEALING = "healing";
     public static final String GREATER_HEALING = "greater_healing";
     public static final String REGENERATION = "regeneration";
     public static final String SATIETY = "satiety";
     public static final String MANA_TOWER_SHIELD = "mana_tower_shield";
     public static final String MANA_PAVISE_SHIELD = "mana_pavise_shield";
     public static final String CHEAT_DEATH = "cheat_death";
+    public static final String HARM = "harm";
+    public static final String DRAIN = "drain";
     public static final String GREATER_DRAIN = "greater_drain";
     public static final String DESICCATE = "desiccate";
     public static final String GHOSTLY_ARMOR = "ghostly_armor";
@@ -21,7 +24,13 @@ public class MagicThingsSpells {
     public static final String REFLECTION = "reflection";
     public static final String FIRE_RESISTANCE = "fire_resistance";
     public static final String FIRE_WARD = "fire_ward";
+    public static final String MAGIC_RESISTANCE = "magic_resistance";
     public static final String BLESSING_OF_THE_PHOENIX = "blessing_of_the_phoenix";
+    public static final String QUICK_STRENGTH = "quick_strength";
+    public static final String STRENGTH = "strength";
+    public static final String SPEED = "speed";
+    public static final String NIGHT_VISION = "night_vision";
+    public static final String WATER_BREATHING = "water_breathing";
 
     // TODO need to change variable name
     // default spell
@@ -32,6 +41,11 @@ public class MagicThingsSpells {
                 $.frequency = 200; // 10 seconds
                 $.effectStackable = true;
             }).build());
+
+    public static final ISpell MAGIC_RESISTANCE_SPELL;
+    public static final ISpell NIGHT_VISION_SPELL;
+    public static final ISpell SPEED_SPELL;
+    public static final ISpell WATER_BREATHING_SPELL;
 
     // NOTE - this spell is not registered as it only occurs on a special item (belt of silbro)
    public static final ISpell SILBROS_INVISIBILITY = new InvisibilitySpell.Builder(ModUtil.asLocation("silbros_invisibility"), 8, MagicThingsRarity.EPIC)
@@ -195,7 +209,7 @@ public class MagicThingsSpells {
         })	.build());
 
         ///// magic resistance spells /////
-        SpellRegistry.register(new MagicResistanceSpell.Builder(ModUtil.asLocation("magic_resistance"), 2, MagicThingsRarity.COMMON).with($ -> {
+        MAGIC_RESISTANCE_SPELL = SpellRegistry.register(new MagicResistanceSpell.Builder(ModUtil.asLocation(MAGIC_RESISTANCE), 2, MagicThingsRarity.COMMON).with($ -> {
             $.spellCost = 0;
             $.effectAmount = 0.3;
             $.effectStackable = true;
@@ -292,7 +306,7 @@ public class MagicThingsSpells {
         })	.build());
 
         // harm spells
-        SpellRegistry.register(new HarmSpell.Builder(ModUtil.asLocation("harm"), 2, MagicThingsRarity.COMMON).with($ -> {
+        SpellRegistry.register(new HarmSpell.Builder(ModUtil.asLocation(HARM), 2, MagicThingsRarity.COMMON).with($ -> {
             $.spellCost = 2; // cost = min(spellCost, reflected amount)
             $.effectAmount = 2.0;
             $.cooldown = 200; // 10 seconds
@@ -317,7 +331,7 @@ public class MagicThingsSpells {
         })	.build());
 
         // strength spells
-        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("quick_strength"), 1, MagicThingsRarity.COMMON)
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation(QUICK_STRENGTH), 1, MagicThingsRarity.COMMON)
             .withAmplifier(0)
                 .with($ -> {
                 $.spellCost = 4; // cost = min(spellCost, reflected amount)
@@ -326,7 +340,7 @@ public class MagicThingsSpells {
                 $.effectStackable = false;
             })	.build());
 
-        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("strength"), 3, MagicThingsRarity.UNCOMMON)
+        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation(STRENGTH), 3, MagicThingsRarity.UNCOMMON)
                 .withAmplifier(0)
                 .with($ -> {
                     $.spellCost = 6; // cost = min(spellCost, reflected amount)
@@ -354,7 +368,7 @@ public class MagicThingsSpells {
                 })	.build());
 
         // speed spells
-        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("speed"), 2, MagicThingsRarity.COMMON)
+        SPEED_SPELL = SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation(SPEED), 2, MagicThingsRarity.COMMON)
                 .withAmplifier(0)
                 .with($ -> {
                     $.spellCost = 4; // cost = min(spellCost, reflected amount)
@@ -382,7 +396,7 @@ public class MagicThingsSpells {
                 })	.build());
 
         // night vision spells
-        SpellRegistry.register(new NightVisionSpell.Builder(ModUtil.asLocation("night_vision"), 1, MagicThingsRarity.COMMON)
+        NIGHT_VISION_SPELL = SpellRegistry.register(new NightVisionSpell.Builder(ModUtil.asLocation(NIGHT_VISION), 1, MagicThingsRarity.COMMON)
                 .withAmplifier(0)
                 .with($ -> {
                     $.spellCost = 4;
@@ -429,7 +443,7 @@ public class MagicThingsSpells {
                 })	.build());
 
         // water breathing spells
-        SpellRegistry.register(new WaterBreathingSpell.Builder(ModUtil.asLocation("water_breathing"), 2, MagicThingsRarity.COMMON)
+        WATER_BREATHING_SPELL = SpellRegistry.register(new WaterBreathingSpell.Builder(ModUtil.asLocation(WATER_BREATHING), 2, MagicThingsRarity.COMMON)
                 .withAmplifier(0)
                 .with($ -> {
                     $.spellCost = 5;

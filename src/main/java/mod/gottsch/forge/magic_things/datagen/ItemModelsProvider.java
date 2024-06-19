@@ -90,8 +90,26 @@ public class ItemModelsProvider extends ItemModelProvider {
 		});
 
 		// special / non-standard jewelry
+		singleTexture(MagicThingsItems.SILBROS_RING_OF_VITALITY.getId().getPath()
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/sibros_ring_of_vitality"));
+
+		singleTexture(MagicThingsItems.STRONGMANS_BRACERS.getId().getPath()
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/wood_bracelet"));
+
+		singleTexture(MagicThingsItems.MALDRITCHS_FIRST_AMULET.getId().getPath()
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/bone_onyx_necklace"));
+
 		singleTexture(MagicThingsItems.PEASANTS_FORTUNE.getId().getPath()
 				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/great_iron_ring"));
+
+		singleTexture(MagicThingsItems.AQUA_RING.getId().getPath()
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/silver_topaz_ring"));
+
+		singleTexture(MagicThingsItems.AMULET_OF_DEFENCE.getId().getPath()
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/copper_topaz_necklace"));
+
+		singleTexture(MagicThingsItems.JOURNEYMANS_BANDS.getId().getPath()
+				, modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/great_gold_jadeite_bracelet"));
 
 		singleTexture(MagicThingsItems.MEDICS_TOKEN.getId().getPath(), modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/medics_token"));
 		singleTexture(MagicThingsItems.ADEPHAGIAS_BOUNTY.getId().getPath(), modLoc("item/jewelry"), "layer0", modLoc("item/jewelry/adephagias_bounty"));

@@ -37,7 +37,8 @@ public enum JewelryType implements IJewelryType {
     POCKET(3, "pocket"),
     EARRING(4, "earring"),
 	BROACH(5, "broach"),
-	CHARM(6, "charm");
+	CHARM(6, "charm"),
+	BELT(7, "belt");
 	
 	private static final Map<Integer, IEnum> codes = new HashMap<Integer, IEnum>();
 	private static final Map<String, IEnum> values = new HashMap<String, IEnum>();

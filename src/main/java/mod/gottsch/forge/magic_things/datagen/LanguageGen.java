@@ -64,7 +64,15 @@ public class LanguageGen extends LanguageProvider {
 		});
 
         // special jewelry
+        add(MagicThingsItems.SILBROS_RING_OF_VITALITY.get(), WordUtils.capitalizeFully("Silbro's Ring of Vitality"));
+        add(MagicThingsItems.STRONGMANS_BRACERS.get(), WordUtils.capitalizeFully("Strongman's Bracers"));
+        add(MagicThingsItems.MALDRITCHS_FIRST_AMULET.get(), WordUtils.capitalizeFully("Maldritch's First Amulet"));
+
         add(MagicThingsItems.PEASANTS_FORTUNE.get(), WordUtils.capitalizeFully("Peasant's Fortune"));
+        add(MagicThingsItems.AQUA_RING.get(), WordUtils.capitalizeFully("Aqua Ring"));
+        add(MagicThingsItems.AMULET_OF_DEFENCE.get(), WordUtils.capitalizeFully("Amulet of Defence"));
+        add(MagicThingsItems.JOURNEYMANS_BANDS.get(), WordUtils.capitalizeFully("Journeyman's Bands"));
+
         add(MagicThingsItems.MEDICS_TOKEN.get(), WordUtils.capitalizeFully("Medic's Token"));
         add(MagicThingsItems.ADEPHAGIAS_BOUNTY.get(), WordUtils.capitalizeFully("Adephagia's Bounty"));
         add(MagicThingsItems.ANGELS_RING.get(), WordUtils.capitalizeFully("Ring of Angels"));

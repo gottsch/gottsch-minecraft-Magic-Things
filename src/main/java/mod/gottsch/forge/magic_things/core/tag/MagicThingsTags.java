@@ -53,7 +53,7 @@ public class MagicThingsTags {
         public static final TagKey<Item> CURIOUS_RING = mod(CURIOS_MODID, JewelryType.RING.getValue());
         public static final TagKey<Item> CURIOUS_BRACELET = mod(CURIOS_MODID, JewelryType.BRACELET.getValue());
 //        public static final TagKey<Item> CURIOUS_CHARM = mod(CURIOS_MODID, "charm");
-        public static final TagKey<Item> CURIOUS_BELT = mod(CURIOS_MODID, "belt");
+        public static final TagKey<Item> CURIOUS_BELT = mod(CURIOS_MODID, JewelryType.BELT.getValue());
 
         // jewelry
         public static final TagKey<Item> RINGS = mod(MagicThings.MOD_ID, "jewelry/rings");
