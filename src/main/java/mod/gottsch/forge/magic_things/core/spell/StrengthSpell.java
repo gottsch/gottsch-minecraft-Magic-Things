@@ -64,16 +64,17 @@ public class StrengthSpell extends CooldownSpell {
 		return result;
 	}
 
-	// TODO add duration
 	@Override
 	public Component getSpellDesc() {
 		return new TranslatableComponent(LangUtil.tooltip("spell.strength.rate"),
+				MathUtil.r1d(getDuration() / 20.0),
 				MathUtil.r1d(getCooldown() / 20.0));
 	}
 
 	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		return new TranslatableComponent(LangUtil.tooltip("spell.strength.rate"),
+				MathUtil.r1d(modifyCooldown(jewelry) / 20.0),
 				MathUtil.r1d(modifyCooldown(jewelry) / 20.0));
 	}
 

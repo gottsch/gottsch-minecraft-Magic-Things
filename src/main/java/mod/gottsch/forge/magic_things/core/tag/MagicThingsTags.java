@@ -86,6 +86,8 @@ public class MagicThingsTags {
         public static final TagKey<Item> JEWELRY_SCARCE = mod(MagicThings.MOD_ID, "jewelry/rarity/scarce");
         public static final TagKey<Item> JEWELRY_RARE = mod(MagicThings.MOD_ID, "jewelry/rarity/rare");
         public static final TagKey<Item> JEWELRY_EPIC = mod(MagicThings.MOD_ID, "jewelry/rarity/epic");
+        public static final TagKey<Item> JEWELRY_LEGENDARY = mod(MagicThings.MOD_ID, "jewelry/rarity/legendary");
+        public static final TagKey<Item> JEWELRY_MYTHICAL = mod(MagicThings.MOD_ID, "jewelry/rarity/mythical");
 
         // stone tiers
         public static final TagKey<Item> STONE_TIER1 = mod(MagicThings.MOD_ID, "jewelry/stones/tier/tier1");

@@ -1,7 +1,7 @@
 {
   "pools": [
     {
-      "name": "common_jewelrys",
+      "name": "scarce_stuff",
       "rolls": 1,
       "entries": [
         {
@@ -21,7 +21,13 @@
               "rarity": "scarce"
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "name": "uncommon_stuff",
+      "rolls": 1,
+      "entries": [
         {
           "entryName": "jewelry1",
           "type": "item",
@@ -29,8 +35,9 @@
           "weight": 10,
           "conditions": [
             {
-              "condition": "random_chance",
-              "chance": 0.25
+              "condition": "minecraft:random_chance_with_looting",
+              "looting_multiplier": 0.1,
+              "chance": 0.75
             }
           ],
           "functions": [
@@ -41,15 +48,14 @@
           ]
         },
         {
-          "entryName": "peasants_fortune",
+          "entryName": "jewelry2",
           "type": "item",
-          "name": "magicthings:peasants_fortune",
-          "weight": 1,
-          "conditions": [
+          "name": "magicthings:iron_ring",
+          "weight": 5,
+          "functions": [
             {
-              "condition": "minecraft:random_chance_with_looting",
-              "chance": 0.25,
-              "looting_multiplier": 0.1
+              "function": "magicthings:random_jewelry",
+              "rarity": "common"
             }
           ]
         },
@@ -61,7 +67,7 @@
           "conditions": [
             {
               "condition": "minecraft:random_chance_with_looting",
-              "chance": 0.25,
+              "chance": 0.85,
               "looting_multiplier": 0.1
             }
           ],
@@ -80,14 +86,17 @@
           "type": "minecraft:item",
           "name": "magicthings:recharge_scroll",
           "weight": 3,
-          "conditions": [{
-            "condition": "random_chance",
-            "chance": 0.25
-          }]
+          "conditions": [
+            {
+              "condition": "random_chance",
+              "chance": 0.85
+            }
+          ]
         }
       ]
     },
     {
+      "name": "recipes",
       "rolls": 1,
       "entries": [
         {
@@ -109,8 +118,8 @@
       "conditions": [
         {
           "condition": "minecraft:random_chance_with_looting",
-          "chance": 0.1,
-          "looting_multiplier": 0.1
+          "looting_multiplier": 0.25,
+          "chance": 0.1
         }
       ]
     }

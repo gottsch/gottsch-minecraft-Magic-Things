@@ -18,7 +18,7 @@
         {
           "entryName": "random_spell",
           "type": "minecraft:item",
-          "name": "magicthings:drain_scroll",
+          "name": "magicthings:harm_scroll",
           "functions": [
             {
               "function": "magicthings:random_spell",

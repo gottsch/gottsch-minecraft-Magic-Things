@@ -106,6 +106,8 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		JEWELRY_RARITY_TAG_MAP.put(MagicThingsRarity.SCARCE, MagicThingsTags.Items.JEWELRY_SCARCE);
 		JEWELRY_RARITY_TAG_MAP.put(MagicThingsRarity.RARE, MagicThingsTags.Items.JEWELRY_RARE);
 		JEWELRY_RARITY_TAG_MAP.put(MagicThingsRarity.EPIC, MagicThingsTags.Items.JEWELRY_EPIC);
+		JEWELRY_RARITY_TAG_MAP.put(MagicThingsRarity.LEGENDARY, MagicThingsTags.Items.JEWELRY_LEGENDARY);
+		JEWELRY_RARITY_TAG_MAP.put(MagicThingsRarity.MYTHICAL, MagicThingsTags.Items.JEWELRY_MYTHICAL);
 
 		// default stone rarity mapping
 		Map<Item, IRarity> STONE_RARITY_MAP = Maps.newHashMap();
@@ -126,6 +128,7 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		MATERIAL_RARITY_MAP.put(JewelryMaterials.SILVER, MagicThingsRarity.SCARCE);
 		MATERIAL_RARITY_MAP.put(JewelryMaterials.GOLD, MagicThingsRarity.RARE);
 		MATERIAL_RARITY_MAP.put(JewelryMaterials.BONE, MagicThingsRarity.SCARCE);
+		// TODO add blood, shadow, atium, etc
 
 		// jewelry tools
 		tag(MagicThingsTags.Items.STONE_REMOVAL_TOOLS)
@@ -190,20 +193,32 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 					if (stoneRarity != null) {
 						rarity = MagicThingsRarity.getByCode(Math.max(stoneRarity.getCode(), materialRarity.getCode()));
 
-						if (handler.getJewelrySizeTier() != JewelrySizeTier.REGULAR && rarity.getCode() < 2) {
-							rarity = MagicThingsRarity.getByCode(rarity.getCode() + 1);
-						}
-					} else {
-						// check the material
-						if (handler.getJewelrySizeTier() != JewelrySizeTier.REGULAR && materialRarity.getCode() < 2) {
-							rarity = MagicThingsRarity.getByCode(rarity.getCode() + 1);
-						}
+//						if (handler.getJewelrySizeTier() != JewelrySizeTier.REGULAR && rarity.getCode() < 2) {
+//							rarity = MagicThingsRarity.getByCode(rarity.getCode() + 1);
+//						}
+						rarity = MagicThingsRarity.getByCode(rarity.getCode() + handler.getJewelrySizeTier().getCode());
+					}
+//					else {
+//						// check the material
+//						if (handler.getJewelrySizeTier() != JewelrySizeTier.REGULAR && materialRarity.getCode() < 2) {
+//							rarity = MagicThingsRarity.getByCode(rarity.getCode() + 1);
+//						}
+//					}
+					else {
+						rarity = MagicThingsRarity.getByCode(rarity.getCode() + handler.getJewelrySizeTier().getCode());
 					}
 					tag(JEWELRY_RARITY_TAG_MAP.get(rarity)).add(registryItem.get());
 				} else {
-					if (handler.getJewelrySizeTier() != JewelrySizeTier.REGULAR && materialRarity.getCode() < 2) {
-						rarity = MagicThingsRarity.getByCode(rarity.getCode() + 1);
-					}
+//					if (materialRarity.getCode() < 2) {
+						rarity = MagicThingsRarity.getByCode(rarity.getCode() + handler.getJewelrySizeTier().getCode());
+//					}
+//					if (handler.getJewelrySizeTier() != JewelrySizeTier.REGULAR) {
+//						if (materialRarity.getCode() < 2) {
+//							rarity = MagicThingsRarity.getByCode(rarity.getCode() + 2);
+//						} else {
+//							rarity = MagicThingsRarity.getByCode(rarity.getCode() + 1);
+//						}
+//					}
 					tag(JEWELRY_RARITY_TAG_MAP.get(rarity)).add(registryItem.get());
 				}
 			});
@@ -228,6 +243,7 @@ public class MagicThingsItemTagsProvider extends ItemTagsProvider {
 		tag(MagicThingsTags.Items.JEWELRY_RARE).add(MagicThingsItems.ANGELS_RING.get());
 		tag(MagicThingsTags.Items.JEWELRY_RARE).add(MagicThingsItems.RING_OF_FORTITUDE.get());
 
+		// TODO move to Legendary or mythical ?
 		tag(MagicThingsTags.Items.JEWELRY_EPIC).add(MagicThingsItems.RING_LIFE_DEATH.get());
 		tag(MagicThingsTags.Items.JEWELRY_EPIC).add(MagicThingsItems.EYE_OF_THE_PHOENIX.get());
 

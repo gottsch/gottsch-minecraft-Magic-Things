@@ -109,6 +109,11 @@
     "magicthings:wood_sapphire_ring",
     "magicthings:wood_white_pearl_ring",
     "magicthings:wood_black_pearl_ring",
-    "magicthings:iron_hawk_ring"
+    "magicthings:wood_hawk_ring",
+    "magicthings:iron_hawk_ring",
+    "magicthings:lords_iron_hawk_ring",
+    "magicthings:lords_copper_hawk_ring",
+    "magicthings:lords_silver_hawk_ring",
+    "magicthings:lords_gold_hawk_ring"
   ]
 }

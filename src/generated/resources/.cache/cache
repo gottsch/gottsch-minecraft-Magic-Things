@@ -1,4 +1,4 @@
-a429c5a93cb2b2d0e4b4448680d30efd9e034f7b assets/magicthings/lang/en_us.json
+b9510a2af139e924b55134abd06568bfa443f82d assets/magicthings/lang/en_us.json
 fe6fa82904faf584ec202e54997ff87d4a771139 assets/magicthings/models/item/adephagias_bounty.json
 a4e03d47f7db817f54fb9e7b9173bcb08b15efa5 assets/magicthings/models/item/amulet_of_defence.json
 c394cdab19cd543ba876e3f29aca06dd9db9e4a4 assets/magicthings/models/item/angels_ring.json
@@ -294,6 +294,7 @@ f26cba35cc46329529cd0ba295148815948f8a66 assets/magicthings/models/item/lords_bo
 2fcfcc9061a59738d1a51ea2fb7244a9f826923f assets/magicthings/models/item/lords_bone_white_pearl_necklace.json
 a943ce03c4d97f3aeff08f9ec0f86c8bceb15e0d assets/magicthings/models/item/lords_copper_black_pearl_necklace.json
 f7461d7e54f90c138a4ec77172282b3250facca5 assets/magicthings/models/item/lords_copper_diamond_necklace.json
+ce733fc49d044f82fa0667e5eefe2f85cfafb585 assets/magicthings/models/item/lords_copper_hawk_ring.json
 407d06e819d9c5d1f6820df1b150065eb30ea3cf assets/magicthings/models/item/lords_copper_jadeite_necklace.json
 c67c547d5a2da06eb7038e8d14808a02fce16ba4 assets/magicthings/models/item/lords_copper_necklace.json
 b4249e43e4ed04f6dfa5adf73b8065abf09a8b63 assets/magicthings/models/item/lords_copper_onyx_necklace.json
@@ -303,6 +304,7 @@ ffb0ff36a8f6b6b08b4857bfeac9f6d056c9bc60 assets/magicthings/models/item/lords_co
 d0b2a87e6a193f11f7e7452d3c93093a1e1d03f2 assets/magicthings/models/item/lords_copper_white_pearl_necklace.json
 d488bb8726edd7109766360156e6ef4189fcef25 assets/magicthings/models/item/lords_gold_black_pearl_necklace.json
 5820ef4342f1f2893ccf79917cbedb0d6d45e344 assets/magicthings/models/item/lords_gold_diamond_necklace.json
+6a334d400884991ebe81368a452cf75d5480265f assets/magicthings/models/item/lords_gold_hawk_ring.json
 12409ad290102e45b6ee903581b22804c5018bfd assets/magicthings/models/item/lords_gold_jadeite_necklace.json
 ed54596f65694f26253bc8530d9af5633f9e9649 assets/magicthings/models/item/lords_gold_necklace.json
 0e580bfbcd6d5ca41476216802e5f20612b93bb6 assets/magicthings/models/item/lords_gold_onyx_necklace.json
@@ -312,6 +314,7 @@ ed54596f65694f26253bc8530d9af5633f9e9649 assets/magicthings/models/item/lords_go
 1b2102148256c1dd050f18a828ca7f2b055530db assets/magicthings/models/item/lords_gold_white_pearl_necklace.json
 4526bf36075a9aaafd112737bf4b1f1cfac28b6f assets/magicthings/models/item/lords_iron_black_pearl_necklace.json
 13889f5614645f183a6b3c83639aaf2e3174bed2 assets/magicthings/models/item/lords_iron_diamond_necklace.json
+095f33d6e40e90116ee1881e2cb0d6e63f78592f assets/magicthings/models/item/lords_iron_hawk_ring.json
 c9f4d899e8c4439c96e75de8d353914b76a9a2f7 assets/magicthings/models/item/lords_iron_jadeite_necklace.json
 8dc88f62b6a710735639d0954c85acde2b9249b4 assets/magicthings/models/item/lords_iron_necklace.json
 ed9810d78a32e7a259488494f6218d9ec0e1cb6a assets/magicthings/models/item/lords_iron_onyx_necklace.json
@@ -321,6 +324,7 @@ db6eb9ce6d84396cf69c88da5e0f05faabfe443f assets/magicthings/models/item/lords_ir
 5f87165ce9b795b04788150d887646c93e08f460 assets/magicthings/models/item/lords_iron_white_pearl_necklace.json
 84bc35947f97cc21486f8ab741f5b1cb22dcc4f1 assets/magicthings/models/item/lords_silver_black_pearl_necklace.json
 d8e8b118357573cc4e4b66a80bb714f73214a4b4 assets/magicthings/models/item/lords_silver_diamond_necklace.json
+707ac0b580c2d55c7e5fc05facee286e85f6dde4 assets/magicthings/models/item/lords_silver_hawk_ring.json
 ff3af750f2d1cf5b71b8b9dc36cec4867d998c93 assets/magicthings/models/item/lords_silver_jadeite_necklace.json
 4875b498c83105dc39114add5006e8d345c8726c assets/magicthings/models/item/lords_silver_necklace.json
 04f71c0fc213f8156b9cc6e6efae24e71d1ac130 assets/magicthings/models/item/lords_silver_onyx_necklace.json
@@ -412,6 +416,7 @@ b1641907381ccb59dfcaeeb8915a6c7b3b9886b0 assets/magicthings/models/item/withers_
 8a242542ec90d8d177d745434b153a9a140655a5 assets/magicthings/models/item/wood_diamond_bracelet.json
 fd69de9ba689f7726823af405212f58c3f7e62ca assets/magicthings/models/item/wood_diamond_necklace.json
 5a53c1b615810d6adde57854f85a0955fb608fd3 assets/magicthings/models/item/wood_diamond_ring.json
+330dbaf0d99c359d5f73d6db750548b3a438c7d5 assets/magicthings/models/item/wood_hawk_ring.json
 0dd66836a4cc547f473bed18f2a5a62de7a8c8a2 assets/magicthings/models/item/wood_jadeite_bracelet.json
 b69a7bd47113aebeb72430b974effed9b473bb3b assets/magicthings/models/item/wood_jadeite_necklace.json
 80a86131203edc9571eef7d034f06c3b6520681d assets/magicthings/models/item/wood_jadeite_ring.json
@@ -435,7 +440,7 @@ a9155e3214b683c2fd9f19bf53be560a53fba63e assets/magicthings/models/item/wood_whi
 9ebdfe9e83d0f085d562bdff8f07316c31b80764 data/curios/tags/items/belt.json
 17efba18121b95290826fe086aeddd8bf1acd9bb data/curios/tags/items/bracelet.json
 13181b2bd7a20a30fe8e93fd6241075ac77d54ba data/curios/tags/items/necklace.json
-a694bf6a91254044ff2a53e889edb618b14be9c2 data/curios/tags/items/ring.json
+49d9ee4a7c18155824f6a22c43ca867333dcb564 data/curios/tags/items/ring.json
 7b6da57734eb4a7a80462aa25122641ab48034a6 data/forge/tags/items/gems/jade.json
 7b6da57734eb4a7a80462aa25122641ab48034a6 data/forge/tags/items/gems/jadeite.json
 4f1c00d7bc17cb22f13d032b5d10776cdc92173f data/forge/tags/items/gems/onyx.json
@@ -486,12 +491,14 @@ cc99405703a5c2b025a88785301b74553440f81d data/magicthings/recipes/silver_necklac
 6b25bd6d6a402d64b9c8aceacf23a5c4ab19629b data/magicthings/tags/items/jewelry/castle_ring/ruby.json
 9ded53b6addb34a3b24b6b90b3c706f6d8eb0e15 data/magicthings/tags/items/jewelry/castle_ring/sapphire.json
 13181b2bd7a20a30fe8e93fd6241075ac77d54ba data/magicthings/tags/items/jewelry/necklaces.json
-acf21c34e422ccd55e70836320cc5de2789dea66 data/magicthings/tags/items/jewelry/rarity/common.json
-a8486a040925db516064104c506f6a8599eb7eee data/magicthings/tags/items/jewelry/rarity/epic.json
-1de642f8caaeb968260e4c6acae1a44d51515767 data/magicthings/tags/items/jewelry/rarity/rare.json
-cc00313e2faa393082393b75551439580a026dbe data/magicthings/tags/items/jewelry/rarity/scarce.json
-d7f603a7da690c9ade6f7e36e6c51dffe0753b64 data/magicthings/tags/items/jewelry/rarity/uncommon.json
-a694bf6a91254044ff2a53e889edb618b14be9c2 data/magicthings/tags/items/jewelry/rings.json
+fe08bd215240a79755ecaa48caee424bc958cb07 data/magicthings/tags/items/jewelry/rarity/common.json
+75a0b40509b86b63f39a9fc078c6d19a8e955fa6 data/magicthings/tags/items/jewelry/rarity/epic.json
+71e18bca502f102cd38e799fd1b94ec1d0a999cd data/magicthings/tags/items/jewelry/rarity/legendary.json
+4647838d646dcaeca08779083b7f25b2a03eddc9 data/magicthings/tags/items/jewelry/rarity/mythical.json
+3e784c9ffb727ece8b72f2b2a50263a27ea95eeb data/magicthings/tags/items/jewelry/rarity/rare.json
+b02a123743c2d2b3094aa3984270e0fa6f7ce127 data/magicthings/tags/items/jewelry/rarity/scarce.json
+f957a2beeaa0326ee0d84c2981f671833f68d887 data/magicthings/tags/items/jewelry/rarity/uncommon.json
+49d9ee4a7c18155824f6a22c43ca867333dcb564 data/magicthings/tags/items/jewelry/rings.json
 c3b86ec0c15b47dffc8775466675e50251c2d6b3 data/magicthings/tags/items/jewelry/stones/all_stones.json
 9ab7a15a9ea2391dfa319b9bd2cfe9e22b9042e0 data/magicthings/tags/items/jewelry/stones/rarity/common.json
 5816cc27c96e6ccea5b0daaa51f72636af45e1a1 data/magicthings/tags/items/jewelry/stones/rarity/epic.json
@@ -507,14 +514,14 @@ e607463b534a2f7be3fee57bf0e1ea8496aaa8e5 data/magicthings/tags/items/jewelry/sto
 5816cc27c96e6ccea5b0daaa51f72636af45e1a1 data/magicthings/tags/items/jewelry/stones/tier/tier6.json
 75e026f5bd258965f20f5251d3a00f3338aa7d0a data/magicthings/tags/items/jewelry/tiers/materials/blood.json
 c53fe03e016d53c9404bef455f25a8e652602e05 data/magicthings/tags/items/jewelry/tiers/materials/bone.json
-301e6f5e4384b9bd5b44fa8628ef56ce12cccf40 data/magicthings/tags/items/jewelry/tiers/materials/copper.json
-72f645c8a4f0684c3573e47ad2d8fb2ee8787229 data/magicthings/tags/items/jewelry/tiers/materials/gold.json
-6b5d20bfadd11b1566ef92879c6d58e8f6369444 data/magicthings/tags/items/jewelry/tiers/materials/iron.json
-b1edc82440fe5fced657959c69343217c15cd009 data/magicthings/tags/items/jewelry/tiers/materials/silver.json
-001da2e1a05851f3b87f9bb24328c84e9c7e8ded data/magicthings/tags/items/jewelry/tiers/materials/wood.json
+753311107f73eac4ba785f6391b35081b90d90fd data/magicthings/tags/items/jewelry/tiers/materials/copper.json
+e421bf9a55b94a6db57a8b59cd51137db8f53818 data/magicthings/tags/items/jewelry/tiers/materials/gold.json
+dd32404294dafe07d8f5f5d88f56d36e37ad262e data/magicthings/tags/items/jewelry/tiers/materials/iron.json
+2405be88559132fc90c763de29e8d4bb192741dd data/magicthings/tags/items/jewelry/tiers/materials/silver.json
+76ffef1142990028cf3320f183f8528b4d7b7885 data/magicthings/tags/items/jewelry/tiers/materials/wood.json
 27ab5d6078848620c0804f68bc23587b6ad6a9cd data/magicthings/tags/items/jewelry/tiers/sizes/great.json
-b35962bc013874a6d5290cc990c637b227eabce0 data/magicthings/tags/items/jewelry/tiers/sizes/lords.json
-41ab9381bc8a485b30c832cddfdfd9275586ebaa data/magicthings/tags/items/jewelry/tiers/sizes/regular.json
+44ddc707b65382d771ae1031bcf3088ada4706c8 data/magicthings/tags/items/jewelry/tiers/sizes/lords.json
+4d5fab57cdff285afac12707b339457e2c087c22 data/magicthings/tags/items/jewelry/tiers/sizes/regular.json
 6e0e0642942877ba3786de4ca74379284b1d02e4 data/magicthings/tags/items/scrolls/spells.json
 9f165920f964dff731bcaa02f09bfea2f9bc1f4c data/magicthings/tags/items/tools/stone_removal.json
 3389bdfcb1c7d395263b7074c5b1219b4c6d8ac0 data/minecraft/tags/blocks/mineable/pickaxe.json

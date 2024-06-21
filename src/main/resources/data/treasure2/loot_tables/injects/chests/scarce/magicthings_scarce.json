@@ -1,7 +1,7 @@
 {
   "pools": [
     {
-      "name": "scarce_jewelry",
+      "name": "rare_stuff",
       "rolls": 1,
       "entries": [
         {
@@ -12,7 +12,32 @@
           "conditions": [
             {
               "condition": "random_chance",
-              "chance": 0.5
+              "chance": 0.1
+            }
+          ],
+          "functions": [
+            {
+              "function": "magicthings:random_jewelry",
+              "rarity": "rare"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "scarce_stuff",
+      "rolls": 1,
+      "entries": [
+        {
+          "entryName": "jewelry1",
+          "type": "item",
+          "name": "magicthings:silver_ring",
+          "weight": 5,
+          "conditions": [
+            {
+              "condition": "minecraft:random_chance_with_looting",
+              "looting_multiplier": 0.1,
+              "chance": 0.85
             }
           ],
           "functions": [
@@ -30,14 +55,15 @@
           ]
         },
         {
-          "entryName": "jewelry1",
+          "entryName": "jewelry2",
           "type": "item",
           "name": "magicthings:copper_ring",
           "weight": 10,
           "conditions": [
             {
-              "condition": "random_chance",
-              "chance": 0.75
+              "condition": "minecraft:random_chance_with_looting",
+              "looting_multiplier": 0.1,
+              "chance": 0.85
             }
           ],
           "functions": [
@@ -61,33 +87,7 @@
           "conditions": [
             {
               "condition": "minecraft:random_chance_with_looting",
-              "chance": 0.35,
-              "looting_multiplier": 0.1
-            }
-          ]
-        },
-        {
-          "entryName": "adephagias_bounty",
-          "type": "item",
-          "name": "magicthings:adephagias_bounty",
-          "weight": 1,
-          "conditions": [
-            {
-              "condition": "minecraft:random_chance_with_looting",
-              "chance": 0.25,
-              "looting_multiplier": 0.1
-            }
-          ]
-        },
-        {
-          "entryName": "medics_token",
-          "type": "item",
-          "name": "magicthings:medics_token",
-          "weight": 1,
-          "conditions": [
-            {
-              "condition": "minecraft:random_chance_with_looting",
-              "chance": 0.25,
+              "chance": 0.85,
               "looting_multiplier": 0.1
             }
           ]
@@ -100,7 +100,7 @@
           "conditions": [
             {
               "condition": "minecraft:random_chance_with_looting",
-              "chance": 0.5,
+              "chance": 0.85,
               "looting_multiplier": 0.1
             }
           ],
@@ -121,13 +121,14 @@
           "weight": 3,
           "conditions": [{
             "condition": "minecraft:random_chance_with_looting",
-            "chance": 0.5,
-            "looting_multiplier": 0.2
+            "chance": 0.85,
+            "looting_multiplier": 0.15
           }]
         }
       ]
     },
     {
+      "name": "recipes",
       "rolls": 1,
       "entries": [
         {
@@ -149,7 +150,7 @@
       "conditions": [
         {
           "condition": "minecraft:random_chance_with_looting",
-          "chance": 0.1,
+          "chance": 0.5,
           "looting_multiplier": 0.1
         }
       ]

@@ -177,6 +177,7 @@ public class LanguageGen extends LanguageProvider {
          */
         // lore
         add(LangUtil.tooltip("jewelry.castle_ring.lore"), "Castle rings contain an abundance of mana and durability.~Can only be affixed with Rubies & Sapphires.");
+        add(LangUtil.tooltip("jewelry.hawk_ring.lore"), "Hawk rings contain an abundance of mana and a higher max spell level.~Cannot be affixed with any gems.");
 
         /*
          * spells
@@ -286,7 +287,20 @@ public class LanguageGen extends LanguageProvider {
 
         ///// invisibility /////
         add(LangUtil.tooltip("spell.name.invisibility"), "Invisibility");
-        add(LangUtil.tooltip("spell.name.greater_night_vision"), "Greater Night Vision");
+        add(LangUtil.tooltip("spell.name.greater_invisibility"), "Greater Invisibility");
+        add(LangUtil.tooltip("spell.invisibility.rate"), "Bestows Invisibility effect for %s seconds. Cooldown: %s seconds.");
+
+        ///// water-breathing /////
+        add(LangUtil.tooltip("spell.name.water_breathing"), "Water Breathing");
+        add(LangUtil.tooltip("spell.name.greater_water_breathing"), "Greater Water Breathing");
+        add(LangUtil.tooltip("spell.water_breathing.rate"), "Bestows Water Breathing effect for %s seconds. Cooldown: %s seconds.");
+
+        ///// harm /////
+        add(LangUtil.tooltip("spell.name.harm"), "Harm");
+        add(LangUtil.tooltip("spell.name.mind_jab"), "Mind Jab");
+        add(LangUtil.tooltip("spell.name.mind_fist"), "Mind Fist");
+        add(LangUtil.tooltip("spell.harm.rate"), "Inflicts %s hp to a single mob within % blocks. Cooldown: %s seconds.");
+
 
         // scrolls
         add(LangUtil.tooltip("spell_scroll.usage"), "Place on an anvil with Magic Things jewelry to combine.");

@@ -414,7 +414,7 @@ public class MagicThingsSpells {
                     $.effectStackable = false;
                 })	.build());
 
-        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("cat_sight"), 5, MagicThingsRarity.SCARCE)
+        SpellRegistry.register(new NightVisionSpell.Builder(ModUtil.asLocation("cat_sight"), 5, MagicThingsRarity.SCARCE)
                 .withAmplifier(0)
                 .with($ -> {
                     $.spellCost = 6;

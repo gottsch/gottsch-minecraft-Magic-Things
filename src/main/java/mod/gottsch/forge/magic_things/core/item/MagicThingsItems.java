@@ -130,8 +130,9 @@ public class MagicThingsItems {
 					.withStone(Items.BEDROCK.getRegistryName())
 					.with($ -> {
 						$.spells.add(MagicThingsSpells.DEFAULT_HEALING.entity());
-						$.maxMana = 75;
-						$.maxRecharges = 1;
+						$.maxMana = 80;
+						$.maxRecharges = 0;
+						$.maxRepairs = 1;
 						$.maxLevel = 2;
 						$.acceptsAffixer = p -> {
 							return false;
@@ -150,6 +151,7 @@ public class MagicThingsItems {
 				.with($ -> {
 					$.spells.add(SpellRegistry.get(MagicThingsSpells.QUICK_STRENGTH).orElse(MagicThingsSpells.DEFAULT_HEALING).entity());
 					$.maxMana = 50;
+					$.maxUses = 100;
 					$.maxRecharges = 1;
 					$.maxLevel = 2;
 					$.acceptsAffixer = p -> {
@@ -168,6 +170,7 @@ public class MagicThingsItems {
 					.withSize(JewelrySizeTier.GREAT)
 					.withStone(Items.BEDROCK.getRegistryName())
 					.with($ -> {
+						$.maxUses = 125;
 						$.maxMana = 250;
 						$.maxRecharges = 1;
 						$.maxLevel = 4;
@@ -485,17 +488,36 @@ public class MagicThingsItems {
 		jewelry.addAll(lordsNecklacesBuilder.useStoneDefaults().deferredBuild());
 
 		// Hawk Ring POC
-		JewelryBuilder hawkRingBuilder = new JewelryBuilder(MagicThings.MOD_ID);
+		JewelryBuilder hawkRingBuilder = new HawkJewelryBuilder(MagicThings.MOD_ID);
 		jewelry.addAll(hawkRingBuilder
-				.materials(JewelryMaterials.IRON)
+				.materials(
+						JewelryMaterials.WOOD,
+						JewelryMaterials.IRON
+				)
 				.sizes(JewelrySizeTier.REGULAR)
 				.types(JewelryType.RING)
 				.with($ -> {
 					$.baseName = "hawk_ring";
-					$.maxMana = JewelryMaterials.IRON.getUses() * JewelryMaterials.IRON.getRepairs();
-					$.maxLevel = JewelryMaterials.IRON.getMaxLevel() + 1;
+					$.acceptsAffixer = p -> {return false;};
 				})
 				.deferredBuild()
+		);
+
+		JewelryBuilder hawkRingBuilder2 = new HawkJewelryBuilder(MagicThings.MOD_ID);
+		jewelry.addAll(hawkRingBuilder2
+						.materials(
+								JewelryMaterials.IRON,
+								JewelryMaterials.COPPER,
+								JewelryMaterials.SILVER,
+								JewelryMaterials.GOLD
+						)
+						.sizes(JewelrySizeTier.LORDS)
+						.types(JewelryType.RING)
+						.with($ -> {
+							$.baseName = "hawk_ring";
+							$.acceptsAffixer = p -> {return false;};
+						})
+						.deferredBuild()
 		);
 
 		jewelry.forEach(pair -> {
@@ -658,7 +680,7 @@ public class MagicThingsItems {
 									+ (stone == Items.AIR.getRegistryName() ? "" :  stone.getPath() + "_")
 									+ (StringUtils.isNotBlank(baseName) ? baseName : type.toString());
 
-							// build the adornment supplier
+							// build the jewelry supplier
 							Supplier<Jewelry> a = deferredCreateJewelry(type, material, size, stone);
 							MagicThings.LOGGER.debug("adding deferred jewelry item -> {}", name);
 
@@ -715,6 +737,36 @@ public class MagicThingsItems {
 
 		public String getModid() {
 			return modid;
+		}
+	}
+
+	public static class HawkJewelryBuilder extends JewelryBuilder {
+
+		public HawkJewelryBuilder(String modid) {
+			super(modid);
+		}
+
+		@Override
+		public Supplier<Jewelry> deferredCreateJewelry(JewelryType type, JewelryMaterial material, JewelrySizeTier size, ResourceLocation stone) {
+			return () -> {
+				Jewelry j = new Jewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
+					public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
+						IJewelryHandler handler = new JewelryHandler.Builder(type, material, stone, size)
+								.with($ -> {
+									$.baseName = HawkJewelryBuilder.this.getBaseName();
+									$.maxLevel = material.getMaxLevel() + 1;
+									$.maxUses = HawkJewelryBuilder.this.maxUses;
+									$.maxMana = material.getUses() * material.getRepairs();
+									$.maxRepairs = HawkJewelryBuilder.this.maxRepairs;
+									$.acceptsAffixer = HawkJewelryBuilder.this.acceptsAffixer;
+
+								})
+								.build();
+						return new JewelryCapability(handler);
+					}
+				};
+				return (Jewelry) j.setLoreKey("jewelry.hawk_ring.lore");
+			};
 		}
 	}
 }

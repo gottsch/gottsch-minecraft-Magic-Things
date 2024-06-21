@@ -69,7 +69,7 @@ public class HarmSpell extends CooldownSpell {
             double effectAmount = handler.modifyEffectAmount(getEffectAmount());
             for (Mob mob : mobs) {
                 boolean flag = mob.hurt(DamageSource.GENERIC, (float) effectAmount);
-            	// TODO add number of mobs to affect and break if reached
+            	// TODO add number of mobs to affect and break if reached - update: only going to affect 1 mob. else it is an Aura spell.
 				break;
 			}
 
@@ -82,14 +82,16 @@ public class HarmSpell extends CooldownSpell {
     @Override
     public Component getSpellDesc() {
         return new TranslatableComponent(LangUtil.tooltip("spell.harm.rate"),
-                MathUtil.r1d(getDuration() / 20.0),
+                MathUtil.r1d(getEffectAmount()),
+                MathUtil.r1d(getRange()),
                 MathUtil.r1d(getCooldown() / 20.0));
     }
 
     @Override
     public Component getSpellDesc(ItemStack jewelry) {
         return new TranslatableComponent(LangUtil.tooltip("spell.harm.rate"),
-                MathUtil.r1d(modifyDuration(jewelry) / 20.0),
+                MathUtil.r1d(modifyEffectAmount(jewelry)),
+                MathUtil.r1d(modifyRange(jewelry)),
                 MathUtil.r1d(modifyCooldown(jewelry) / 20.0));
     }
 

@@ -23,22 +23,13 @@
 				"name": "treasure2:iron_ring",
 				"weight": 10,
 				"conditions": [{
-					"condition": "random_chance",
-					"chance": 0.1
+					"condition": "minecraft:random_chance_with_looting",
+					"looting_multiplier": 0.1,
+					"chance": 0.75
 				}],
 				"functions": [{
 					"function": "treasure2:random_jewelry",
 					"rarity": "common"
-				}]
-			},
-			{
-				"entryName": "peasants_fortune",
-				"type": "item",
-				"name": "treasure2:peasants_fortune",
-				"weight": 1,
-				"conditions": [{
-					"condition": "random_chance",
-					"chance": 0.1
 				}]
 			},
 			{
@@ -48,7 +39,7 @@
 				"weight": 5,
 				"conditions": [{
 					"condition": "random_chance",
-					"chance": 0.1
+					"chance": 0.75
 				}],
 				"functions": [
 					{
@@ -67,7 +58,7 @@
 				"weight": 3,
 				"conditions": [{
 					"condition": "random_chance",
-					"chance": 0.1
+					"chance": 0.75
 				}]
 			}
 		]

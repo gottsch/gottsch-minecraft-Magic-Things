@@ -195,7 +195,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         }
 
         public Builder setInfinite() {
-            this.uses = Integer.MAX_VALUE;
+            this.maxUses = Integer.MAX_VALUE;
             return this;
         }
 
@@ -395,7 +395,9 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
             if (hasStone()) {
                 tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.stone"), ChatFormatting.YELLOW + WordUtils.capitalizeFully(getStone().getPath().replace("_", " ")))));
             }
-            tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.repairs"), ChatFormatting.GRAY + String.valueOf(getRepairs()))));
+            if (!isInfinite()) {
+                tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.repairs"), ChatFormatting.GRAY + String.valueOf(getRepairs()))));
+            } // TODO add else ? to display 0 repairs?
             tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.mana.recharges"), ChatFormatting.BLUE + String.valueOf(getRecharges()))));
             tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
 

@@ -1,55 +1,43 @@
 {
   "pools": [
     {
-      "name": "epic_stuff",
-      "rolls": 1,
+      "name": "mythical_stuff",
+      "rolls": 2,
       "entries": [
         {
           "entryName": "jewelry0",
           "type": "item",
-          "name": "magicthings:gold_ring",
-          "weight": 5,
-          "conditions": [
-            {
-              "condition": "random_chance",
-              "chance": 0.1
-            }
-          ],
+          "name": "magicthings:bone_ring",
+          "weight": 10,
           "functions": [
             {
               "function": "magicthings:random_jewelry",
-              "rarity": "epic"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "rare_stuff",
-      "rolls": 1,
-      "entries": [
-        {
-          "entryName": "jewelry1",
-          "type": "item",
-          "name": "magicthings:gold_ring",
-          "weight": 5,
-          "conditions": [
-            {
-              "condition": "minecraft:random_chance_with_looting",
-              "looting_multiplier": 0.05,
-              "chance": 0.95
-            }
-          ],
-          "functions": [
-            {
-              "function": "magicthings:random_jewelry",
-              "rarities": ["uncommon","scarce", "rare"]
+              "rarities": ["epic", "legendary", "mythical"]
             },
             {
               "function": "magicthings:imbue_randomly",
               "levels": {
-                "min": 3,
-                "max": 7
+                "min": 7,
+                "max": 10
+              }
+            }
+          ]
+        },
+        {
+          "entryName": "jewelry1",
+          "type": "item",
+          "name": "magicthings:bone_ring",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "magicthings:random_jewelry",
+              "rarities": ["legendary", "mythical"]
+            },
+            {
+              "function": "magicthings:imbue_randomly",
+              "levels": {
+                "min": 8,
+                "max": 10
               }
             }
           ]
@@ -57,46 +45,27 @@
         {
           "entryName": "jewelry2",
           "type": "item",
-          "name": "magicthings:silver_ring",
+          "name": "magicthings:bone_ring",
           "weight": 10,
-          "conditions": [
-            {
-              "condition": "minecraft:random_chance_with_looting",
-              "looting_multiplier": 0.05,
-              "chance": 0.95
-            }
-          ],
           "functions": [
             {
               "function": "magicthings:random_jewelry",
-              "rarities": ["scarce", "rare"]
+              "rarities": ["rare", "epic", "legendary"]
             }
           ]
-        },
-        {
-          "entryName": "jadeite_stone",
-          "type": "minecraft:item",
-          "name": "magicthings:jadeite",
-          "weight": 5
         },
         {
           "entryName": "random_spell",
           "type": "minecraft:item",
           "name": "magicthings:healing_scroll",
+          "count": 2,
           "weight": 5,
-          "conditions": [
-            {
-              "condition": "minecraft:random_chance_with_looting",
-              "chance": 0.95,
-              "looting_multiplier": 0.05
-            }
-          ],
           "functions": [
             {
               "function": "magicthings:random_spell",
               "levels": {
-                "min": 3,
-                "max": 7
+                "min": 4,
+                "max": 8
               }
             }
           ]
@@ -105,6 +74,7 @@
           "entryName": "recharge_scroll",
           "type": "minecraft:item",
           "name": "magicthings:recharge_scroll",
+          "count": 2,
           "weight": 3
         }
       ]
@@ -127,13 +97,6 @@
           "entryName": "necklace_recipe",
           "type": "minecraft:item",
           "name": "magicthings:necklace_recipe"
-        }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:random_chance_with_looting",
-          "chance": 0.75,
-          "looting_multiplier": 0.1
         }
       ]
     }
