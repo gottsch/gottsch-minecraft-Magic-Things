@@ -178,6 +178,8 @@ public class LanguageGen extends LanguageProvider {
         // lore
         add(LangUtil.tooltip("jewelry.castle_ring.lore"), "Castle rings contain an abundance of mana and durability.~Can only be affixed with Rubies & Sapphires.");
         add(LangUtil.tooltip("jewelry.hawk_ring.lore"), "Hawk rings contain an abundance of mana and a higher max spell level.~Cannot be affixed with any gems.");
+        add(LangUtil.tooltip("jewelry.silbros_ring_of_vitality.lore"), "Silbro was a master Naturalist mage.~He was able to give organic jewelry the power of metals.");
+        add(LangUtil.tooltip("jewelry.maldritchs_first_amulet.lore"), "Maldritch is a powerful lich, but he wasn't always one.~This is his first amulet when he was a mere apprentice.");
 
         /*
          * spells
@@ -299,13 +301,13 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("spell.name.harm"), "Harm");
         add(LangUtil.tooltip("spell.name.mind_jab"), "Mind Jab");
         add(LangUtil.tooltip("spell.name.mind_fist"), "Mind Fist");
-        add(LangUtil.tooltip("spell.harm.rate"), "Inflicts %s hp to a single mob within % blocks. Cooldown: %s seconds.");
+        add(LangUtil.tooltip("spell.harm.rate"), "Inflicts %s hp to a single mob within %s blocks. Cooldown: %s seconds.");
 
 
         // scrolls
         add(LangUtil.tooltip("spell_scroll.usage"), "Place on an anvil with Magic Things jewelry to combine.");
 
-        add(LangUtil.tooltip("jewelry_recipe_scroll.usage"), "Combine with 4 ingots or respective material on crafting table to craft jewelry item.");
+        add(LangUtil.tooltip("jewelry_recipe_scroll.usage"), "Combine with 4 ingots of respective material on crafting table to craft jewelry item.");
 
         /*
          * screens

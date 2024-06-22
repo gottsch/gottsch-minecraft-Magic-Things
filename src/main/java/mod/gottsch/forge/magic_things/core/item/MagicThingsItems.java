@@ -141,7 +141,7 @@ public class MagicThingsItems {
 					.build();
 			return new JewelryCapability(handler);
 		}
-	});
+	}.setLoreKey("jewelry.silbros_ring_of_vitality.lore"));
 
 	public static RegistryObject<Item> STRONGMANS_BRACERS = Registration.ITEMS.register("strongmans_bracers", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
@@ -209,9 +209,10 @@ public class MagicThingsItems {
 						$.spellCostFactor = .95; // 0.1 points below regular bone
 					})
 					.build();
+
 			return new JewelryCapability(handler);
 		}
-	});
+	}.setLoreKey("jewelry.maldritchs_first_amulet.lore"));
 
 	public static RegistryObject<Item> AQUA_RING = Registration.ITEMS.register("aqua_ring", () -> new NamedJewelry(MAGIC_THINGS_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
@@ -492,7 +493,10 @@ public class MagicThingsItems {
 		jewelry.addAll(hawkRingBuilder
 				.materials(
 						JewelryMaterials.WOOD,
-						JewelryMaterials.IRON
+						JewelryMaterials.IRON,
+						JewelryMaterials.COPPER,
+						JewelryMaterials.SILVER,
+						JewelryMaterials.GOLD
 				)
 				.sizes(JewelrySizeTier.REGULAR)
 				.types(JewelryType.RING)
@@ -511,7 +515,7 @@ public class MagicThingsItems {
 								JewelryMaterials.SILVER,
 								JewelryMaterials.GOLD
 						)
-						.sizes(JewelrySizeTier.LORDS)
+						.sizes(JewelrySizeTier.GREAT, JewelrySizeTier.LORDS)
 						.types(JewelryType.RING)
 						.with($ -> {
 							$.baseName = "hawk_ring";
@@ -756,7 +760,7 @@ public class MagicThingsItems {
 									$.baseName = HawkJewelryBuilder.this.getBaseName();
 									$.maxLevel = material.getMaxLevel() + 1;
 									$.maxUses = HawkJewelryBuilder.this.maxUses;
-									$.maxMana = material.getUses() * material.getRepairs();
+									$.maxMana = material.getUses() * Math.max(1, material.getRepairs() + size.getRepairs()) * Math.max(1, size.getUsesMultiplier());
 									$.maxRepairs = HawkJewelryBuilder.this.maxRepairs;
 									$.acceptsAffixer = HawkJewelryBuilder.this.acceptsAffixer;
 

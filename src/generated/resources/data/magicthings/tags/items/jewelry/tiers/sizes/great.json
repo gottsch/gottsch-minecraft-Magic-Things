@@ -143,6 +143,10 @@
     "magicthings:great_bone_ruby_ring",
     "magicthings:great_bone_sapphire_ring",
     "magicthings:great_bone_white_pearl_ring",
-    "magicthings:great_bone_black_pearl_ring"
+    "magicthings:great_bone_black_pearl_ring",
+    "magicthings:great_iron_hawk_ring",
+    "magicthings:great_copper_hawk_ring",
+    "magicthings:great_silver_hawk_ring",
+    "magicthings:great_gold_hawk_ring"
   ]
 }

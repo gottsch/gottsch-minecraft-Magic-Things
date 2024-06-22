@@ -5,6 +5,7 @@ import mod.gottsch.forge.magic_things.MagicThings;
 import mod.gottsch.forge.magic_things.core.config.Config;
 import mod.gottsch.forge.magic_things.core.event.IEquipmentSpellHandler;
 import mod.gottsch.forge.magic_things.core.event.SpellEventHandler;
+import mod.gottsch.forge.treasure2.api.TreasureApi;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.ModList;
 
@@ -32,5 +33,11 @@ public class MagicThingsIntegrations {
 //			equipmentCharmHandler = new HotbarEquipmentCharmHandler();
 		}
 		MinecraftForge.EVENT_BUS.register(new SpellEventHandler(equipmentSpellHandler));
+	}
+
+	public static void registerTreasure2Integration() {
+		if (ModList.get().isLoaded("treasure2")) {
+			TreasureApi.registerLootTables(MagicThings.MOD_ID);
+		}
 	}
 }

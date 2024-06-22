@@ -27,6 +27,7 @@ import mod.gottsch.forge.magic_things.core.jewelry.JewelryStoneTiers;
 import mod.gottsch.forge.magic_things.core.rarity.MagicThingsRarity;
 import mod.gottsch.forge.magic_things.api.MagicThingsApi;
 import mod.gottsch.forge.magic_things.core.tag.MagicThingsTags;
+import mod.gottsch.forge.treasure2.api.TreasureApi;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
@@ -125,6 +126,7 @@ public class CommonSetup {
 
         // integrations
         MagicThingsIntegrations.registerCuriosIntegration();
+        MagicThingsIntegrations.registerTreasure2Integration();
 
         // TODO is this registry necessary. could acomplish the same thing using tags and lets modpacks dev modifiy.
         // would have to have same item in the JewelryType tag and a JewerlyMaterial tag minimum. the Size and Stone tags would be optional

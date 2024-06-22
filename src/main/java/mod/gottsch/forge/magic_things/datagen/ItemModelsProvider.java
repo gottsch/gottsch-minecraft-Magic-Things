@@ -41,8 +41,8 @@ public class ItemModelsProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		// tabs
-//		singleTexture(TreasureItems.TREASURE_TAB.get().getRegistryName().getPath(),
-//				mcLoc("item/generated"), "layer0", modLoc("item/treasure_tab"));
+		singleTexture(MagicThingsItems.MAGIC_THINGS_TAB.get().getRegistryName().getPath(),
+				mcLoc("item/generated"), "layer0", modLoc("item/magic_things_tab"));
 
 		// tools
 		singleTexture(MagicThingsItems.JEWELRY_PLIERS.getId().getPath(), mcLoc("item/generated"), "layer0", modLoc("item/jewelry_pliers"));
