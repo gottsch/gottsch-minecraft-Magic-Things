@@ -13,7 +13,7 @@
 					"chance": 0.1
 				}],
 				"functions": [{
-					"function": "treasure2:random_jewelry",
+					"function": "magicthings:random_jewelry",
 					"rarity": "uncommon"
 				}]
 			},
@@ -28,7 +28,7 @@
 					"chance": 0.75
 				}],
 				"functions": [{
-					"function": "treasure2:random_jewelry",
+					"function": "magicthings:random_jewelry",
 					"rarity": "common"
 				}]
 			},

@@ -71,7 +71,7 @@ public class MagicThingsItems {
     public static final RegistryObject<Item> MAGIC_THINGS_TAB = Registration.ITEMS.register("magic_things_tab", () -> new Item(new Item.Properties()));
 
 	// tools
-	public static RegistryObject<Item> JEWELRY_PLIERS = Registration.ITEMS.register("jewelry_pliers", () -> new JewelryPliers(MAGIC_THINGS_PROPS_SUPPLIER.get()));
+//	public static RegistryObject<Item> JEWELRY_PLIERS = Registration.ITEMS.register("jewelry_pliers", () -> new JewelryPliers(MAGIC_THINGS_PROPS_SUPPLIER.get()));
 
 	// spell scrolls
 	public static final List<RegistryObject<Item>> ALL_SPELL_SCROLLS = Lists.newArrayList();
