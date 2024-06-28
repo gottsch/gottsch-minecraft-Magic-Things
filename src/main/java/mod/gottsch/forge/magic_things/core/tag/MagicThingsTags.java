@@ -171,7 +171,7 @@ public class MagicThingsTags {
 				for (Iterator<Item> iterator = tag.iterator(); iterator.hasNext();) {
 					Item jewelry = iterator.next();
 					JewelryRegistry.register(jewelry);
-					MagicThings.LOGGER.info("registering jewelry -> {} ", jewelry.getRegistryName());
+					MagicThings.LOGGER.debug("registering jewelry -> {} ", jewelry.getRegistryName());
 				}
 			}
         });

@@ -34,7 +34,8 @@ public abstract class CooldownSpell extends Spell {
         double cooldown = modifyCooldown(context.getJewelry());
         // check if supports cooldown or if world time has exceeded the entity cooldown end time
         if (cooldown <= 0.0 || (world.getGameTime() > spellEntity.getCooldownExpireTime())) {
-            if(execute(world, random, coords, event, context)) {
+            result = execute(world, random, coords, event, context);
+            if(result) {
                 // update cooldown expire time
                 updateExpireTime(world, random, context.getJewelry(), context.getEntity(), cooldown);
             }

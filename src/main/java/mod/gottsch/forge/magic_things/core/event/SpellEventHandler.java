@@ -222,6 +222,7 @@ public class SpellEventHandler {
 
 		contexts.forEach(context -> {
 			ISpell spell = (ISpell)context.getEntity().getSpell();
+//			MagicThings.LOGGER.debug("processing spell -> {}", spell.getName().toString());
 			if (!spell.isEffectStackable()) {
 				// TODO this probably needs to change to spell.getName comparison
 				// check if this spell type is already in the monitored list
@@ -237,20 +238,24 @@ public class SpellEventHandler {
 			// if spell is executable and executes successfully
 			ICastSpellContext castContext = new CastSpellContext(context.getItemStack(), null, context.getEntity(), player);
 			if (context.getEntity().getSpell().serverUpdate(player.level, new Random(), new Coords(player.position()), event, castContext)) {
-
+//				MagicThings.LOGGER.debug("spell {} successfully updated.", spell.getName().toString());
 				processUsage(player.level, player, event, context);
 				
 				// TODO would be nice if ALL spells processed during event could sent 1 bundled message instead of individual messages
 
 				// send state message to client
 				SpellUpdateS2C message = new SpellUpdateS2C(player.getUUID(), context);
-				MagicThings.LOGGER.debug("sending message to client -> {}", message);
+//				MagicThings.LOGGER.debug("sending message to client -> {}", message);
 				MagicThingsNetworking.channel.send(PacketDistributor.PLAYER.with(() -> player), message);
 			}
+//			else {
+//				MagicThings.LOGGER.debug("spell.serverUpdate failed for some reason.");
+//			}
 		});
 	}
 
 	private static void processUsage(Level world, Player player, Event event, SpellContext context) {
+		MagicThings.LOGGER.debug("processing usage for spell -> {}", context.getEntity().getSpell().getName().toString());
 		// TODO call capability.getDecrementor.apply() or something like that.
 		ItemStack stack = context.getItemStack();
 		// get capability

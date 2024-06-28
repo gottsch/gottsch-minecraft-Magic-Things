@@ -17,6 +17,7 @@
  */
 package mod.gottsch.forge.magic_things.core.capability;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -54,7 +55,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.registries.ForgeRegistries;
-import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -106,7 +106,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 
 //    private List<ResourceLocation> stones = new ArrayList<>(2);
     private ResourceLocation stone;
-    private List<SpellEntity> spells = Lists.newArrayList();
+    private List<SpellEntity> spells = new ArrayList<>();
 
     // TODO can be moved out to JewelryNamingRegistry
     // -- storing a ResourceLocation key to a registry takes up more memory than just a string.
@@ -143,7 +143,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         public int maxRecharges = -1;
 
         public ResourceLocation stone;
-        public List<SpellEntity> spells = Lists.newArrayList();
+        public List<SpellEntity> spells = new ArrayList<>();
         public String baseName;
         public Predicate<ItemStack> acceptsAffixer = p -> true;
 

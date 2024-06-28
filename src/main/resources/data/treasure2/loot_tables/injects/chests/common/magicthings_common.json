@@ -6,7 +6,7 @@
 			{
 				"entryName": "jewelry0",
 				"type": "item",
-				"name": "treasure2:iron_ring",
+				"name": "magicthings:iron_ring",
 				"weight": 5,
 				"conditions": [{
 					"condition": "random_chance",
@@ -20,7 +20,7 @@
 			{
 				"entryName": "jewelry1",
 				"type": "item",
-				"name": "treasure2:iron_ring",
+				"name": "magicthings:iron_ring",
 				"weight": 10,
 				"conditions": [{
 					"condition": "minecraft:random_chance_with_looting",
