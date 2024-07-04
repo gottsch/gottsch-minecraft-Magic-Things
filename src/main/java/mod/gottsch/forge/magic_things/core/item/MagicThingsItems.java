@@ -483,7 +483,7 @@ public class MagicThingsItems {
 						JewelryMaterials.GOLD,
 						JewelryMaterials.BONE)
 				.sizes(JewelrySizeTier.LORDS)
-				.types(JewelryType.NECKLACE)
+				.types(JewelryType.RING, JewelryType.NECKLACE)
 				.deferredBuild()
 		);
 		jewelry.addAll(lordsNecklacesBuilder.useStoneDefaults().deferredBuild());

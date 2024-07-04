@@ -38,6 +38,7 @@ public abstract class CooldownSpell extends Spell {
             if(result) {
                 // update cooldown expire time
                 updateExpireTime(world, random, context.getJewelry(), context.getEntity(), cooldown);
+//                context.getPlayer().getCooldowns().addCooldown(context.getJewelry().getItem(), (int)cooldown);
             }
         }
         return result;
