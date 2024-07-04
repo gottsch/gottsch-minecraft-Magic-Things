@@ -1,6 +1,16 @@
 {
   "replace": false,
   "values": [
+    "magicthings:lords_iron_sapphire_ring",
+    "magicthings:lords_iron_black_pearl_ring",
+    "magicthings:lords_copper_sapphire_ring",
+    "magicthings:lords_copper_black_pearl_ring",
+    "magicthings:lords_silver_sapphire_ring",
+    "magicthings:lords_silver_black_pearl_ring",
+    "magicthings:lords_gold_sapphire_ring",
+    "magicthings:lords_gold_black_pearl_ring",
+    "magicthings:lords_bone_sapphire_ring",
+    "magicthings:lords_bone_black_pearl_ring",
     "magicthings:lords_iron_sapphire_necklace",
     "magicthings:lords_iron_black_pearl_necklace",
     "magicthings:lords_copper_sapphire_necklace",

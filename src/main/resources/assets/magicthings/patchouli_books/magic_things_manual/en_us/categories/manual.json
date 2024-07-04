@@ -1,5 +1,5 @@
 {
   "name": "Manual",
-  "description": "stuff...",
-  "icon": "magicthings:magicthings_tab"
+  "description": "This manual includes information about $(o)playing$() Minecraft with this mod.",
+  "icon": "magicthings:magic_things_tab"
 }

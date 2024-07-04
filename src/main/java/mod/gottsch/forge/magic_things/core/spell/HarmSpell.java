@@ -60,20 +60,27 @@ public class HarmSpell extends CooldownSpell {
             double px = player.getX();
             double py = player.getY();
             double pz = player.getZ();
-            double range = getRange();
+            double range = handler.modifyRange(getRange());
 
             List<Monster> mobs = level.getEntitiesOfClass(Monster.class, new AABB(px - range, py - range, pz - range, px + range, py + range, pz + range));
             if (mobs.isEmpty()) {
                 return result;
             }
+            MagicThings.LOGGER.debug("number of mobs in range -> {}", mobs.size());
+
             double effectAmount = handler.modifyEffectAmount(getEffectAmount());
             for (Mob mob : mobs) {
-                boolean flag = mob.hurt(DamageSource.GENERIC, (float) effectAmount);
+                boolean flag = mob.hurt(DamageSource.MAGIC, (float) effectAmount);
+                if (flag) {
+                    MagicThings.LOGGER.debug("inflict {} hp of damage. resulting health -> {}", effectAmount, mob.getHealth());
+                }
+                // TODO create effects
             	// TODO add number of mobs to affect and break if reached - update: only going to affect 1 mob. else it is an Aura spell.
 				break;
 			}
 
-            applyCost(level, random, coords, context, handler.modifySpellCost(getSpellCost()));
+            double c = applyCost(level, random, coords, context, handler.modifySpellCost(getSpellCost()));
+//            MagicThings.LOGGER.debug("new cost -> {}", c);
             result = true;
         }
         return result;

@@ -1,8 +1,6 @@
 {
   "name": "Magic Things",
-  "landing_text": "Intro text...",
+  "landing_text": "Magic Things is a mod that adds wearable items that can be enhanced with various spells.",
   "version": 1,
-
-  "creative_tab": "magicthings:magicthings_tab",
   "use_resource_pack": true
 }

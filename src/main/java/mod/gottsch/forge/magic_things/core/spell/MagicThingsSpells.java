@@ -368,7 +368,7 @@ public class MagicThingsSpells {
                 })	.build());
 
         // speed spells
-        SPEED_SPELL = SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation(SPEED), 2, MagicThingsRarity.COMMON)
+        SPEED_SPELL = SpellRegistry.register(new SpeedSpell.Builder(ModUtil.asLocation(SPEED), 2, MagicThingsRarity.COMMON)
                 .withAmplifier(0)
                 .with($ -> {
                     $.spellCost = 4; // cost = min(spellCost, reflected amount)
@@ -377,7 +377,7 @@ public class MagicThingsSpells {
                     $.effectStackable = false;
                 })	.build());
 
-        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("greater_speed"), 4, MagicThingsRarity.UNCOMMON)
+        SpellRegistry.register(new SpeedSpell.Builder(ModUtil.asLocation("greater_speed"), 4, MagicThingsRarity.UNCOMMON)
                 .withAmplifier(0)
                 .with($ -> {
                     $.spellCost = 6; // cost = min(spellCost, reflected amount)
@@ -386,7 +386,7 @@ public class MagicThingsSpells {
                     $.effectStackable = false;
                 })	.build());
 
-        SpellRegistry.register(new StrengthSpell.Builder(ModUtil.asLocation("horse_power"), 6, MagicThingsRarity.SCARCE)
+        SpellRegistry.register(new SpeedSpell.Builder(ModUtil.asLocation("horse_power"), 6, MagicThingsRarity.SCARCE)
                 .withAmplifier(1)
                 .with($ -> {
                     $.spellCost = 8; // cost = min(spellCost, reflected amount)
