@@ -1,6 +1,0 @@
-{
-  "parent": "magicthings:item/jewelry",
-  "textures": {
-    "layer0": "magicthings:item/jewelry/iron_ring"
-  }
-}

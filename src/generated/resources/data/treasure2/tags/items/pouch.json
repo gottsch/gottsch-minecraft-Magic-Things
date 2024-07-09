@@ -1,8 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "#magicthings:jewelry/stones/all_stones",
-    "#magicthings:jewelry/stones/rechargers",
-    "#magicthings:jewelry/all_jewelry"
-  ]
-}

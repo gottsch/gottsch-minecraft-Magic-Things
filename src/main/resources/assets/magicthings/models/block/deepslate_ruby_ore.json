@@ -1,7 +1,0 @@
-{
-    "parent": "magicthings:block/deepslate_ore_parent",
-    "textures": {
-    	"end": "magicthings:block/deepslate_top_ruby_ore",
-        "side": "magicthings:block/deepslate_ruby_ore"
-    }
-}

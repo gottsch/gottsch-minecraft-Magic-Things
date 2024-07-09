@@ -7,15 +7,15 @@
         {
           "entryName": "jewelry0",
           "type": "item",
-          "name": "magicthings:bone_ring",
+          "name": "magictreasures:bone_ring",
           "weight": 10,
           "functions": [
             {
-              "function": "magicthings:random_jewelry",
+              "function": "magictreasures:random_jewelry",
               "rarities": ["epic", "legendary", "mythical"]
             },
             {
-              "function": "magicthings:imbue_randomly",
+              "function": "magictreasures:imbue_randomly",
               "levels": {
                 "min": 7,
                 "max": 10
@@ -26,15 +26,15 @@
         {
           "entryName": "jewelry1",
           "type": "item",
-          "name": "magicthings:bone_ring",
+          "name": "magictreasures:bone_ring",
           "weight": 10,
           "functions": [
             {
-              "function": "magicthings:random_jewelry",
+              "function": "magictreasures:random_jewelry",
               "rarities": ["legendary", "mythical"]
             },
             {
-              "function": "magicthings:imbue_randomly",
+              "function": "magictreasures:imbue_randomly",
               "levels": {
                 "min": 8,
                 "max": 10
@@ -45,11 +45,11 @@
         {
           "entryName": "jewelry2",
           "type": "item",
-          "name": "magicthings:bone_ring",
+          "name": "magictreasures:bone_ring",
           "weight": 10,
           "functions": [
             {
-              "function": "magicthings:random_jewelry",
+              "function": "magictreasures:random_jewelry",
               "rarities": ["rare", "epic", "legendary"]
             }
           ]
@@ -57,12 +57,12 @@
         {
           "entryName": "random_spell",
           "type": "minecraft:item",
-          "name": "magicthings:healing_scroll",
+          "name": "magictreasures:healing_scroll",
           "count": 2,
           "weight": 5,
           "functions": [
             {
-              "function": "magicthings:random_spell",
+              "function": "magictreasures:random_spell",
               "levels": {
                 "min": 4,
                 "max": 8
@@ -73,7 +73,7 @@
         {
           "entryName": "recharge_scroll",
           "type": "minecraft:item",
-          "name": "magicthings:recharge_scroll",
+          "name": "magictreasures:recharge_scroll",
           "count": 2,
           "weight": 3
         }
@@ -86,17 +86,17 @@
         {
           "entryName": "ring_recipe",
           "type": "minecraft:item",
-          "name": "magicthings:ring_recipe"
+          "name": "magictreasures:ring_recipe"
         },
         {
           "entryName": "bracelet_recipe",
           "type": "minecraft:item",
-          "name": "magicthings:bracelet_recipe"
+          "name": "magictreasures:bracelet_recipe"
         },
         {
           "entryName": "necklace_recipe",
           "type": "minecraft:item",
-          "name": "magicthings:necklace_recipe"
+          "name": "magictreasures:necklace_recipe"
         }
       ]
     }

@@ -1,0 +1,11 @@
+{
+  "conditions" : [ {
+    "condition" : "forge:loot_table_id",
+    "loot_table_id" : "minecraft:entities/wither_skeleton"
+  } ],
+  "count" : 1,
+  "rarity" : "uncommon",
+  "chance" : 0.35,
+  "lootTable": "magictreasures:entities/wither_skeleton",
+  "type" : "magictreasures:loot_modifier_by_loot_table"
+}

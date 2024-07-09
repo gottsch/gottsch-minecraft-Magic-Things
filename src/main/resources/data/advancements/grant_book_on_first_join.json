@@ -6,7 +6,7 @@
   },
   "rewards": {
     "loot": [
-      "magicthings:grant_book_on_first_join"
+      "magictreasures:grant_book_on_first_join"
     ]
   }
 }

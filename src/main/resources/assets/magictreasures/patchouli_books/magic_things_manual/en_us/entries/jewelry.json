@@ -1,0 +1,10 @@
+{
+  "name": "Jewelry",
+  "icon": "magictreasures:gold_ring",
+  "category": "magictreasures:manual",
+  "sortnum": 2,
+  "pages": [
+    "Some intro text about jewelry",
+    "Spotlight a jewelry from each material with material stats"
+  ]
+}

@@ -1,13 +1,13 @@
 {
   "replace" : false,
-  "entries" : [ "magicthings:fishing_junk",
-    "magicthings:fishing_treasure",
-    "magicthings:chest/uncommon",
-    "magicthings:chest/scarce",
-    "magicthings:chest/rare",
-    "magicthings:chest/epic",
-    "magicthings:chest/legendary",
-    "magicthings:chest/mythical",
-    "magicthings:entity/skeleton"
+  "entries" : [ "magictreasures:fishing_junk",
+    "magictreasures:fishing_treasure",
+    "magictreasures:chest/uncommon",
+    "magictreasures:chest/scarce",
+    "magictreasures:chest/rare",
+    "magictreasures:chest/epic",
+    "magictreasures:chest/legendary",
+    "magictreasures:chest/mythical",
+    "magictreasures:entity/skeleton"
   ]
 }

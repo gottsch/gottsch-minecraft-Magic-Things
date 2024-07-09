@@ -1,6 +1,0 @@
-{
-    "parent": "magicthings:block/ore_parent",
-    "textures": {
-        "0": "magicthings:block/onyx_ore"
-    }
-}
