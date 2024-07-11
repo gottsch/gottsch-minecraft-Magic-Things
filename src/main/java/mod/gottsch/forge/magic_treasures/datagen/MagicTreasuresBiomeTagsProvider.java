@@ -29,8 +29,6 @@ public class MagicTreasuresBiomeTagsProvider extends BiomeTagsProvider {
     	String BOP = "biomesoplenty";
 
     	// blocks rarity
-//    	tag(MagicTreasuresTags.Biomes.DESERT_WELL1).add(Biomes.DESERT);
-//    	tag(MagicTreasuresTags.Biomes.DESERT_WELL2).add(Biomes.DESERT);
     	tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BADLANDS);
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BAMBOO_JUNGLE);
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BASALT_DELTAS);
@@ -101,7 +99,7 @@ public class MagicTreasuresBiomeTagsProvider extends BiomeTagsProvider {
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "hot_springs"));
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "jacaranda_glade"));
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "jade_cliffs"));
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "lavender_field"));
+        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "lavender_forest"));
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "lush_desert"));
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "lush_savanna"));
 

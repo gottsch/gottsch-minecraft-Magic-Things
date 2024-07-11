@@ -23,16 +23,13 @@ version="1.0.0" #mandatory
 displayName="Magic Treasures" #mandatory
 
 # A URL to query for updates for this mod. See the JSON update specification <here>
-updateJSONURL="https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Magic-Treasures/1.18.2-main/update.json" #optional
+updateJSONURL="https://raw.githubusercontent.com/gottsch/gottsch-minecraft-Magic-Treasures/1.19.2-main/update.json" #optional
 
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL="https://www.curseforge.com/minecraft/mc-mods/magic-treasures" #optional
 
 # A file name (in the root of the mod JAR) containing a logo for display
 logoFile="magic_treasures_curseforge_logo.png" #optional
-
-# A text field displayed in the mod UI
-credits="" #optional
 
 # A text field displayed in the mod UI
 authors="gottsch" #optional

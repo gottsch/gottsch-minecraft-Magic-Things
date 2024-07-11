@@ -44,30 +44,31 @@ public class WorldEventHandler {
 	private static boolean isLoaded = false;
 	private static boolean isClientLoaded = false;
 
-	@SubscribeEvent(priority = EventPriority.HIGH)
-	public static void onWorldLoad(LevelEvent.Load event) {
-		MagicTreasures.LOGGER.info("In world load event");
-
-		if (WorldInfo.isServerSide((Level)event.getLevel())) {
-			/*
-			 * NOTE:
-			 *  this has to happen here or some event AFTER the FMLCommonSetup
-			 *  when all blocks, items, etc are registered and tags are read in.
-			 */
-
-			ResourceLocation dimension = WorldInfo.getDimension((Level) event.getLevel());
-			MagicTreasures.LOGGER.info("In world load event for dimension {}", dimension.toString());
-
-			/*
-			 *  cache the world save folder and pass into each registry.
-			 */
-
-				if ((!isLoaded && Config.SERVER.integration.dimensionsWhiteList.get().contains(dimension.toString()))) {
-					MagicTreasuresIntegrations.registerCuriosIntegration();
-					MagicTreasuresIntegrations.registerTreasure2Integration();
-					isLoaded = true;
-				}
-
-		}
-	}
+//	@SubscribeEvent(priority = EventPriority.HIGH)
+//	public static void onWorldLoad(LevelEvent.Load event) {
+//		MagicTreasures.LOGGER.info("In world load event");
+//
+//		if (WorldInfo.isServerSide((Level)event.getLevel())) {
+//			/*
+//			 * NOTE:
+//			 *  this has to happen here or some event AFTER the FMLCommonSetup
+//			 *  when all blocks, items, etc are registered and tags are read in.
+//			 */
+//
+//			ResourceLocation dimension = WorldInfo.getDimension((Level) event.getLevel());
+//			MagicTreasures.LOGGER.info("In world load event for dimension {}", dimension.toString());
+//
+//			/*
+//			 *  cache the world save folder and pass into each registry.
+//			 */
+//
+//				if ((!isLoaded && Config.SERVER.integration.dimensionsWhiteList.get().contains(dimension.toString()))) {
+//					MagicTreasures.LOGGER.info("registering integrations");
+//
+//
+//					isLoaded = true;
+//				}
+//
+//		}
+//	}
 }

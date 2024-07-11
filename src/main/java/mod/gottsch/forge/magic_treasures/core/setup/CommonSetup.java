@@ -116,5 +116,11 @@ public class CommonSetup {
         // loot functions
         // NOTE are in common setup because there are not deferred, but registered directly into the vanilla registry
         MagicTreasuresLootFunctions.register();
+
+        // treasure2 integration (needs to be registered BEFORE LevelEvent.Load)
+        MagicTreasuresIntegrations.registerTreasure2Integration();
+
+        // curios integration
+        MagicTreasuresIntegrations.registerCuriosIntegration();
     }
 }

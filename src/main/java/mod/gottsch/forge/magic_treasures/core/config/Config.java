@@ -57,11 +57,11 @@ public class Config extends AbstractConfig {
 	public static class ServerConfig {
 
 		public Loot loot;
-		public Integration integration;
+//		public Integration integration;
 
 		public ServerConfig(ForgeConfigSpec.Builder builder) {
 			loot = new Loot(builder);
-			integration = new Integration(builder);
+//			integration = new Integration(builder);
 		}
 	}
 
@@ -83,28 +83,28 @@ public class Config extends AbstractConfig {
 	/*
 	 *
 	 */
-	public static class Integration {
-		public ForgeConfigSpec.ConfigValue<List<? extends String>> dimensionsWhiteList;
-		public ForgeConfigSpec.BooleanValue  enableCurios;
-
-		public Integration(final ForgeConfigSpec.Builder builder)	 {
-			builder.comment(CATEGORY_DIV, " Integration properties", CATEGORY_DIV)
-					.push("integration");
-
-			dimensionsWhiteList = builder
-					.comment(" Permitted Dimensions for Magical Treasures execution.",
-							" This setting does not use any wildcards (*). You must explicitly set the dimensions that are allowed.",
-							" ex. minecraft:overworld")
-					.defineList("dimensionsWhiteList", Arrays.asList(new String []{"minecraft:overworld"}), s -> s instanceof String);
-
-
-			enableCurios = builder
-					.comment("Enable/Disable Curios integration.", "Enabled by default, but Curios must be installed as well.")
-					.define("Enable Curios Integration:", true);
-
-			builder.pop();
-		}
-	}
+//	public static class Integration {
+//		public ForgeConfigSpec.ConfigValue<List<? extends String>> dimensionsWhiteList;
+//		public ForgeConfigSpec.BooleanValue  enableCurios;
+//
+//		public Integration(final ForgeConfigSpec.Builder builder)	 {
+//			builder.comment(CATEGORY_DIV, " Integration properties", CATEGORY_DIV)
+//					.push("integration");
+//
+//			dimensionsWhiteList = builder
+//					.comment(" Permitted Dimensions for Magical Treasures execution.",
+//							" This setting does not use any wildcards (*). You must explicitly set the dimensions that are allowed.",
+//							" ex. minecraft:overworld")
+//					.defineList("dimensionsWhiteList", Arrays.asList(new String []{"minecraft:overworld"}), s -> s instanceof String);
+//
+//
+//			enableCurios = builder
+//					.comment("Enable/Disable Curios integration.", "Enabled by default, but Curios must be installed as well.")
+//					.define("Enable Curios Integration:", true);
+//
+//			builder.pop();
+//		}
+//	}
 	
 	@Override
 	public String getLogsFolder() {

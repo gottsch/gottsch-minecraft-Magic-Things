@@ -10,8 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial port from mc1.18.2.
 
 ### Changed
-- Moved integration registrations to the LevelEvent.Load event.
 - Moved loot function registrations to the common setup.
+- Removed Integration config options. If Curios is present, it is enabled.
+- Updated Patchouli book to version 1.1
 
 ### Added
-- Dimension Whitelist to the Config

@@ -32,6 +32,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -69,14 +70,17 @@ public class SpellEventHandler {
 	 * @param event
 	 */
 	@SubscribeEvent
-	public void checkSpellsInteraction(TickEvent.PlayerTickEvent event) {
-		if (WorldInfo.isClientSide(event.player.getLevel())) {
+	public void checkSpellsInteraction(LivingEvent.LivingTickEvent event) {
+		if (WorldInfo.isClientSide(event.getEntity().getLevel())) {
 			return;
 		}
 
-		// get the player
-		ServerPlayer player = (ServerPlayer) event.player;
-		processSpells(event, player);
+		// do something to player every update tick:
+		if (event.getEntity() instanceof Player) {
+			// get the player
+			ServerPlayer player = (ServerPlayer) event.getEntity();
+			processSpells(event, player);
+		}
 	}
 
 	/**
