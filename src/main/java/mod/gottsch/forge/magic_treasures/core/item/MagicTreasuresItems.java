@@ -1,19 +1,19 @@
 /*
- * This file is part of  Magic Things.
- * Copyright (c) 2024 Mark Gottschling (gottsch)
+ * This file is part of  Magic Treasures.
+ * Copyright (c) 2023 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.core.item;
 
@@ -30,6 +30,7 @@ import mod.gottsch.forge.magic_treasures.core.setup.Registration;
 import mod.gottsch.forge.magic_treasures.core.spell.MagicTreasuresSpells;
 import mod.gottsch.forge.magic_treasures.core.spell.SpellRegistry;
 import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
+import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -127,7 +128,7 @@ public class MagicTreasuresItems {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.WOOD)
 					.withSize(JewelrySizeTier.REGULAR)
-					.withStone(Items.BEDROCK.getRegistryName())
+					.withStone(ModUtil.getName(Items.BEDROCK))
 					.with($ -> {
 						$.spells.add(MagicTreasuresSpells.DEFAULT_HEALING.entity());
 						$.maxMana = 80;
@@ -147,7 +148,7 @@ public class MagicTreasuresItems {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 		IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.BRACELET, JewelryMaterials.WOOD)
 				.withSize(JewelrySizeTier.REGULAR)
-				.withStone(Items.BEDROCK.getRegistryName())
+				.withStone(ModUtil.getName(Items.BEDROCK))
 				.with($ -> {
 					$.spells.add(SpellRegistry.get(MagicTreasuresSpells.QUICK_STRENGTH).orElse(MagicTreasuresSpells.DEFAULT_HEALING).entity());
 					$.maxMana = 50;
@@ -168,7 +169,7 @@ public class MagicTreasuresItems {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.IRON)
 					.withSize(JewelrySizeTier.GREAT)
-					.withStone(Items.BEDROCK.getRegistryName())
+					.withStone(ModUtil.getName(Items.BEDROCK))
 					.with($ -> {
 						$.maxUses = 125;
 						$.maxMana = 250;
@@ -613,7 +614,7 @@ public class MagicTreasuresItems {
 		
 		public JewelryBuilder useStoneDefaults() {
 			stones(
-					Items.DIAMOND.getRegistryName(),
+					ModUtil.getName(Items.DIAMOND),
 					JADEITE.getId(),
 					TOPAZ.getId(),
 					ONYX.getId(),
@@ -667,7 +668,7 @@ public class MagicTreasuresItems {
 
 			List<ResourceLocation> tempStones = new ArrayList<>();
 			if (stones.isEmpty()) {
-				tempStones.add(Items.AIR.getRegistryName());
+				tempStones.add(ModUtil.getName(Items.AIR));
 			}
 			else {
 				tempStones.addAll(stones);
@@ -681,7 +682,7 @@ public class MagicTreasuresItems {
 							// build the name
 							String name = (size == JewelrySizeTier.REGULAR ? "" : size.getName() + "_")
 									+ material.getName() + "_"
-									+ (stone == Items.AIR.getRegistryName() ? "" :  stone.getPath() + "_")
+									+ (stone.equals(ModUtil.getName(Items.AIR)) ? "" :  stone.getPath() + "_")
 									+ (StringUtils.isNotBlank(baseName) ? baseName : type.toString());
 
 							// build the jewelry supplier

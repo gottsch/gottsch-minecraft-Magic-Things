@@ -1,9 +1,26 @@
-
+/*
+ * This file is part of  Magic Treasures.
+ * Copyright (c) 2023 Mark Gottschling (gottsch)
+ *
+ * Magic Treasures is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Magic Treasures is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ */
 package mod.gottsch.forge.magic_treasures.core.config;
 
 import mod.gottsch.forge.gottschcore.config.AbstractConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -56,7 +73,7 @@ public class Config extends AbstractConfig {
 					.push("loot");
 
 			enableVanillaLootModifiers = builder
-					.comment(" Enable/Disable global loot modifiers that injects Magic Things loot into vanilla loot tables.")
+					.comment(" Enable/Disable global loot modifiers that injects Magic Treasures loot into vanilla loot tables.")
 					.define("enableVanillaLootModifiers", true);
 
 			builder.pop();
@@ -73,6 +90,13 @@ public class Config extends AbstractConfig {
 		public Integration(final ForgeConfigSpec.Builder builder)	 {
 			builder.comment(CATEGORY_DIV, " Integration properties", CATEGORY_DIV)
 					.push("integration");
+
+			dimensionsWhiteList = builder
+					.comment(" Permitted Dimensions for Magical Treasures execution.",
+							" This setting does not use any wildcards (*). You must explicitly set the dimensions that are allowed.",
+							" ex. minecraft:overworld")
+					.defineList("dimensionsWhiteList", Arrays.asList(new String []{"minecraft:overworld"}), s -> s instanceof String);
+
 
 			enableCurios = builder
 					.comment("Enable/Disable Curios integration.", "Enabled by default, but Curios must be installed as well.")

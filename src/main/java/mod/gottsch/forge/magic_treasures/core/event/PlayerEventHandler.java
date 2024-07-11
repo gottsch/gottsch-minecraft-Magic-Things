@@ -18,21 +18,7 @@
 package mod.gottsch.forge.magic_treasures.core.event;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
-import mod.gottsch.forge.magic_treasures.core.item.Gemstone;
-import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-
-import java.util.List;
-import java.util.Objects;
 
 /**
  * 

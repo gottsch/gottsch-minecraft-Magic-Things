@@ -1,19 +1,19 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2023 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.core.tag;
 
@@ -26,10 +26,13 @@ import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTier;
 import mod.gottsch.forge.magic_treasures.core.registry.JewelryRegistry;
 import mod.gottsch.forge.magic_treasures.core.registry.StoneRegistry;
 import mod.gottsch.forge.magic_treasures.core.registry.TagRegistry;
+import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
+import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraftforge.event.TagsUpdatedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -149,6 +152,14 @@ public class MagicTreasuresTags {
             return ItemTags.create(new ResourceLocation(domain, path));
         }
     }
+
+    public static class Biomes {
+        public static final TagKey<Biome> ALL_OVERWORLD = mod(MagicTreasures.MOD_ID, "all_overworld");
+
+        public static TagKey<Biome> mod(String domain, String path) {
+            return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(domain, path));
+        }
+    }
     
 	@SubscribeEvent
 	public static void registerTags(TagsUpdatedEvent event) {
@@ -171,7 +182,7 @@ public class MagicTreasuresTags {
 				for (Iterator<Item> iterator = tag.iterator(); iterator.hasNext();) {
 					Item jewelry = iterator.next();
 					JewelryRegistry.register(jewelry);
-					MagicTreasures.LOGGER.debug("registering jewelry -> {} ", jewelry.getRegistryName());
+					MagicTreasures.LOGGER.debug("registering jewelry -> {} ", ModUtil.getName(jewelry));
 				}
 			}
         });
@@ -189,7 +200,7 @@ public class MagicTreasuresTags {
                     StoneRegistry.register(stone);
                     // register the stone with the tier in the StoneRegistry
                     StoneRegistry.register(stone, tier);
-                    MagicTreasures.LOGGER.debug("registering stone to tier -> {} <--> {} ", stone.getRegistryName(), tier.getName());
+                    MagicTreasures.LOGGER.debug("registering stone to tier -> {} <--> {} ", ModUtil.getName(stone), tier.getName());
                 }
             }
         });
@@ -202,7 +213,7 @@ public class MagicTreasuresTags {
                 ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(tagKey);
                 for (Item stone : tag) {
                     StoneRegistry.register(rarity, stone);
-                    MagicTreasures.LOGGER.debug("registering stone to rarity -> {} <--> {} ", stone.getRegistryName(), rarity.getName());
+                    MagicTreasures.LOGGER.debug("registering stone to rarity -> {} <--> {} ", ModUtil.getName(stone), rarity.getName());
                 }
             }
             // register jewelry by rarity
@@ -211,7 +222,7 @@ public class MagicTreasuresTags {
                         ITag<Item> tag = ForgeRegistries.ITEMS.tags().getTag(key);
                         tag.forEach(item -> {
                             JewelryRegistry.register(rarity, item);
-                            MagicTreasures.LOGGER.debug("registering jewelry to rarity -> {} <--> {} ", item.getRegistryName(), rarity.getName());
+                            MagicTreasures.LOGGER.debug("registering jewelry to rarity -> {} <--> {} ", ModUtil.getName(item), rarity.getName());
                         });
                     });
         });

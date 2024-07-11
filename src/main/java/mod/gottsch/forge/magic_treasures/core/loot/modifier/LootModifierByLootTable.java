@@ -1,30 +1,26 @@
 
 package mod.gottsch.forge.magic_treasures.core.loot.modifier;
 
-import com.google.gson.JsonObject;
+import com.google.common.base.Suppliers;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
 import mod.gottsch.forge.magic_treasures.api.MagicTreasuresApi;
 import mod.gottsch.forge.magic_treasures.core.config.Config;
-import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresItems;
-import mod.gottsch.forge.magic_treasures.core.item.SpellScroll;
 import mod.gottsch.forge.magic_treasures.core.rarity.MagicTreasuresRarity;
-import mod.gottsch.forge.magic_treasures.core.registry.JewelryRegistry;
-import mod.gottsch.forge.magic_treasures.core.registry.StoneRegistry;
 import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
-import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
+import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
-import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * 
@@ -35,11 +31,19 @@ public class LootModifierByLootTable extends LootModifier {
 
 	// the number of items to add
 	private final int count;
-	private final IRarity rarity;
+	private final String rarity;
 	private final double chance;
-	private ResourceLocation lootTable;
+	private final String lootTable;
 
-	protected LootModifierByLootTable(LootItemCondition[] conditionsIn, int count, IRarity rarity, double chance, ResourceLocation lootTable) {
+	public static final Supplier<Codec<LootModifierByLootTable>> CODEC = Suppliers.memoize(()
+			-> RecordCodecBuilder.create(inst -> codecStart(inst)
+			.and(Codec.INT.fieldOf("count").forGetter(m -> m.count))
+			.and(Codec.STRING.fieldOf("rarity").forGetter(m -> m.rarity))
+			.and(Codec.DOUBLE.fieldOf("chance").forGetter(m -> m.chance))
+			.and(Codec.STRING.fieldOf("lootTable").forGetter(m -> m.lootTable))
+			.apply(inst, LootModifierByLootTable::new)));
+
+	protected LootModifierByLootTable(LootItemCondition[] conditionsIn, int count, String rarity, double chance, String lootTable) {
 		super(conditionsIn);
 		this.count = count;
 		this.rarity = rarity;
@@ -48,9 +52,16 @@ public class LootModifierByLootTable extends LootModifier {
 	}
 
 	@Override
-	protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
+	public Codec<? extends IGlobalLootModifier> codec() {
+		return CODEC.get();
+	}
 
+	@Override
+	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 		if (Config.SERVER.loot.enableVanillaLootModifiers.get() && RandomHelper.checkProbability(context.getLevel().getRandom(), chance * 100)) {
+			IRarity rarity = MagicTreasuresApi.getRarity(this.rarity).orElse(MagicTreasuresRarity.NONE);
+			ResourceLocation lootTable = ModUtil.asLocation(this.lootTable);
+
 			// get the loot table
 			LootTable table = context.getLevel().getServer().getLootTables().get(lootTable);
 
@@ -64,32 +75,32 @@ public class LootModifierByLootTable extends LootModifier {
 		return generatedLoot;
 	}
 
-	/*
-	 * 
-	 */
-	public static class Serializer extends GlobalLootModifierSerializer<LootModifierByLootTable> {
-
-		@Override
-		public LootModifierByLootTable read(ResourceLocation location, JsonObject object, LootItemCondition[] conditions) {
-			int count = GsonHelper.getAsInt(object, "count");
-			String rarityStr = GsonHelper.getAsString(object, "rarity");
-			IRarity rarity = MagicTreasuresApi.getRarity(rarityStr).orElse(MagicTreasuresRarity.COMMON);
-			double chance = GsonHelper.getAsDouble(object, "chance");
-			String lootTableStr = GsonHelper.getAsString(object, "lootTable");
-			
-			return new LootModifierByLootTable(conditions, count, rarity, chance,
-					ModUtil.asLocation(lootTableStr));
-		}
-
-		@Override
-		public JsonObject write(LootModifierByLootTable instance) {
-			JsonObject json = makeConditions(instance.conditions);
-			json.addProperty("count", Integer.valueOf(instance.count));
-			json.addProperty("rarity", instance.rarity.getName());
-			json.addProperty("chance", Double.valueOf(instance.chance));
-			json.addProperty("lootTable", instance.lootTable.toString());
-			return json;
-		}
-
-	}
+//	/*
+//	 *
+//	 */
+//	public static class Serializer extends GlobalLootModifierSerializer<LootModifierByLootTable> {
+//
+//		@Override
+//		public LootModifierByLootTable read(ResourceLocation location, JsonObject object, LootItemCondition[] conditions) {
+//			int count = GsonHelper.getAsInt(object, "count");
+//			String rarityStr = GsonHelper.getAsString(object, "rarity");
+//			IRarity rarity = MagicTreasuresApi.getRarity(rarityStr).orElse(MagicTreasuresRarity.COMMON);
+//			double chance = GsonHelper.getAsDouble(object, "chance");
+//			String lootTableStr = GsonHelper.getAsString(object, "lootTable");
+//
+//			return new LootModifierByLootTable(conditions, count, rarity, chance,
+//					ModUtil.asLocation(lootTableStr));
+//		}
+//
+//		@Override
+//		public JsonObject write(LootModifierByLootTable instance) {
+//			JsonObject json = makeConditions(instance.conditions);
+//			json.addProperty("count", Integer.valueOf(instance.count));
+//			json.addProperty("rarity", instance.rarity.getName());
+//			json.addProperty("chance", Double.valueOf(instance.chance));
+//			json.addProperty("lootTable", instance.lootTable.toString());
+//			return json;
+//		}
+//
+//	}
 }

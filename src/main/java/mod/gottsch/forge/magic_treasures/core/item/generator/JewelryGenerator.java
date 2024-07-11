@@ -1,28 +1,27 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2024 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.core.item.generator;
 
 
-import com.machinezoo.noexception.optional.OptionalToIntBiFunction;
 import mod.gottsch.forge.magic_treasures.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_treasures.core.capability.MagicTreasuresCapabilities;
-import mod.gottsch.forge.magic_treasures.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.item.SpellScroll;
+import mod.gottsch.forge.magic_treasures.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTier;
 import mod.gottsch.forge.magic_treasures.core.registry.JewelryRegistry;
 import mod.gottsch.forge.magic_treasures.core.registry.StoneRegistry;
@@ -81,7 +80,7 @@ public class JewelryGenerator {
         if (stoneTier.isPresent() && stoneTier.get().canAffix(jewelry)) {
 
             // ensure stone is set
-            destHandler.setStone(stone.getItem().getRegistryName());
+            destHandler.setStone(ModUtil.getName(stone.getItem()));
             // update mana
             mana = stoneTier.map(JewelryStoneTier::getMana).orElseGet(() -> 0);
             mana = Math.round(mana * destHandler.getJewelrySizeTier().getManaMultiplier());
@@ -250,7 +249,7 @@ public class JewelryGenerator {
             IJewelryHandler handler = jewelry.getCapability(MagicTreasuresCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
            return buffer.append((handler.getJewelrySizeTier() != JewelrySizeTier.REGULAR ? (handler.getJewelrySizeTier().getName() + "_") : ""))
                    .append(handler.getMaterial().getName()).append("_")
-                   .append(stone.getItem().getRegistryName().getPath()).append("_")
+                   .append(ModUtil.getName(stone.getItem()).getPath()).append("_")
                    .append(StringUtils.isNotBlank(handler.getBaseName()) ? handler.getBaseName() : handler.getJewelryType().getName())
                    .toString().toLowerCase();
 //                   .append(handler.getJewelryType().getName()).toString().toLowerCase();

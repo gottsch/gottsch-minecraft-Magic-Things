@@ -6,6 +6,7 @@ import com.google.common.collect.Multimap;
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneHandler;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTier;
+import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 
@@ -25,8 +26,8 @@ public class StoneRegistry {
     private static final Multimap<IRarity, Item> RARITY_MAP = ArrayListMultimap.create();
 
     public static Optional<Item> register(Item stone) {
-        if (!REGISTRY.containsKey(stone.getRegistryName())) {
-            REGISTRY.put(stone.getRegistryName(), stone);
+        if (!REGISTRY.containsKey(ModUtil.getName(stone))) {
+            REGISTRY.put(ModUtil.getName(stone), stone);
             return Optional.of(stone);
         }
         return Optional.empty();

@@ -1,19 +1,19 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2024 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.core.spell;
 
@@ -29,8 +29,6 @@ import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.ItemStack;
@@ -160,15 +158,15 @@ public abstract class Spell implements ISpell {
     }
 
     private Component getLabel() {
-        MutableComponent label = new TranslatableComponent(LangUtil.tooltip("spell.name.") + getName().getPath().toLowerCase());
+        MutableComponent label = Component.translatable(LangUtil.tooltip("spell.name.") + getName().getPath().toLowerCase());
         label.append(" ").append((this.effectStackable ? "+" : ""));
-        return new TranslatableComponent(LangUtil.INDENT2).append(label.withStyle(getSpellLabelColor()).withStyle(ChatFormatting.BOLD));
+        return Component.translatable(LangUtil.INDENT2).append(label.withStyle(getSpellLabelColor()).withStyle(ChatFormatting.BOLD));
     }
 
     // a short desc of its effect ex "Heals 1hp / 10 sec"
     private Optional<Component> getDesc(ItemStack jewelry) {
         Component desc = getSpellDesc(jewelry);
-        return desc != null ? Optional.of(new TranslatableComponent(
+        return desc != null ? Optional.of(Component.translatable(
                 LangUtil.INDENT4).append(desc)
                 .withStyle(ChatFormatting.ITALIC).withStyle(getSpellDescColor()))
                 : Optional.empty();

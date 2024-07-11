@@ -1,33 +1,33 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2023 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.core.setup;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
+import mod.gottsch.forge.magic_treasures.api.MagicTreasuresApi;
 import mod.gottsch.forge.magic_treasures.core.config.Config;
 import mod.gottsch.forge.magic_treasures.core.integration.MagicTreasuresIntegrations;
-import mod.gottsch.forge.magic_treasures.core.item.*;
+import mod.gottsch.forge.magic_treasures.core.item.JewelryType;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryMaterials;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTiers;
+import mod.gottsch.forge.magic_treasures.core.loot.MagicTreasuresLootFunctions;
 import mod.gottsch.forge.magic_treasures.core.rarity.MagicTreasuresRarity;
-import mod.gottsch.forge.magic_treasures.api.MagicTreasuresApi;
 import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
-import mod.gottsch.forge.treasure2.api.TreasureApi;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
@@ -110,37 +110,11 @@ public class CommonSetup {
         MagicTreasuresApi.registerJewerlyStoneTierTag(JewelryStoneTiers.TIER6, MagicTreasuresTags.Items.STONE_TIER6);
         MagicTreasuresApi.registerJewerlyStoneTierTag(JewelryStoneTiers.SKELETONS_HEART, MagicTreasuresTags.Items.STONE_TIER_SKELETONS_HEART);
 
-        // TODO these can be categorized/registered by rarity via tags.
-        // register stones
-//        MagicTreasuresApi.registerJewelryStone(Items.DIAMOND);
-//        MagicTreasuresApi.registerJewelryStone(MagicTreasuresItems.JADEITE.get());
-//        MagicTreasuresApi.registerJewelryStone(MagicTreasuresItems.TOPAZ.get());
-//        MagicTreasuresApi.registerJewelryStone(MagicTreasuresItems.ONYX.get());
-//        MagicTreasuresApi.registerJewelryStone(MagicTreasuresItems.RUBY.get());
-//        MagicTreasuresApi.registerJewelryStone(MagicTreasuresItems.SAPPHIRE.get());
-//        MagicTreasuresApi.registerJewelryStone(MagicTreasuresItems.WHITE_PEARL.get());
-//        MagicTreasuresApi.registerJewelryStone(MagicTreasuresItems.BLACK_PEARL.get());
-
         // map stone items -> handlers
 //        MagicTreasuresApi.registerJewelryStoneHandler(Items.DIAMOND, JewelryStoneHandlers.STANDARD);
 
-        // integrations
-        MagicTreasuresIntegrations.registerCuriosIntegration();
-        MagicTreasuresIntegrations.registerTreasure2Integration();
-
-        // TODO is this registry necessary. could acomplish the same thing using tags and lets modpacks dev modifiy.
-        // would have to have same item in the JewelryType tag and a JewerlyMaterial tag minimum. the Size and Stone tags would be optional
-        // ex. I want to add tf:platium_diamond_ring.
-        // type --> rings.json tag
-        // material --> platium.json tag (given that platinum material is registered). (could register material thru intermod communication - still mod-based)
-        // stone --> diamond.json
-        /*
-         *  register items.
-         *  Note: JewelryRegistry checks if the item has the correct capability before registering.
-         */
-        // TEMP - use the Tag Registry event to register jewelry
-//        Registration.ITEMS.getEntries().forEach(item -> {
-//        	JewelryRegistry.register(item.get());
-//        });
+        // loot functions
+        // NOTE are in common setup because there are not deferred, but registered directly into the vanilla registry
+        MagicTreasuresLootFunctions.register();
     }
 }

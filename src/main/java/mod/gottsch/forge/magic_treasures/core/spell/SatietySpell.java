@@ -27,12 +27,11 @@ import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import mod.gottsch.forge.magic_treasures.core.util.MathUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.Event;
 
 import java.util.Random;
@@ -46,7 +45,7 @@ public class SatietySpell extends Spell {
 	public static final int MAX_FOOD_LEVEL = 20;
 	public static final String SATIETY_TYPE = "satiety";
 
-	private static final Class<?> REGISTERED_EVENT = LivingUpdateEvent.class;
+	private static final Class<?> REGISTERED_EVENT = LivingEvent.LivingTickEvent.class;
 
 	/**
 	 *
@@ -82,14 +81,14 @@ public class SatietySpell extends Spell {
 	@Override
 	public Component getSpellDesc() {
 		// "Restores 0.5 hunger every %s seconds."
-		return new TranslatableComponent(LangUtil.tooltip("spell.satiety.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.satiety.rate"),
 				MathUtil.r1d(getFrequency()/20.0));
 	}
 
 	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		// "Restores 0.5 hunger every %s seconds."
-		return new TranslatableComponent(LangUtil.tooltip("spell.satiety.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.satiety.rate"),
 				MathUtil.r1d(modifyFrequency(jewelry)/20.0));
 	}
 

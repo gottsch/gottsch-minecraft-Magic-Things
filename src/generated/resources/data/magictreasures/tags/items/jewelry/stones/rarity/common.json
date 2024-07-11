@@ -1,0 +1,9 @@
+{
+  "values": [
+    "magictreasures:topaz",
+    {
+      "id": "treasure2:topaz",
+      "required": false
+    }
+  ]
+}

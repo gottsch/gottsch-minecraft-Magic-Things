@@ -19,9 +19,7 @@
  */
 package mod.gottsch.forge.magic_treasures.core.network;
 
-import mod.gottsch.forge.gottschcore.spatial.Coords;
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
-import mod.gottsch.forge.magic_treasures.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_treasures.core.capability.MagicTreasuresCapabilities;
 import mod.gottsch.forge.magic_treasures.core.spell.ISpell;
 import mod.gottsch.forge.magic_treasures.core.spell.SpellContext;
@@ -42,7 +40,10 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Supplier;
 
 /**
@@ -215,11 +216,15 @@ public class SpellUpdateS2C {
 					ItemStack heldItemStack = player.getItemInHand(message.getHand());
 					// determine what is being held in hand
 					if (heldItemStack != null) {
-						MagicTreasures.LOGGER.debug("holding item -> {}", heldItemStack.getItem().getRegistryName());
+						MagicTreasures.LOGGER.debug("holding item -> {}", ModUtil.getName(heldItemStack.getItem()));
 						updateJewelry(player, heldItemStack, message);
 					}
 				}
+
 				else if (CURIOS_ID.equals(message.getSlotProviderId())) {
+					///////////////////////////////////
+					// Comment out when running DataGen until I figure out why it's not working with Curios
+					///////////////////////////////////
 					MagicTreasures.LOGGER.debug("curios handler - updating slot spell...");
 					LazyOptional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
 					curiosHandler.ifPresent(itemHandler -> {
@@ -236,7 +241,7 @@ public class SpellUpdateS2C {
 					// get the item from the hotbar
 					ItemStack hotbarStack = player.getInventory().getItem(Integer.valueOf(message.getSlot()));
 					if (hotbarStack != null) {
-						MagicTreasures.LOGGER.debug("hotbar item -> {}", hotbarStack.getItem().getRegistryName());
+						MagicTreasures.LOGGER.debug("hotbar item -> {}", ModUtil.getName(hotbarStack.getItem()));
 						updateJewelry(player, hotbarStack, message);
 					}
 				}

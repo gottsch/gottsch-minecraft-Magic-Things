@@ -79,41 +79,32 @@ public class MagicTreasuresConfiguredFeatures {
 	public static final RegistryObject<ConfiguredFeature<?, ?>> SILVER_ORE_CONFIGURED = CONFIGURED_FEATURES.register("silver_ore",
 			() -> new ConfiguredFeature<>(Feature.ORE, new OreConfiguration(OVERWORLD_SILVER_ORES.get(), 4)));
 
-	//	public static final RegistryObject<ConfiguredFeature<?, ?>> TERRANEAN_CHEST_CONFIGURED = CONFIGURED_FEATURES.register("terranean_chest",
-//			() -> new ConfiguredFeature<>(TERRANEAN_CHEST.get(), NoneFeatureConfiguration.INSTANCE));
-//
-//	public static final RegistryObject<ConfiguredFeature<?, ?>> SUBAQUATIC_CHEST_CONFIGURED = CONFIGURED_FEATURES.register("subaquatic_chest",
-//			() -> new ConfiguredFeature<>(SUBAQUATIC_CHEST.get(), NoneFeatureConfiguration.INSTANCE));
-//
-//	public static final RegistryObject<ConfiguredFeature<?, ?>> WELL_CONFIGURED = CONFIGURED_FEATURES.register("well",
-//			() -> new ConfiguredFeature<>(WELL.get(), NoneFeatureConfiguration.INSTANCE));
-//
 	/*
 	 * placement
 	 * NOTE: the aboveBottom values are OFFSETS, ex -64 + x = placement depth
 	 * @54 -> -64 + 54 = -10, @ 84 -> -64 + 84 = 20, therefor the range is from y = -10 to 20
 	 */
-	public static final RegistryObject<PlacedFeature> TOPAZ_ORE_PLACED = PLACED_FEATURES.register("topaz_ore",
+	public static final RegistryObject<PlacedFeature> TOPAZ_ORE_PLACED = PLACED_FEATURES.register("topaz_ore_placed",
 			() -> new PlacedFeature(TOPAZ_ORE_CONFIGURED.getHolder().get(), MagicTreasuresOrePlacement.commonOrePlacement(1, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(34),
 					VerticalAnchor.aboveBottom(94)))));
 	
-	public static final RegistryObject<PlacedFeature> ONYX_ORE_PLACED = PLACED_FEATURES.register("onyx_ore",
+	public static final RegistryObject<PlacedFeature> ONYX_ORE_PLACED = PLACED_FEATURES.register("onyx_ore_placed",
 			() -> new PlacedFeature(ONYX_ORE_CONFIGURED.getHolder().get(), MagicTreasuresOrePlacement.commonOrePlacement(1, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(34),
 					VerticalAnchor.aboveBottom(94)))));
 
-	public static final RegistryObject<PlacedFeature> JADEITE_ORE_PLACED = PLACED_FEATURES.register("jadeite_ore",
+	public static final RegistryObject<PlacedFeature> JADEITE_ORE_PLACED = PLACED_FEATURES.register("jadeite_ore_placed",
 			() -> new PlacedFeature(JADEITE_ORE_CONFIGURED.getHolder().get(), MagicTreasuresOrePlacement.commonOrePlacement(1, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(24),
 					VerticalAnchor.aboveBottom(114)))));
 
-	public static final RegistryObject<PlacedFeature> RUBY_ORE_PLACED = PLACED_FEATURES.register("ruby_ore",
+	public static final RegistryObject<PlacedFeature> RUBY_ORE_PLACED = PLACED_FEATURES.register("ruby_ore_placed",
 			() -> new PlacedFeature(RUBY_ORE_CONFIGURED.getHolder().get(), MagicTreasuresOrePlacement.commonOrePlacement(1, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(14), 
 					VerticalAnchor.aboveBottom(70)))));
 	
-	public static final RegistryObject<PlacedFeature> SAPPHIRE_ORE_PLACED = PLACED_FEATURES.register("sapphire_ore",
+	public static final RegistryObject<PlacedFeature> SAPPHIRE_ORE_PLACED = PLACED_FEATURES.register("sapphire_ore_placed",
 			() -> new PlacedFeature(SAPPHIRE_ORE_CONFIGURED.getHolder().get(), MagicTreasuresOrePlacement.commonOrePlacement(1, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(14), 
 					VerticalAnchor.aboveBottom(70)))));
 
-	public static final RegistryObject<PlacedFeature> SILVER_ORE_PLACED = PLACED_FEATURES.register("silver_ore",
+	public static final RegistryObject<PlacedFeature> SILVER_ORE_PLACED = PLACED_FEATURES.register("silver_ore_placed",
 			() -> new PlacedFeature(SILVER_ORE_CONFIGURED.getHolder().get(), MagicTreasuresOrePlacement.commonOrePlacement(1, HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(34),
 					VerticalAnchor.aboveBottom(90)))));
 

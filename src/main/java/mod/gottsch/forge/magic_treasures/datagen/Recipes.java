@@ -3,22 +3,14 @@ package mod.gottsch.forge.magic_treasures.datagen;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresItems;
-import mod.gottsch.forge.magic_treasures.core.registry.JewelryRegistry;
 import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
-import mod.gottsch.forge.treasure2.core.block.TreasureBlocks;
-import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
-import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.recipes.*;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Items;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.ShapelessRecipe;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.lwjgl.system.CallbackI;
 
 import java.util.function.Consumer;
 

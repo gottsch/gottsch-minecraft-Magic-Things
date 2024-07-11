@@ -1,26 +1,26 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2023 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.datagen;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.capability.MagicTreasuresCapabilities;
-import mod.gottsch.forge.magic_treasures.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresItems;
+import mod.gottsch.forge.magic_treasures.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.spell.SpellRegistry;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
@@ -41,7 +41,7 @@ public class ItemModelsProvider extends ItemModelProvider {
 	@Override
 	protected void registerModels() {
 		// tabs
-		singleTexture(MagicTreasuresItems.magic_treasures_TAB.get().getRegistryName().getPath(),
+		singleTexture(MagicTreasuresItems.magic_treasures_TAB.getId().getPath(),
 				mcLoc("item/generated"), "layer0", modLoc("item/magic_treasures_tab"));
 
 		// tools
@@ -136,19 +136,19 @@ public class ItemModelsProvider extends ItemModelProvider {
 		/*
 		 * blocks
 		 */
-		withExistingParent(MagicTreasuresItems.TOPAZ_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/topaz_ore"));
-		withExistingParent(MagicTreasuresItems.ONYX_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/onyx_ore"));
-		withExistingParent(MagicTreasuresItems.JADEITE_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/jadeite_ore"));
-		withExistingParent(MagicTreasuresItems.RUBY_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/ruby_ore"));
-		withExistingParent(MagicTreasuresItems.SAPPHIRE_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/sapphire_ore"));
-		withExistingParent(MagicTreasuresItems.SILVER_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/silver_ore"));
+		withExistingParent(MagicTreasuresItems.TOPAZ_ORE_ITEM.getId().getPath(), modLoc("block/topaz_ore"));
+		withExistingParent(MagicTreasuresItems.ONYX_ORE_ITEM.getId().getPath(), modLoc("block/onyx_ore"));
+		withExistingParent(MagicTreasuresItems.JADEITE_ORE_ITEM.getId().getPath(), modLoc("block/jadeite_ore"));
+		withExistingParent(MagicTreasuresItems.RUBY_ORE_ITEM.getId().getPath(), modLoc("block/ruby_ore"));
+		withExistingParent(MagicTreasuresItems.SAPPHIRE_ORE_ITEM.getId().getPath(), modLoc("block/sapphire_ore"));
+		withExistingParent(MagicTreasuresItems.SILVER_ORE_ITEM.getId().getPath(), modLoc("block/silver_ore"));
 
-		withExistingParent(MagicTreasuresItems.DEEPSLATE_TOPAZ_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_topaz_ore"));
-		withExistingParent(MagicTreasuresItems.DEEPSLATE_ONYX_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_onyx_ore"));
-		withExistingParent(MagicTreasuresItems.DEEPSLATE_JADEITE_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_jadeite_ore"));
-		withExistingParent(MagicTreasuresItems.DEEPSLATE_RUBY_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_ruby_ore"));
-		withExistingParent(MagicTreasuresItems.DEEPSLATE_SAPPHIRE_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_sapphire_ore"));
-		withExistingParent(MagicTreasuresItems.DEEPSLATE_SILVER_ORE_ITEM.get().getRegistryName().getPath(), modLoc("block/deepslate_silver_ore"));
+		withExistingParent(MagicTreasuresItems.DEEPSLATE_TOPAZ_ORE_ITEM.getId().getPath(), modLoc("block/deepslate_topaz_ore"));
+		withExistingParent(MagicTreasuresItems.DEEPSLATE_ONYX_ORE_ITEM.getId().getPath(), modLoc("block/deepslate_onyx_ore"));
+		withExistingParent(MagicTreasuresItems.DEEPSLATE_JADEITE_ORE_ITEM.getId().getPath(), modLoc("block/deepslate_jadeite_ore"));
+		withExistingParent(MagicTreasuresItems.DEEPSLATE_RUBY_ORE_ITEM.getId().getPath(), modLoc("block/deepslate_ruby_ore"));
+		withExistingParent(MagicTreasuresItems.DEEPSLATE_SAPPHIRE_ORE_ITEM.getId().getPath(), modLoc("block/deepslate_sapphire_ore"));
+		withExistingParent(MagicTreasuresItems.DEEPSLATE_SILVER_ORE_ITEM.getId().getPath(), modLoc("block/deepslate_silver_ore"));
 	}
 	
 	@Deprecated

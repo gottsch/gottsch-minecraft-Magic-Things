@@ -30,7 +30,6 @@ import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import mod.gottsch.forge.magic_treasures.core.util.MathUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -39,7 +38,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingEvent. LivingTickEvent;
 import net.minecraftforge.eventbus.api.Event;
 
 import java.util.List;
@@ -52,7 +51,7 @@ import java.util.Random;
  */
 public class DrainSpell extends Spell {
 	public static final String DRAIN_TYPE = "drain";
-	private static final Class<?> REGISTERED_EVENT = LivingUpdateEvent.class;
+	private static final Class<?> REGISTERED_EVENT = LivingTickEvent.class;
 
 	/**
 	 *
@@ -120,7 +119,7 @@ public class DrainSpell extends Spell {
 
 	@Override
 	public Component getSpellDesc() {
-		return new TranslatableComponent(LangUtil.tooltip("spell.drain.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.drain.rate"),
 				MathUtil.r1d(getEffectAmount()),
 				MathUtil.r1d(getRange()),
 				MathUtil.r1d(getFrequency()/20.0));
@@ -128,7 +127,7 @@ public class DrainSpell extends Spell {
 
 	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
-		return new TranslatableComponent(LangUtil.tooltip("spell.drain.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.drain.rate"),
 				MathUtil.r1d(modifyEffectAmount(jewelry)),
 				MathUtil.r1d(modifyRange(jewelry)),
 				MathUtil.r1d(modifyFrequency(jewelry)/20.0));

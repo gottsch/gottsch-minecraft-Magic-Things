@@ -1,19 +1,19 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2023 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.datagen;
 
@@ -42,8 +42,8 @@ public class LanguageGen extends LanguageProvider {
     @Override
     protected void addTranslations() {
     	// tabs
-        add("itemGroup." + MagicTreasures.MOD_ID, "Magic Things");
-        add("itemGroup." + MagicTreasures.MOD_ID + ".jewelry_tab", "Magic Things Jewelry");
+        add("itemGroup." + MagicTreasures.MOD_ID, "Magic Treasures");
+        add("itemGroup." + MagicTreasures.MOD_ID + ".jewelry_tab", "Magic Treasures Jewelry");
 
         // metals
         add(MagicTreasuresItems.SILVER_INGOT.get(), "Silver Ingot");
@@ -60,7 +60,7 @@ public class LanguageGen extends LanguageProvider {
 
         // regular jewelry
 		MagicTreasuresItems.STANDARD_JEWELRY.forEach(item -> {
-			add(item.get(), WordUtils.capitalizeFully(item.get().getRegistryName().getPath().replace("_", " ")));
+			add(item.get(), WordUtils.capitalizeFully(item.getId().getPath().replace("_", " ")));
 		});
 
         // special jewelry
@@ -133,8 +133,8 @@ public class LanguageGen extends LanguageProvider {
         add(LangUtil.tooltip("tools.jewelry_pliers"), "Required for removing gemstones from jewelry.");
 
         // gemstones
-        add(LangUtil.tooltip("gemstone.usage"), "Place on an anvil with Magic Things jewelry to combine.");
-        add(LangUtil.tooltip("gemstone.recharge.usage"), "Place on an anvil with Magic Things jewelry to recharge.");
+        add(LangUtil.tooltip("gemstone.usage"), "Place on an anvil with Magic Treasures jewelry to combine.");
+        add(LangUtil.tooltip("gemstone.recharge.usage"), "Place on an anvil with Magic Treasures jewelry to recharge.");
         add(LangUtil.tooltip("gemstone.rarity"), "Rarity: %s");
         add(LangUtil.tooltip("gemstone.tier"), "Tier: %s");
         add(LangUtil.tooltip("gemstone.mana"), "Mana: %s");
@@ -305,7 +305,7 @@ public class LanguageGen extends LanguageProvider {
 
 
         // scrolls
-        add(LangUtil.tooltip("spell_scroll.usage"), "Place on an anvil with Magic Things jewelry to combine.");
+        add(LangUtil.tooltip("spell_scroll.usage"), "Place on an anvil with Magic Treasures jewelry to combine.");
 
         add(LangUtil.tooltip("jewelry_recipe_scroll.usage"), "Combine with 4 ingots of respective material on crafting table to craft jewelry item.");
 

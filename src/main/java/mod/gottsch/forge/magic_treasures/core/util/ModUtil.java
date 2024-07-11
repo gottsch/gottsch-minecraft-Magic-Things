@@ -1,6 +1,27 @@
 
 package mod.gottsch.forge.magic_treasures.core.util;
 
+import mod.gottsch.forge.gottschcore.spatial.Coords;
+import mod.gottsch.forge.gottschcore.spatial.ICoords;
+import mod.gottsch.forge.gottschcore.world.WorldInfo;
+import mod.gottsch.forge.magic_treasures.MagicTreasures;
+import net.minecraft.core.Holder;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.NaturalSpawner;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.LevelStorageSource;
+import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
+import net.minecraftforge.registries.ForgeRegistries;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
@@ -11,24 +32,8 @@ import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import mod.gottsch.forge.magic_treasures.MagicTreasures;
-import mod.gottsch.forge.gottschcore.spatial.Coords;
-import mod.gottsch.forge.gottschcore.spatial.ICoords;
-import mod.gottsch.forge.gottschcore.world.WorldInfo;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.level.NaturalSpawner;
-import net.minecraft.world.level.storage.LevelStorageSource;
-import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 
 /**
  * 
@@ -56,6 +61,23 @@ public class ModUtil {
 
 	public static boolean hasDomain(String name) {
 		return name.indexOf(":") >= 0;
+	}
+
+	public static ResourceLocation getName(Block block) {
+		// don't bother checking optional - if it is empty, then the block isn't registered and this shouldn't run anyway.
+		ResourceLocation name = ForgeRegistries.BLOCKS.getResourceKey(block).get().location();
+		return name;
+	}
+
+	public static ResourceLocation getName(Item item) {
+		// don't bother checking optional - if it is empty, then the block isn't registered and this shouldn't run anyway.
+		ResourceLocation name = ForgeRegistries.ITEMS.getResourceKey(item).get().location();
+		return name;
+	}
+
+
+	public static ResourceLocation getName(Holder<Biome> biome) {
+		return biome.unwrapKey().get().location();
 	}
 
 	/**
@@ -158,7 +180,7 @@ public class ModUtil {
 		 * @param coords
 		 * @return
 		 */
-		public static Entity spawn(ServerLevel level, Random random, EntityType<?> entityType, Entity mob, ICoords coords) {
+		public static Entity spawn(ServerLevel level, RandomSource random, EntityType<?> entityType, Entity mob, ICoords coords) {
 
 			for (int i = 0; i < 20; i++) { // 20 tries
 				int spawnX = coords.getX() + Mth.nextInt(random, 1, 2) * Mth.nextInt(random, -1, 1);

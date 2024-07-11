@@ -1,19 +1,19 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2023 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.core.item;
 
@@ -25,8 +25,6 @@ import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -73,9 +71,9 @@ public class Jewelry extends Item implements IJewelry{
     @Override
     public Component getName(ItemStack itemStack) {
         if (isNamed()) {
-            return new TranslatableComponent(this.getDescriptionId(itemStack)).withStyle(ChatFormatting.YELLOW);
+            return Component.translatable(this.getDescriptionId(itemStack)).withStyle(ChatFormatting.YELLOW);
         } else {
-            return new TranslatableComponent(this.getDescriptionId(itemStack));
+            return Component.translatable(this.getDescriptionId(itemStack));
         }
     }
 
@@ -86,12 +84,12 @@ public class Jewelry extends Item implements IJewelry{
     @Override
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, level, tooltip, flag);
-        tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+        tooltip.add(Component.translatable(LangUtil.NEWLINE));
 
         // hide when [shift]
         LangUtil.appendHideableHoverText(tooltip, tt -> {
-            tooltip.add(new TranslatableComponent(LangUtil.tooltip("jewelry.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
-            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+            tooltip.add(Component.translatable(LangUtil.tooltip("jewelry.usage")).withStyle(ChatFormatting.GOLD).withStyle(ChatFormatting.ITALIC));
+            tooltip.add(Component.translatable(LangUtil.NEWLINE));
 
             if (StringUtils.isNotBlank(getLoreKey())) {
                 appendLoreHoverText(stack, level, tooltip, flag);
@@ -108,13 +106,13 @@ public class Jewelry extends Item implements IJewelry{
     public void appendLoreHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 
             // lore may be multiple lines, so separate on \n and add to tooltip
-            TranslatableComponent lore = new TranslatableComponent(LangUtil.tooltip(getLoreKey()));
+            Component lore = Component.translatable(LangUtil.tooltip(getLoreKey()));
             for (String s : lore.getString().split("~")) {
-                tooltip.add(new TextComponent(LangUtil.INDENT2)
-                        .append(new TranslatableComponent(s))
+                tooltip.add(Component.literal(LangUtil.INDENT2)
+                        .append(Component.translatable(s))
                         .withStyle(ChatFormatting.DARK_AQUA).withStyle(ChatFormatting.ITALIC));
             }
-        tooltip.add(new TextComponent(LangUtil.NEWLINE));
+        tooltip.add(Component.literal(LangUtil.NEWLINE));
     }
 
     /**

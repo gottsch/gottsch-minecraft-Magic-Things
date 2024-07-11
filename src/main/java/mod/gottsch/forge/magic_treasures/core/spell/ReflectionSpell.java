@@ -11,7 +11,6 @@ import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import mod.gottsch.forge.magic_treasures.core.util.MathUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Mob;
@@ -85,14 +84,14 @@ public class ReflectionSpell extends CooldownSpell {
 
 	@Override
 	public Component getSpellDesc() {
-		return new TranslatableComponent(LangUtil.tooltip("spell.reflection.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.reflection.rate"),
 				LangUtil.asPercentString(getEffectAmount() * 100),
 				MathUtil.r1d(getCooldown()/20.0));
 	}
 
 	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
-		return new TranslatableComponent(LangUtil.tooltip("spell.reflection.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.reflection.rate"),
 				LangUtil.asPercentString(modifyEffectAmount(jewelry) * 100),
 				MathUtil.r1d(modifyCooldown(jewelry)/20.0));
 	}

@@ -1,0 +1,9 @@
+{
+  "values": [
+    "magictreasures:sapphire",
+    {
+      "id": "treasure2:sapphire",
+      "required": false
+    }
+  ]
+}

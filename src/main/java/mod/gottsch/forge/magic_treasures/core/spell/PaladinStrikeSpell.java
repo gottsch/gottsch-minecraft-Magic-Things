@@ -11,7 +11,6 @@ import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import mod.gottsch.forge.magic_treasures.core.util.MathUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
@@ -88,7 +87,7 @@ public class PaladinStrikeSpell extends CooldownSpell {
 	@Override
 	public Component getSpellDesc() {
 		double amount = lifeCost * getEffectAmount();
-		return new TranslatableComponent(LangUtil.tooltip("spell.paladin_strike.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.paladin_strike.rate"),
 				MathUtil.r1d(amount),
 				MathUtil.r1d(getCooldown()/20.0),
 				MathUtil.r1d(getSpellCost()),
@@ -98,7 +97,7 @@ public class PaladinStrikeSpell extends CooldownSpell {
 	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
 		double amount = lifeCost * modifyEffectAmount(jewelry);
-		return new TranslatableComponent(LangUtil.tooltip("spell.paladin_strike.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.paladin_strike.rate"),
 				MathUtil.r1d(amount),
 				MathUtil.r1d(modifyCooldown(jewelry)/20.0),
 				MathUtil.r1d((modifySpellCost(jewelry))),

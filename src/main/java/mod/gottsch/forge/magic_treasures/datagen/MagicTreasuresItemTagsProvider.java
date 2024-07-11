@@ -1,19 +1,19 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2023 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.datagen;
 
@@ -28,6 +28,7 @@ import mod.gottsch.forge.magic_treasures.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.rarity.MagicTreasuresRarity;
 import mod.gottsch.forge.magic_treasures.core.setup.Registration;
 import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
+import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
 import net.minecraft.data.DataGenerator;
@@ -185,7 +186,7 @@ public class MagicTreasuresItemTagsProvider extends ItemTagsProvider {
 
 				IRarity materialRarity = MATERIAL_RARITY_MAP.get(handler.getMaterial());
 				IRarity rarity = materialRarity;
-				if (handler.getStone() != null && !handler.getStone().equals(Items.AIR.getRegistryName())) {
+				if (handler.getStone() != null && !handler.getStone().equals(ModUtil.getName(Items.AIR))) {
 //				if (handler.hasStone()) { // can't use hasStone here as it uses tag which aren't loaded yet
 					Item stoneItem = ForgeRegistries.ITEMS.getValue(handler.getStone());
 					IRarity stoneRarity = STONE_RARITY_MAP.get(stoneItem);

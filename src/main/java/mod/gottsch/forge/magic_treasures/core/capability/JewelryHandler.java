@@ -1,38 +1,28 @@
 /*
- * This file is part of  Magic Things.
+ * This file is part of  Magic Treasures.
  * Copyright (c) 2023 Mark Gottschling (gottsch)
  *
- * Magic Things is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Magic Things is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Magic Things.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.core.capability;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.api.MagicTreasuresApi;
 import mod.gottsch.forge.magic_treasures.core.item.IJewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.item.IJewelryType;
-import mod.gottsch.forge.magic_treasures.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.item.JewelryType;
-import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryMaterial;
-import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryMaterials;
-import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTier;
-import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTiers;
+import mod.gottsch.forge.magic_treasures.core.jewelry.*;
 import mod.gottsch.forge.magic_treasures.core.registry.StoneRegistry;
 import mod.gottsch.forge.magic_treasures.core.spell.ISpell;
 import mod.gottsch.forge.magic_treasures.core.spell.SpellEntity;
@@ -46,7 +36,6 @@ import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -57,6 +46,12 @@ import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 /**
  * Created by Mark Gottschling on 6/1/2023
@@ -319,31 +314,31 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
     public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
 
         // spell max level
-        tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.max_level"),
+        tooltip.add(Component.translatable(LangUtil.INDENT2).append(Component.translatable(LangUtil.tooltip("jewelry.max_level"),
                 ChatFormatting.GOLD + String.valueOf(getMaxLevel()))));
 
         // durability
         if (isInfinite()) {
-            tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
-                    .append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.infinite"), new TranslatableComponent(LangUtil.tooltip("infinite")).withStyle(ChatFormatting.GRAY))));
+            tooltip.add(Component.translatable(LangUtil.INDENT2)
+                    .append(Component.translatable(LangUtil.tooltip("jewelry.durability.infinite"), Component.translatable(LangUtil.tooltip("infinite")).withStyle(ChatFormatting.GRAY))));
         } else {
-            tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
-                    .append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.amount"),
+            tooltip.add(Component.translatable(LangUtil.INDENT2)
+                    .append(Component.translatable(LangUtil.tooltip("jewelry.durability.amount"),
                     ChatFormatting.GRAY + String.valueOf(getUses()),
                     ChatFormatting.GRAY + String.valueOf(getMaxUses()))));
         }
 
         // mana
-        tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
-                .append(new TranslatableComponent(LangUtil.tooltip("jewelry.mana"),
+        tooltip.add(Component.translatable(LangUtil.INDENT2)
+                .append(Component.translatable(LangUtil.tooltip("jewelry.mana"),
                         ChatFormatting.BLUE + String.valueOf(Math.toIntExact(Math.round(getMana()))),
                         ChatFormatting.BLUE + String.valueOf(Math.toIntExact((long)Math.ceil(getMaxMana()))))));
                         // + getUsesGauge().getString())));
 
         if (!getSpells().isEmpty()) {
-            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
-            tooltip.add(new TranslatableComponent(LangUtil.INDENT2)
-                    .append(new TranslatableComponent(LangUtil.tooltip("divider")).withStyle(ChatFormatting.GRAY)));
+            tooltip.add(Component.translatable(LangUtil.NEWLINE));
+            tooltip.add(Component.translatable(LangUtil.INDENT2)
+                    .append(Component.translatable(LangUtil.tooltip("divider")).withStyle(ChatFormatting.GRAY)));
 
             // add spells
             for (SpellEntity entity : getSpells()) {
@@ -352,54 +347,54 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
         }
 
         // -----------
-        MutableComponent component = new TranslatableComponent(LangUtil.INDENT2);
+        MutableComponent component = Component.translatable(LangUtil.INDENT2);
         Optional<MutableComponent> c = Optional.empty();
         if (getSpellCostFactor() != 1.0) {
             c = Optional.of(component);
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.cost_factor"), ChatFormatting.AQUA + formatStat(getSpellCostFactor())))
+            component.append(Component.translatable(LangUtil.tooltip("jewelry.stats.cost_factor"), ChatFormatting.AQUA + formatStat(getSpellCostFactor())))
                     .append(" ");
         }
         if (getSpellCooldownFactor() != 1.0) {
             c = c.isEmpty() ? Optional.of(component) : c;
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.cooldown_factor"), ChatFormatting.AQUA + formatStat(getSpellCooldownFactor())))
+            component.append(Component.translatable(LangUtil.tooltip("jewelry.stats.cooldown_factor"), ChatFormatting.AQUA + formatStat(getSpellCooldownFactor())))
                     .append(" ");
         }
         if (getSpellEffectAmountFactor() != 1.0) {
             c = c.isEmpty() ? Optional.of(component) : c;
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.effect_amount_factor"), ChatFormatting.AQUA + formatStat(getSpellEffectAmountFactor())))
+            component.append(Component.translatable(LangUtil.tooltip("jewelry.stats.effect_amount_factor"), ChatFormatting.AQUA + formatStat(getSpellEffectAmountFactor())))
                     .append(" ");
         }
         if (getSpellFrequencyFactor() != 1.0) {
             c = c.isEmpty() ? Optional.of(component) : c;
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.frequency_factor"), ChatFormatting.AQUA + formatStat(1.0 + (1.0 - getSpellFrequencyFactor()))))
+            component.append(Component.translatable(LangUtil.tooltip("jewelry.stats.frequency_factor"), ChatFormatting.AQUA + formatStat(1.0 + (1.0 - getSpellFrequencyFactor()))))
                     .append(" ");
         }
         if (getSpellRangeFactor() != 1.0) {
             c = c.isEmpty() ? Optional.of(component) : c;
-            component.append(new TranslatableComponent(LangUtil.tooltip("jewelry.stats.range_factor"), ChatFormatting.AQUA + formatStat(getSpellRangeFactor())))
+            component.append(Component.translatable(LangUtil.tooltip("jewelry.stats.range_factor"), ChatFormatting.AQUA + formatStat(getSpellRangeFactor())))
                     .append(" ");
         }
         c.ifPresent(x -> {
-            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
-            tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("divider")).withStyle(ChatFormatting.GRAY)));
+            tooltip.add(Component.translatable(LangUtil.NEWLINE));
+            tooltip.add(Component.translatable(LangUtil.INDENT2).append(Component.translatable(LangUtil.tooltip("divider")).withStyle(ChatFormatting.GRAY)));
             tooltip.add(component);
         });
         // ------------
 
         // advanced tooltip (hold shift)
         LangUtil.appendAdvancedHoverText(tooltip, tt -> {
-            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+            tooltip.add(Component.translatable(LangUtil.NEWLINE));
             // material
-            tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.material"), ChatFormatting.GREEN + WordUtils.capitalizeFully(getMaterial().getId().getPath()))));
+            tooltip.add(Component.translatable(LangUtil.INDENT2).append(Component.translatable(LangUtil.tooltip("jewelry.material"), ChatFormatting.GREEN + WordUtils.capitalizeFully(getMaterial().getId().getPath()))));
             // stones
             if (hasStone()) {
-                tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.stone"), ChatFormatting.YELLOW + WordUtils.capitalizeFully(getStone().getPath().replace("_", " ")))));
+                tooltip.add(Component.translatable(LangUtil.INDENT2).append(Component.translatable(LangUtil.tooltip("jewelry.stone"), ChatFormatting.YELLOW + WordUtils.capitalizeFully(getStone().getPath().replace("_", " ")))));
             }
             if (!isInfinite()) {
-                tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.durability.repairs"), ChatFormatting.GRAY + String.valueOf(getRepairs()))));
+                tooltip.add(Component.translatable(LangUtil.INDENT2).append(Component.translatable(LangUtil.tooltip("jewelry.durability.repairs"), ChatFormatting.GRAY + String.valueOf(getRepairs()))));
             } // TODO add else ? to display 0 repairs?
-            tooltip.add(new TranslatableComponent(LangUtil.INDENT2).append(new TranslatableComponent(LangUtil.tooltip("jewelry.mana.recharges"), ChatFormatting.BLUE + String.valueOf(getRecharges()))));
-            tooltip.add(new TranslatableComponent(LangUtil.NEWLINE));
+            tooltip.add(Component.translatable(LangUtil.INDENT2).append(Component.translatable(LangUtil.tooltip("jewelry.mana.recharges"), ChatFormatting.BLUE + String.valueOf(getRecharges()))));
+            tooltip.add(Component.translatable(LangUtil.NEWLINE));
 
             appendSpecialHoverText(stack, level, tooltip, flag);
         });
@@ -421,7 +416,7 @@ public class JewelryHandler implements IJewelryHandler, INBTSerializable<Tag> {
 
     @Deprecated
     public Component getUsesGauge() {
-        return new TranslatableComponent(LangUtil.tooltip("jewelry.mana.gauge"),
+        return Component.translatable(LangUtil.tooltip("jewelry.mana.gauge"),
                 String.valueOf(Math.toIntExact(Math.round(getMana()))),
                 String.valueOf(Math.toIntExact((long)Math.ceil(getMaxMana()))));
     }

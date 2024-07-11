@@ -7,4 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.0.0] - 2024-07-04
 
-- Initial release for mc1.18.2.
+- Initial port from mc1.18.2.
+
+### Changed
+- Moved integration registrations to the LevelEvent.Load event.
+- Moved loot function registrations to the common setup.
+
+### Added
+- Dimension Whitelist to the Config

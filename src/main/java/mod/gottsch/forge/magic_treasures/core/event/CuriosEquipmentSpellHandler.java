@@ -1,21 +1,19 @@
 /*
- * This file is part of  Treasure2.
- * Copyright (c) 2021, Mark Gottschling (gottsch)
- * 
- * All rights reserved.
+ * This file is part of  Magic Treasures.
+ * Copyright (c) 2024 Mark Gottschling (gottsch)
  *
- * Treasure2 is free software: you can redistribute it and/or modify
+ * Magic Treasures is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Lesser General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * Treasure2 is distributed in the hope that it will be useful,
+ * Magic Treasures is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Treasure2.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
 package mod.gottsch.forge.magic_treasures.core.event;
 
@@ -37,8 +35,6 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * 
- * @author Mark Gottschling on Aug 30, 2021
  *
  */
 public class CuriosEquipmentSpellHandler implements IEquipmentSpellHandler {
@@ -51,6 +47,9 @@ public class CuriosEquipmentSpellHandler implements IEquipmentSpellHandler {
 	public List<SpellContext> handleEquipmentSpells(Event event, ServerPlayer player) {
 		List<SpellContext> contexts = new ArrayList<>();
 
+		///////////////////////////////////
+		// Comment out when running DataGen until I figure out why it's not working with Curios
+		///////////////////////////////////
 		// check curio slots
 		LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
 		handler.ifPresent(itemHandler -> {

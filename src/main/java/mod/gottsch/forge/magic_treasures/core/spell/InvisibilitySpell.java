@@ -9,7 +9,6 @@ import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import mod.gottsch.forge.magic_treasures.core.util.MathUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -26,7 +25,7 @@ import java.util.Random;
  */
 public class InvisibilitySpell extends CooldownSpell {
 	public static final String TYPE = "invisibility";
-	private static final Class<?> REGISTERED_EVENT = LivingEvent.LivingUpdateEvent.class;
+	private static final Class<?> REGISTERED_EVENT = LivingEvent.LivingTickEvent.class;
 
 	// amount to amplify strength effect by
 	private int amplifier = 0;
@@ -66,14 +65,14 @@ public class InvisibilitySpell extends CooldownSpell {
 
 	@Override
 	public Component getSpellDesc() {
-		return new TranslatableComponent(LangUtil.tooltip("spell.invisibility.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.invisibility.rate"),
 				MathUtil.r1d(getDuration() / 20.0),
 				MathUtil.r1d(getCooldown() / 20.0));
 	}
 
 	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
-		return new TranslatableComponent(LangUtil.tooltip("spell.invisibility.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.invisibility.rate"),
 				MathUtil.r1d(modifyDuration(jewelry) / 20.0),
 				MathUtil.r1d(modifyCooldown(jewelry) / 20.0));
 	}

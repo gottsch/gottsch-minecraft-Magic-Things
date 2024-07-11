@@ -8,7 +8,6 @@ import mod.gottsch.forge.magic_treasures.core.capability.MagicTreasuresCapabilit
 import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
@@ -75,13 +74,13 @@ public class MagicResistanceSpell extends Spell {
 
 	@Override
 	public Component getSpellDesc() {
-		return new TranslatableComponent(LangUtil.tooltip("spell.magic_resistance.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.magic_resistance.rate"),
 				LangUtil.asPercentString(Math.min(100, getEffectAmount() * 100)));
 	}
 
 	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
-		return new TranslatableComponent(LangUtil.tooltip("spell.magic_resistance.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.magic_resistance.rate"),
 				LangUtil.asPercentString(Math.min(100, modifyEffectAmount(jewelry) * 100)));
 	}
 

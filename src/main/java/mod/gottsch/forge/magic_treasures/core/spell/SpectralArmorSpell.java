@@ -7,10 +7,8 @@ import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.capability.IJewelryHandler;
 import mod.gottsch.forge.magic_treasures.core.capability.MagicTreasuresCapabilities;
 import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
-import mod.gottsch.forge.magic_treasures.core.util.MathUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -100,13 +98,13 @@ SpectralArmorSpell extends Spell {
 
 	@Override
 	public Component getSpellDesc() {
-		return new TranslatableComponent(LangUtil.tooltip("spell.spectral_armor.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.spectral_armor.rate"),
 				LangUtil.asPercentString(getEffectAmount() * 4.0));
 	}
 
 	@Override
 	public Component getSpellDesc(ItemStack jewelry) {
-		return new TranslatableComponent(LangUtil.tooltip("spell.spectral_armor.rate"),
+		return Component.translatable(LangUtil.tooltip("spell.spectral_armor.rate"),
 				LangUtil.asPercentString(modifyEffectAmount(jewelry) * 4.0));
 	}
 

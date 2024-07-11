@@ -26,6 +26,7 @@ import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryMaterial;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTier;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTiers;
 import mod.gottsch.forge.magic_treasures.core.registry.support.JewelryRegistryKey;
+import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -50,7 +51,7 @@ public class JewelryRegistry {
 	public static void register(Item item) {		
 		ItemStack stack = new ItemStack(item);
 		stack.getCapability(MagicTreasuresCapabilities.JEWELRY_CAPABILITY).ifPresent(c -> {
-			NAME_MAP.put(item.getRegistryName(), item);
+			NAME_MAP.put(ModUtil.getName(item), item);
 
 			// get the stone
 			Item stone = null;
