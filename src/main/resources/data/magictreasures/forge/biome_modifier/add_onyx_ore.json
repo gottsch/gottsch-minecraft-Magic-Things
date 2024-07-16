@@ -1,6 +1,6 @@
 {
   "type" : "forge:add_features",
   "biomes" : "#magictreasures:all_overworld",
-  "features" : "magictreasures:onyx_ore_placed",
+  "features" : "magictreasures:onyx_placed",
   "step" : "underground_ores"
 }

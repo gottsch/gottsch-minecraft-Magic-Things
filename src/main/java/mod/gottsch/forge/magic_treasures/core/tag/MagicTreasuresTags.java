@@ -27,7 +27,7 @@ import mod.gottsch.forge.magic_treasures.core.registry.JewelryRegistry;
 import mod.gottsch.forge.magic_treasures.core.registry.StoneRegistry;
 import mod.gottsch.forge.magic_treasures.core.registry.TagRegistry;
 import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
-import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -157,7 +157,7 @@ public class MagicTreasuresTags {
         public static final TagKey<Biome> ALL_OVERWORLD = mod(MagicTreasures.MOD_ID, "all_overworld");
 
         public static TagKey<Biome> mod(String domain, String path) {
-            return TagKey.create(Registry.BIOME_REGISTRY, new ResourceLocation(domain, path));
+            return TagKey.create(Registries.BIOME, new ResourceLocation(domain, path));
         }
     }
     

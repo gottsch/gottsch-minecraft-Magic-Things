@@ -31,36 +31,37 @@ import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
 import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by Mark Gottschling on 5/29/2023
  */
 public class MagicTreasuresItemTagsProvider extends ItemTagsProvider {
 	/**
-	 * 
-	 * @param dataGenerator
-	 * @param blockTagProvider
-	 * @param existingFileHelper
+	 *
 	 */
-	public MagicTreasuresItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, ExistingFileHelper existingFileHelper) {
-		super(dataGenerator, blockTagProvider, MagicTreasures.MOD_ID, existingFileHelper);
+	public MagicTreasuresItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup,
+										  CompletableFuture<TagLookup<Block>> blockTagProvider, @Nullable ExistingFileHelper existingFileHelper) {
+		super(output, lookup, blockTagProvider, MagicTreasures.MOD_ID, existingFileHelper);
 	}
 
 	@Override
-	protected void addTags() {
+	protected void addTags(HolderLookup.Provider provider) {
 
 		// TODO add Silver Ingot to forge "ore registry" tag
 

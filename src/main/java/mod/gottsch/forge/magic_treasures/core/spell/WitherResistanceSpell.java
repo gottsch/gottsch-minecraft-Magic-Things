@@ -10,6 +10,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -47,7 +48,7 @@ public class WitherResistanceSpell extends Spell {
 		boolean result = false;
 
 		// exit if not fire damage
-		if (((LivingDamageEvent)event).getSource() == DamageSource.WITHER) {
+		if (((LivingDamageEvent)event).getSource().is(DamageTypes.WITHER)) {
 			IJewelryHandler handler = context.getJewelry().getCapability(MagicTreasuresCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
 
 			if (handler.getMana() > 0 && context.getPlayer().isAlive()) {

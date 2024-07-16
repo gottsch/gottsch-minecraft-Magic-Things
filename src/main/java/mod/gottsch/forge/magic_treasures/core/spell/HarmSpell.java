@@ -67,7 +67,7 @@ public class HarmSpell extends CooldownSpell {
 
             double effectAmount = handler.modifyEffectAmount(getEffectAmount());
             for (Mob mob : mobs) {
-                boolean flag = mob.hurt(DamageSource.MAGIC, (float) effectAmount);
+                boolean flag = mob.hurt(level.damageSources().magic(), (float) effectAmount);
                 if (flag) {
                     MagicTreasures.LOGGER.debug("inflict {} hp of damage. resulting health -> {}", effectAmount, mob.getHealth());
                 }

@@ -1,6 +1,6 @@
 {
   "type" : "forge:add_features",
   "biomes" : "#magictreasures:all_overworld",
-  "features" : "magictreasures:silver_ore_placed",
+  "features" : "magictreasures:silver_placed",
   "step" : "underground_ores"
 }

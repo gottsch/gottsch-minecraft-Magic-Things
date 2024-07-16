@@ -33,6 +33,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -98,7 +99,7 @@ public class DrainSpell extends Spell {
 				double effectAmount = handler.modifyEffectAmount(getEffectAmount());
 				mobs.forEach(mob -> {
 //					boolean flag = mob.attackEntityFrom(DamageSource.GENERIC, (float)getAmount());
-					boolean flag = mob.hurt(DamageSource.GENERIC, (float)effectAmount);
+					boolean flag = mob.hurt(level.damageSources().generic(), (float)effectAmount);
 					MagicTreasures.LOGGER.debug("health drained from mob -> {} was successful -> {}", mob.getName(), flag);
 					if (flag) {
 						drainedHealth.addAndGet(effectAmount);

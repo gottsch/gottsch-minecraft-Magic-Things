@@ -18,10 +18,14 @@
 package mod.gottsch.forge.magic_treasures.datagen;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Created by Mark Gottschling on 6/1/2023
@@ -32,18 +36,21 @@ public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+
         if (event.includeServer()) {
-            generator.addProvider(true, new Recipes(generator));
-        	MagicTreasuresBlockTagsProvider blockTags = new MagicTreasuresBlockTagsProvider(generator, event.getExistingFileHelper());
+            generator.addProvider(true, new Recipes(output));
+        	MagicTreasuresBlockTagsProvider blockTags = new MagicTreasuresBlockTagsProvider(output, lookupProvider, event.getExistingFileHelper());
             generator.addProvider(true, blockTags);
-            generator.addProvider(true, new MagicTreasuresItemTagsProvider(generator, blockTags, event.getExistingFileHelper()));
-            generator.addProvider(true, new MagicTreasuresBiomeTagsProvider(generator, event.getExistingFileHelper()));
+            generator.addProvider(true, new MagicTreasuresItemTagsProvider(output, lookupProvider, blockTags.contentsGetter(), event.getExistingFileHelper()));
+            generator.addProvider(true, new MagicTreasuresBiomeTagsProvider(output, lookupProvider, event.getExistingFileHelper()));
 
         }
         if (event.includeClient()) {
 //        	 generator.addProvider(new BlockStates(generator, event.getExistingFileHelper()));
-            generator.addProvider(true, new ItemModelsProvider(generator, event.getExistingFileHelper()));
-            generator.addProvider(true, new LanguageGen(generator, "en_us"));
+            generator.addProvider(true, new ItemModelsProvider(output, event.getExistingFileHelper()));
+            generator.addProvider(true, new LanguageGen(output, "en_us"));
         }
     }
 }

@@ -12,10 +12,15 @@ import mod.gottsch.forge.magic_treasures.core.config.Config;
 import mod.gottsch.forge.magic_treasures.core.rarity.MagicTreasuresRarity;
 import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
@@ -63,9 +68,13 @@ public class LootModifierByLootTable extends LootModifier {
 			ResourceLocation lootTable = ModUtil.asLocation(this.lootTable);
 
 			// get the loot table
-			LootTable table = context.getLevel().getServer().getLootTables().get(lootTable);
+			LootTable table = context.getLevel().getServer().getLootData().getLootTable(lootTable);
 
-			List<ItemStack> tempLoot = table.getRandomItems(context);
+			// setup params
+			LootParams.Builder lootParamsBuilder = (new LootParams.Builder(context.getLevel()));
+			LootParams params = lootParamsBuilder.create(LootContextParamSets.CHEST);
+
+			List<ItemStack> tempLoot = table.getRandomItems(params);
 			// grab the loot from the loot list
 			for (int index = 0; index < Math.min(count, tempLoot.size()); index++) {
 				ItemStack outputStack = tempLoot.get(index);

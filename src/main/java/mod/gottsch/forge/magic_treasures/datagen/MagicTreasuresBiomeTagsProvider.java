@@ -3,11 +3,14 @@ package mod.gottsch.forge.magic_treasures.datagen;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * 
@@ -17,15 +20,14 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class MagicTreasuresBiomeTagsProvider extends BiomeTagsProvider {
     /**
      *
-     * @param generatorIn
      * @param existingFileHelper
      */
-	public MagicTreasuresBiomeTagsProvider(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
-        super(generatorIn, MagicTreasures.MOD_ID, existingFileHelper);
+	public MagicTreasuresBiomeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookup, ExistingFileHelper existingFileHelper) {
+        super(output, lookup, MagicTreasures.MOD_ID, existingFileHelper);
     }
     
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
     	String BOP = "biomesoplenty";
 
     	// blocks rarity

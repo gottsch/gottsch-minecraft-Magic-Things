@@ -70,7 +70,7 @@ public class ReflectionSpell extends CooldownSpell {
 				List<Mob> mobs = world.getEntitiesOfClass(Mob.class, new AABB(px - range, py - range, pz - range, px + range, py + range, pz + range));
 				// hurt the mob with reflected amount
 				mobs.forEach(mob -> {
-					boolean flag = mob.hurt(DamageSource.MAGIC, (float) reflectedAmount);
+					boolean flag = mob.hurt(world.damageSources().magic(), (float) reflectedAmount);
 					MagicTreasures.LOGGER.debug("reflected damage {} onto mob -> {} was successful -> {}", reflectedAmount, mob.getName(), flag);
 				});
 

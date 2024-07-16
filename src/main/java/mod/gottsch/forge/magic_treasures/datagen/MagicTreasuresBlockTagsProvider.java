@@ -1,26 +1,45 @@
-
+/*
+ * This file is part of  Magic Treasures.
+ * Copyright (c) 2023 Mark Gottschling (gottsch)
+ *
+ * Magic Treasures is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Magic Treasures is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
+ */
 package mod.gottsch.forge.magic_treasures.datagen;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.block.MagicTreasuresBlocks;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.concurrent.CompletableFuture;
 
 
 public class MagicTreasuresBlockTagsProvider extends BlockTagsProvider {
+
     /**
      * 
-     * @param generatorIn
-     * @param existingFileHelper
      */
-	public MagicTreasuresBlockTagsProvider(DataGenerator generatorIn, ExistingFileHelper existingFileHelper) {
-        super(generatorIn, MagicTreasures.MOD_ID, existingFileHelper);
+	public MagicTreasuresBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
+                                           ExistingFileHelper existingFileHelper) {
+        super(output, lookupProvider, MagicTreasures.MOD_ID, existingFileHelper);
     }
     
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
     	// blocks rarity
 //    	tag(TreasureTags.Blocks.COMMON_CHESTS).add(TreasureBlocks.WOOD_CHEST.get());
 

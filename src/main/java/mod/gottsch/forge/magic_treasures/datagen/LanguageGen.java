@@ -23,7 +23,7 @@ import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresItems;
 import mod.gottsch.forge.magic_treasures.core.item.SpellScroll;
 import mod.gottsch.forge.magic_treasures.core.setup.Registration;
 import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;
 import org.apache.commons.lang3.text.WordUtils;
 
@@ -35,8 +35,8 @@ import org.apache.commons.lang3.text.WordUtils;
 @SuppressWarnings("deprecation")
 public class LanguageGen extends LanguageProvider {
 
-    public LanguageGen(DataGenerator gen, String locale) {
-        super(gen, MagicTreasures.MOD_ID, locale);
+    public LanguageGen(PackOutput output, String locale) {
+        super(output, MagicTreasures.MOD_ID, locale);
     }
     
     @Override

@@ -1,8 +1,8 @@
 {
     "pack": {
-        "description": "magic treasures resources",
-        "pack_format": 9,
-        "forge:resource_pack_format": 8,
-        "forge:data_pack_format": 9
+        "description": {
+            "text": "magic treasures resources"
+        },
+        "pack_format": 15
     }
 }

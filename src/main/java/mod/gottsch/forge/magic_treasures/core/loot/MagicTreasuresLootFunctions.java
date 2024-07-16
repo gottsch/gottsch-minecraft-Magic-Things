@@ -23,6 +23,7 @@ import mod.gottsch.forge.magic_treasures.core.loot.function.RandomJewelry;
 import mod.gottsch.forge.magic_treasures.core.loot.function.RandomSpell;
 import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 
 /**
@@ -54,6 +55,6 @@ public class MagicTreasuresLootFunctions {
 	 * @return
 	 */
 	public static LootItemFunctionType register(String name, LootItemFunctionType type) {
-		return Registry.register(Registry.LOOT_FUNCTION_TYPE, ModUtil.asLocation(name), type);
+		return Registry.register(BuiltInRegistries.LOOT_FUNCTION_TYPE, ModUtil.asLocation(name), type);
 	}
 }

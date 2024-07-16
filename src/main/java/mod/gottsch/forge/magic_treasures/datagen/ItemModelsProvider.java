@@ -22,7 +22,7 @@ import mod.gottsch.forge.magic_treasures.core.capability.MagicTreasuresCapabilit
 import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresItems;
 import mod.gottsch.forge.magic_treasures.core.jewelry.JewelrySizeTier;
 import mod.gottsch.forge.magic_treasures.core.spell.SpellRegistry;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -34,14 +34,14 @@ import net.minecraftforge.common.data.ExistingFileHelper;
  */
 public class ItemModelsProvider extends ItemModelProvider {
 
-	public ItemModelsProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-		super(generator, MagicTreasures.MOD_ID, existingFileHelper);
+	public ItemModelsProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+		super(output, MagicTreasures.MOD_ID, existingFileHelper);
 	}
 
 	@Override
 	protected void registerModels() {
 		// tabs
-		singleTexture(MagicTreasuresItems.magic_treasures_TAB.getId().getPath(),
+		singleTexture(MagicTreasuresItems.MAGIC_TREASURES_TAB.getId().getPath(),
 				mcLoc("item/generated"), "layer0", modLoc("item/magic_treasures_tab"));
 
 		// tools

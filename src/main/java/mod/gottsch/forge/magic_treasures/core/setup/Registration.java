@@ -19,18 +19,17 @@ package mod.gottsch.forge.magic_treasures.core.setup;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.block.MagicTreasuresBlocks;
+import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresCreativeModeTabs;
 import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresItems;
-import mod.gottsch.forge.magic_treasures.core.loot.MagicTreasuresLootFunctions;
 import mod.gottsch.forge.magic_treasures.core.loot.modifier.MagicTreasuresLootModifiers;
 import mod.gottsch.forge.magic_treasures.core.world.feature.MagicTreasuresConfiguredFeatures;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
+import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -50,15 +49,16 @@ public class Registration {
     public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.MENU_TYPES, MagicTreasures.MOD_ID);
 
      // item properties convenience property
-    public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(CreativeModeTab.TAB_MISC);
+//    public static final Item.Properties ITEM_PROPERTIES = new Item.Properties().tab(CreativeModeTab.TAB_MISC);
 
     /**
      *
      */
-    public static void init() {
+    public static void init(IEventBus eventBus) {
         MagicTreasuresBlocks.register();
     	MagicTreasuresItems.register();
         MagicTreasuresConfiguredFeatures.register();
         MagicTreasuresLootModifiers.register();
+        MagicTreasuresCreativeModeTabs.TABS.register(eventBus);
     }
 }

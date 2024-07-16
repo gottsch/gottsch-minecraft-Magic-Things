@@ -9,6 +9,7 @@ import mod.gottsch.forge.magic_treasures.core.util.LangUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -46,8 +47,8 @@ public class MagicResistanceSpell extends Spell {
 	public boolean serverUpdate(Level world, Random random, ICoords coords, Event event, ICastSpellContext context) {
 		boolean result = false;
 
-		// exit if not fire damage
-		if (((LivingDamageEvent)event).getSource().isMagic() && context.getPlayer().hasEffect(MobEffects.POISON)) {
+		// exit if not magic damage
+		if (((LivingDamageEvent)event).getSource().is(DamageTypes.MAGIC) && context.getPlayer().hasEffect(MobEffects.POISON)) {
 			IJewelryHandler handler = context.getJewelry().getCapability(MagicTreasuresCapabilities.JEWELRY_CAPABILITY).orElseThrow(IllegalStateException::new);
 
 			if (handler.getMana() > 0 && context.getPlayer().isAlive()) {
