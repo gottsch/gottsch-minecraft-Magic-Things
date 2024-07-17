@@ -20,7 +20,7 @@
       "item": {
         "item": "magictreasures:onyx"
       },
-      "text": "Onyx is the 2nd least powerful gem.$(br)$(l)Tier:$() $(4)2$()$(br)$(l)Mana:$() $(1)50$()$(br)$(l)Recharges:$() $(6)1$()$(br)",
+      "text": "$(l)Tier:$() $(4)2$()$(br)$(l)Mana:$() $(1)50$()$(br)$(l)Recharges:$() $(6)1$()$(br)",
       "anchor": "onyx"
     },
     {

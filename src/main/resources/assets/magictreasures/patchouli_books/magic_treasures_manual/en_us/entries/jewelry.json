@@ -1,0 +1,38 @@
+{
+  "name": "Jewelry",
+  "icon": "magictreasures:gold_ring",
+  "category": "magictreasures:manual",
+  "sortnum": 2,
+  "pages": [
+    "Some intro text about jewelry",
+    "Jewelry Size",
+    "Spotlight a jewelry from each material with material stats",
+    {
+      "type": "patchouli:spotlight",
+      "title": "Wood Jewelry",
+      "item": {
+        "item": "magictreasures:wood_ring"
+      },
+      "text": "Wood jewelry is the least powerful material.$(br)$(l)Max Level:$() $(4)2$()$br()$(l)Uses:$() $(1)40$()$(br)$(l)Mana:$() $(1)20$()$(br)$(l)Repairs:$() $(6)0$()$(br)",
+      "anchor": "wood_jewelry"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Iron Jewelry",
+      "item": {
+        "item": "magictreasures:iron_ring"
+      },
+      "text": "Iron jewelry is very durability, having a high number of uses and very repairable.$(br)$(l)Max Level:$() $(4)3$()$br()$(l)Uses:$() $(1)200$()$(br)$(l)Mana:$() $(1)50$()$(br)$(l)Repairs:$() $(6)3$()$(br)$(l)Spell Duration:$() $(3)+25%$()$(br)",
+      "anchor": "iron_jewelry"
+    },
+    {
+      "type": "patchouli:spotlight",
+      "title": "Copper Jewelry",
+      "item": {
+        "item": "magictreasures:great_copper_necklace"
+      },
+      "text": "Copper jewelry has a higher level than iron, but not as durable.$(br)$(l)Max Level:$() $(4)4$()$br()$(l)Uses:$() $(1)75()$(br)$(l)Mana:$() $(1)50$()$(br)$(l)Repairs:$() $(6)1$()$(br)$(l)Spell Cooldown:$() $(3)-5%$()$(br)$(l)Spell Frequency:$() $(3)+5%$()$(br)",
+      "anchor": "copper_jewelry"
+    }
+  ]
+}
