@@ -7,7 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.1.0] - 2024-07-15
 
-- Fixed Patchouli book not adding on first use (naming issue).
+### Changed
+- Added Magical Treasures Manual (Patchouli Guide) to the Magical Treasures tab.
+- Fixed Patchouli guide not adding on first use (naming issue).
+- Fixed mods.toml to point to the correct update.json file.
+- Blood jewelry material has -10% spell cost.
 
 ## [1.0.0] - 2024-07-11
 
