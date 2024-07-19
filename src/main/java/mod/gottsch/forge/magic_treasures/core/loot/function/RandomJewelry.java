@@ -85,6 +85,7 @@ public class RandomJewelry extends LootItemConditionalFunction {
 
 		MagicTreasures.LOGGER.debug("incoming stack -> {}", stack.getDisplayName());
 		MagicTreasures.LOGGER.debug("rarity -> {}", rarity);
+		MagicTreasures.LOGGER.debug("rarities -> {}", rarities);
 
 		List<Item> jewelry = new ArrayList<>();
 		if (!materials.isEmpty()) {
@@ -116,10 +117,13 @@ public class RandomJewelry extends LootItemConditionalFunction {
 			jewelry.addAll(JewelryRegistry.get(rarity));
 			jewelry = filterByGemstones(jewelry, gemstones);
 		} else if (!this.rarities.isEmpty()) {
+			MagicTreasures.LOGGER.debug("adding jewelry by rarities");
 			for (IRarity rarity : rarities) {
 				jewelry.addAll(JewelryRegistry.get(rarity));
+				MagicTreasures.LOGGER.debug("jewelry list ->{}", jewelry);
 			}
 			jewelry = filterByGemstones(jewelry, gemstones);
+			MagicTreasures.LOGGER.debug("filtered jewelry list ->{}", jewelry);
 		} else if (levels != null) {
 			jewelry = filterByLevel(jewelry, levels.getInt(context));
 			jewelry = filterByGemstones(jewelry, gemstones);

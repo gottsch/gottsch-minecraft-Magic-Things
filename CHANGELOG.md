@@ -8,10 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2024-07-15
 
 ### Changed
-- Added Magical Treasures Manual (Patchouli Guide) to the Magical Treasures tab.
+- Renamed Magic Treasures Manual to Guide.
+- Added Magic Treasures Guide (Patchouli Guide) to the Magic Treasures tab.
+- Updated Guide book to version 1.2
+- Added jewelry entries to Guide book.
 - Fixed Patchouli guide not adding on first use (naming issue).
 - Fixed mods.toml to point to the correct update.json file.
 - Blood jewelry material has -10% spell cost.
+- Fixed LootModifiers to use the correct chance (the chance always calculated to 0 and thus was not working).
+- Update global_loot_modifiers files with the zombie and wither_skeleton modifier.
+- Update loot_modifiers loot tables to remove killed_by_player, use random_chance, and rebalance values.
+
+### Added
+- Jewelry-Rarity tag mappings!
 
 ## [1.0.0] - 2024-07-11
 

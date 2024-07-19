@@ -5,7 +5,7 @@
   } ],
   "count" : 1,
   "rarity" : "uncommon",
-  "chance" : 0.35,
+  "chance" : 0.9,
   "lootTable": "magictreasures:entities/wither_skeleton",
   "type" : "magictreasures:loot_modifier_by_loot_table"
 }

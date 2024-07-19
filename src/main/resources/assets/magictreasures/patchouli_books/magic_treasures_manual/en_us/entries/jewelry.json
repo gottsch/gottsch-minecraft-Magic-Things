@@ -1,14 +1,14 @@
 {
   "name": "Jewelry",
   "icon": "magictreasures:gold_ring",
-  "category": "magictreasures:manual",
+  "category": "magictreasures:guide",
   "sortnum": 2,
   "pages": [
-    "Some intro text about jewelry",
+    "There are three types of jewelry that can be worn - Rings, Necklaces, and Bracelets. Jewelry comes in different sizes and materials. Each jewelry item has its own # of uses, mana and # of repairs which can be affected by material and size. Jewelry can be upgraded by affixing gems to them using an anvil. Spells can be imbued into them as well using an anvil. You can only add one spell to a jewelry item, though some special pieces can be found that contain more.",
     {
-      "title": "Jewelry Sizes",
       "type": "patchouli:text",
-      "text":"Jewelry has three different sizes - regular (unnamed), Great and Lords, and each grants different buffs to the item.$(br).Regular is the default size and does not have a prefix.$(br2)$(l)Great$():$(br)Uses: $(3)2x$()",
+      "title": "Jewelry Sizes",
+      "text":"Jewelry has three different sizes - regular (unnamed), Great and Lords, and each grants different buffs to the item.$(br)Regular is the default size and does not have a prefix.$(br2)$(l)$(n)Great$():$(br)$(l)Uses: $()$(3)+100%$()$(br)$(l)Mana: $()$(3)+50%$()$(br)$(l)Repairs: $()$(3)+1$()$(br2)$(l)$(n)Lords$():$(br)$(l)Uses: $()$(3)+200%$()$(br)$(l)Mana: $()$(3)+100%$()$(br)$(l)Repairs: $()$(3)+2$()",
       "anchor": "jewelry_size"
     },
     {
@@ -44,7 +44,7 @@
       "item": {
         "item": "magictreasures:silver_bracelet"
       },
-      "text": "Silver jewelry costs less mana to cast spells.$(br)$(l)Max Level:$() $(4)5$()$(br2)$(l)Uses:$() $(1)150$()$(br)$(l)Mana:$() $(1)75$()$(br)$(l)Repairs:$() $(6)2$()$(br)$(l)Spell Cost:$() $(3)-5%$()$(br)",
+      "text": "Silver jewelry costs less mana to cast spells.$(br2)$(l)Max Level:$() $(4)5$()$(br)$(l)Uses:$() $(1)150$()$(br)$(l)Mana:$() $(1)75$()$(br)$(l)Repairs:$() $(6)2$()$(br)$(l)Spell Cost:$() $(3)-5%$()$(br)",
       "anchor": "silver_jewelry"
     },
     {
@@ -53,7 +53,7 @@
       "item": {
         "item": "magictreasures:great_gold_ring"
       },
-      "text": "Gold jewelry is the best of the standard metals.$(br)$(l)Max Level:$() $(4)6$()$(br2)$(l)Uses:$() $(1)150$()$(br)$(l)Mana:$() $(1)100$()$(br)$(l)Repairs:$() $(6)2$()$(br)$(l)Spell Cost:$() $(3)-7.5%$()$(br)$(l)Spell Cooldown:$() $(3)-4%$()$(br)$(l)Spell Frequency:$() $(3)+4%$()$(br)",
+      "text": "Gold jewelry is the best of the standard metals.$(br2)$(l)Max Level:$() $(4)6$()$(br)$(l)Uses:$() $(1)150$()$(br)$(l)Mana:$() $(1)100$()$(br)$(l)Repairs:$() $(6)2$()$(br)$(l)Spell Cost:$() $(3)-7.5%$()$(br)$(l)Spell Cooldown:$() $(3)-4%$()$(br)$(l)Spell Frequency:$() $(3)+4%$()$(br)",
       "anchor": "gold_jewelry"
     },
     {
