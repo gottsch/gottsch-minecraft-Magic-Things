@@ -255,7 +255,7 @@ public class SpellEventHandler {
 	}
 
 	private static void processUsage(Level world, Player player, Event event, SpellContext context) {
-		MagicTreasures.LOGGER.debug("processing usage for spell -> {}", context.getEntity().getSpell().getName().toString());
+//		MagicTreasures.LOGGER.debug("processing usage for spell -> {}", context.getEntity().getSpell().getName().toString());
 		// TODO call capability.getDecrementor.apply() or something like that.
 		ItemStack stack = context.getItemStack();
 		// get capability

@@ -7,6 +7,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
+import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.api.MagicTreasuresApi;
 import mod.gottsch.forge.magic_treasures.core.config.Config;
 import mod.gottsch.forge.magic_treasures.core.rarity.MagicTreasuresRarity;
@@ -15,6 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
@@ -58,9 +60,17 @@ public class LootModifierByLootTable extends LootModifier {
 
 	@Override
 	protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		if (Config.SERVER.loot.enableVanillaLootModifiers.get() && RandomHelper.checkProbability(context.getLevel().getRandom(), chance * 100)) {
+		MagicTreasures.LOGGER.debug("executing LootModifierByLootTable");
+
+		// if chance was left blank or null, then set to 100% by default
+		double localChance = chance == 0.0 ? 1.0 : chance;
+
+		if (Config.SERVER.loot.enableVanillaLootModifiers.get() && RandomHelper.checkProbability(context.getLevel().getRandom(), localChance * 100)) {
 			IRarity rarity = MagicTreasuresApi.getRarity(this.rarity).orElse(MagicTreasuresRarity.NONE);
 			ResourceLocation lootTable = ModUtil.asLocation(this.lootTable);
+
+			// TODO rarity is not implemented. if rarity is present lookup all loot tables and then select one.
+			// TODO maybe by lootTable is default route, then rarity.
 
 			// get the loot table
 			LootTable table = context.getLevel().getServer().getLootTables().get(lootTable);
@@ -74,33 +84,4 @@ public class LootModifierByLootTable extends LootModifier {
 		}
 		return generatedLoot;
 	}
-
-//	/*
-//	 *
-//	 */
-//	public static class Serializer extends GlobalLootModifierSerializer<LootModifierByLootTable> {
-//
-//		@Override
-//		public LootModifierByLootTable read(ResourceLocation location, JsonObject object, LootItemCondition[] conditions) {
-//			int count = GsonHelper.getAsInt(object, "count");
-//			String rarityStr = GsonHelper.getAsString(object, "rarity");
-//			IRarity rarity = MagicTreasuresApi.getRarity(rarityStr).orElse(MagicTreasuresRarity.COMMON);
-//			double chance = GsonHelper.getAsDouble(object, "chance");
-//			String lootTableStr = GsonHelper.getAsString(object, "lootTable");
-//
-//			return new LootModifierByLootTable(conditions, count, rarity, chance,
-//					ModUtil.asLocation(lootTableStr));
-//		}
-//
-//		@Override
-//		public JsonObject write(LootModifierByLootTable instance) {
-//			JsonObject json = makeConditions(instance.conditions);
-//			json.addProperty("count", Integer.valueOf(instance.count));
-//			json.addProperty("rarity", instance.rarity.getName());
-//			json.addProperty("chance", Double.valueOf(instance.chance));
-//			json.addProperty("lootTable", instance.lootTable.toString());
-//			return json;
-//		}
-//
-//	}
 }

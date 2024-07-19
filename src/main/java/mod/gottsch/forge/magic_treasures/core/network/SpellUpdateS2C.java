@@ -204,19 +204,19 @@ public class SpellUpdateS2C {
 	 * @param message
 	 */
 	private static void processMessage(Level level, SpellUpdateS2C message) {
-		MagicTreasures.LOGGER.debug("received spell message -> {}", message);
+//		MagicTreasures.LOGGER.debug("received spell message -> {}", message);
 		try {
 			Player player = level.getPlayerByUUID(message.getPlayerId());
 			if (player != null) {
-				MagicTreasures.LOGGER.debug("valid player -> {}", message.getPlayerId());
+//				MagicTreasures.LOGGER.debug("valid player -> {}", message.getPlayerId());
 				// check hands first
 				if (message.getHand() != null) {
-					MagicTreasures.LOGGER.debug("hand handler - valid hand -> {}", message.getHand());
+//					MagicTreasures.LOGGER.debug("hand handler - valid hand -> {}", message.getHand());
 					// get the item for the hand
 					ItemStack heldItemStack = player.getItemInHand(message.getHand());
 					// determine what is being held in hand
 					if (heldItemStack != null) {
-						MagicTreasures.LOGGER.debug("holding item -> {}", ModUtil.getName(heldItemStack.getItem()));
+//						MagicTreasures.LOGGER.debug("holding item -> {}", ModUtil.getName(heldItemStack.getItem()));
 						updateJewelry(player, heldItemStack, message);
 					}
 				}
@@ -225,23 +225,23 @@ public class SpellUpdateS2C {
 					///////////////////////////////////
 					// Comment out when running DataGen until I figure out why it's not working with Curios
 					///////////////////////////////////
-					MagicTreasures.LOGGER.debug("curios handler - updating slot spell...");
+//					MagicTreasures.LOGGER.debug("curios handler - updating slot spell...");
 					LazyOptional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
 					curiosHandler.ifPresent(itemHandler -> {
 						Optional<ICurioStacksHandler> stacksOptional = itemHandler.getStacksHandler(message.getSlot());
 						stacksOptional.ifPresent(stacksHandler -> {
-							MagicTreasures.LOGGER.debug("# of slots in curios handler -> {}", stacksHandler.getStacks().getSlots());
+//							MagicTreasures.LOGGER.debug("# of slots in curios handler -> {}", stacksHandler.getStacks().getSlots());
 							ItemStack curiosStack = stacksHandler.getStacks().getStackInSlot(0);
 							updateJewelry(player, curiosStack, message);
 						});
 					});
 				}
 				else {
-					MagicTreasures.LOGGER.debug("hotbar handler");
+//					MagicTreasures.LOGGER.debug("hotbar handler");
 					// get the item from the hotbar
 					ItemStack hotbarStack = player.getInventory().getItem(Integer.valueOf(message.getSlot()));
 					if (hotbarStack != null) {
-						MagicTreasures.LOGGER.debug("hotbar item -> {}", ModUtil.getName(hotbarStack.getItem()));
+//						MagicTreasures.LOGGER.debug("hotbar item -> {}", ModUtil.getName(hotbarStack.getItem()));
 						updateJewelry(player, hotbarStack, message);
 					}
 				}

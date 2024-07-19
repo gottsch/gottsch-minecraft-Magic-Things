@@ -1,7 +1,7 @@
 {
   "name": "Gems",
   "icon": "minecraft:diamond",
-  "category": "magictreasures:manual",
+  "category": "magictreasures:guide",
   "sortnum": 1,
   "pages": [
     "Gems or stones, can be affixed to jewelry and other items by placing the item in the 1st slot of an anvil and the gem in the 2nd slot.$(br)Gems provide additional mana and recharges to items.$(br)Note: Gems don't necessarily need to be actual gems. ex. an iron ingot could be setup to be a gem.",
@@ -20,7 +20,7 @@
       "item": {
         "item": "magictreasures:onyx"
       },
-      "text": "Onyx is the 2nd least powerful gem.$(br)$(l)Tier:$() $(4)2$()$(br)$(l)Mana:$() $(1)50$()$(br)$(l)Recharges:$() $(6)1$()$(br)",
+      "text": "$(l)Tier:$() $(4)2$()$(br)$(l)Mana:$() $(1)50$()$(br)$(l)Recharges:$() $(6)1$()$(br)",
       "anchor": "onyx"
     },
     {
