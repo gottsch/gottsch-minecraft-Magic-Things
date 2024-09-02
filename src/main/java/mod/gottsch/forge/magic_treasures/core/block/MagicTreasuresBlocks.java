@@ -1,5 +1,3 @@
-
-package mod.gottsch.forge.magic_treasures.core.block;
 /*
  * This file is part of  Magic Treasures.
  * Copyright (c) 2023 Mark Gottschling (gottsch)
@@ -17,10 +15,14 @@ package mod.gottsch.forge.magic_treasures.core.block;
  * You should have received a copy of the GNU Lesser General Public License
  * along with Magic Treasures.  If not, see <http://www.gnu.org/licenses/lgpl>.
  */
+package mod.gottsch.forge.magic_treasures.core.block;
+
 import mod.gottsch.forge.magic_treasures.core.setup.Registration;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
@@ -49,8 +51,8 @@ public class MagicTreasuresBlocks {
     public static final RegistryObject<Block> SAPPHIRE_ORE = Registration.BLOCKS.register("sapphire_ore", () -> new Block(ORE_PROPS.get()));
     public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = Registration.BLOCKS.register("deepslate_sapphire_ore", () -> new Block(DEEPSLATE_ORE_PROPS.get()));
 
-    public static final RegistryObject<Block> SILVER_ORE = Registration.BLOCKS.register("silver_ore", () -> new Block(ORE_PROPS.get()));
-    public static final RegistryObject<Block> DEEPSLATE_SILVER_ORE = Registration.BLOCKS.register("deepslate_silver_ore", () -> new Block(DEEPSLATE_ORE_PROPS.get()));
+    public static final RegistryObject<Block> SILVER_ORE = Registration.BLOCKS.register("silver_ore", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)));
+    public static final RegistryObject<Block> DEEPSLATE_SILVER_ORE = Registration.BLOCKS.register("deepslate_silver_ore", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE)));
 
     /**
      *

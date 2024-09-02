@@ -130,6 +130,8 @@ public class MagicTreasuresTags {
         public static final TagKey<Item> ORE_RUBY = mod(FORGE_MODID, "ores/ruby");
         public static final TagKey<Item> ORE_SAPPHIRE = mod(FORGE_MODID, "ores/sapphire");
 
+        // raw metal
+
         // gems
         public static final TagKey<Item> GEMS_TOPAZ = mod(FORGE_MODID, "gems/topaz");
         public static final TagKey<Item> GEMS_ONYX = mod(FORGE_MODID, "gems/onyx");
@@ -141,6 +143,9 @@ public class MagicTreasuresTags {
 
         // ingots
         public static final TagKey<Item> INGOTS_SILVER = mod(FORGE_MODID, "ingots/silver");
+
+        // raw materials
+        public static final TagKey<Item> RAW_SILVER = mod(FORGE_MODID, "raw_materials/silver");
 
         /**
          *

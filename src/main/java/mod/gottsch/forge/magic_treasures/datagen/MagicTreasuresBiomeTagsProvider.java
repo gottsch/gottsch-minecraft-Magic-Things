@@ -3,10 +3,12 @@ package mod.gottsch.forge.magic_treasures.datagen;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
+import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -28,49 +30,51 @@ public class MagicTreasuresBiomeTagsProvider extends BiomeTagsProvider {
     
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-    	String BOP = "biomesoplenty";
+        String BOP = "biomesoplenty";
+        String BWG = "biomeswevegone";
 
     	// blocks rarity
-    	tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BADLANDS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BAMBOO_JUNGLE);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BASALT_DELTAS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BIRCH_FOREST);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BEACH);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.CRIMSON_FOREST);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.DARK_FOREST);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.DESERT);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.DRIPSTONE_CAVES);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.FOREST);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.FLOWER_FOREST);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.FROZEN_PEAKS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.FROZEN_RIVER);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.GROVE);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.ICE_SPIKES);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.JUNGLE);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.JAGGED_PEAKS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.LUSH_CAVES);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.MEADOW);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.MUSHROOM_FIELDS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_BIRCH_FOREST);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_PINE_TAIGA);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_SPRUCE_TAIGA);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.PLAINS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.RIVER);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SAVANNA);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SAVANNA_PLATEAU);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_PLAINS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_SLOPES);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_TAIGA);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SPARSE_JUNGLE);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.STONY_PEAKS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SUNFLOWER_PLAINS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SWAMP);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.TAIGA);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_FOREST);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_SAVANNA);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_HILLS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_GRAVELLY_HILLS);
-        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WOODED_BADLANDS);
+//    	tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BADLANDS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BAMBOO_JUNGLE);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BASALT_DELTAS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BIRCH_FOREST);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.BEACH);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.CRIMSON_FOREST);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.DARK_FOREST);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.DESERT);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.DRIPSTONE_CAVES);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.FOREST);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.FLOWER_FOREST);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.FROZEN_PEAKS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.FROZEN_RIVER);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.GROVE);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.ICE_SPIKES);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.JUNGLE);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.JAGGED_PEAKS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.LUSH_CAVES);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.MEADOW);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.MUSHROOM_FIELDS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_BIRCH_FOREST);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_PINE_TAIGA);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.OLD_GROWTH_SPRUCE_TAIGA);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.PLAINS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.RIVER);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SAVANNA);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SAVANNA_PLATEAU);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_PLAINS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_SLOPES);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SNOWY_TAIGA);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SPARSE_JUNGLE);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.STONY_PEAKS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SUNFLOWER_PLAINS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.SWAMP);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.TAIGA);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_FOREST);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_SAVANNA);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_HILLS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WINDSWEPT_GRAVELLY_HILLS);
+//        tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).add(Biomes.WOODED_BADLANDS);
+        tag(TreasureTags.Biomes.ALL_OVERWORLD).addTag(BiomeTags.IS_OVERWORLD);
 
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "aspen_glade"));
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "auroral_garden"));
@@ -144,5 +148,9 @@ public class MagicTreasuresBiomeTagsProvider extends BiomeTagsProvider {
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "wintry_origin_valley"));
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "withered_abyss"));
         tag(MagicTreasuresTags.Biomes.ALL_OVERWORLD).addOptional(new ResourceLocation(BOP, "woodland"));
+
+        // BWG
+        tag(TreasureTags.Biomes.ALL_OVERWORLD).addOptionalTag(new ResourceLocation(BWG, "overworld"));
+
     }
 }

@@ -305,13 +305,13 @@ public class MagicTreasuresItemTagsProvider extends ItemTagsProvider {
 		tag(MagicTreasuresTags.Items.CURIOUS_BELT).add(MagicTreasuresItems.SKULL_BELT.get());
 
 		// ores
-		tag(MagicTreasuresTags.Items.ORE_SILVER).add(MagicTreasuresItems.SILVER_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_TOPAZ).add(MagicTreasuresItems.TOPAZ_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_ONYX).add(MagicTreasuresItems.ONYX_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_JADE).add(MagicTreasuresItems.JADEITE_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_JADEITE).add(MagicTreasuresItems.JADEITE_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_RUBY).add(MagicTreasuresItems.RUBY_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_SAPPHIRE).add(MagicTreasuresItems.SAPPHIRE_ORE_ITEM.get());
+		tag(MagicTreasuresTags.Items.ORE_SILVER).add(MagicTreasuresItems.SILVER_ORE_BLOCKITEM.get());
+		tag(MagicTreasuresTags.Items.ORE_TOPAZ).add(MagicTreasuresItems.TOPAZ_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_ONYX).add(MagicTreasuresItems.ONYX_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_JADE).add(MagicTreasuresItems.JADEITE_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_JADEITE).add(MagicTreasuresItems.JADEITE_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_RUBY).add(MagicTreasuresItems.RUBY_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_SAPPHIRE).add(MagicTreasuresItems.SAPPHIRE_ORE.get());
 
 		// gems
 		tag(MagicTreasuresTags.Items.GEMS_TOPAZ).add(MagicTreasuresItems.TOPAZ.get());
@@ -325,6 +325,9 @@ public class MagicTreasuresItemTagsProvider extends ItemTagsProvider {
 
 		// ingots
 		tag(MagicTreasuresTags.Items.INGOTS_SILVER).add(MagicTreasuresItems.SILVER_INGOT.get());
+
+		// raw materials
+		tag(MagicTreasuresTags.Items.RAW_SILVER).add(MagicTreasuresItems.RAW_SILVER.get());
 
 		// special jewelry tags
 		tag(MagicTreasuresTags.Items.CASTLE_RING_RUBY).add(MagicTreasuresItems.RUBY.get());

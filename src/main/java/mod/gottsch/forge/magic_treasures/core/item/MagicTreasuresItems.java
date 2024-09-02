@@ -87,13 +87,14 @@ public class MagicTreasuresItems {
 	// recharge scroll
 	public static RegistryObject<Item> RECHARGE_SCROLL = Registration.ITEMS.register("recharge_scroll", () -> new Item(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
 
-	// metals / ingots
+	// metals / ingots / ores
 	public static RegistryObject<Item> SILVER_INGOT = Registration.ITEMS.register("silver_ingot", () -> new Item(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		@Override
 		public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component>tooltip, TooltipFlag flag) {
 			// TODO
 		}
 	});
+	public static RegistryObject<Item> RAW_SILVER = Registration.ITEMS.register("raw_silver", () -> new Item(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
 
 	// gemstones
 	public static RegistryObject<Item> JADEITE = Registration.ITEMS.register("jadeite", () -> new Gemstone(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
@@ -527,23 +528,23 @@ public class MagicTreasuresItems {
 
     }
 
-	public static final RegistryObject<Item> TOPAZ_ORE_ITEM = fromBlock(MagicTreasuresBlocks.TOPAZ_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_TOPAZ_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_TOPAZ_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> TOPAZ_ORE = fromBlock(MagicTreasuresBlocks.TOPAZ_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_TOPAZ_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_TOPAZ_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
-	public static final RegistryObject<Item> ONYX_ORE_ITEM = fromBlock(MagicTreasuresBlocks.ONYX_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_ONYX_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_ONYX_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> ONYX_ORE = fromBlock(MagicTreasuresBlocks.ONYX_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_ONYX_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_ONYX_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
-	public static final RegistryObject<Item> JADEITE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.JADEITE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_JADEITE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_JADEITE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> JADEITE_ORE = fromBlock(MagicTreasuresBlocks.JADEITE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_JADEITE_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_JADEITE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
 
-	public static final RegistryObject<Item> RUBY_ORE_ITEM = fromBlock(MagicTreasuresBlocks.RUBY_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_RUBY_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_RUBY_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> SAPPHIRE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.SAPPHIRE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_SAPPHIRE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_SAPPHIRE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> RUBY_ORE = fromBlock(MagicTreasuresBlocks.RUBY_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_RUBY_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_RUBY_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> SAPPHIRE_ORE = fromBlock(MagicTreasuresBlocks.SAPPHIRE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_SAPPHIRE_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_SAPPHIRE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
-	public static final RegistryObject<Item> SILVER_ORE_ITEM = fromBlock(MagicTreasuresBlocks.SILVER_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_SILVER_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_SILVER_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> SILVER_ORE_BLOCKITEM = fromBlock(MagicTreasuresBlocks.SILVER_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_SILVER_ORE_BLOCKITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_SILVER_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
 	// TODO create/register all jewelry
 

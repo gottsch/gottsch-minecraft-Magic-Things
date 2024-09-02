@@ -47,7 +47,7 @@ public class LanguageGen extends LanguageProvider {
 
         // metals
         add(MagicTreasuresItems.SILVER_INGOT.get(), "Silver Ingot");
-
+        add(MagicTreasuresItems.RAW_SILVER.get(), "Raw Silver");
         // stones
         add(MagicTreasuresItems.TOPAZ.get(), "Topaz");
         add(MagicTreasuresItems.ONYX.get(), "Onyx");
