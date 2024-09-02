@@ -5,16 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0] - 2024-09-
+## [1.2.0] - 2024-09-02
 
 ### Changed
 - Silver Ore blocks now drop Raw Silver items.
 - Raw Silver can be smelted into Silver Ingots.
-- Use datagen for block loot tables.
+- Use datagen for blockstate, block model and block loot tables.
 
 ### Added
 - Raw Silver Item
-- Added Raw Silver to the Forge tags (aka ore dictionary)
+- Raw Silver to the Forge tags (aka ore dictionary)
+- Config options to control each Loot Modifier
 
 ## [1.1.0] - 2024-07-15
 

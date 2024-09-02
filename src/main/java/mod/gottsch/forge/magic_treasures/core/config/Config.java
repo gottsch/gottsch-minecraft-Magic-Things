@@ -17,11 +17,14 @@
  */
 package mod.gottsch.forge.magic_treasures.core.config;
 
+import com.electronwill.nightconfig.core.CommentedConfig;
 import mod.gottsch.forge.gottschcore.config.AbstractConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 
@@ -42,7 +45,9 @@ public class Config extends AbstractConfig {
 	public static final Logging LOGGING;
 	public static final ServerConfig SERVER;
 	public static Config instance = new Config();
-	
+
+	public static final Map<String, ForgeConfigSpec.BooleanValue> enableLootModifiers = new HashMap<>();
+
 	static {
 		LOGGING = new Logging(COMMON_BUILDER);
 		COMMON_CONFIG = COMMON_BUILDER.build();
@@ -50,7 +55,7 @@ public class Config extends AbstractConfig {
 		SERVER = new ServerConfig(SERVER_BUILDER);
 		SERVER_CONFIG = SERVER_BUILDER.build();
 	}
-	
+
 	/*
 	 * 
 	 */
@@ -67,17 +72,114 @@ public class Config extends AbstractConfig {
 
 	public static class Loot {
 		public ForgeConfigSpec.BooleanValue enableVanillaLootModifiers;
+		public ForgeConfigSpec.BooleanValue enableGeneralEntityLootModifier;
+		public ForgeConfigSpec.BooleanValue enableZombieEntityLootModifier;
+		public ForgeConfigSpec.BooleanValue enableSkeletonEntityLootModifier;
+		public ForgeConfigSpec.BooleanValue enableWitherSkeletonEntityLootModifier;
+		public ForgeConfigSpec.BooleanValue enableScarceEntityLootModifier;
+		public ForgeConfigSpec.BooleanValue enableRareEntityLootModifier;
+		public ForgeConfigSpec.BooleanValue enableEpicEntityLootModifier;
+
+		public ForgeConfigSpec.BooleanValue enableUncommonChestLootModifier;
+		public ForgeConfigSpec.BooleanValue enableScarceChestLootModifier;
+		public ForgeConfigSpec.BooleanValue enableRareChestLootModifier;
+		public ForgeConfigSpec.BooleanValue enableEpicChestLootModifier;
+		public ForgeConfigSpec.BooleanValue enableLegendaryChestLootModifier;
+		public ForgeConfigSpec.BooleanValue enableMythicalChestLootModifier;
+
+		public ForgeConfigSpec.BooleanValue enableFishingJunkLootModifier;
+		public ForgeConfigSpec.BooleanValue enableFishingTreasureLootModifier;
 
 		public Loot(final ForgeConfigSpec.Builder builder) {
 			builder.comment(CATEGORY_DIV, " Loot properties", CATEGORY_DIV)
 					.push("loot");
 
 			enableVanillaLootModifiers = builder
-					.comment(" Enable/Disable global loot modifiers that injects Magic Treasures loot into vanilla loot tables.")
+					.comment(" Enable/Disable global loot modifiers that injects Magic Treasures loot into vanilla loot tables.",
+							"NOTE if false, all individual settings are disabled.")
 					.define("enableVanillaLootModifiers", true);
+
+			enableGeneralEntityLootModifier = builder
+					.comment(" Enable/Disable General entity loot modifier.")
+					.define("enableGeneralEntityLootModifier", true);
+
+			enableZombieEntityLootModifier = builder
+					.comment(" Enable/Disable Zombie entity loot modifier.")
+					.define("enableZombieEntityLootModifier", true);
+
+			enableSkeletonEntityLootModifier = builder
+					.comment(" Enable/Disable Skeleton entity loot modifier.")
+					.define("enableSkeletonEntityLootModifier", true);
+
+			enableWitherSkeletonEntityLootModifier = builder
+					.comment(" Enable/Disable Wither Skeleton entity loot modifier.")
+					.define("enableWitherSkeletonEntityLootModifier", true);
+
+			enableScarceEntityLootModifier = builder
+					.comment(" Enable/Disable Scarce entity loot modifier.")
+					.define("enableScarceEntityLootModifier", true);
+
+			enableRareEntityLootModifier = builder
+					.comment(" Enable/Disable Rare entity loot modifier.")
+					.define("enableRareEntityLootModifier", true);
+
+			enableEpicEntityLootModifier = builder
+					.comment(" Enable/Disable Epic entity loot modifier.")
+					.define("enableEpicEntityLootModifier", true);
+
+			enableUncommonChestLootModifier = builder
+					.comment(" Enable/Disable Uncommon chest loot modifier.")
+					.define("enableUncommonChestLootModifier", true);
+
+			enableScarceChestLootModifier = builder
+					.comment(" Enable/Disable Scarce chest loot modifier.")
+					.define("enableScarceChestLootModifier", true);
+
+			enableRareChestLootModifier = builder
+					.comment(" Enable/Disable Rare chest loot modifier.")
+					.define("enableRareChestLootModifier", true);
+
+			enableEpicChestLootModifier = builder
+					.comment(" Enable/Disable Epic chest loot modifier.")
+					.define("enableEpicChestLootModifier", true);
+
+			enableLegendaryChestLootModifier = builder
+					.comment(" Enable/Disable Legendary chest loot modifier.")
+					.define("enableLegendaryChestLootModifier", true);
+
+			enableMythicalChestLootModifier = builder
+					.comment(" Enable/Disable Mythical chest loot modifier.")
+					.define("enableMythicalChestLootModifier", true);
+
+			enableFishingJunkLootModifier = builder
+					.comment(" Enable/Disable Fishing Junk loot modifier.")
+					.define("enableFishingJunkChestLootModifier", true);
+
+			enableFishingTreasureLootModifier = builder
+					.comment(" Enable/Disable Fishing Treasure loot modifier.")
+					.define("enableFishingTreasureChestLootModifier", true);
 
 			builder.pop();
 		}
+	}
+
+	public static void mapEnableLootModifiers(CommentedConfig commentedConfig) {
+		// map config values
+		enableLootModifiers.put("magictreasures:entities/general", Config.SERVER.loot.enableGeneralEntityLootModifier);
+		enableLootModifiers.put("magictreasures:entities/zombie", Config.SERVER.loot.enableZombieEntityLootModifier);
+		enableLootModifiers.put("magictreasures:entities/skeleton", Config.SERVER.loot.enableSkeletonEntityLootModifier);
+		enableLootModifiers.put("magictreasures:entities/wither_skeleton", Config.SERVER.loot.enableWitherSkeletonEntityLootModifier);
+
+		enableLootModifiers.put("magictreasures:entities/scarce", Config.SERVER.loot.enableScarceEntityLootModifier);
+		enableLootModifiers.put("magictreasures:entities/rare", Config.SERVER.loot.enableRareEntityLootModifier);
+		enableLootModifiers.put("magictreasures:entities/epic", Config.SERVER.loot.enableEpicEntityLootModifier);
+
+		enableLootModifiers.put("uncommon", Config.SERVER.loot.enableUncommonChestLootModifier);
+		enableLootModifiers.put("scarce", Config.SERVER.loot.enableScarceChestLootModifier);
+		enableLootModifiers.put("rare", Config.SERVER.loot.enableRareChestLootModifier);
+		enableLootModifiers.put("epic", Config.SERVER.loot.enableEpicChestLootModifier);
+		enableLootModifiers.put("legendary", Config.SERVER.loot.enableLegendaryChestLootModifier);
+		enableLootModifiers.put("mythical", Config.SERVER.loot.enableMythicalChestLootModifier);
 	}
 
 	/*

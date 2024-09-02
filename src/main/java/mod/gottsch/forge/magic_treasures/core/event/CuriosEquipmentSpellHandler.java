@@ -24,9 +24,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.eventbus.api.Event;
-//import top.theillusivec4.curios.api.CuriosApi;
-//import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
-//import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,39 +51,39 @@ public class CuriosEquipmentSpellHandler implements IEquipmentSpellHandler {
 		// Comment out when running DataGen until I figure out why it's not working with Curios
 		///////////////////////////////////
 		// check curio slots
-//		LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
-//		handler.ifPresent(itemHandler -> {
-//			// curios type names -> head, necklace, back, bracelet, hands, ring, belt, charm, feet
-//			CURIOS_SLOTS.forEach(slot -> {
-//				Optional<ICurioStacksHandler> stacksOptional = itemHandler.getStacksHandler(slot);
-//				stacksOptional.ifPresent(stacksHandler -> {
-//					ItemStack curiosStack = stacksHandler.getStacks().getStackInSlot(0);
-//					curiosStack.getCapability(MagicTreasuresCapabilities.JEWELRY_CAPABILITY).ifPresent(cap -> {
-//
-//							AtomicInteger index = new AtomicInteger();
-//							// requires indexed for-loop
-//							for (int i = 0; i < cap.getSpells().size(); i++) {
-//								SpellEntity entity =  ((List<SpellEntity>)cap.getSpells()).get(i);
-//								if (!entity.getSpell().getRegisteredEvent().equals(event.getClass())) {
-//									//	Treasure.LOGGER.debug("charm type -> {} is not register for this event -> {}", entity.getCharm().getType(), event.getClass().getSimpleName());
-//									continue;
-//								}
-//								index.set(i);
-//								SpellContext curiosContext = new SpellContext.Builder().with($ -> {
-//									$.slotProviderId = CURIOS_ID;
-//									$.slot = slot;
-//									$.itemStack = curiosStack;
-//									$.capability = cap;
-//									$.index = index.get();
-//									$.entity = entity;
-//								}).build();
-//								contexts.add(curiosContext);
-//							}
-//
-//					});
-//				});
-//			});
-//		});
+		LazyOptional<ICuriosItemHandler> handler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
+		handler.ifPresent(itemHandler -> {
+			// curios type names -> head, necklace, back, bracelet, hands, ring, belt, charm, feet
+			CURIOS_SLOTS.forEach(slot -> {
+				Optional<ICurioStacksHandler> stacksOptional = itemHandler.getStacksHandler(slot);
+				stacksOptional.ifPresent(stacksHandler -> {
+					ItemStack curiosStack = stacksHandler.getStacks().getStackInSlot(0);
+					curiosStack.getCapability(MagicTreasuresCapabilities.JEWELRY_CAPABILITY).ifPresent(cap -> {
+
+							AtomicInteger index = new AtomicInteger();
+							// requires indexed for-loop
+							for (int i = 0; i < cap.getSpells().size(); i++) {
+								SpellEntity entity =  ((List<SpellEntity>)cap.getSpells()).get(i);
+								if (!entity.getSpell().getRegisteredEvent().equals(event.getClass())) {
+									//	Treasure.LOGGER.debug("charm type -> {} is not register for this event -> {}", entity.getCharm().getType(), event.getClass().getSimpleName());
+									continue;
+								}
+								index.set(i);
+								SpellContext curiosContext = new SpellContext.Builder().with($ -> {
+									$.slotProviderId = CURIOS_ID;
+									$.slot = slot;
+									$.itemStack = curiosStack;
+									$.capability = cap;
+									$.index = index.get();
+									$.entity = entity;
+								}).build();
+								contexts.add(curiosContext);
+							}
+
+					});
+				});
+			});
+		});
 		return contexts;
 	}
 }

@@ -2,7 +2,6 @@
   "replace" : false,
   "entries" : [ "magictreasures:fishing_junk",
     "magictreasures:fishing_treasure",
-    "magictreasures:chest/common",
     "magictreasures:chest/uncommon",
     "magictreasures:chest/scarce",
     "magictreasures:chest/rare",

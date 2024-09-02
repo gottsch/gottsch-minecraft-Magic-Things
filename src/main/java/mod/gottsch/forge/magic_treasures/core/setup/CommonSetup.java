@@ -28,8 +28,12 @@ import mod.gottsch.forge.magic_treasures.core.jewelry.JewelryStoneTiers;
 import mod.gottsch.forge.magic_treasures.core.loot.MagicTreasuresLootFunctions;
 import mod.gottsch.forge.magic_treasures.core.rarity.MagicTreasuresRarity;
 import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Mark Gottschling on 5/3/2023
@@ -131,5 +135,6 @@ public class CommonSetup {
 
         // curios integration
         MagicTreasuresIntegrations.registerCuriosIntegration();
-    }
+
+     }
 }
