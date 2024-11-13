@@ -36,9 +36,9 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.common.util.LogicalSidedProvider;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.network.NetworkEvent;
-//import top.theillusivec4.curios.api.CuriosApi;
-//import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
-//import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 import java.util.List;
 import java.util.Objects;
@@ -225,16 +225,16 @@ public class SpellUpdateS2C {
 					///////////////////////////////////
 					// Comment out when running DataGen until I figure out why it's not working with Curios
 					///////////////////////////////////
-////					MagicTreasures.LOGGER.debug("curios handler - updating slot spell...");
-//					LazyOptional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
-//					curiosHandler.ifPresent(itemHandler -> {
-//						Optional<ICurioStacksHandler> stacksOptional = itemHandler.getStacksHandler(message.getSlot());
-//						stacksOptional.ifPresent(stacksHandler -> {
-////							MagicTreasures.LOGGER.debug("# of slots in curios handler -> {}", stacksHandler.getStacks().getSlots());
-//							ItemStack curiosStack = stacksHandler.getStacks().getStackInSlot(0);
-//							updateJewelry(player, curiosStack, message);
-//						});
-//					});
+//					MagicTreasures.LOGGER.debug("curios handler - updating slot spell...");
+					LazyOptional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosHelper().getCuriosHandler(player);
+					curiosHandler.ifPresent(itemHandler -> {
+						Optional<ICurioStacksHandler> stacksOptional = itemHandler.getStacksHandler(message.getSlot());
+						stacksOptional.ifPresent(stacksHandler -> {
+//							MagicTreasures.LOGGER.debug("# of slots in curios handler -> {}", stacksHandler.getStacks().getSlots());
+							ItemStack curiosStack = stacksHandler.getStacks().getStackInSlot(0);
+							updateJewelry(player, curiosStack, message);
+						});
+					});
 				}
 				else {
 //					MagicTreasures.LOGGER.debug("hotbar handler");
