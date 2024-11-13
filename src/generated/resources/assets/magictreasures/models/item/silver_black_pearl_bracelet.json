@@ -1,0 +1,6 @@
+{
+  "parent": "magictreasures:item/jewelry",
+  "textures": {
+    "layer0": "magictreasures:item/jewelry/silver_black_pearl_bracelet"
+  }
+}

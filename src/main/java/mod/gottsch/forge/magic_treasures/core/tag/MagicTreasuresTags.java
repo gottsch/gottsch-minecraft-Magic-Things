@@ -139,6 +139,9 @@ public class MagicTreasuresTags {
         // ingots
         public static final TagKey<Item> INGOTS_SILVER = mod(FORGE_MODID, "ingots/silver");
 
+        // raw materials
+        public static final TagKey<Item> RAW_SILVER = mod(FORGE_MODID, "raw_materials/silver");
+
         /**
          *
          * @param domain

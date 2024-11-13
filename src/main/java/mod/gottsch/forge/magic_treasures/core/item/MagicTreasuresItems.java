@@ -59,16 +59,16 @@ import java.util.function.Supplier;
  */
 public class MagicTreasuresItems {
     // item groups/tabs
-    public static final CreativeModeTab magic_treasures_ITEM_GROUP = new CreativeModeTab(MagicTreasures.MOD_ID) {
+    public static final CreativeModeTab MAGIC_TREASURES_ITEM_GROUP = new CreativeModeTab(MagicTreasures.MOD_ID) {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(MagicTreasuresItems.magic_treasures_TAB.get());
+            return new ItemStack(MagicTreasuresItems.MAGIC_TREASURES_TAB.get());
         }
     };
 
-    public static final Supplier<Item.Properties> magic_treasures_PROPS_SUPPLIER = () -> new Item.Properties().tab(magic_treasures_ITEM_GROUP);
+    public static final Supplier<Item.Properties> MAGIC_TREASURES_PROPS_SUPPLIER = () -> new Item.Properties().tab(MAGIC_TREASURES_ITEM_GROUP);
     // tab items
-    public static final RegistryObject<Item> magic_treasures_TAB = Registration.ITEMS.register("magic_treasures_tab", () -> new Item(new Item.Properties()));
+    public static final RegistryObject<Item> MAGIC_TREASURES_TAB = Registration.ITEMS.register("magic_treasures_tab", () -> new Item(new Item.Properties()));
 
 	// tools
 //	public static RegistryObject<Item> JEWELRY_PLIERS = Registration.ITEMS.register("jewelry_pliers", () -> new JewelryPliers(magic_treasures_PROPS_SUPPLIER.get()));
@@ -78,40 +78,41 @@ public class MagicTreasuresItems {
 	static {
 		SpellRegistry.values().forEach(spell -> {
 			RegistryObject<Item> scroll = Registration.ITEMS.register(spell.getName().getPath() + "_scroll",
-					() -> new SpellScroll(magic_treasures_PROPS_SUPPLIER.get(), spell));
+					() -> new SpellScroll(MAGIC_TREASURES_PROPS_SUPPLIER.get(), spell));
 			// add scroll registry item to a list
 			ALL_SPELL_SCROLLS.add(scroll);
 		});
 	}
 
 	// recipe scrolls
-	public static RegistryObject<Item> RING_RECIPE = Registration.ITEMS.register("ring_recipe", () -> new JewelryRecipeScroll(magic_treasures_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> NECKLACE_RECIPE = Registration.ITEMS.register("necklace_recipe", () -> new JewelryRecipeScroll(magic_treasures_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> BRACELET_RECIPE = Registration.ITEMS.register("bracelet_recipe", () -> new JewelryRecipeScroll(magic_treasures_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> RING_RECIPE = Registration.ITEMS.register("ring_recipe", () -> new JewelryRecipeScroll(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> NECKLACE_RECIPE = Registration.ITEMS.register("necklace_recipe", () -> new JewelryRecipeScroll(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> BRACELET_RECIPE = Registration.ITEMS.register("bracelet_recipe", () -> new JewelryRecipeScroll(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
 //	public static RegistryObject<Item> BELT_RECIPE = Registration.ITEMS.register("belt_recipe", () -> new JewelryRecipeScroll(magic_treasures_PROPS_SUPPLIER.get()));
 
 	// recharge scroll
-	public static RegistryObject<Item> RECHARGE_SCROLL = Registration.ITEMS.register("recharge_scroll", () -> new Item(magic_treasures_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> RECHARGE_SCROLL = Registration.ITEMS.register("recharge_scroll", () -> new Item(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
 
 	// metals / ingots
-	public static RegistryObject<Item> SILVER_INGOT = Registration.ITEMS.register("silver_ingot", () -> new Item(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> SILVER_INGOT = Registration.ITEMS.register("silver_ingot", () -> new Item(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		@Override
 		public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component>tooltip, TooltipFlag flag) {
 			// TODO
 		}
 	});
+	public static RegistryObject<Item> RAW_SILVER = Registration.ITEMS.register("raw_silver", () -> new Item(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
 
 	// gemstones
-	public static RegistryObject<Item> JADEITE = Registration.ITEMS.register("jadeite", () -> new Gemstone(magic_treasures_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Gemstone(magic_treasures_PROPS_SUPPLIER.get()));
-    public static RegistryObject<Item> ONYX = Registration.ITEMS.register("onyx", () -> new Gemstone(magic_treasures_PROPS_SUPPLIER.get()));
-	public static RegistryObject<Item> RUBY = Registration.ITEMS.register("ruby", () -> new Gemstone(magic_treasures_PROPS_SUPPLIER.get()));
-    public static RegistryObject<Item> SAPPHIRE = Registration.ITEMS.register("sapphire", () -> new Gemstone(magic_treasures_PROPS_SUPPLIER.get()));
-    public static RegistryObject<Item> WHITE_PEARL = Registration.ITEMS.register("white_pearl", () -> new Gemstone(magic_treasures_PROPS_SUPPLIER.get()));
-    public static RegistryObject<Item> BLACK_PEARL = Registration.ITEMS.register("black_pearl", () -> new Gemstone(magic_treasures_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> JADEITE = Registration.ITEMS.register("jadeite", () -> new Gemstone(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> TOPAZ = Registration.ITEMS.register("topaz", () -> new Gemstone(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
+    public static RegistryObject<Item> ONYX = Registration.ITEMS.register("onyx", () -> new Gemstone(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> RUBY = Registration.ITEMS.register("ruby", () -> new Gemstone(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
+    public static RegistryObject<Item> SAPPHIRE = Registration.ITEMS.register("sapphire", () -> new Gemstone(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
+    public static RegistryObject<Item> WHITE_PEARL = Registration.ITEMS.register("white_pearl", () -> new Gemstone(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
+    public static RegistryObject<Item> BLACK_PEARL = Registration.ITEMS.register("black_pearl", () -> new Gemstone(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
 
 	// belts
-	public static RegistryObject<Item> SKULL_BELT = Registration.ITEMS.register("skull_belt", () -> new ManaWell(magic_treasures_PROPS_SUPPLIER.get()));
+	public static RegistryObject<Item> SKULL_BELT = Registration.ITEMS.register("skull_belt", () -> new ManaWell(MAGIC_TREASURES_PROPS_SUPPLIER.get()));
 
 
 	/*
@@ -123,7 +124,7 @@ public class MagicTreasuresItems {
 	// custom jewelry
 
 	// common/uncommon
-	public static RegistryObject<Item> SILBROS_RING_OF_VITALITY = Registration.ITEMS.register("silbros_ring_of_vitality", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> SILBROS_RING_OF_VITALITY = Registration.ITEMS.register("silbros_ring_of_vitality", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.WOOD)
 					.withSize(JewelrySizeTier.REGULAR)
@@ -143,7 +144,7 @@ public class MagicTreasuresItems {
 		}
 	}.setLoreKey("jewelry.silbros_ring_of_vitality.lore"));
 
-	public static RegistryObject<Item> STRONGMANS_BRACERS = Registration.ITEMS.register("strongmans_bracers", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> STRONGMANS_BRACERS = Registration.ITEMS.register("strongmans_bracers", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 		IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.BRACELET, JewelryMaterials.WOOD)
 				.withSize(JewelrySizeTier.REGULAR)
@@ -164,7 +165,7 @@ public class MagicTreasuresItems {
 	});
 
 	// common
-	public static RegistryObject<Item> PEASANTS_FORTUNE = Registration.ITEMS.register("peasants_fortune", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> PEASANTS_FORTUNE = Registration.ITEMS.register("peasants_fortune", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.IRON)
 					.withSize(JewelrySizeTier.GREAT)
@@ -181,7 +182,7 @@ public class MagicTreasuresItems {
 	});
 
 	// uncommon
-	public static RegistryObject<Item> AMULET_OF_DEFENCE = Registration.ITEMS.register("amulet_of_defence", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> AMULET_OF_DEFENCE = Registration.ITEMS.register("amulet_of_defence", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.COPPER)
 					.withSize(JewelrySizeTier.REGULAR)
@@ -196,7 +197,7 @@ public class MagicTreasuresItems {
 		}
 	});
 
-	public static RegistryObject<Item> MALDRITCHS_FIRST_AMULET = Registration.ITEMS.register("maldritchs_first_amulet", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> MALDRITCHS_FIRST_AMULET = Registration.ITEMS.register("maldritchs_first_amulet", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.BONE)
 					.withSize(JewelrySizeTier.REGULAR)
@@ -214,7 +215,7 @@ public class MagicTreasuresItems {
 		}
 	}.setLoreKey("jewelry.maldritchs_first_amulet.lore"));
 
-	public static RegistryObject<Item> AQUA_RING = Registration.ITEMS.register("aqua_ring", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> AQUA_RING = Registration.ITEMS.register("aqua_ring", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.SILVER)
 					.withSize(JewelrySizeTier.REGULAR)
@@ -230,7 +231,7 @@ public class MagicTreasuresItems {
 	});
 
 	// scarce
-	public static RegistryObject<Item> JOURNEYMANS_BANDS = Registration.ITEMS.register("journeyman_bands", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> JOURNEYMANS_BANDS = Registration.ITEMS.register("journeyman_bands", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.BRACELET, JewelryMaterials.GOLD)
 					.withSize(JewelrySizeTier.GREAT)
@@ -247,7 +248,7 @@ public class MagicTreasuresItems {
 		}
 	});
 
-	public static RegistryObject<Item> MEDICS_TOKEN = Registration.ITEMS.register("medics_token", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> MEDICS_TOKEN = Registration.ITEMS.register("medics_token", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.GOLD)
 					.withSize(JewelrySizeTier.GREAT)
@@ -264,7 +265,7 @@ public class MagicTreasuresItems {
 	});
 
 	// scarce
-	public static RegistryObject<Item> ADEPHAGIAS_BOUNTY = Registration.ITEMS.register("adephagias_bounty", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> ADEPHAGIAS_BOUNTY = Registration.ITEMS.register("adephagias_bounty", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.BRACELET, JewelryMaterials.GOLD)
 					.withSize(JewelrySizeTier.GREAT)
@@ -283,7 +284,7 @@ public class MagicTreasuresItems {
 	});
 
 	// rare
-	public static RegistryObject<Item> SALANDAARS_WARD = Registration.ITEMS.register("salandaars_ward", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> SALANDAARS_WARD = Registration.ITEMS.register("salandaars_ward", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		@Override
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.GOLD)
@@ -301,7 +302,7 @@ public class MagicTreasuresItems {
 	});
 
 	// epic
-	public static RegistryObject<Item> ANGELS_RING = Registration.ITEMS.register("angels_ring", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> ANGELS_RING = Registration.ITEMS.register("angels_ring", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.RING, JewelryMaterials.GOLD)
 					.withSize(JewelrySizeTier.GREAT)
@@ -318,7 +319,7 @@ public class MagicTreasuresItems {
 	});
 
 	// rare / epic
-	public static RegistryObject<Item> RING_OF_FORTITUDE = Registration.ITEMS.register("ring_of_fortitude", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> RING_OF_FORTITUDE = Registration.ITEMS.register("ring_of_fortitude", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			/*
 			 *  add enchantment
@@ -347,7 +348,7 @@ public class MagicTreasuresItems {
 	//	.setLoreKey("jewelry.castle_ring.lore"));
 
 	// epic / legendary
-	public static RegistryObject<Item> RING_LIFE_DEATH = Registration.ITEMS.register("ring_of_life_death", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> RING_LIFE_DEATH = Registration.ITEMS.register("ring_of_life_death", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 			/*
 			 *  add enchantment
@@ -378,7 +379,7 @@ public class MagicTreasuresItems {
 	});
 
 	// rare / epic
-	public static RegistryObject<Item> EYE_OF_THE_PHOENIX = Registration.ITEMS.register("eye_of_the_phoenix", () -> new NamedJewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+	public static RegistryObject<Item> EYE_OF_THE_PHOENIX = Registration.ITEMS.register("eye_of_the_phoenix", () -> new NamedJewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 		public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 
 			IJewelryHandler handler = new JewelryHandler.Builder(JewelryType.NECKLACE, JewelryMaterials.GOLD)
@@ -533,23 +534,23 @@ public class MagicTreasuresItems {
 
     }
 
-	public static final RegistryObject<Item> TOPAZ_ORE_ITEM = fromBlock(MagicTreasuresBlocks.TOPAZ_ORE, magic_treasures_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_TOPAZ_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_TOPAZ_ORE, magic_treasures_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> TOPAZ_ORE_ITEM = fromBlock(MagicTreasuresBlocks.TOPAZ_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_TOPAZ_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_TOPAZ_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
-	public static final RegistryObject<Item> ONYX_ORE_ITEM = fromBlock(MagicTreasuresBlocks.ONYX_ORE, magic_treasures_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_ONYX_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_ONYX_ORE, magic_treasures_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> ONYX_ORE_ITEM = fromBlock(MagicTreasuresBlocks.ONYX_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_ONYX_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_ONYX_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
-	public static final RegistryObject<Item> JADEITE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.JADEITE_ORE, magic_treasures_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_JADEITE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_JADEITE_ORE, magic_treasures_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> JADEITE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.JADEITE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_JADEITE_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_JADEITE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
 
-	public static final RegistryObject<Item> RUBY_ORE_ITEM = fromBlock(MagicTreasuresBlocks.RUBY_ORE, magic_treasures_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_RUBY_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_RUBY_ORE, magic_treasures_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> SAPPHIRE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.SAPPHIRE_ORE, magic_treasures_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_SAPPHIRE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_SAPPHIRE_ORE, magic_treasures_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> RUBY_ORE_ITEM = fromBlock(MagicTreasuresBlocks.RUBY_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_RUBY_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_RUBY_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> SAPPHIRE_ORE_ITEM = fromBlock(MagicTreasuresBlocks.SAPPHIRE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_SAPPHIRE_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_SAPPHIRE_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
-	public static final RegistryObject<Item> SILVER_ORE_ITEM = fromBlock(MagicTreasuresBlocks.SILVER_ORE, magic_treasures_PROPS_SUPPLIER);
-	public static final RegistryObject<Item> DEEPSLATE_SILVER_ORE_ITEM = fromBlock(MagicTreasuresBlocks.DEEPSLATE_SILVER_ORE, magic_treasures_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> SILVER_ORE_ITEM = fromBlock(MagicTreasuresBlocks.SILVER_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
+	public static final RegistryObject<Item> DEEPSLATE_SILVER_ORE = fromBlock(MagicTreasuresBlocks.DEEPSLATE_SILVER_ORE, MAGIC_TREASURES_PROPS_SUPPLIER);
 
 	// TODO create/register all jewelry
 
@@ -700,7 +701,7 @@ public class MagicTreasuresItems {
 
 		public Supplier<Jewelry> deferredCreateJewelry(JewelryType type, JewelryMaterial material, JewelrySizeTier size, ResourceLocation stone) {
 			return () -> {
-				Jewelry j = new Jewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+				Jewelry j = new Jewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 					public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 						IJewelryHandler handler = new JewelryHandler.Builder(type, material, stone, size)
 								.with($ -> {
@@ -753,7 +754,7 @@ public class MagicTreasuresItems {
 		@Override
 		public Supplier<Jewelry> deferredCreateJewelry(JewelryType type, JewelryMaterial material, JewelrySizeTier size, ResourceLocation stone) {
 			return () -> {
-				Jewelry j = new Jewelry(magic_treasures_PROPS_SUPPLIER.get()) {
+				Jewelry j = new Jewelry(MAGIC_TREASURES_PROPS_SUPPLIER.get()) {
 					public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag tag) {
 						IJewelryHandler handler = new JewelryHandler.Builder(type, material, stone, size)
 								.with($ -> {

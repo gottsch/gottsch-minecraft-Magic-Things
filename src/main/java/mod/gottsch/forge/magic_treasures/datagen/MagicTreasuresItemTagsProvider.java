@@ -324,6 +324,8 @@ public class MagicTreasuresItemTagsProvider extends ItemTagsProvider {
 		// ingots
 		tag(MagicTreasuresTags.Items.INGOTS_SILVER).add(MagicTreasuresItems.SILVER_INGOT.get());
 
+		tag(MagicTreasuresTags.Items.RAW_SILVER).add(MagicTreasuresItems.RAW_SILVER.get());
+
 		// special jewelry tags
 		tag(MagicTreasuresTags.Items.CASTLE_RING_RUBY).add(MagicTreasuresItems.RUBY.get());
 		tag(MagicTreasuresTags.Items.CASTLE_RING_SAPPHIRE).add(MagicTreasuresItems.SAPPHIRE.get());

@@ -129,6 +129,15 @@ public class Recipes extends RecipeProvider {
 					.unlockedBy(CRITERIA, InventoryChangeTrigger.TriggerInstance.hasItems(MagicTreasuresItems.BRACELET_RECIPE.get()))
 					.save(recipe);
 
+			SimpleCookingRecipeBuilder.smelting(Ingredient.of(MagicTreasuresTags.Items.RAW_SILVER),
+							MagicTreasuresItems.SILVER_INGOT.get(), 1.0f, 200)
+					.unlockedBy("has_ore", inventoryTrigger(ItemPredicate.Builder.item().of(MagicTreasuresItems.RAW_SILVER.get()).build()))
+					.save(recipe);
+
+			SimpleCookingRecipeBuilder.blasting(Ingredient.of(MagicTreasuresTags.Items.RAW_SILVER),
+							MagicTreasuresItems.SILVER_INGOT.get(), 1.0f, 100)
+					.unlockedBy("has_ore", inventoryTrigger(ItemPredicate.Builder.item().of(MagicTreasuresItems.RAW_SILVER.get()).build()))
+					.save(recipe, "blasting_silver_ingot");
 
 			// TODO Treasure2 doesn't use Tags for key recipes (ruby, sapphire)
 			// so need to add the recipes individually

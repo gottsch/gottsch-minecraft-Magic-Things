@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:amethyst_shard",
+    "minecraft:emerald",
+    "magictreasures:recharge_scroll",
+    {
+      "id": "diamethysts:diamethyst_shard",
+      "required": false
+    },
+    {
+      "id": "diamethysts:diamethyst_crystal",
+      "required": false
+    }
+  ]
+}

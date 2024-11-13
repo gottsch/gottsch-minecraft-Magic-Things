@@ -4,6 +4,7 @@ package mod.gottsch.forge.magic_treasures.core.loot.modifier;
 import com.google.gson.JsonObject;
 import mod.gottsch.forge.gottschcore.enums.IRarity;
 import mod.gottsch.forge.gottschcore.random.RandomHelper;
+import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.api.MagicTreasuresApi;
 import mod.gottsch.forge.magic_treasures.core.config.Config;
 import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresItems;
@@ -17,11 +18,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.loot.GlobalLootModifierSerializer;
 import net.minecraftforge.common.loot.LootModifier;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 
@@ -44,8 +47,20 @@ public class LootModifierByRarity extends LootModifier {
 
 	@Override
 	protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
+		MagicTreasures.LOGGER.debug("executing LootModifierByRarity");
 
-		if (Config.SERVER.loot.enableVanillaLootModifiers.get() && RandomHelper.checkProbability(context.getLevel().getRandom(), chance * 100)) {
+		// if chance was left blank or null, then set to 100% by default
+		double localChance = chance == 0.0 ? 1.0 : chance;
+
+		// determine if specific loot modifier is enabled
+		boolean isEnabled = Optional.ofNullable(Config.enableLootModifiers.get(rarity.getName().toLowerCase())).
+				map(ForgeConfigSpec.ConfigValue::get).orElse(false);
+		MagicTreasures.LOGGER.debug("isEnabled for {} -> {}", rarity, isEnabled);
+
+		if (Config.SERVER.loot.enableVanillaLootModifiers.get()
+				&& isEnabled
+				&& RandomHelper.checkProbability(context.getLevel().getRandom(), localChance * 100)) {
+
 			List<Item> lootList = JewelryRegistry.get(rarity);
 			lootList.addAll(StoneRegistry.get(rarity));
 			lootList.addAll(

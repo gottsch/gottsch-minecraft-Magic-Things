@@ -1,7 +1,7 @@
 {
   "conditions": [
     {
-      "condition": "minecraft:alternative",
+      "condition" : "minecraft:alternative",
       "terms": [
         {
           "condition": "forge:loot_table_id",
@@ -37,7 +37,7 @@
   ],
   "count": 1,
   "rarity": "common",
-  "chance": 0.7,
+  "chance": 0.8,
   "lootTable": "magictreasures:entities/rare",
   "type": "magictreasures:loot_modifier_by_loot_table"
 }

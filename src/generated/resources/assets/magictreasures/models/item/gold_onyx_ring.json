@@ -1,0 +1,6 @@
+{
+  "parent": "magictreasures:item/jewelry",
+  "textures": {
+    "layer0": "magictreasures:item/jewelry/gold_onyx_ring"
+  }
+}

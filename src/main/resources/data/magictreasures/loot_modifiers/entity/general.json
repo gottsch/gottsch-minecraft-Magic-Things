@@ -1,7 +1,7 @@
 {
   "conditions": [
     {
-      "condition": "minecraft:alternative",
+      "condition" : "minecraft:alternative",
       "terms": [
         {
           "condition": "forge:loot_table_id",
@@ -10,10 +10,6 @@
         {
           "condition": "forge:loot_table_id",
           "loot_table_id": "minecraft:entities/creeper"
-        },
-        {
-          "condition": "forge:loot_table_id",
-          "loot_table_id": "minecraft:entities/enderman"
         },
         {
           "condition": "forge:loot_table_id",
@@ -64,7 +60,7 @@
   ],
   "count": 1,
   "rarity": "common",
-  "chance": 0.1,
+  "chance": 0.25,
   "lootTable": "magictreasures:entities/general",
   "type": "magictreasures:loot_modifier_by_loot_table"
 }
