@@ -1,6 +1,0 @@
-{
-    "parent": "magictreasures:block/ore_parent",
-    "textures": {
-        "0": "magictreasures:block/onyx_ore"
-    }
-}

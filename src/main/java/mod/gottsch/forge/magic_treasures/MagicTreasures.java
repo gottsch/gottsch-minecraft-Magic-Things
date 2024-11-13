@@ -17,6 +17,7 @@
  */
 package mod.gottsch.forge.magic_treasures;
 
+import com.electronwill.nightconfig.core.CommentedConfig;
 import mod.gottsch.forge.magic_treasures.core.config.Config;
 import mod.gottsch.forge.magic_treasures.core.network.MagicTreasuresNetworking;
 import mod.gottsch.forge.magic_treasures.core.setup.CommonSetup;
@@ -26,13 +27,15 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.IConfigSpec;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import top.theillusivec4.curios.api.SlotTypeMessage;
-import top.theillusivec4.curios.api.SlotTypePreset;
+//import top.theillusivec4.curios.api.SlotTypeMessage;
+//import top.theillusivec4.curios.api.SlotTypePreset;
 
 /**
  * 
@@ -67,6 +70,7 @@ public class MagicTreasures {
 		// TODO anything that is registering magic things only, like jewelry material tiers, in common setup can and needs to be called before Registration.init()
 		eventBus.addListener(CommonSetup::init);
 		eventBus.addListener(this::interModComms);
+		eventBus.addListener(this::config);
 	}
 
 	/**
@@ -79,9 +83,23 @@ public class MagicTreasures {
 		///////////////////////////////////
 		// Comment out when running DataGen until I figure out why it's not working with Curios
 		///////////////////////////////////
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.RING.getMessageBuilder().build());
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BRACELET.getMessageBuilder().build());
-		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BELT.getMessageBuilder().build());
+//		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.NECKLACE.getMessageBuilder().build());
+//		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.RING.getMessageBuilder().build());
+//		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BRACELET.getMessageBuilder().build());
+//		InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.BELT.getMessageBuilder().build());
+	}
+
+	private void config(final ModConfigEvent event) {
+		if (event.getConfig().getModId().equals(MOD_ID)) {
+			if (event.getConfig().getType() == ModConfig.Type.SERVER) {
+				IConfigSpec<?> spec = event.getConfig().getSpec();
+				// get the toml config data
+				CommentedConfig commentedConfig = event.getConfig().getConfigData();
+
+				if (spec == Config.SERVER_CONFIG) {
+					Config.mapEnableLootModifiers(commentedConfig);
+				}
+			}
+		}
 	}
 }

@@ -18,10 +18,12 @@ import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
@@ -65,7 +67,15 @@ public class LootModifierByLootTable extends LootModifier {
 		// if chance was left blank or null, then set to 100% by default
 		double localChance = chance == 0.0 ? 1.0 : chance;
 
-		if (Config.SERVER.loot.enableVanillaLootModifiers.get() && RandomHelper.checkProbability(context.getLevel().getRandom(), localChance * 100)) {
+		// determine if specific loot modifier is enabled
+		boolean isEnabled = Optional.ofNullable(Config.enableLootModifiers.get(lootTable.toLowerCase())).
+				map(ForgeConfigSpec.ConfigValue::get).orElse(false);
+		MagicTreasures.LOGGER.debug("isEnabled for {} -> {}", lootTable, isEnabled);
+
+		if (Config.SERVER.loot.enableVanillaLootModifiers.get()
+				&& isEnabled
+				&& RandomHelper.checkProbability(context.getLevel().getRandom(), localChance * 100)) {
+
 			IRarity rarity = MagicTreasuresApi.getRarity(this.rarity).orElse(MagicTreasuresRarity.NONE);
 			ResourceLocation lootTable = ModUtil.asLocation(this.lootTable);
 

@@ -49,8 +49,8 @@ public class MagicTreasuresBlocks {
     public static final RegistryObject<Block> SAPPHIRE_ORE = Registration.BLOCKS.register("sapphire_ore", () -> new Block(ORE_PROPS.get()));
     public static final RegistryObject<Block> DEEPSLATE_SAPPHIRE_ORE = Registration.BLOCKS.register("deepslate_sapphire_ore", () -> new Block(DEEPSLATE_ORE_PROPS.get()));
 
-    public static final RegistryObject<Block> SILVER_ORE = Registration.BLOCKS.register("silver_ore", () -> new Block(ORE_PROPS.get()));
-    public static final RegistryObject<Block> DEEPSLATE_SILVER_ORE = Registration.BLOCKS.register("deepslate_silver_ore", () -> new Block(DEEPSLATE_ORE_PROPS.get()));
+    public static final RegistryObject<Block> SILVER_ORE = Registration.BLOCKS.register("silver_ore", () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)));
+    public static final RegistryObject<Block> DEEPSLATE_SILVER_ORE = Registration.BLOCKS.register("deepslate_silver_ore", () -> new Block(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_IRON_ORE)));
 
     /**
      *

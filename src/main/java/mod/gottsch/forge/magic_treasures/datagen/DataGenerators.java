@@ -19,6 +19,7 @@ package mod.gottsch.forge.magic_treasures.datagen;
 
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -38,9 +39,10 @@ public class DataGenerators {
             generator.addProvider(true, blockTags);
             generator.addProvider(true, new MagicTreasuresItemTagsProvider(generator, blockTags, event.getExistingFileHelper()));
             generator.addProvider(true, new MagicTreasuresBiomeTagsProvider(generator, event.getExistingFileHelper()));
-
+            generator.addProvider(true, new MagicTreasuresLootTableProvider(generator));
         }
         if (event.includeClient()) {
+            generator.addProvider(true, new MagicTreasuresBlockStateProvider(generator, event.getExistingFileHelper()));
 //        	 generator.addProvider(new BlockStates(generator, event.getExistingFileHelper()));
             generator.addProvider(true, new ItemModelsProvider(generator, event.getExistingFileHelper()));
             generator.addProvider(true, new LanguageGen(generator, "en_us"));

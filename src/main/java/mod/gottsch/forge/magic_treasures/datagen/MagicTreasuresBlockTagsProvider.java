@@ -4,6 +4,7 @@ package mod.gottsch.forge.magic_treasures.datagen;
 import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.block.MagicTreasuresBlocks;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -21,6 +22,7 @@ public class MagicTreasuresBlockTagsProvider extends BlockTagsProvider {
     
     @Override
     protected void addTags() {
+
     	// blocks rarity
 //    	tag(TreasureTags.Blocks.COMMON_CHESTS).add(TreasureBlocks.WOOD_CHEST.get());
 

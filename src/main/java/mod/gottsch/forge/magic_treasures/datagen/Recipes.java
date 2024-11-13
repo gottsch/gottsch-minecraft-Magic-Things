@@ -5,11 +5,14 @@ import mod.gottsch.forge.magic_treasures.MagicTreasures;
 import mod.gottsch.forge.magic_treasures.core.item.MagicTreasuresItems;
 import mod.gottsch.forge.magic_treasures.core.tag.MagicTreasuresTags;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -121,6 +124,15 @@ public class Recipes extends RecipeProvider {
 					.unlockedBy(CRITERIA, InventoryChangeTrigger.TriggerInstance.hasItems(MagicTreasuresItems.BRACELET_RECIPE.get()))
 					.save(recipe);
 
+			SimpleCookingRecipeBuilder.smelting(Ingredient.of(MagicTreasuresTags.Items.RAW_SILVER),
+							MagicTreasuresItems.SILVER_INGOT.get(), 1.0f, 200)
+					.unlockedBy("has_ore", inventoryTrigger(ItemPredicate.Builder.item().of(MagicTreasuresItems.RAW_SILVER.get()).build()))
+					.save(recipe);
+
+			SimpleCookingRecipeBuilder.blasting(Ingredient.of(MagicTreasuresTags.Items.RAW_SILVER),
+							MagicTreasuresItems.SILVER_INGOT.get(), 1.0f, 100)
+					.unlockedBy("has_ore", inventoryTrigger(ItemPredicate.Builder.item().of(MagicTreasuresItems.RAW_SILVER.get()).build()))
+					.save(recipe, "blasting_silver_ingot");
 
 			// TODO Treasure2 doesn't use Tags for key recipes (ruby, sapphire)
 			// so need to add the recipes individually

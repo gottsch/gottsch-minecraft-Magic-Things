@@ -78,7 +78,7 @@ public class JewelryMaterials {
             .with($ -> {
                 $.repairs = 2;
                 $.maxLevel = 8;
-                // TODO
+                $.spellCostFactor = 0.9;
             }).build();
 
     public static final JewelryMaterial SHADOW = new JewelryMaterial.Builder("shadow", 275, 125)

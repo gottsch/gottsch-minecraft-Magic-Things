@@ -32,6 +32,7 @@ import mod.gottsch.forge.magic_treasures.core.util.ModUtil;
 import mod.gottsch.forge.treasure2.core.item.TreasureItems;
 import mod.gottsch.forge.treasure2.core.tags.TreasureTags;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
@@ -61,9 +62,6 @@ public class MagicTreasuresItemTagsProvider extends ItemTagsProvider {
 
 	@Override
 	protected void addTags() {
-
-		// TODO add Silver Ingot to forge "ore registry" tag
-
 
 		/*
 		 * map from jewelry type attribute to tag
@@ -305,12 +303,12 @@ public class MagicTreasuresItemTagsProvider extends ItemTagsProvider {
 
 		// ores
 		tag(MagicTreasuresTags.Items.ORE_SILVER).add(MagicTreasuresItems.SILVER_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_TOPAZ).add(MagicTreasuresItems.TOPAZ_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_ONYX).add(MagicTreasuresItems.ONYX_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_JADE).add(MagicTreasuresItems.JADEITE_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_JADEITE).add(MagicTreasuresItems.JADEITE_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_RUBY).add(MagicTreasuresItems.RUBY_ORE_ITEM.get());
-		tag(MagicTreasuresTags.Items.ORE_SAPPHIRE).add(MagicTreasuresItems.SAPPHIRE_ORE_ITEM.get());
+		tag(MagicTreasuresTags.Items.ORE_TOPAZ).add(MagicTreasuresItems.TOPAZ_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_ONYX).add(MagicTreasuresItems.ONYX_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_JADE).add(MagicTreasuresItems.JADEITE_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_JADEITE).add(MagicTreasuresItems.JADEITE_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_RUBY).add(MagicTreasuresItems.RUBY_ORE.get());
+		tag(MagicTreasuresTags.Items.ORE_SAPPHIRE).add(MagicTreasuresItems.SAPPHIRE_ORE.get());
 
 		// gems
 		tag(MagicTreasuresTags.Items.GEMS_TOPAZ).add(MagicTreasuresItems.TOPAZ.get());
@@ -324,6 +322,8 @@ public class MagicTreasuresItemTagsProvider extends ItemTagsProvider {
 
 		// ingots
 		tag(MagicTreasuresTags.Items.INGOTS_SILVER).add(MagicTreasuresItems.SILVER_INGOT.get());
+
+		tag(MagicTreasuresTags.Items.RAW_SILVER).add(MagicTreasuresItems.RAW_SILVER.get());
 
 		// special jewelry tags
 		tag(MagicTreasuresTags.Items.CASTLE_RING_RUBY).add(MagicTreasuresItems.RUBY.get());
