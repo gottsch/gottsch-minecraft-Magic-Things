@@ -126,7 +126,7 @@ public class Recipes extends RecipeProvider {
 							MagicTreasuresItems.SILVER_INGOT.get(), 1.0f, 200)
 					.group("silver_ingot")
 					.unlockedBy("has_ore", inventoryTrigger(ItemPredicate.Builder.item().of(MagicTreasuresItems.RAW_SILVER.get()).build()))
-					.save(recipe, "silver_ingot_from_raw");
+					.save(recipe);
 
 			// TODO Treasure2 doesn't use Tags for key recipes (ruby, sapphire)
 			// so need to add the recipes individually

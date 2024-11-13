@@ -73,7 +73,7 @@ public class LootModifierByLootTable extends LootModifier {
 		double localChance = chance == 0.0 ? 1.0 : chance;
 
 		// determine if specific loot modifier is enabled
-		boolean isEnabled = Optional.ofNullable(Config.enableLootModifiers.get(lootTable)).
+		boolean isEnabled = Optional.ofNullable(Config.enableLootModifiers.get(lootTable.toLowerCase())).
 				map(ForgeConfigSpec.ConfigValue::get).orElse(false);
 		MagicTreasures.LOGGER.debug("isEnabled for {} -> {}", lootTable, isEnabled);
 

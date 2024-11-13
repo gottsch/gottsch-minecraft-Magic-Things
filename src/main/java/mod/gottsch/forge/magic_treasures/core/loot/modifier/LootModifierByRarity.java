@@ -84,12 +84,14 @@ public class LootModifierByRarity extends LootModifier {
 		double localChance = chance == 0.0 ? 1.0 : chance;
 
 		// determine if specific loot modifier is enabled
-		boolean isEnabled = Optional.ofNullable(Config.enableLootModifiers.get(rarity)).
+		boolean isEnabled = Optional.ofNullable(Config.enableLootModifiers.get(rarity.toLowerCase())).
 				map(ForgeConfigSpec.ConfigValue::get).orElse(false);
 		MagicTreasures.LOGGER.debug("isEnabled for {} -> {}", rarity, isEnabled);
 
+		if (Config.SERVER.loot.enableVanillaLootModifiers.get()
+				&& isEnabled
+				&& RandomHelper.checkProbability(context.getLevel().getRandom(), localChance * 100)) {
 
-		if (Config.SERVER.loot.enableVanillaLootModifiers.get() && RandomHelper.checkProbability(context.getLevel().getRandom(), localChance * 100)) {
 			IRarity rarity = MagicTreasuresApi.getRarity(this.rarity).orElse(MagicTreasuresRarity.NONE);
 			List<Item> lootList = JewelryRegistry.get(rarity);
 			lootList.addAll(StoneRegistry.get(rarity));
